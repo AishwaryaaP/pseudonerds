@@ -1,6 +1,6 @@
 package com.AutomatedMeetingBookingSystem.model;
 
-public class Employee {
+public class User {
 	private int empId;
 	private String name;
 	private String email;
@@ -15,7 +15,7 @@ public class Employee {
 	}
 	
 
-	public Employee(int empId, String name, String email, String phoneNumber, String role) {
+	public User(int empId, String name, String email, String phoneNumber, String role) {
 		super();
 		this.empId = empId;
 		this.name = name;

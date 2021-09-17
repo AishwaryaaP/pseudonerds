@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.AutomatedMeetingBookingSystem.model.Employee;
+import com.AutomatedMeetingBookingSystem.model.User;
 
 
 
@@ -59,6 +59,7 @@ public class AdminController extends HttpServlet {
 
 		case "getAllRooms":
 			// call service layer for meetingroom.getall
+			
 			break;
 
 		case "getAdminDetails":
