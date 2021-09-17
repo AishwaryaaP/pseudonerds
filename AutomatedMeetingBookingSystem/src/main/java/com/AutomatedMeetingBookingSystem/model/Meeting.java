@@ -5,18 +5,19 @@ import java.time.LocalDate;
 
 public class Meeting {
 
-	private int organiser;
+	private int organisedBy;
 	private String roomName;
 	private String meetingTitle;
 	private LocalDate date;
 	private LocalTime starttime;
 	private LocalTime endtime;
+	//List listOfMember;
 	public enum meetingType{CLASSROOMTRAINING,ONLINETRAINING,CONFERENCECAL,BUSINESS} meetingType type;
 
-	public Meeting(int organiser, String roomName, String meetingTitle, LocalDate date, LocalTime starttime,
+	public Meeting(int organisedBy, String roomName, String meetingTitle, LocalDate date, LocalTime starttime,
 			LocalTime endtime, meetingType type) {
 		super();
-		this.organiser = organiser;
+		this.organisedBy = organisedBy;
 		this.roomName = roomName;
 		this.meetingTitle = meetingTitle;
 		this.date = date;
@@ -25,8 +26,8 @@ public class Meeting {
 		this.type = type;
 	}
 
-	public int getOrganiser() {
-		return organiser;
+	public int getOrganisedBy() {
+		return organisedBy;
 	}
 
 	public String getRoomName() {
@@ -54,7 +55,7 @@ public class Meeting {
 	}
 
 	public String toString() {
-		return this.getOrganiser() + " " + this.getRoomName() + " " + this.getMeetingTitle() + " " + this.getDate()
+		return this.getOrganisedBy() + " " + this.getRoomName() + " " + this.getMeetingTitle() + " " + this.getDate()
 				+ " " + this.getStartTime() + " " + this.getEndTime()+" "+this.getType();
 	}
 }

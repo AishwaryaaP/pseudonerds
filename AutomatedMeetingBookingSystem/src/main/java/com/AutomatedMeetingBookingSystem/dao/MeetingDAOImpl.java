@@ -3,15 +3,12 @@ package com.AutomatedMeetingBookingSystem.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.time.LocalTime;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import com.AutomatedMeetingBookingSystem.exceptions.ConnectionFailedException;
 import com.AutomatedMeetingBookingSystem.model.Meeting;
-import com.AutomatedMeetingBookingSystem.model.Meeting.meetingType;
 import com.AutomatedMeetingBookingSystem.utility.DatabaseUtils;
 
 public class MeetingDAOImpl implements MeetingDAO {
@@ -19,17 +16,14 @@ public class MeetingDAOImpl implements MeetingDAO {
 	Connection connection = DatabaseUtils.getConnection();
 
 	private static final String INSERT_MEETING = "insert into meeting (organiser, roomName, meetingTitle, date, starttime, endtime, type) values (?,?,?,?,?,?,?)";
-	private static final String SELECT_MEETING_BY_USERID = "SELECT uid from list_of_people where user_uid = ?";
-	private static final String SELECT_MEETING_BY_MEETINGID = "select meeting.organiser,meeting.meetingTitle,meeting.type,booking_info.room_no,"
-			+ "booking_info.date,booking_info.start_time,booking_info.end_time,booking_info.booked_by from meeting left join booking_info on "
-			+ "meeting.booking_info = booking_info.uid where meeting.uid=?";
-
+	private static final String SELECT_MEETING_BY_USERID = "Enter list_of_people where  = ?";
+	private static final String SELECT_MEETING_BY_MEETINGID = "";
 	public Meeting createMeeting(Meeting meeting) throws ConnectionFailedException {
 		if (connection != null) 
 		{
 			try {
 				PreparedStatement statement = connection.prepareStatement(INSERT_MEETING);
-				statement.setInt(1, meeting.getOrganiser());
+				statement.setInt(1, meeting.getOrganisedBy());
 				statement.setString(2, meeting.getRoomName());
 				statement.setString(3, meeting.getMeetingTitle());
 				statement.setString(4, meeting.getDate().toString());
