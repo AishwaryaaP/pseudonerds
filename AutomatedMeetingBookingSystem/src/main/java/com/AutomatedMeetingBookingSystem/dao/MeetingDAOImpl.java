@@ -1,10 +1,10 @@
 package com.AutomatedMeetingBookingSystem.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Time;
+import java.time.LocalTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -32,9 +32,9 @@ public class MeetingDAOImpl implements MeetingDAO {
 				statement.setInt(1, meeting.getOrganiser());
 				statement.setString(2, meeting.getRoomName());
 				statement.setString(3, meeting.getMeetingTitle());
-				statement.setDate(4, meeting.getDate());
-				statement.setTime(5, meeting.getStartTime());
-				statement.setTime(6, meeting.getEndTime());
+				statement.setString(4, meeting.getDate().toString());
+				statement.setString(5, meeting.getStartTime().toString());
+				statement.setString(6, meeting.getEndTime().toString());
 			    statement.setString(7, meeting.getType().toString());
 				//statement.setString(8, meeting.getBooking().getuID());
 

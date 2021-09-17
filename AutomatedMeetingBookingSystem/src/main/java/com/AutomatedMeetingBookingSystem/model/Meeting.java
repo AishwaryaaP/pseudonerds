@@ -1,20 +1,20 @@
 package com.AutomatedMeetingBookingSystem.model;
 
-import java.sql.Time;
-import java.sql.Date;
+import java.time.LocalTime;
+import java.time.LocalDate;
 
 public class Meeting {
 
 	private int organiser;
 	private String roomName;
 	private String meetingTitle;
-	private Date date;
-	private Time starttime;
-	private Time endtime;
+	private LocalDate date;
+	private LocalTime starttime;
+	private LocalTime endtime;
 	public enum meetingType{CLASSROOMTRAINING,ONLINETRAINING,CONFERENCECAL,BUSINESS} meetingType type;
 
-	public Meeting(int organiser, String roomName, String meetingTitle, Date date, Time starttime,
-			Time endtime, meetingType type) {
+	public Meeting(int organiser, String roomName, String meetingTitle, LocalDate date, LocalTime starttime,
+			LocalTime endtime, meetingType type) {
 		super();
 		this.organiser = organiser;
 		this.roomName = roomName;
@@ -37,15 +37,15 @@ public class Meeting {
 		return meetingTitle;
 	}
 
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public Time getStartTime() {
+	public LocalTime getStartTime() {
 		return starttime;
 	}
 
-	public Time getEndTime() {
+	public LocalTime getEndTime() {
 		return endtime;
 	}
 	
