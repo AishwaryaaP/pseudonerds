@@ -18,3 +18,6 @@ output
 PhantomJS_*
 Servers
 build/
+.project
+.classpath
+target/
