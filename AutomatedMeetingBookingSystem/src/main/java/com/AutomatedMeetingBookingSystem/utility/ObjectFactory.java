@@ -1,8 +1,8 @@
-package com.app.factory;
-import com.app.dao.BookingInformationDao;
-import com.app.dao.BookingInformationDaoImpl;
-import com.app.service.BookingInformationService;
-import com.app.service.BookingInformationServiceImpl;
+package com.AutomatedMeetingBookingSystem.utility;
+import com.AutomatedMeetingBookingSystem.dao.BookingInformationDao;
+import com.AutomatedMeetingBookingSystem.dao.BookingInformationDaoImpl;
+import com.AutomatedMeetingBookingSystem.service.BookingInformationService;
+import com.AutomatedMeetingBookingSystem.service.BookingInformationServiceImpl;
 public class ObjectFactory {
 	public BookingInformationDao getBookingDaoInstance() {
 		BookingInformationDao dao = new BookingInformationDaoImpl();

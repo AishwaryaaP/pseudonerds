@@ -1,5 +1,5 @@
 
-package com.app.dao;
+package com.AutomatedMeetingBookingSystem.dao;
 
 import java.sql.Array;
 import java.sql.Connection;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.app.model.BookingInformation;
+import com.AutomatedMeetingBookingSystem.model.BookingInformation;
 
 
 public class BookingInformationDaoImpl implements BookingInformationDao {

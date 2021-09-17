@@ -1,10 +1,10 @@
-package com.app.service;
+package com.AutomatedMeetingBookingSystem.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.app.dao.BookingInformationDao;
-import com.app.factory.ObjectFactory;
-import com.app.model.BookingInformation;
+import com.AutomatedMeetingBookingSystem.dao.BookingInformationDao;
+import com.AutomatedMeetingBookingSystem.utility.ObjectFactory;
+import com.AutomatedMeetingBookingSystem.model.BookingInformation;
 public class  BookingInformationServiceImpl implements BookingInformationService {
 	BookingInformationDao bookingInformationDao = new ObjectFactory().getBookingDaoInstance();
 	List<String> amenities = new ArrayList<>();
@@ -30,5 +30,5 @@ public class  BookingInformationServiceImpl implements BookingInformationService
 		List<MeetingRoom> meetingRoomsDetails = bookingInformationDao.getMeetingRoomsDetails(availableMeetingRooms);
 		return meetingRoomsDetails;
 	}
-
+	
 }

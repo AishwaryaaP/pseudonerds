@@ -1,12 +1,13 @@
-package com.app.model;
+package com.AutomatedMeetingBookingSystem.model;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class BookingInformation {
 	private int uniqueId;
     private String roomName;
     private LocalDate date;
-    private Time startTime;
+    private LocalTime startTime;
     private Time endTime;
 	private int organizedBy; 
 	
@@ -14,7 +15,7 @@ public class BookingInformation {
 		super();
 		
 	}
-	public BookingInformation(int uniqueId, String roomName, LocalDate date, Time startTime, Time endTime,int organizedBy) {
+	public BookingInformation(int uniqueId, String roomName, LocalDate date, LocalTime startTime, Time endTime,int organizedBy) {
 		super();
 		this.uniqueId = uniqueId;
 		this.roomName = roomName;
@@ -38,10 +39,10 @@ public class BookingInformation {
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
-	public Time getStartTime() {
+	public LocalTime getStartTime() {
 		return startTime;
 	}
-	public void setStartTime(Time startTime) {
+	public void setStartTime(LocalTime startTime) {
 		this.startTime = startTime;
 	}
 	public Time getEndTime() {

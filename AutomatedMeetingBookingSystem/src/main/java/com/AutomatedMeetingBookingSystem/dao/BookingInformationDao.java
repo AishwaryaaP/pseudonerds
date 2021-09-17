@@ -1,8 +1,8 @@
-package com.app.dao;
+package com.AutomatedMeetingBookingSystem.dao;
 
 import java.util.List;
 
-import com.app.model.BookingInformation;
+import com.AutomatedMeetingBookingSystem.model.BookingInformation;
 
 public interface BookingInformationDao {
 	public List<String> getMeetingRoomsByFilter(List<String> amenities);
