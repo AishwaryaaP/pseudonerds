@@ -1,0 +1,41 @@
+create database amrbs;
+
+use amrbs;
+
+create table MeetingRoom (roomName varchar(50) PRIMARY KEY,
+ seatingCapacity int ,
+ rating ENUM ('1','2','3','4','5') , 
+ amenities SET('PROJECTOR','COFFEEMACHINE','WIFICONNECTION','CONFERENCECALL','WHITEBOARD','WATERDISPENCER','TV') ,
+ creditPerHour int);
+ 
+create table User (UserID int PRIMARY KEY,
+ name varchar(50), 
+ email varchar(50) , 
+ phone bigint,credit int , 
+ role ENUM ('MANAGER','ADMIN','MEMBER'));
+ 
+create table BookingInformation(UniqueId int,
+ roomName varchar(50),
+ date Date,
+ startTime TIME,
+ endTime TIME,
+ OrganizedBy int,
+ FOREIGN KEY(UniqueId)  REFERENCES Meeting(UniqueId),
+ FOREIGN KEY(roomName)  REFERENCES MeetingRoom(roomName),
+ FOREIGN KEY(OrganizedBy)  REFERENCES User(UserID));
+
+create table Meeting (UniqueId int PRIMARY KEY,
+ OrganizedBy int, 
+ title varchar(50),
+ date Date, 
+ startTime TIME, 
+ endTime TIME, 
+ type ENUM ('CLASSROOMTRAINING','ONLINETRAINING','CONFERENCECALL','BUSINESS'),
+ listOfMember JSON, InfoOfMeeting varchar(50), 
+ FOREIGN KEY(OrganizedBy)  REFERENCES User(UserID));
+ 
+ ALTER TABLE Meeting RENAME COLUMN InfoOfMeeting TO InfoMeetingRoomName;
+ 
+ ALTER TABLE Meeting ADD CONSTRAINT my_fk FOREIGN KEY(InfoMeetingRoomName) REFERENCES MeetingRoom(roomName);
+	
+	

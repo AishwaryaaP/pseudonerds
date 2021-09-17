@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.AutomatedMeetingBookingSystem.model.Employee;
+import com.AutomatedMeetingBookingSystem.model.User;
 
 
 
@@ -14,6 +14,13 @@ import com.AutomatedMeetingBookingSystem.model.Employee;
 /*
  * Missed Out points:
  * For new empadd xml read
+ * 
+ * 
+ *DaoFactory
+ *AdminDaoInterface
+ *AdminDaoImp
+ *ManagerDaoInterface
+ *ManagerDaoImp
  * 
  * */
 
@@ -59,11 +66,13 @@ public class AdminController extends HttpServlet {
 
 		case "getAllRooms":
 			// call service layer for meetingroom.getall
+//			MeetingRoomService meetingRoomService = ServiceFactory.getSeriveInstance();
+//			List<MeetingRoom> allMeetingRooms = meetingRoomService.getAllRooms();
 			break;
 
 		case "getAdminDetails":
-			// get Id and call pass to service layer (Employee Controller missing)
-			//global serverlet?
+			//redux ? 
+			
 			break;
 
 		case "editMeetingRoom":
