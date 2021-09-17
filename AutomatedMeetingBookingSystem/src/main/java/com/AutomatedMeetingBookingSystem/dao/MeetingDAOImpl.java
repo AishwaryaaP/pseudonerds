@@ -27,8 +27,8 @@ public class MeetingDAOImpl implements MeetingDAO {
 				statement.setString(2, meeting.getRoomName());
 				statement.setString(3, meeting.getMeetingTitle());
 				statement.setString(4, meeting.getDate().toString());
-				statement.setString(5, meeting.getStartTime().toString());
-				statement.setString(6, meeting.getEndTime().toString());
+				statement.setString(5, meeting.getStarttime().toString());
+				statement.setString(6, meeting.getEndtime().toString());
 			    statement.setString(7, meeting.getType().toString());
 				//statement.setString(8, meeting.getBooking().getuID());
 
