@@ -10,9 +10,20 @@
   	<description></description>
   	<servlet-class>com.AutomatedMeetingBookingSystem.controllers.AdminController</servlet-class>
   </servlet>
+
+  <servlet>
+  	<servlet-name>GlobalServerlet</servlet-name>
+  	<display-name>GlobalServerlet</display-name>
+  	<description></description>
+  	<servlet-class>com.AutomatedMeetingBookingSystem.controllers.GlobalServerlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>AdminController</servlet-name>
   	<url-pattern>/AdminController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>GlobalServerlet</servlet-name>
+  	<url-pattern>/GlobalServerlet</url-pattern>
   </servlet-mapping>
 
 </web-app>

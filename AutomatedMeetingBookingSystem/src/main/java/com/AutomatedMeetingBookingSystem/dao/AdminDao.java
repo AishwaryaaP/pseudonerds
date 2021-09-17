@@ -10,13 +10,13 @@ import com.AutomatedMeetingBookingSystem.utility.DaoUtilityInterface;
 
 public class AdminDao {
 
-	public List<MeetingRoom> getAllRooms(){
-		
-	}
-	
-	public boolean deleteRoom(MeetingRoom obj) {
-		
-	}
+//	public List<MeetingRoom> getAllRooms(){
+//		
+//	}
+//	
+//	public boolean deleteRoom(MeetingRoom obj) {
+//		
+//	}
 	public User getAdminDetails(int uniqueId) {
 		DaoUtilityInterface dao = new DaoUtility();
 		Connection conn = dao.getInstance();
