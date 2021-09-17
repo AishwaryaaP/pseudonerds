@@ -29,6 +29,8 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_301"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="D:/HSBC Training/apache-tomcat-8.5.70-windows-x64.zip"/>
+	<classpathentry kind="lib" path="D:/HSBC Training/apache-tomcat-9.0.53-windows-x64.zip"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
