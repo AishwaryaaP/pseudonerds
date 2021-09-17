@@ -1,6 +1,7 @@
 package com.AutomatedMeetingBookingSystem.controllers;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -9,14 +10,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import service.ManagerService;
 
 @WebServlet("/ManagerController")
 public class ManagerController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ManagerService managerService;
+	//private ManagerService managerService;
     
 	public ManagerController() {
-    	managerService = new ObjectFactory.getManagerServiceInstance();
+    	//managerService = new ServiceFactory.getManagerServiceInstance();
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -24,8 +28,15 @@ public class ManagerController extends HttpServlet {
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
 		String action = request.getParameter("action");
-		System.out.println(action);
+		String name = request.getParameter("name");
+		System.out.println(action + " " + name);
+		PrintWriter pw = response.getWriter();
+		pw.print("<html><body>");
+		pw.print("Hello" + name + " " + action);
+		pw.print("</body></html>");
 		
 		//Not sure about this
 		HttpSession session = request.getSession();
