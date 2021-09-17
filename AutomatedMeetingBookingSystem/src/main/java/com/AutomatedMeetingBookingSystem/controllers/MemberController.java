@@ -39,8 +39,8 @@ public class MemberController extends HttpServlet {
 		System.out.println("param = " + request.getHeader("act"));
 		String action = request.getHeader("act");
 		System.out.println(action);
-		int userId = Integer.parseInt(request.getParameter("userId"));
-		MemberService service = new MemberServiceImpl();
+		int userId = (int)request.getAttribute("userId");
+		MemberService service = ServiceFactory.getMemberService();
 		switch (action)
 		{
 			case "getMemberDetails":

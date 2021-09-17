@@ -8,22 +8,21 @@ public class MemberDaoImpl implements MemberDao {
 		
 		try {
 					
-		
-		con = ConnectionManager.getConnection();
+			con = ConnectionManager.getConnection();
 		
 		} catch ( SQLException | ClassNotFoundException e ) {
 
 			System.out.println(e);
 		}
 	}
-	public List<Meeting> meetingScheduleDao(User user)
+	public List<Meeting> meetingScheduleDao(int userId)
 	{
 		List<Meeting> meetingSchedule =new ArrayList<Meeting>();
 		try 
 		{
 			
 			PreparedStatement ps = con.prepareStatement ( "select id, title, organized_by, meeting_date, start_time, end_time, meeting_room_id, meeting_type from meeting where ? = any(attendees)" );
-			ps.setString ( 1, user.getUser_id () );
+			ps.setString ( 1, userId );
 			ResultSet rs = ps.executeQuery ();
 			
 			while(rs.next()) {
