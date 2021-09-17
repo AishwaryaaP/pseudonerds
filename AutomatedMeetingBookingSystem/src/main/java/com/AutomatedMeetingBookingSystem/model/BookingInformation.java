@@ -45,6 +45,9 @@ public class BookingInformation {
 	public void setStartTime(LocalTime startTime) {
 		this.startTime = startTime;
 	}
+	public void setUniqueId(int uniqueId) {
+		this.uniqueId = uniqueId;
+	}
 	public Time getEndTime() {
 		return endTime;
 	}
