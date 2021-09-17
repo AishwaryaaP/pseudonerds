@@ -1,5 +1,6 @@
 package com.AutomatedMeetingBookingSystem.dao;
 
+import com.AutomatedMeetingBookingSystem.service.MemberService;
 
 public class MemberDaoImpl implements MemberDao {
 
@@ -18,7 +19,10 @@ public class MemberDaoImpl implements MemberDao {
 	public List<Meeting> meetingScheduleDao(int userId)
 	{
 		List<Meeting> meetingSchedule =new ArrayList<Meeting>();
-		try 
+		MeetingService service = ServiceFactory.getMeetingService();
+		meetingSchedule = service.fetchMeetingsByUserId(userId);
+		return meetingSchedule;
+	/*	try 
 		{
 			
 			PreparedStatement ps = con.prepareStatement ( "select id, title, organized_by, meeting_date, start_time, end_time, meeting_room_id, meeting_type from meeting where ? = any(attendees)" );
@@ -52,14 +56,15 @@ public class MemberDaoImpl implements MemberDao {
 				System.out.println(e);
 			}
 			
-			return meetingSchedule;
+			return meetingSchedule; */
 		
 		
 	}
 	public User memberDetailsDao(int userId);
 	{
-		User u = new User();
-		try
+		UserService service = ServiceFactory.getUserService();
+		User u = service.getUserDetailById(userId);
+	/*	try
 		{
 			PreparedStatement ps = con.prepareStatement ( "select userId, name, phone, credit, role from User where userId = ?");
 			ps.setString ( 1, userId );
@@ -75,7 +80,7 @@ public class MemberDaoImpl implements MemberDao {
 		}catch(SQLException e) {
 
 			System.out.println(e);
-		}
+		} */
 		
 		return u;
 

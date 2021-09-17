@@ -45,9 +45,33 @@ public class MemberController extends HttpServlet {
 		{
 			case "getMemberDetails":
 				User u = service.memberDetails(userId);
-				break;
+				
+				// Setting the attribute of the request object
+			    // which will be later fetched by a JSP page
+			    request.setAttribute("userObject", u);
+			  
+			    // Creating a RequestDispatcher object to dispatch
+			    // the request the request to another resource
+			    RequestDispatcher rd = request.getRequestDispatcher("memberJsp.jsp");
+			  
+			    // The request will be forwarded to the resource specified
+			    rd.forward(request, response);
+				
+			    break;
+			
 			case "getScheduledMeetings":
 				List<Meeting> scheduledMeeting = service.memberMeetingSchedule(userId);
+				// Setting the attribute of the request object
+			    // which will be later fetched by a JSP page
+			    request.setAttribute("meetingList", scheduledMeeting);
+			  
+			    // Creating a RequestDispatcher object to dispatch
+			    // the request the request to another resource
+			    RequestDispatcher rd = request.getRequestDispatcher("memberJsp.jsp");
+			  
+			    // The request will be forwarded to the resource specified
+			    rd.forward(request, response);
+
 				break;
 		}
 		
