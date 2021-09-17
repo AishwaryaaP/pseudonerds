@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import com.AutomatedMeetingBookingSystem.exceptions.ConnectionFailedException;
@@ -16,7 +15,7 @@ public class MeetingDAOImpl implements MeetingDAO {
 	Connection connection = DatabaseUtils.getConnection();
 
 	private static final String INSERT_MEETING = "insert into meeting (uniqueID, organisedBy, roomName, meetingTitle, date, starttime, endtime, type) values (?,?,?,?,?,?,?,?)";
-	private static final String SELECT_MEETING_BY_USERID = "Enter list_of_people where  = ?";
+	private static final String SELECT_MEETINGS_BY_USERID = "Select list_of_people where  = ?";
 	private static final String SELECT_MEETING_BY_UNIQUEID = "";
 	public Meeting createMeeting(Meeting meeting) throws ConnectionFailedException {
 		if (connection != null) 
@@ -50,24 +49,6 @@ public class MeetingDAOImpl implements MeetingDAO {
 		return INSERT_MEETING;
 	}
 
-	public Collection<String> fetchMeetingsByUserId(int userID) throws ConnectionFailedException {
-		if (connection != null) {
-			List<String> meetings = new ArrayList<>();
-			try {
-				PreparedStatement statement = connection.prepareStatement(SELECT_MEETING_BY_USERID);
-				statement.setInt(1, userID);
-				ResultSet rs = statement.executeQuery();
-				while (rs.next()) {
-					meetings.add(rs.getString("userID"));
-				}
-				return meetings;
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		throw new ConnectionFailedException("While fetching meetings by userID");
-	}
-
 	public Meeting fetchMeetingByUniqueID(int uniqueID) throws ConnectionFailedException {
 		if (connection != null) {
 			try {
@@ -77,5 +58,23 @@ public class MeetingDAOImpl implements MeetingDAO {
 			}
 		}
 		throw new ConnectionFailedException("While fetching meetings by uniqueID");
+	}
+
+	public List<Integer> fetchMeetingsByUserID(int userID) throws ConnectionFailedException {
+		if (connection != null) {
+			List<Integer> meetings = new ArrayList<>();
+			try {
+				PreparedStatement statement = connection.prepareStatement(SELECT_MEETINGS_BY_USERID);
+				statement.setInt(1, userID);
+				ResultSet rs = statement.executeQuery();
+				while (rs.next()) {
+					meetings.add(rs.getInt("userID"));
+				}
+				return meetings;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		throw new ConnectionFailedException("While fetching meetings by userID");
 	}
 	}

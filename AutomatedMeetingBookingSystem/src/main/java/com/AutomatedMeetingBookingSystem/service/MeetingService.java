@@ -1,6 +1,6 @@
 package com.AutomatedMeetingBookingSystem.service;
 
-import java.util.Collection;
+import java.util.List;
 
 import com.AutomatedMeetingBookingSystem.model.Meeting;
 
@@ -14,6 +14,6 @@ public interface MeetingService {
 
 	Meeting fetchMeetingByUniqueID(int uniqueID);
 
-	Collection<Meeting> fetchMeetingsByUserID(int userID);
+	List<Meeting> fetchMeetingsByUserID(int userID);
 
 }

@@ -1,7 +1,6 @@
 package com.AutomatedMeetingBookingSystem.service;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import com.AutomatedMeetingBookingSystem.dao.MeetingDAO;
@@ -31,9 +30,9 @@ public class MeetingServiceImpl implements MeetingService {
 		return meeting1;
 	}
 
-	public Collection<Meeting> fetchMeetingsByUserId(int userID) {
+	public List<Meeting> fetchMeetingsByUserID(int userID) {
 		List<Meeting> meetings = new ArrayList<>();
-		Collection<int> uniqueIDs;
+		List<Integer> uniqueIDs; 
 		try {
 			uniqueIDs = this.dao.fetchMeetingsByUserID(userID);
 			for (int uniqueID : uniqueIDs) {
@@ -45,5 +44,4 @@ public class MeetingServiceImpl implements MeetingService {
 		}
 		return meetings;
 	}
-
 }

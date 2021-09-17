@@ -1,6 +1,6 @@
 package com.AutomatedMeetingBookingSystem.dao;
 
-import java.util.Collection;
+import java.util.List;
 
 import com.AutomatedMeetingBookingSystem.exceptions.ConnectionFailedException;
 import com.AutomatedMeetingBookingSystem.model.Meeting;
@@ -13,7 +13,7 @@ public interface MeetingDAO {
 
 	Meeting createMeeting(Meeting meeting) throws ConnectionFailedException;
 
-	Collection<String> fetchMeetingsByUserID(int userID) throws ConnectionFailedException;
+	List<Integer> fetchMeetingsByUserID(int userID) throws ConnectionFailedException;
 
 	Meeting fetchMeetingByUniqueID(int uniqueID) throws ConnectionFailedException;
 }
