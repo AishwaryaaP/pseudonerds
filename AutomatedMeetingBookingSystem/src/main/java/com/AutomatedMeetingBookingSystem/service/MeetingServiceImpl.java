@@ -21,23 +21,23 @@ public class MeetingServiceImpl implements MeetingService {
 		return meeting1;
 	}
 
-	public Meeting fetchMeetingByMeetingId(String meetingId) {
+	public Meeting fetchMeetingByUniqueID(int uniqueID) {
 		Meeting meeting1 = null;
 		try {
-			meeting1 = this.dao.fetchMeetingByMeetingId(meetingId);
+			meeting1 = this.dao.fetchMeetingByUniqueID(uniqueID);
 		} catch (ConnectionFailedException e) {
 			System.out.println(e.getMessage());
 		}
 		return meeting1;
 	}
 
-	public Collection<Meeting> fetchMeetingsByUserId(String userId) {
+	public Collection<Meeting> fetchMeetingsByUserId(int userID) {
 		List<Meeting> meetings = new ArrayList<>();
-		Collection<String> meetingIds;
+		Collection<int> uniqueIDs;
 		try {
-			meetingIds = this.dao.fetchMeetingsByUserId(userId);
-			for (String meetingId : meetingIds) {
-				Meeting meeting = fetchMeetingByMeetingId(meetingId);
+			uniqueIDs = this.dao.fetchMeetingsByUserID(userID);
+			for (int uniqueID : uniqueIDs) {
+				Meeting meeting = fetchMeetingByUniqueID(uniqueID);
 				meetings.add(meeting);
 			}
 		} catch (ConnectionFailedException e) {

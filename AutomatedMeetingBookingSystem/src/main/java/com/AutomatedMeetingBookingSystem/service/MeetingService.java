@@ -12,8 +12,8 @@ public interface MeetingService {
 
 	Meeting saveMeeting(Meeting Meeting);
 
-	Meeting fetchMeetingByMeetingId(String meetingId);
+	Meeting fetchMeetingByUniqueID(int uniqueID);
 
-	Collection<Meeting> fetchMeetingsByUserId(String userId);
+	Collection<Meeting> fetchMeetingsByUserID(int userID);
 
 }

@@ -15,22 +15,23 @@ public class MeetingDAOImpl implements MeetingDAO {
 
 	Connection connection = DatabaseUtils.getConnection();
 
-	private static final String INSERT_MEETING = "insert into meeting (organiser, roomName, meetingTitle, date, starttime, endtime, type) values (?,?,?,?,?,?,?)";
+	private static final String INSERT_MEETING = "insert into meeting (uniqueID, organisedBy, roomName, meetingTitle, date, starttime, endtime, type) values (?,?,?,?,?,?,?,?)";
 	private static final String SELECT_MEETING_BY_USERID = "Enter list_of_people where  = ?";
-	private static final String SELECT_MEETING_BY_MEETINGID = "";
+	private static final String SELECT_MEETING_BY_UNIQUEID = "";
 	public Meeting createMeeting(Meeting meeting) throws ConnectionFailedException {
 		if (connection != null) 
 		{
 			try {
 				PreparedStatement statement = connection.prepareStatement(INSERT_MEETING);
-				statement.setInt(1, meeting.getOrganisedBy());
-				statement.setString(2, meeting.getRoomName());
-				statement.setString(3, meeting.getMeetingTitle());
-				statement.setString(4, meeting.getDate().toString());
-				statement.setString(5, meeting.getStarttime().toString());
-				statement.setString(6, meeting.getEndtime().toString());
-			    statement.setString(7, meeting.getType().toString());
-				//statement.setString(8, meeting.getBooking().getuID());
+				statement.setInt(1, meeting.getUniqueID());
+				statement.setInt(2, meeting.getOrganisedBy());
+				statement.setString(3, meeting.getRoomName());
+				statement.setString(4, meeting.getMeetingTitle());
+				statement.setString(5, meeting.getDate().toString());
+				statement.setString(6, meeting.getStarttime().toString());
+				statement.setString(7, meeting.getEndtime().toString());
+			    statement.setString(8, meeting.getType().toString());
+				//statement.setString(9, meeting.getBooking().getuID());
 
 				int recordsUpdated = statement.executeUpdate();
 				
@@ -49,25 +50,25 @@ public class MeetingDAOImpl implements MeetingDAO {
 		return INSERT_MEETING;
 	}
 
-	public Collection<String> fetchMeetingsByUserId(String userId) throws ConnectionFailedException {
+	public Collection<String> fetchMeetingsByUserId(int userID) throws ConnectionFailedException {
 		if (connection != null) {
 			List<String> meetings = new ArrayList<>();
 			try {
 				PreparedStatement statement = connection.prepareStatement(SELECT_MEETING_BY_USERID);
-				statement.setString(1, userId);
+				statement.setInt(1, userID);
 				ResultSet rs = statement.executeQuery();
 				while (rs.next()) {
-					meetings.add(rs.getString("uid"));
+					meetings.add(rs.getString("userID"));
 				}
 				return meetings;
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		throw new ConnectionFailedException("While fetching meetings by userId");
+		throw new ConnectionFailedException("While fetching meetings by userID");
 	}
 
-	public Meeting fetchMeetingByMeetingId(String meetingId) throws ConnectionFailedException {
+	public Meeting fetchMeetingByUniqueID(int uniqueID) throws ConnectionFailedException {
 		if (connection != null) {
 			try {
 			
@@ -75,6 +76,6 @@ public class MeetingDAOImpl implements MeetingDAO {
 				e.printStackTrace();
 			}
 		}
-		throw new ConnectionFailedException("While fetching meetings by meetingId");
+		throw new ConnectionFailedException("While fetching meetings by uniqueID");
 	}
 	}
