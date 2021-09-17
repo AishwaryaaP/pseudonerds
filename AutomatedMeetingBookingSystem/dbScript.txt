@@ -33,5 +33,9 @@ create table Meeting (UniqueId int PRIMARY KEY,
  type ENUM ('CLASSROOMTRAINING','ONLINETRAINING','CONFERENCECALL','BUSINESS'),
  listOfMember JSON, InfoOfMeeting varchar(50), 
  FOREIGN KEY(OrganizedBy)  REFERENCES User(UserID));
+ 
+ ALTER TABLE Meeting RENAME COLUMN InfoOfMeeting TO InfoMeetingRoomName;
+ 
+ ALTER TABLE Meeting ADD CONSTRAINT my_fk FOREIGN KEY(InfoMeetingRoomName) REFERENCES MeetingRoom(roomName);
 	
 	
