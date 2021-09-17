@@ -1,30 +1,32 @@
 package com.AutomatedMeetingBookingSystem.model;
 
 import java.time.LocalTime;
+import java.util.List;
 import java.time.LocalDate;
 
 public class Meeting {
 	private int uniqueID;
-	private int organisedBy;
-	private String roomName;
-	private String meetingTitle;
+	private int organizedBy;
+	private String infoOfMeeting;
+	private String title;
 	private LocalDate date;
 	private LocalTime starttime;
 	private LocalTime endtime;
-	//List listOfMember JSON;
+	private List<Integer> listOfMember;
 	public enum meetingType{CLASSROOMTRAINING,ONLINETRAINING,CONFERENCECAL,BUSINESS} meetingType type;
 
-	public Meeting( int uniqueID, int organisedBy, String roomName, String meetingTitle, LocalDate date, LocalTime starttime,
-			LocalTime endtime, meetingType type) {
+	public Meeting( int uniqueID, int organisedBy, String infoOfMeeting, String title, LocalDate date, LocalTime starttime,
+			LocalTime endtime, meetingType type, List<Integer> listOfMember) {
 		super();
 		this.uniqueID = uniqueID;
-		this.organisedBy = organisedBy;
-		this.roomName = roomName;
-		this.meetingTitle = meetingTitle;
+		this.organizedBy = organisedBy;
+		this.infoOfMeeting = infoOfMeeting;
+		this.title = title;
 		this.date = date;
 		this.starttime = starttime;
 		this.endtime = endtime;
 		this.type = type;
+		this.listOfMember = listOfMember;
 	}
 
 	
@@ -41,38 +43,38 @@ public class Meeting {
 
 
 
-	public int getOrganisedBy() {
-		return organisedBy;
+	public int getOrganizedBy() {
+		return organizedBy;
 	}
 
 
 
-	public void setOrganisedBy(int organisedBy) {
-		this.organisedBy = organisedBy;
+	public void setOrganizedBy(int organizedBy) {
+		this.organizedBy = organizedBy;
 	}
 
 
 
-	public String getRoomName() {
-		return roomName;
+	public String getInfoOfMeeting() {
+		return infoOfMeeting;
 	}
 
 
 
-	public void setRoomName(String roomName) {
-		this.roomName = roomName;
+	public void setInfoOfMeeting(String infoOfMeeting) {
+		this.infoOfMeeting = infoOfMeeting;
 	}
 
 
 
-	public String getMeetingTitle() {
-		return meetingTitle;
+	public String getTitle() {
+		return title;
 	}
 
 
 
-	public void setMeetingTitle(String meetingTitle) {
-		this.meetingTitle = meetingTitle;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 
@@ -124,9 +126,19 @@ public class Meeting {
 	}
 
 
+	public List<Integer> getListOfMember() {
+		return listOfMember;
+	}
+
+
+
+	public void setListOfMember(List<Integer> listOfMember) {
+		this.listOfMember = listOfMember;
+	}
+
 
 	public String toString() {
-		return this.getUniqueID() + " " + this.getOrganisedBy() + " " + this.getRoomName() + " " + this.getMeetingTitle() + " " + this.getDate()
-				+ " " + this.getStarttime() + " " + this.getEndtime()+" "+this.getType();
+		return this.getUniqueID() + " " + this.getOrganizedBy() + " " + this.getInfoOfMeeting() + " " + this.getTitle() + " " + this.getDate()
+				+ " " + this.getStarttime() + " " + this.getEndtime()+" "+this.getType()+ " "+ this.getListOfMember();
 	}
 }

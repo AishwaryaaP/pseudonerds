@@ -14,18 +14,18 @@ public class MeetingDAOImpl implements MeetingDAO {
 
 	Connection connection = DatabaseUtils.getConnection();
 
-	private static final String INSERT_MEETING = "insert into meeting (uniqueID, organisedBy, roomName, meetingTitle, date, starttime, endtime, type) values (?,?,?,?,?,?,?,?)";
-	private static final String SELECT_MEETINGS_BY_USERID = "Select list_of_people where  = ?";
-	private static final String SELECT_MEETING_BY_UNIQUEID = "";
+	private static final String INSERT_MEETING = "insert into meeting (uniqueID, organizedBy, infoOfMeeting, title, date, starttime, endtime, type) values (?,?,?,?,?,?,?,?)";
+	private static final String SELECT_MEETINGS_BY_USERID = "Select * where userID belongs to listOfMember  ";// to be edited
+	private static final String SELECT_MEETING_BY_UNIQUEID = "Select * From Meeting where uniqueID = ?";//to be edited
 	public Meeting createMeeting(Meeting meeting) throws ConnectionFailedException {
 		if (connection != null) 
 		{
 			try {
 				PreparedStatement statement = connection.prepareStatement(INSERT_MEETING);
 				statement.setInt(1, meeting.getUniqueID());
-				statement.setInt(2, meeting.getOrganisedBy());
-				statement.setString(3, meeting.getRoomName());
-				statement.setString(4, meeting.getMeetingTitle());
+				statement.setInt(2, meeting.getOrganizedBy());
+				statement.setString(3, meeting.getInfoOfMeeting());
+				statement.setString(4, meeting.getTitle());
 				statement.setString(5, meeting.getDate().toString());
 				statement.setString(6, meeting.getStarttime().toString());
 				statement.setString(7, meeting.getEndtime().toString());
