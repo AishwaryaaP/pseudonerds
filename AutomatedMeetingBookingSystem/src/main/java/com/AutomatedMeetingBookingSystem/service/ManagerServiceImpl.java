@@ -1,6 +1,8 @@
 package service;
 
 import java.util.List;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class ManagerServiceImpl implements ManagerService{
 
@@ -11,19 +13,19 @@ public class ManagerServiceImpl implements ManagerService{
 	
 	public ManagerServiceImpl() {
 		super();
-		meetingService = new ObjectFactory.getMeetingServiceInstance();
-		meetingRoomService = new ObjectFactory.getMeetingRoomServiceInstance();
-		userService = new ObjectFactory.getUserServiceInstance();
+		meetingService = new ServiceFactory.getMeetingServiceInstance();
+		meetingRoomService = new ServiceFactory.getMeetingRoomServiceInstance();
+		userService = new ServiceFactory.getUserServiceInstance();
 	}
 
 	@Override
-	public int createMeeting(int organizedBy, String title, String date, String startTime, String endTime, String type,
-			String listOfMembers) {
-		if(userService.findById(organizedBy) != null) {
-			int meetingId = meetingService.createMeeting(organizedBy, title, date, startTime, endTime, type, listOfMembers);
-			return meetingId;
-		}
-		return 0;
+	public Meeting createMeeting(int organizedBy, String roomName, int title, String date, String startHours, String startMinutes, String endHours, String endMinutes, String type, List<User> listOfMembers) {
+			LocalDate meetingDate = LocalDate.parse(date);
+			LocalTime startTime = LocalTime.of(Integer.parseInt(startHours), Integer.parseInt(startMinutes));
+			LocalTime endTime = LocalTime.of(Integer.parseInt(endHours), Integer.parseInt(endMinutes));
+			Meeting meeting = meetingService.saveMeeting(organizedBy, roomName, title, date, startTime, endTime, type, listOfMembers);
+			bookingInfoService.saveBookingInfo(roomName, meetingDate, startTime, endTime, organizedBy);
+			return meeting;
 	}
 
 	@Override
@@ -33,9 +35,12 @@ public class ManagerServiceImpl implements ManagerService{
 	}
 
 	@Override
-	public List<MeetingRoom> getAvailableRooms(String startTime, String endTime, String type) {
-		List<MeetingRoom> availableRooms = bookingInfoService.getAvailableRooms(startTime, endTime, type);
-		return null;
+	public List<MeetingRoom> getAvailableRooms(String date, String startHours, String startMinutes, String endHours, String endMinutes, String type) {
+		LocalDate meetingDate = LocalDate.parse(date);
+		LocalTime startTime = LocalTime.of(Integer.parseInt(startHours), Integer.parseInt(startMinutes));
+		LocalTime endTime = LocalTime.of(Integer.parseInt(endHours), Integer.parseInt(endMinutes));
+		List<MeetingRoom> availableRooms = bookingInfoService.getAvailableRooms(meetingDate, startTime, endTime, type);
+		return availableRooms;
 	}
 	
 
