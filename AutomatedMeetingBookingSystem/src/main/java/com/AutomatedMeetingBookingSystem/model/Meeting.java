@@ -13,10 +13,10 @@ public class Meeting {
 	private LocalTime starttime;
 	private LocalTime endtime;
 	private List<Integer> listOfMember;
-	public enum meetingType{CLASSROOMTRAINING,ONLINETRAINING,CONFERENCECAL,BUSINESS} meetingType type;
+	public MeetingType type;
 
 	public Meeting( int uniqueID, int organisedBy, String infoOfMeeting, String title, LocalDate date, LocalTime starttime,
-			LocalTime endtime, meetingType type, List<Integer> listOfMember) {
+			LocalTime endtime, MeetingType type, List<Integer> listOfMember) {
 		super();
 		this.uniqueID = uniqueID;
 		this.organizedBy = organisedBy;
@@ -115,13 +115,13 @@ public class Meeting {
 
 
 
-	public meetingType getType() {
+	public MeetingType getType() {
 		return type;
 	}
 
 
 
-	public void setType(meetingType type) {
+	public void setType(MeetingType type) {
 		this.type = type;
 	}
 
@@ -135,8 +135,7 @@ public class Meeting {
 	public void setListOfMember(List<Integer> listOfMember) {
 		this.listOfMember = listOfMember;
 	}
-
-
+	
 	public String toString() {
 		return this.getUniqueID() + " " + this.getOrganizedBy() + " " + this.getInfoOfMeeting() + " " + this.getTitle() + " " + this.getDate()
 				+ " " + this.getStarttime() + " " + this.getEndtime()+" "+this.getType()+ " "+ this.getListOfMember();

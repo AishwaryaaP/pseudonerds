@@ -2,7 +2,7 @@ package com.AutomatedMeetingBookingSystem.dao;
 
 import java.util.List;
 
-import com.AutomatedMeetingBookingSystem.exceptions.ConnectionFailedException;
+import com.AutomatedMeetingBookingSystem.exception.ConnectionFailedException;
 import com.AutomatedMeetingBookingSystem.model.Meeting;
 
 public interface MeetingDAO {
