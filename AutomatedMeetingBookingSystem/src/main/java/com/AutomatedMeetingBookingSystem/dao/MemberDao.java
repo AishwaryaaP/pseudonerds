@@ -1,6 +1,6 @@
-package main.java.com.AutomatedMeetingBookingSystem.dao;
+package com.AutomatedMeetingBookingSystem.dao;
 
-import main.java.com.AutomatedMeetingBookingSystem.model.User;
+import com.AutomatedMeetingBookingSystem.model.User;
 
 public interface MemberDao {
 

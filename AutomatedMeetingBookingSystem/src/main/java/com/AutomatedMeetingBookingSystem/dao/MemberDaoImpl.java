@@ -1,7 +1,7 @@
-package main.java.com.AutomatedMeetingBookingSystem.dao;
+package com.AutomatedMeetingBookingSystem.dao;
 
-import main.java.com.AutomatedMeetingBookingSystem.service.MemberService;
-import main.java.com.AutomatedMeetingBookingSystem.model.User;
+import com.AutomatedMeetingBookingSystem.service.MemberService;
+import com.AutomatedMeetingBookingSystem.model.User;
 
 public class MemberDaoImpl implements MemberDao {
 

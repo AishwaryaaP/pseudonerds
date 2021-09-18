@@ -1,11 +1,11 @@
-package main.java.com.AutomatedMeetingBookingSystem.service;
+package com.AutomatedMeetingBookingSystem.service;
 
-import main.java.com.AutomatedMeetingBookingSystem.service.MeetingService;
-import main.java.com.AutomatedMeetingBookingSystem.service.MeetingServiceImpl;
+import com.AutomatedMeetingBookingSystem.service.MeetingService;
+import com.AutomatedMeetingBookingSystem.service.MeetingServiceImpl;
 
 import java.util.List;
 
-import main.java.com.AutomatedMeetingBookingSystem.model.Meeting;
+import com.AutomatedMeetingBookingSystem.model.Meeting;
 
 public class MemberServiceImpl implements MemberService{
 

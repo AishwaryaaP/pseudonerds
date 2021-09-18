@@ -1,6 +1,9 @@
 package com.AutomatedMeetingBookingSystem.controllers;
 
 import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -52,7 +55,7 @@ public class MemberController extends HttpServlet {
 			  
 			    // Creating a RequestDispatcher object to dispatch
 			    // the request the request to another resource
-			    RequestDispatcher rd = request.getRequestDispatcher("memberJsp.jsp");
+			    RequestDispatcher rd = request.getRequestDispatcher("MemberJsp.jsp");
 			  
 			    // The request will be forwarded to the resource specified
 			    rd.forward(request, response);
@@ -67,7 +70,7 @@ public class MemberController extends HttpServlet {
 			  
 			    // Creating a RequestDispatcher object to dispatch
 			    // the request the request to another resource
-			    RequestDispatcher rd = request.getRequestDispatcher("memberJsp.jsp");
+			    RequestDispatcher rd = request.getRequestDispatcher("MemberJsp.jsp");
 			  
 			    // The request will be forwarded to the resource specified
 			    rd.forward(request, response);
