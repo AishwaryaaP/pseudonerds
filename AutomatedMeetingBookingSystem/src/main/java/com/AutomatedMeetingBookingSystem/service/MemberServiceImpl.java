@@ -1,12 +1,19 @@
-package com.AutomatedMeetingBookingSystem.service;
+package main.java.com.AutomatedMeetingBookingSystem.service;
+
+import main.java.com.AutomatedMeetingBookingSystem.service.MeetingService;
+import main.java.com.AutomatedMeetingBookingSystem.service.MeetingServiceImpl;
+
+import java.util.List;
+
+import main.java.com.AutomatedMeetingBookingSystem.model.Meeting;
 
 public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public List<Meeting> memberMeetingSchedule(int userId) {
-		MemberDao memberDao = new DaoFactory().getMemberDaoInstance();
+		MeetingService meetingService = new ServiceFactory().getMeetingServiceInstance();
 		List<Meeting> meetingList;
-		meetingList = memberDao.meetingScheduleDao(userId);
+		meetingList = meetingService.fetchMeetingByUniqueID(userId);
 		return meetingList;
 	}
 

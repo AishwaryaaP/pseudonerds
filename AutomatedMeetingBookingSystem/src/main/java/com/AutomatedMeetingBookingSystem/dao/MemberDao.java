@@ -1,7 +1,9 @@
-package com.AutomatedMeetingBookingSystem.dao;
+package main.java.com.AutomatedMeetingBookingSystem.dao;
+
+import main.java.com.AutomatedMeetingBookingSystem.model.User;
 
 public interface MemberDao {
 
-	public List<Meeting> meetingScheduleDao(int userId);
+	
 	public User memberDetailsDao(int userId);
 }

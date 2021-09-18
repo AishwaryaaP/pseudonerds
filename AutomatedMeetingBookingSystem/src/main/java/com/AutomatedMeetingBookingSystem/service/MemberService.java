@@ -1,4 +1,8 @@
-package com.AutomatedMeetingBookingSystem.service;
+package main.java.com.AutomatedMeetingBookingSystem.service;
+import java.util.List;
+
+import main.java.com.AutomatedMeetingBookingSystem.model.Meeting;
+import main.java.com.AutomatedMeetingBookingSystem.model.User;
 
 public interface MemberService {
 	
