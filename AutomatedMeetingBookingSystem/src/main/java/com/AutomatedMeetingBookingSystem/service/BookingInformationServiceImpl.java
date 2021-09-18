@@ -3,29 +3,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.AutomatedMeetingBookingSystem.dao.BookingInformationDao;
-import com.AutomatedMeetingBookingSystem.utility.ObjectFactory;
-import com.AutomatedMeetingBookingSystem.model.Meeting.meetingType;
+import com.AutomatedMeetingBookingSystem.enums.MeetingType;
+import static com.AutomatedMeetingBookingSystem.enums.MeetingType.CLASSROOMTRAINING;
+import static com.AutomatedMeetingBookingSystem.enums.MeetingType.BUSINESS ;
+import static com.AutomatedMeetingBookingSystem.enums.MeetingType.CONFERENCECALL;
+import static com.AutomatedMeetingBookingSystem.enums.MeetingType.ONLINETRAINING;
 import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
+import com.AutomatedMeetingBookingSystem.utility.ObjectFactory;
 public class  BookingInformationServiceImpl implements BookingInformationService {
 	
 	BookingInformationDao bookingInformationDao = new ObjectFactory().getBookingDaoInstance();
 		
 	@Override
-	public List<MeetingRoom> getAvailableMeetingRoom(meetingType type) {
+	public List<MeetingRoom> getAvailableMeetingRoom(MeetingType type) {
 		List<String> amenities = new ArrayList<>();
-		switch (type.toString()) {
-			case "CLASSROOMTRAINING" : 
+		switch (type) {
+			case CLASSROOMTRAINING : 
 				amenities.add("WHITEBOARD");
 				amenities.add("PROJECTOR");		
 				break;
-			case "ONLINETRAINING" : 
+			case ONLINETRAINING : 
 				amenities.add("WIFICONNECTION");
 				amenities.add("PROJECTOR");		
 				break;
-			case "CONFERENCECALL" : 
+			case CONFERENCECALL : 
 				amenities.add("CONFERENCECALL");				
 				break;
-			case "BUSINESS":		
+			case BUSINESS:		
 				amenities.add("PROJECTOR");		
 				break;
 		}

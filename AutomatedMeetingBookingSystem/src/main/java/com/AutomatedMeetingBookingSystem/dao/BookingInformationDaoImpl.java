@@ -77,7 +77,7 @@ public class BookingInformationDaoImpl implements BookingInformationDao {
 	@Override
 	public List<MeetingRoom> getMeetingRoomsDetails(List<String> avaliableMeetingRooms) {		
 		List<MeetingRoom> meetingRoomsDetails = new ArrayList<>();
-		MeetingRoom m;
+		MeetingRoom meetingRoomDetail = new MeetingRoom();
 		try {
 			Connection connection = DBUtility.getConnection();
 			String query = "select roomName,seatingCapacity, creditPerHour,rating,amenities from meetingRoom where roomName IN (";
@@ -86,20 +86,17 @@ public class BookingInformationDaoImpl implements BookingInformationDao {
 				if(i != avaliableMeetingRooms.size()-1) 
 					query += ",";
 			}
-			query += ")";
+			query += ");";
 			PreparedStatement statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();		
 			while(result.next()) {
-				m = new MeetingRoom();
-				m.setRoomName(result.getString(1));
-				m.setSeatingCapacity(result.getInt(2));
-				m.setCreditPerHour(result.getInt(3));
-				m.setRating(result.getInt(4));
-				m.setAmenities(result.getString(5));
-				 meetingRoomsDetails.add(m);
-			}
-			
-			
+				meetingRoomDetail.setRoomName(result.getString(1));
+				meetingRoomDetail.setSeatingCapacity(result.getInt(2));
+				meetingRoomDetail.setCreditPerHour(result.getInt(3));
+				meetingRoomDetail.setRating(result.getInt(4));
+				meetingRoomDetail.setAmenities(result.getString(5));
+				meetingRoomsDetails.add(meetingRoomDetail);
+			}	
 		} catch(SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
