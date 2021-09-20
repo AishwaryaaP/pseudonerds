@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Insert title here</title>
+</head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<script>
+function checkid()
+{
+  var userid = document.getElementById("userid").value; 
+  
+  if(isNaN(userid))
+  {
+    document.getElementById('checkid').innerHTML="<font style=\"color: crimson\"> Invalid Format</font>";
+    document.getElementById('userid').style.border='red 1px solid';
+    return false;
+  }
+  else if(userid.length != 9 || userid.length == 0)
+  {
+    document.getElementById('checkid').innerHTML="<font style=\"color: crimson\">* Invalid Format (9-digits).</font>";
+    document.getElementById('userid').style.border='red 1px solid';
+    return false;
+  }
+  else 
+  {
+    document.getElementById('checkid').innerHTML="<font style=\"color: green\"></font>";
+    document.getElementById('userid').style.border='grey 1px solid'; 
+    return true;
+  }
+}
+function checkname(){
+	 var name=document.getElementById("uname").value;
+	 if (name == null || name == "") 
+	    {
+	          document.getElementById('checkename').innerHTML="<font style=\"color: crimson\">*Empty Field</font>";
+	      document.getElementById('uname').style.border='red 1px solid';
+	      return false;
+	    }
+}
+function checkemail() {
+  var email=document.getElementById("email").value;
+  var atpos=email.indexOf("@");
+  var dotpos = email.lastIndexOf(".");
+      if (email == null || email == "") 
+    {
+          document.getElementById('checkemail').innerHTML="<font style=\"color: crimson\">*Empty Field</font>";
+      document.getElementById('email').style.border='red 1px solid';
+      return false;
+    }
+    else if(atpos< 1 || dotpos<atpos+2 || dotpos+2>=email.length)
+    {
+      document.getElementById('checkemail').innerHTML="<font style=\"color: crimson\">*Invalid Email</font>";
+      document.getElementById('email').style.border='red 1px solid';
+      return false;
+    }
+    else
+    {
+    document.getElementById('checkemail').innerHTML="<font style=\"color: green\"></font>";
+    document.getElementById('email').style.border='grey 1px solid';
+    return true;
+    }
+ }
+function clearfields()
+{
+  document.getElementById('checkid').innerHTML="";
+  document.getElementById('userid').style.border='grey 1px solid';
+  
+  document.getElementById('checkemail').innerHTML="";
+  document.getElementById('email').style.border='grey 1px solid';
+}
+
+function validateData()
+{
+  var submit = document.getElementById("sbtn").value;
+    var b = checkid();
+    var a = checkemail();
+    var c = checkname();
+  if(a&&b&&c)
+  return true;
+  else 
+  return false;
+  
+}
+</script>
+<!-- css applied-->
+<style>
+.circular_image{
+width:200px;
+height:200px;
+border-radius:50%;
+overflow:hidden;
+display:inline-block;
+background-color:grey;
+}
+footer{
+	background-color:white;
+}
+form{
+	width:50%;
+	background-color:orange;
+	border: 2px solid blue;
+	border-radius: 3px;
+	padding:20px;
+}
+
+body {font-size:16px;}
+#p1 h6{
+    visibility: hidden;
+  }
+  #p1:hover h6  {
+      visibility: visible;
+  }
+  #team #p1:hover{
+    transform: scale(1.2);
+    transition: .3s;
+  }
+  
+ .w3-container::after,.w3-container::before,.w3-panel::after,.w3-panel::before,.w3-row::after,.w3-row::before,.w3-row-padding::after,.w3-row-padding::before,
+.w3-cell-row:before,.w3-cell-row:after,.w3-clear:after,.w3-clear:before,.w3-bar:before,.w3-bar:after{content:"";display:table;clear:both}
+.w3-col,.w3-half,.w3-third,.w3-twothird,.w3-threequarter,.w3-quarter{float:left;width:100%;border:4px solid brown;}
+
+</style>
+
+<body>
+<center>
+<!-- Navbar functions -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="#">CodeFury</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" aria-current="page" href="#">Home</a>
+        <a class="nav-link " href="#login">Login</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!--Navbar function ended-->
+<div>
+ <h1 class="w3-jumbo w3-text-red"><b>Automated Meeting Room Booking System</b></h1>
+    <h3 class="w3-left" style="color: grey"><i>ENABLE DIGITAL WORKFORCES WITH REMOTE CONNECTIVITY,COLLABORATION,AND<br><b>ENDPOINT SECURITY</b></i></h3>
+      <div class="w3-container" style="padding:0px 0px;" id="team"><br>
+        <div class="w3-row-padding " style="margin-top:10px; margin-left: 0px;">
+        		<div class="w3-col l3 m6 w3-card-4 w3-red" style="padding: 10px; width:250px;margin-right: 50px" id="p1">
+               <div class="w3-center"><img src="photo/c2.jpg" class=" circular_image" alt="Conference Room"></div>
+               <h4 class="w3-center w3-light-grey">Classroom Training</h4>
+               <h4 class="w3-center w3-pale-red">Rooms: </h4> 
+               <h6 class="w3-center w3-light-grey w3-text-red">Projector,Whiteboard</h6> 
+               </div>
+            <div class="w3-col l3 m6 w3-card-4 w3-red" style="padding: 10px; width:240px;margin-right: 50px" id="p1">
+              <div class="w3-center"><img src="photo/troom.jpg" class="circular_image"  alt="Online Training"></div>
+              <h4 class="w3-center w3-light-grey">Online Training</h4>
+              <h4 class="w3-center w3-pale-red">Rooms: </h4>
+              <h6 class="w3-center w3-light-grey w3-text-red">Projector,Wifi</h6>
+              </div>
+         
+            <div class="w3-col l3 m6 w3-card-4 w3-red" style="padding: 10px; width:240px;margin-right: 50px" id="p1">
+              <div class="w3-center"><img src="photo/concall.jpg" class="circular_image" alt="Class Training"></div>
+              <h4 class="w3-center w3-light-grey">Conference Call</h4>
+              <h4 class="w3-center w3-pale-red">Rooms: </h4>
+              <h6 class="w3-center w3-light-grey w3-text-red">Conn Call Facility,Wifi</h6>
+            </div>
+            <div class="w3-col l3 m6 w3-card-4 w3-red" style="padding: 10px; width:240px;" id="p1">
+              <div class="w3-center"><img src="photo/business.jpg" class="circular_image" alt="Business"></div>
+              <h4 class="w3-center w3-light-grey">Business</h4>
+              <h4 class="w3-center w3-pale-red">Rooms: </h4>
+              <h6 class="w3-center w3-light-grey w3-text-red">Projector,Water dispenser</h6>
+            </div>
+        </div>
+    </div>
+
+  </div>
+<!-- < Login Form method="post" onsubmit="return validateData()">  -->
+<br/><br/>      
+<center>
+<div id="login">
+<h3 style="text-decoration:underline;color:brown;text-shadow:2px 2px white"> Login Form</h3></br>
+<form class="login-form" action="login" method="post" onsubmit="return validateData()" >
+
+	
+ UNI_ID:<input type="text" class="w3-input" id="userid" name="userid" onKeyUp="checkid()" autocomplete="off" placeholder="User ID" required></br>
+ <div id="checkid" align="center"></diV>
+ NAME:<input type="text" class="w3-input" name="uname" id="uname" onKeyUp="checkname()" autocomplete="off" placeholder="Enter name" maxlength="10" required><br/>
+ <div id="checkname" align="center"></diV>
+ EMAIL:<input type="email" class="w3-input" id="email" name="email" onKeyUp="checkemail()" autocomplete="off" placeholder="Email ID" required><br/>
+        <div id="checkemail" align="center"></div>
+        
+ROLE:	<input type="radio" id="preference1" value="Admin"class="fields" name="pr"/>Admin <br/>
+	<input type="radio" id="preference2" value="Manager" class="fields" name="pr">Manager<br/>
+	<input type="radio" id="preference3" value="Members" class="fields" name="pr">Members<br/>
+
+  <!--  <input type="button" name="btn" value="Submit">--><br/>
+  <button type="submit" id="sbtn" name="sbtn" value="Login" class="w3-button w3-block w3-padding-large w3-red">Click to Enter</button><br/>
+</form>
+<br/>
+</div>
+</center>
+</body>
+<!-- form method ended -->
+<!-- javascript functions -->
+
+<!-- footer -->
+<div id="contact">
+ <footer class="w3-center w3-dark-grey " style="width:110%;margin-left: -40px;margin-top: 40px;" >
+  <a href="#" class="w3-button w3-black"><i class="w3-margin-right"></i>To the top</a>
+  <div class="w3-large w3-section">
+    Automated Meeting Room Booking System
+    <h4><i class="w3-xlarge w3-margin-right"></i>Required Help? &nbsp&nbsp&nbsp&nbsp&nbsp&nbspFeel free to contact Us : &nbsp&nbsp&nbsp&nbsp
+      <i class="w3-xlarge w3-margin-right"></i>Phone:&nbsp1111-56893 &nbsp&nbsp&nbsp&nbsp
+      <i class="w3-xlarge w3-margin-right"></i>Email:&nbspcontact@hsbc.com</h4>
+      <i class="w3-xlarge w3-margin-right"></i>twitter:&nbsphsbc.twitter.com</h4>
+  </div>
+<div>We don't care what people know, we care what they do. It's all about performance.
+</div>
+<div class="border-top">
+<h6 class="text-center mt-3">Copyright @2021 All rights reserved</h6>
+</div>
+</div>
+</footer>
+
+</html>
