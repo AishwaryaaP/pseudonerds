@@ -1,56 +1,63 @@
 package com.AutomatedMeetingBookingSystem.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.AutomatedMeetingBookingSystem.model.Meeting;
+import com.AutomatedMeetingBookingSystem.exception.RoomNotFoundException;
 import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
-import com.AutomatedMeetingBookingSystem.model.User;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
-public class ManagerServiceImpl implements ManagerService{
-
-	private MeetingRoomService meetingRoomService;
-	private MeetingService meetingService;
-	private BookingInformationService bookingInfoService;
-	private UserServiceInterface userService;
+public class MeetingRoomServiceImpl implements MeetingRoomService{
+	private List<MeetingRoom> roomList = new ArrayList<>();
 	
-	public ManagerServiceImpl() {
-		super();
-//		meetingService = ServiceFactory.getMeetingServiceInstance();
-//		meetingRoomService = new ServiceFactory.getMeetingRoomServiceInstance();
-//		userService = new ServiceFactory.getUserServiceInstance();
-		meetingService = new MeetingServiceImpl();
-		meetingRoomService = new MeetingRoomServiceImpl();
-		userService = new UserServiceImp();
+	@Override
+	public void getSchedule(String roomName)
+	{
+		//Dao serviceDao = DummyDao.getMeetingServiceClass();
+		//List<Meeting> meetings = serviceDao.getMeetingsOnDate(roomName,private LocalTime endtime;);
+		//Extract schedule for all meetings and return available time
+	}
+	
+	@Override
+	public MeetingRoom getRoomDetailsByRoomName(String roomName) throws RoomNotFoundException
+	{
+		for(MeetingRoom room : getAllMeetingRooms())
+			if(room.getRoomName()==roomName)
+				return room;
+		
+		throw new RoomNotFoundException();
+	}
+	
+	@Override
+	public List<MeetingRoom> getAllMeetingRooms()
+	{
+		return roomList;
+		//returns all meeting rooms
+	}
+	
+	@Override
+	public void updateRoomDetails(MeetingRoom room) throws RoomNotFoundException
+	{
+		MeetingRoom roomToBeUpdated = getRoomDetailsByRoomName(room.getRoomName());
+		//update
+		
+		throw new RoomNotFoundException();
+	}
+	
+	@Override
+	public void deleteRoomByRoomName(String roomName) throws RoomNotFoundException
+	{
+		MeetingRoom roomToBeDeleted = getRoomDetailsByRoomName(roomName);
+		//delete
+		
+		throw new RoomNotFoundException();
+	}
+	
+	@Override
+	public void addRoom(MeetingRoom room)
+	{
+		//Add to meetingRoom table
 	}
 
-	@Override
-	public Meeting createMeeting(int organizedBy, String roomName, String title, String date, String startHours, String startMinutes, String endHours, String endMinutes, String type, String listOfMembers) {
-			LocalDate meetingDate = LocalDate.parse(date);
-			LocalTime startTime = LocalTime.of(Integer.parseInt(startHours), Integer.parseInt(startMinutes));
-			LocalTime endTime = LocalTime.of(Integer.parseInt(endHours), Integer.parseInt(endMinutes));
-			List<User> userList = null;
-			Meeting meeting = meetingService.saveMeeting(organizedBy, roomName, title, date, startTime, endTime, type, userList);
-			bookingInfoService.saveBookingInformation(roomName, meetingDate, startTime, endTime, organizedBy);
-			return meeting;
-	}
-
-	@Override
-	public List<Meeting> getSchedule(User u) {
-		List<Meeting> schedules = meetingService.fetchMeetingsByUserID(u.getEmpId());
-		return schedules;
-	}
-
-	@Override
-	public List<MeetingRoom> getAvailableRooms(String date, String startHours, String startMinutes, String endHours, String endMinutes, String type) {
-		LocalDate meetingDate = LocalDate.parse(date);
-		LocalTime startTime = LocalTime.of(Integer.parseInt(startHours), Integer.parseInt(startMinutes));
-		LocalTime endTime = LocalTime.of(Integer.parseInt(endHours), Integer.parseInt(endMinutes));
-		List<MeetingRoom> availableRooms = bookingInfoService.getAvailableRooms(meetingDate, startTime, endTime, type);
-		return availableRooms;
-	}
 	
 
 }
