@@ -12,15 +12,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import service.ManagerService;
+import com.AutomatedMeetingBookingSystem.model.BookingInformation;
+import com.AutomatedMeetingBookingSystem.model.Meeting;
+import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
+import com.AutomatedMeetingBookingSystem.model.User;
+import com.AutomatedMeetingBookingSystem.service.ManagerService;
+import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
+
 
 @WebServlet("/ManagerController")
 public class ManagerController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	//private ManagerService managerService;
+	private ManagerService managerService;
     
 	public ManagerController() {
-    	//managerService = new ServiceFactory.getManagerServiceInstance();
+		managerService = ServiceFactory.getManagerServiceInstance();
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -40,11 +46,13 @@ public class ManagerController extends HttpServlet {
 		
 		//Not sure about this
 		HttpSession session = request.getSession();
-		User u = session.getAttribute("user");
+		//User u = session.getAttribute("user");
+		User u = null;
 
 		
 		if(action.equals("createMeeting")) {
 			int organizedBy = u.getId();
+			String meetingId = request.getParameter("meetingId");
 			String roomName = request.getParameter("roomName");
 			String title = request.getParameter("title");
 			String date = request.getParameter("meetingDate");
@@ -53,7 +61,7 @@ public class ManagerController extends HttpServlet {
 			String endHours = request.getParameter("endHours");
 			String endMinutes = request.getParameter("endMinutes");
 			String type = request.getParameter("type");
-			List<User> listOfMembers = request.getParameter("listOfMembers");
+			String listOfMembers = null;
 			Meeting meeting = managerService.createMeeting(organizedBy, roomName, title, date, startHours, startMinutes, endHours, endMinutes, type, listOfMembers);
 		}
 		else if(action.equals("getSchedule")) {

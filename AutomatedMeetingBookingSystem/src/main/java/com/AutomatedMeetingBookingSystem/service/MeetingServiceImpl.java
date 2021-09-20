@@ -3,45 +3,61 @@ package com.AutomatedMeetingBookingSystem.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.AutomatedMeetingBookingSystem.dao.MeetingDAO;
-import com.AutomatedMeetingBookingSystem.exception.ConnectionFailedException;
-import com.AutomatedMeetingBookingSystem.model.Meeting;
+import com.AutomatedMeetingBookingSystem.exception.RoomNotFoundException;
+import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
 
-public class MeetingServiceImpl implements MeetingService {
-	private MeetingDAO dao = MeetingDAO.getInstance();
-
-	public Meeting saveMeeting(Meeting meeting) {
-		Meeting meeting1 = null;
-		try {
-			meeting1 = this.dao.createMeeting(meeting);
-		} catch (ConnectionFailedException e) {
-			System.out.println(e.getMessage());
-		}
-		return meeting1;
+public class MeetingRoomServiceImpl implements MeetingRoomService{
+	private List<MeetingRoom> roomList = new ArrayList<>();
+	
+	@Override
+	public void getSchedule(String roomName)
+	{
+		//Dao serviceDao = DummyDao.getMeetingServiceClass();
+		//List<Meeting> meetings = serviceDao.getMeetingsOnDate(roomName,private LocalTime endtime;);
+		//Extract schedule for all meetings and return available time
+	}
+	
+	@Override
+	public MeetingRoom getRoomDetailsByRoomName(String roomName) throws RoomNotFoundException
+	{
+		for(MeetingRoom room : getAllMeetingRooms())
+			if(room.getRoomName()==roomName)
+				return room;
+		
+		throw new RoomNotFoundException();
+	}
+	
+	@Override
+	public List<MeetingRoom> getAllMeetingRooms()
+	{
+		return roomList;
+		//returns all meeting rooms
+	}
+	
+	@Override
+	public void updateRoomDetails(MeetingRoom room) throws RoomNotFoundException
+	{
+		MeetingRoom roomToBeUpdated = getRoomDetailsByRoomName(room.getRoomName());
+		//update
+		
+		throw new RoomNotFoundException();
+	}
+	
+	@Override
+	public void deleteRoomByRoomName(String roomName) throws RoomNotFoundException
+	{
+		MeetingRoom roomToBeDeleted = getRoomDetailsByRoomName(roomName);
+		//delete
+		
+		throw new RoomNotFoundException();
+	}
+	
+	@Override
+	public void addRoom(MeetingRoom room)
+	{
+		//Add to meetingRoom table
 	}
 
-	public Meeting fetchMeetingByUniqueID(int uniqueID) {
-		Meeting meeting1 = null;
-		try {
-			meeting1 = this.dao.fetchMeetingByUniqueID(uniqueID);
-		} catch (ConnectionFailedException e) {
-			System.out.println(e.getMessage());
-		}
-		return meeting1;
-	}
+	
 
-	public List<Meeting> fetchMeetingsByUserID(int userID) {
-		List<Meeting> meetings = new ArrayList<>();
-		List<Integer> uniqueIDs; 
-		try {
-			uniqueIDs = this.dao.fetchMeetingsByUserID(userID);
-			for (int uniqueID : uniqueIDs) {
-				Meeting meeting = fetchMeetingByUniqueID(uniqueID);
-				meetings.add(meeting);
-			}
-		} catch (ConnectionFailedException e) {
-			System.out.println(e.getMessage());
-		}
-		return meetings;
-	}
 }
