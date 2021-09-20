@@ -42,12 +42,13 @@ public class MemberController extends HttpServlet {
 		System.out.println("param = " + request.getHeader("act"));
 		String action = request.getHeader("act");
 		System.out.println(action);
-		int userId = (int)request.getAttribute("userId");
+		String userId = (String)request.getAttribute("userId");
+		String password = (String)request.getAttribute("password");
 		MemberService service = ServiceFactory.getMemberService();
 		switch (action)
 		{
 			case "getMemberDetails":
-				User u = service.memberDetails(userId);
+				User u = service.memberDetails(userId, password);
 				
 				// Setting the attribute of the request object
 			    // which will be later fetched by a JSP page
@@ -55,10 +56,10 @@ public class MemberController extends HttpServlet {
 			  
 			    // Creating a RequestDispatcher object to dispatch
 			    // the request the request to another resource
-			    RequestDispatcher rd = request.getRequestDispatcher("MemberJsp.jsp");
+			    RequestDispatcher rd1 = request.getRequestDispatcher("MemberJsp.jsp");
 			  
 			    // The request will be forwarded to the resource specified
-			    rd.forward(request, response);
+			    rd1.forward(request, response);
 				
 			    break;
 			
@@ -70,10 +71,10 @@ public class MemberController extends HttpServlet {
 			  
 			    // Creating a RequestDispatcher object to dispatch
 			    // the request the request to another resource
-			    RequestDispatcher rd = request.getRequestDispatcher("MemberJsp.jsp");
+			    RequestDispatcher rd2 = request.getRequestDispatcher("MemberJsp.jsp");
 			  
 			    // The request will be forwarded to the resource specified
-			    rd.forward(request, response);
+			    rd2.forward(request, response);
 
 				break;
 		}

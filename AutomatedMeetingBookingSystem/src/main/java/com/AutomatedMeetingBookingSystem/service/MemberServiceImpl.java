@@ -2,6 +2,8 @@ package com.AutomatedMeetingBookingSystem.service;
 
 import com.AutomatedMeetingBookingSystem.service.MeetingService;
 import com.AutomatedMeetingBookingSystem.service.MeetingServiceImpl;
+import com.AutomatedMeetingBookingSystem.model.User;
+import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
 
 import java.util.List;
 
@@ -18,9 +20,9 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public User memberDetails(int userId) {
-		MemberDao memberDao = new DaoFactory().getMemberDaoInstance();
-		User u = memberDao.memberDetailsDao(userId);
+	public User memberDetails(int userId, String password) {
+		UserServiceInterface service = ServiceFactory.getUserService();
+		User u = service.getUserDetails(userId, password);
 		return u;
 	}
 	
