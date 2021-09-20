@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.AutomatedMeetingBookingSystem.dao.MeetingDAO;
-import com.AutomatedMeetingBookingSystem.exceptions.ConnectionFailedException;
+import com.AutomatedMeetingBookingSystem.exception.ConnectionFailedException;
 import com.AutomatedMeetingBookingSystem.model.Meeting;
 
 public class MeetingServiceImpl implements MeetingService {
