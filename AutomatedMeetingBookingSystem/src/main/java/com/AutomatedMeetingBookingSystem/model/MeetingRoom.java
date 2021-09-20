@@ -2,6 +2,12 @@ package com.AutomatedMeetingBookingSystem.model;
 
 public class MeetingRoom {
 
+	public MeetingRoom() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
 	private String roomName;
 	private int perHourCost;
 	private int seatingCapacity;

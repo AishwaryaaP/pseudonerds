@@ -2,6 +2,9 @@ package com.AutomatedMeetingBookingSystem.model;
 
 import java.time.LocalTime;
 import java.util.List;
+
+import com.AutomatedMeetingBookingSystem.enums.MeetingType;
+
 import java.time.LocalDate;
 
 public class Meeting {
@@ -13,10 +16,10 @@ public class Meeting {
 	private LocalTime starttime;
 	private LocalTime endtime;
 	private List<Integer> listOfMember;
-	public enum meetingType{CLASSROOMTRAINING,ONLINETRAINING,CONFERENCECAL,BUSINESS} meetingType type;
+	private MeetingType type;
 
 	public Meeting( int uniqueID, int organisedBy, String infoOfMeeting, String title, LocalDate date, LocalTime starttime,
-			LocalTime endtime, meetingType type, List<Integer> listOfMember) {
+			LocalTime endtime, MeetingType type, List<Integer> listOfMember) {
 		super();
 		this.uniqueID = uniqueID;
 		this.organizedBy = organisedBy;
@@ -115,13 +118,13 @@ public class Meeting {
 
 
 
-	public meetingType getType() {
+	public MeetingType getType() {
 		return type;
 	}
 
 
 
-	public void setType(meetingType type) {
+	public void setType(MeetingType type) {
 		this.type = type;
 	}
 

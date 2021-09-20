@@ -38,4 +38,9 @@ create table Meeting (UniqueId int PRIMARY KEY,
  
  ALTER TABLE Meeting ADD CONSTRAINT my_fk FOREIGN KEY(InfoMeetingRoomName) REFERENCES MeetingRoom(roomName);
 	
-	
+ALTER TABLE User  ADD password varchar(50);
+
+alter table MeetingRoom drop column rating;
+
+alter table MeetingRoom add rating float;
+
