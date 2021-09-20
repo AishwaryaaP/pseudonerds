@@ -1,48 +1,20 @@
-package com.AutomatedMeetingBookingSystem.service;
+package main.java.com.AutomatedMeetingBookingSystem.service;
 
 import java.util.List;
 
-import com.AutomatedMeetingBookingSystem.dao.DummyDao;
+import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
+import com.AutomatedMeetingBookingSystem.model.User;
 
-public class AdminService {
-	public static List<MeetingRooms> getAllRooms(Object meetingRooms) { // checking if the object of meetingroom is null
-																		// or not
-		try {
+public interface AdminService {
 
-			if (meetingRooms == null)
+	public static List<MeetingRoom> getAllRooms();
 
-				throw new NullPointerException("No meeting room is created");
-		} catch (Exception e) {
-			System.err.println(e.getMessage()); //to print the error message when exception is thrown
-		}
+	public User getAdminDetails(int empId);
 
-		return meetingRooms;
-	}
+	public MeetingRoom createMeetingRoom(MeetingRoom room);
 
-	public static List<Employee> getAdminDetails(Object admin) 
-	{
-		try {
-			if(admin == null)
-				throw new NullPointerException("No admin is created");
-		}
-		catch(Exception e)
-		{
-			System.err.println(e.getMessage());
-		}
-		return admin;
-	}
+	public String editMeeting(String uniqueId);
 
-	public static List<MeetingRooms> createMeetingRoom(Object meetingrooms) { // logic to create a customized meeting
-																				// room by calling the manager details
-		return meetingrooms;
-	}
-
-	public static String editMeeting(String uniqueID)
-
-	{
-		// logic to edit the meeting time / date etc
-		return uniqueID;
-
-	}
+	public void deleteMeetingRoom(int uniqueId);
 
 }
