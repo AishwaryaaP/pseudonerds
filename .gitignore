@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-/.metadata/
-/target/
-=======
 .metadata
 *.metdata
 *.class
@@ -21,4 +17,3 @@ output
 *.js.map
 PhantomJS_*
 Servers
->>>>>>> master
