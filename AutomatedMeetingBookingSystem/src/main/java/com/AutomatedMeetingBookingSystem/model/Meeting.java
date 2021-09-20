@@ -1,26 +1,25 @@
 package com.AutomatedMeetingBookingSystem.model;
 
 import java.time.LocalTime;
-import java.util.List;
 import java.time.LocalDate;
 
 public class Meeting {
 	private int uniqueID;
 	private int organizedBy;
-	private String infoOfMeeting;
+	private String infoMeetingRoomName;
 	private String title;
 	private LocalDate date;
 	private LocalTime starttime;
 	private LocalTime endtime;
-	private List<Integer> listOfMember;
-	public enum meetingType{CLASSROOMTRAINING,ONLINETRAINING,CONFERENCECAL,BUSINESS} meetingType type;
+	private String listOfMember;
+	public MeetingType type;
 
-	public Meeting( int uniqueID, int organisedBy, String infoOfMeeting, String title, LocalDate date, LocalTime starttime,
-			LocalTime endtime, meetingType type, List<Integer> listOfMember) {
+	public Meeting( int uniqueID, int organisedBy, String infoMeetingRoomName, String title, LocalDate date, LocalTime starttime,
+			LocalTime endtime, MeetingType type, String listOfMember) {
 		super();
 		this.uniqueID = uniqueID;
 		this.organizedBy = organisedBy;
-		this.infoOfMeeting = infoOfMeeting;
+		this.infoMeetingRoomName = infoMeetingRoomName;
 		this.title = title;
 		this.date = date;
 		this.starttime = starttime;
@@ -29,7 +28,6 @@ public class Meeting {
 		this.listOfMember = listOfMember;
 	}
 
-	
 
 	public int getUniqueID() {
 		return uniqueID;
@@ -48,21 +46,20 @@ public class Meeting {
 	}
 
 
-
 	public void setOrganizedBy(int organizedBy) {
 		this.organizedBy = organizedBy;
 	}
-
-
-
-	public String getInfoOfMeeting() {
-		return infoOfMeeting;
+	
+	
+	
+	public String getInfoMeetingRoomName() {
+		return infoMeetingRoomName;
 	}
+	
 
-
-
-	public void setInfoOfMeeting(String infoOfMeeting) {
-		this.infoOfMeeting = infoOfMeeting;
+	
+	public void setInfoMeetingRoomName(String infoMeetingRoomName) {
+		this.infoMeetingRoomName = infoMeetingRoomName;
 	}
 
 
@@ -115,30 +112,31 @@ public class Meeting {
 
 
 
-	public meetingType getType() {
+	public MeetingType getType() {
 		return type;
 	}
 
 
 
-	public void setType(meetingType type) {
+	public void setType(MeetingType type) {
 		this.type = type;
 	}
 
 
-	public List<Integer> getListOfMember() {
+	public String getListOfMember() {
 		return listOfMember;
 	}
 
 
 
-	public void setListOfMember(List<Integer> listOfMember) {
+	public void setListOfMember(String listOfMember) {
 		this.listOfMember = listOfMember;
 	}
-
-
+	
 	public String toString() {
-		return this.getUniqueID() + " " + this.getOrganizedBy() + " " + this.getInfoOfMeeting() + " " + this.getTitle() + " " + this.getDate()
-				+ " " + this.getStarttime() + " " + this.getEndtime()+" "+this.getType()+ " "+ this.getListOfMember();
+		return "Meeting [getUniqueID()=" + getUniqueID() + ", getOrganizedBy()=" + getOrganizedBy()
+				+ ", getInfoMeetingRoomName()=" + getInfoMeetingRoomName() + ", getTitle()=" + getTitle()
+				+ ", getDate()=" + getDate() + ", getStarttime()=" + getStarttime() + ", getEndtime()=" + getEndtime()
+				+ ", getType()=" + getType() + ", getListOfMember()=" + getListOfMember() + "]";
 	}
 }
