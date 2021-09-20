@@ -12,4 +12,5 @@ public interface MeetingRoomService {
 	public List<MeetingRoom> getAllMeetingRooms();
 	public void updateRoomDetails(MeetingRoom room) throws RoomNotFoundException;
 	public void addRoom(MeetingRoom room);
+	public void deleteRoomByRoomName(String room) throws RoomNotFoundException;
 }
