@@ -1,7 +1,6 @@
 package com.AutomatedMeetingBookingSystem.model;
 
 import java.time.LocalTime;
-import java.util.List;
 import java.time.LocalDate;
 
 public class Meeting {
@@ -12,11 +11,11 @@ public class Meeting {
 	private LocalDate date;
 	private LocalTime starttime;
 	private LocalTime endtime;
-	private List<Integer> listOfMember;
+	private String listOfMember;
 	public MeetingType type;
 
 	public Meeting( int uniqueID, int organisedBy, String infoMeetingRoomName, String title, LocalDate date, LocalTime starttime,
-			LocalTime endtime, MeetingType type, List<Integer> listOfMember) {
+			LocalTime endtime, MeetingType type, String listOfMember) {
 		super();
 		this.uniqueID = uniqueID;
 		this.organizedBy = organisedBy;
@@ -124,18 +123,20 @@ public class Meeting {
 	}
 
 
-	public List<Integer> getListOfMember() {
+	public String getListOfMember() {
 		return listOfMember;
 	}
 
 
 
-	public void setListOfMember(List<Integer> listOfMember) {
+	public void setListOfMember(String listOfMember) {
 		this.listOfMember = listOfMember;
 	}
 	
 	public String toString() {
-		return this.getUniqueID() + " " + this.getOrganizedBy() + " " + this.getInfoMeetingRoomName() + " " + this.getTitle() + " " + this.getDate()
-				+ " " + this.getStarttime() + " " + this.getEndtime()+" "+this.getType()+ " "+ this.getListOfMember();
+		return "Meeting [getUniqueID()=" + getUniqueID() + ", getOrganizedBy()=" + getOrganizedBy()
+				+ ", getInfoMeetingRoomName()=" + getInfoMeetingRoomName() + ", getTitle()=" + getTitle()
+				+ ", getDate()=" + getDate() + ", getStarttime()=" + getStarttime() + ", getEndtime()=" + getEndtime()
+				+ ", getType()=" + getType() + ", getListOfMember()=" + getListOfMember() + "]";
 	}
 }
