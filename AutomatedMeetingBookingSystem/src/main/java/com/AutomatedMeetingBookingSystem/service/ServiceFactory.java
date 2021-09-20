@@ -34,7 +34,7 @@ public class ServiceFactory {
 	
 	public static AdminServiceInterface getAdminServiceInterfaceInstance() {
 		
-		return new AdminService();
+		return new AdminServiceImpl();
 		
 	}
 	
