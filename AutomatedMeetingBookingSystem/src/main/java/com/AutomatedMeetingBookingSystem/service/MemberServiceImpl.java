@@ -1,5 +1,8 @@
 package com.AutomatedMeetingBookingSystem.service;
 
+import com.AutomatedMeetingBookingSystem.dao.MemberDao;
+import com.AutomatedMeetingBookingSystem.model.User;
+
 public class MemberServiceImpl implements MemberService{
 
 	@Override

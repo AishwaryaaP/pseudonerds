@@ -1,4 +1,4 @@
-package com.AutomatedMeetingBookingSystem.exceptions;
+package src.main.java.com.AutomatedMeetingBookingSystem.exception;
 
 public class ConnectionFailedException extends Exception {
 
