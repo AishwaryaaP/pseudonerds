@@ -1,5 +1,7 @@
 package com.AutomatedMeetingBookingSystem.dao;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import com.AutomatedMeetingBookingSystem.exception.ConnectionFailedException;
@@ -11,7 +13,7 @@ public interface MeetingDAO {
 		return new MeetingDAOImpl();
 	}
 
-	Meeting createMeeting(Meeting meeting) throws ConnectionFailedException;
+	Meeting createMeeting(int organizedBy, String roomName, String title, LocalDate date, LocalTime startTime, LocalTime endTime, String type, String listOfMembers) throws ConnectionFailedException;
 
 	List<Meeting> fetchMeetingsByUserID(int userID) throws ConnectionFailedException;
 

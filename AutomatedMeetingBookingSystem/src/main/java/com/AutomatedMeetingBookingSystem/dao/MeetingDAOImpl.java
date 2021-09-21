@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 import com.AutomatedMeetingBookingSystem.exception.ConnectionFailedException;
 import com.AutomatedMeetingBookingSystem.model.Meeting;
-import com.AutomatedMeetingBookingSystem.model.MeetingType;
+import com.AutomatedMeetingBookingSystem.enums.MeetingType;
 import com.AutomatedMeetingBookingSystem.utility.DatabaseUtils;
 
 public class MeetingDAOImpl implements MeetingDAO {
@@ -30,7 +30,7 @@ public class MeetingDAOImpl implements MeetingDAO {
 			try {
 				PreparedStatement statement = connection.prepareStatement(INSERT_MEETING, Statement.RETURN_GENERATED_KEYS);
 				//statement.setInt(1, meeting.getUniqueID());
-				statement.setInt(1, organisedBy);
+				statement.setInt(1, organizedBy);
 				statement.setString(2, roomName);
 				statement.setString(3, title);
 				statement.setString(4, date.toString());
@@ -82,14 +82,14 @@ public class MeetingDAOImpl implements MeetingDAO {
 				statement.setInt(1, userID);
 				ResultSet rs = statement.executeQuery();
 				while (rs.next()) {
-					Meeting meeting1;
+					Meeting meeting1 = null;
 					meeting1.setUniqueID(rs.getInt(1));
 					meeting1.setOrganizedBy(rs.getInt(2));
 					meeting1.setInfoMeetingRoomName(rs.getString(3));
 					meeting1.setTitle(rs.getString(4));
 					meeting1.setDate(rs.getDate(5).toLocalDate());
-					meeting1.setStarttime(rs.getTime(6).toLocalTime());
-					meeting1.setEndtime(rs.getTime(7).toLocalTime());
+					meeting1.setStartTime(rs.getTime(6).toLocalTime());
+					meeting1.setEndTime(rs.getTime(7).toLocalTime());
 					meeting1.setListOfMember(rs.getString(8));
 					//meeting1.setType(rs.getString(9).toMeetingType());
 					meeting1.type.valueOf(rs.getString(9));
@@ -101,7 +101,6 @@ public class MeetingDAOImpl implements MeetingDAO {
 			}
 		}
 		throw new ConnectionFailedException("While fetching meetings by userID");
-	}
-  
+	} 
   
 }
