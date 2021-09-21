@@ -13,7 +13,7 @@ public class MeetingRoomServiceImpl implements MeetingRoomService{
 	public void getSchedule(String roomName)
 	{
 		//Dao serviceDao = DummyDao.getMeetingServiceClass();
-		//List<Meeting> meetings = serviceDao.getMeetingsForRoom(roomName);
+		//List<Meeting> meetings = serviceDao.getMeetingsOnDate(roomName,private LocalTime endtime;);
 		//Extract schedule for all meetings and return available time
 	}
 	
@@ -37,9 +37,17 @@ public class MeetingRoomServiceImpl implements MeetingRoomService{
 	@Override
 	public void updateRoomDetails(MeetingRoom room) throws RoomNotFoundException
 	{
-		for(MeetingRoom oldRoom : getAllMeetingRooms())
-			if(oldRoom.getRoomName()==room.getRoomName())
-				//update room
+		MeetingRoom roomToBeUpdated = getRoomDetailsByRoomName(room.getRoomName());
+		//update
+		
+		throw new RoomNotFoundException();
+	}
+	
+	@Override
+	public void deleteRoomByRoomName(String roomName) throws RoomNotFoundException
+	{
+		MeetingRoom roomToBeDeleted = getRoomDetailsByRoomName(roomName);
+		//delete
 		
 		throw new RoomNotFoundException();
 	}
