@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.AutomatedMeetingBookingSystem.service.MemberService;
 import com.AutomatedMeetingBookingSystem.service.MemberServiceImpl;
+import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
 import com.AutomatedMeetingBookingSystem.model.Meeting;
 import com.AutomatedMeetingBookingSystem.model.User;
 
@@ -42,9 +43,9 @@ public class MemberController extends HttpServlet {
 		System.out.println("param = " + request.getHeader("act"));
 		String action = request.getHeader("act");
 		System.out.println(action);
-		String userId = (String)request.getAttribute("userId");
+		int userId = (int)request.getAttribute("userId");
 		String password = (String)request.getAttribute("password");
-		MemberService service = ServiceFactory.getMemberService();
+		MemberService service = ServiceFactory.getMemberServiceInstance();
 		switch (action)
 		{
 			case "getMemberDetails":
