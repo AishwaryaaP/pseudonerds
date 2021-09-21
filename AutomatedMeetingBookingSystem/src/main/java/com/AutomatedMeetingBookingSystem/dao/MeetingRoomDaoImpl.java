@@ -15,10 +15,10 @@ import com.AutomatedMeetingBookingSystem.utility.DaoUtilityInterface;
 
 public class MeetingRoomDaoImpl implements MeetingRoomDao{
 
-	private static final String SELECT_BY_ROOM_NAME = "SELECT * FROM MeetingRoom WHERE roomName=?";
-	private static final String SELECT_ALL_ROOMS = "SELECT * FROM MeetingRoom";
+	private static final String SELECT_BY_ROOM_NAME = "SELECT roomId,roomName,seatingCapacity,rating,ratingSum,ratingCount,creditPerHour,amenities FROM MeetingRoom WHERE roomName=?";
+	private static final String SELECT_ALL_ROOMS = "SELECT roomId,roomName,seatingCapacity,rating,ratingSum,ratingCount,creditPerHour,amenities FROM MeetingRoom";
 	private static final String INSERT_ROOM = "INSERT INTO MeetingRoom(roomName, seatingCapacity, rating, ratingSum, ratingCount, creditPerHour, amenities) VALUES (?,?,?,?,?,?,?)";
-	private static final String UPDATE_ROOM = "UPDATE MeetingRoom SET seatingCapacity=?, rating=?, ratingSum=?, ratingCount=?, creditPerHour=?, amenities=? WHERE roomName=?";
+	private static final String UPDATE_ROOM = "UPDATE MeetingRoom SET roomId=?, seatingCapacity=?, rating=?, ratingSum=?, ratingCount=?, creditPerHour=?, amenities=? WHERE roomName=?";
 	private static final String DELETE_ROOM_BY_NAME = "DELETE FROM MeetingRoom WHERE roomName=?";
 
 	DaoUtilityInterface dao = new DaoUtility();
@@ -39,12 +39,14 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 				ResultSet result = stmt.executeQuery();
 				while(result.next())
 				{
-					room.setSeatingCapacity(result.getInt(1));
-					room.setRating(result.getDouble(2));
-					room.setRatingSum(result.getInt(3));
-					room.setRatingCount(result.getInt(4));
-					room.setCreditPerHour(result.getInt(5));
-					String aminitiesStr = result.getString(6);
+					room.setRoomId(result.getInt(1));
+					room.setRoomName(result.getString(2));
+					room.setSeatingCapacity(result.getInt(3));
+					room.setRating(result.getDouble(4));
+					room.setRatingSum(result.getInt(5));
+					room.setRatingCount(result.getInt(6));
+					room.setCreditPerHour(result.getInt(7));
+					String aminitiesStr = result.getString(8);
 
 					String[] amininityArray = aminitiesStr.split(" ");
 					for(String aminityItr : amininityArray)
@@ -85,12 +87,14 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 				{
 					MeetingRoom room = new MeetingRoom();
 					Set<String> aminitySet = new HashSet<>();
-					room.setSeatingCapacity(result.getInt(1));
-					room.setRating(result.getDouble(2));
-					room.setRatingSum(result.getInt(3));
-					room.setRatingCount(result.getInt(4));
-					room.setCreditPerHour(result.getInt(5));
-					String aminitiesStr = result.getString(6);
+					room.setRoomId(result.getInt(1));
+					room.setRoomName(result.getString(2));
+					room.setSeatingCapacity(result.getInt(3));
+					room.setRating(result.getDouble(4));
+					room.setRatingSum(result.getInt(5));
+					room.setRatingCount(result.getInt(6));
+					room.setCreditPerHour(result.getInt(7));
+					String aminitiesStr = result.getString(8);
 
 					String[] amininityArray = aminitiesStr.split(" ");
 					for(String aminityItr : amininityArray)
@@ -132,13 +136,14 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 			}
 			try {
 				stmt = connection.prepareStatement(INSERT_ROOM);
-				stmt.setString(1, room.getRoomName());
-				stmt.setInt(2, room.getSeatingCapacity());
-				stmt.setDouble(3, room.getRating());
-				stmt.setInt(4, room.getRatingSum());
-				stmt.setInt(5, room.getRatingCount());
-				stmt.setInt(6, room.getCreditPerHour());
-				stmt.setString(7, amenitiesStr);
+				stmt.setInt(1, room.getRoomId());
+				stmt.setString(2, room.getRoomName());
+				stmt.setInt(3, room.getSeatingCapacity());
+				stmt.setDouble(4, room.getRating());
+				stmt.setInt(5, room.getRatingSum());
+				stmt.setInt(6, room.getRatingCount());
+				stmt.setInt(7, room.getCreditPerHour());
+				stmt.setString(8, amenitiesStr);
 
 				int recordsUpdated = stmt.executeUpdate();
 				if(recordsUpdated>0)
@@ -171,13 +176,14 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 			}
 			try {
 				stmt = connection.prepareStatement(UPDATE_ROOM);
-				stmt.setInt(1, room.getSeatingCapacity());
-				stmt.setDouble(2, room.getRating());
-				stmt.setInt(3, room.getRatingSum());
-				stmt.setInt(4, room.getRatingCount());
-				stmt.setInt(5, room.getCreditPerHour());
-				stmt.setString(6, amenitiesStr);
-				stmt.setString(7, room.getRoomName());
+				stmt.setInt(1, room.getRoomId());
+				stmt.setInt(2, room.getSeatingCapacity());
+				stmt.setDouble(3, room.getRating());
+				stmt.setInt(4, room.getRatingSum());
+				stmt.setInt(5, room.getRatingCount());
+				stmt.setInt(6, room.getCreditPerHour());
+				stmt.setString(7, amenitiesStr);
+				stmt.setString(8, room.getRoomName());
 
 				int recordsUpdated = stmt.executeUpdate();
 				if(recordsUpdated>0)

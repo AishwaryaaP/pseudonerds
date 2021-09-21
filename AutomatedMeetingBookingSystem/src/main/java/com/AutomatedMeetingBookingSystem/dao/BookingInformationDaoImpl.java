@@ -126,7 +126,14 @@ public class BookingInformationDaoImpl implements BookingInformationDao {
 				meetingRoomDetail.setSeatingCapacity(result.getInt(2));
 				meetingRoomDetail.setCreditPerHour(result.getInt(3));
 				meetingRoomDetail.setRating(result.getInt(4));
-				meetingRoomDetail.setAmenities(result.getString(5));
+				String amenitiesStr = result.getString(5);
+
+				String[] aminities = amenitiesStr.split(" ");
+				Set<String> aminitiesSet = new HashSet<>();
+				for (String str : aminities) {
+					aminitiesSet.add(str);
+				}
+				meetingRoomDetail.setAmenities(aminitiesSet);
 				meetingRoomsDetails.add(meetingRoomDetail);
 			}	
 		} catch(SQLException | ClassNotFoundException e) {
