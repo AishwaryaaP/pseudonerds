@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  
+  <title>Frontend Mentor | Profile card component</title>
+
+</head>
+<style>
+:root{
+    --Dark_cyan: hsl(185, 75%, 39%);
+    --dark_blue: hsl(229, 23%, 23%);
+    --grayish_blue: hsl(227, 10%, 46%);
+    --gray: hsl(0, 0%, 59%);
+}
+
+
+body{
+    background-color: var(--Dark_cyan);
+    background-image: url('images/bg-pattern-top.svg'), url('images/bg-pattern-bottom.svg');
+    background-position: left -45% top -660%, 140% 600%;
+    background-repeat: no-repeat no-repeat;
+    height: 100vh;
+    position: relative;
+    font-family: 'Kumbh Sans', sans-serif;
+}
+
+html{
+    font-size:10px;
+    background:cyan;
+}
+
+.card{
+    width:34rem;
+    background: white;
+    height:36rem;
+    border-radius: 10px;
+    margin: auto;
+    z-index:1;
+    box-shadow: -5px 4px 25px 6px rgba(67,180,192,0.75);
+
+
+}
+.card .back{
+    background: url("./images/bg-pattern-card.svg");
+    height:12rem;
+    width: 100%;
+}
+.card img{
+    border-radius:50%;
+    display:block;
+    padding:1rem;
+    background-color:white;
+    margin:0 auto;
+    width:80px;
+    height:80px;
+}
+
+.card h2{
+    display:inline;
+    text-align: center;
+    font-size:1.8rem;
+    margin:1rem auto 1rem;
+    color: var(--dark_blue);
+}
+.card h2 span{
+    color:var(--gray);
+    font-weight: 400;
+}
+.card h3{
+    
+    margin:0 0 2rem 2;
+    font-size:1.3rem;
+
+}
+
+.card-text{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items:center;
+    transform:translateY(-5rem);
+   
+
+}
+
+.stats{
+    width:100%;
+    justify-content: space-around;
+    margin-left:180px;
+}
+
+</style>
+<body>
+    <div class="card">
+      <div class="back"></div>
+      <div class="card-text">
+        <img src="photo/c2.jpg" alt="" srcset="">
+  
+        <h2>Victor Crest  </h2>
+        <div class="stats">
+          <h3>Unique_Id:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp12345678</h3>
+          <h3>Email:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsprish12@gmail.com</h3>
+          <h3>Phone:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp9016623265</h3>
+           <h3>Role:&nbsp&nbsp&nbsp&nbsp&nbsp&nbspManager</h3>
+         </form>
+          
+          
+        </div>
+  
+      </div>
+      
+    </div>
+ 
+</body>
+</html>
