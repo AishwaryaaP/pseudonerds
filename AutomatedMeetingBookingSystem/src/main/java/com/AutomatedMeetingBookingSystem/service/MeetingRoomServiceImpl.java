@@ -39,6 +39,7 @@ public class MeetingRoomServiceImpl implements MeetingRoomService{
 	
 	@Override
 	public boolean updateRoomDetails(MeetingRoom roomToBeUpdated) throws RoomNotFoundException
+
 	{
 		boolean result = this.roomDao.updateMeetingRoom(roomToBeUpdated);
 		if(!result)
@@ -60,6 +61,7 @@ public class MeetingRoomServiceImpl implements MeetingRoomService{
 	{
 		boolean result = this.roomDao.insertMeetingRoom(room);
 				return result;
+
 	}
 
 	

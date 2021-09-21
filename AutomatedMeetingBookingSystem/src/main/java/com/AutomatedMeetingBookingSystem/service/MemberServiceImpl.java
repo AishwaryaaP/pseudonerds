@@ -13,7 +13,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public List<Meeting> memberMeetingSchedule(int userId) {
-		MeetingService meetingService = new ServiceFactory().getMeetingServiceInstance();
+		MeetingService meetingService = ServiceFactory.getMeetingService();
 		List<Meeting> meetingList;
 		meetingList = meetingService.fetchMeetingByUniqueID(userId);
 		return meetingList;
