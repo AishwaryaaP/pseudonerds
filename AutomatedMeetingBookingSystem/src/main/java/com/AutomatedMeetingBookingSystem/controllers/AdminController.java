@@ -68,6 +68,7 @@ public class AdminController extends HttpServlet {
 			// call service layer for meetingroom.getall
 //			MeetingRoomService meetingRoomService = ServiceFactory.getSeriveInstance();
 //			List<MeetingRoom> allMeetingRooms = meetingRoomService.getAllRooms();
+			
 			break;
 
 		case "getAdminDetails":
