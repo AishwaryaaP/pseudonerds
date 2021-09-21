@@ -18,10 +18,9 @@ public class MeetingRoom {
 	private Set<String> amenities = new HashSet<>();
 	
 	
-	public MeetingRoom(int roomId, String roomName, int creditPerHour, int seatingCapacity, double rating, int ratingSum,
+	public MeetingRoom(String roomName, int creditPerHour, int seatingCapacity, double rating, int ratingSum,
 			int ratingCount, Set<String> amenities) {
 		super();
-		this.roomId = roomId;
 		this.roomName = roomName;
 		this.creditPerHour = creditPerHour;
 		this.seatingCapacity = seatingCapacity;
