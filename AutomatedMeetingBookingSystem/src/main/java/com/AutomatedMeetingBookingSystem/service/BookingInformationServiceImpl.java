@@ -14,6 +14,7 @@ public class  BookingInformationServiceImpl implements BookingInformationService
 	
 	BookingInformationDao bookingInformationDao = new ObjectFactory().getBookingDaoInstance();
 		
+
 	@Override
 	public List<MeetingRoom> getAvailableMeetingRoom(MeetingType type) {
 		List<String> amenities = new ArrayList<>();

@@ -35,7 +35,7 @@ public class MeetingRoomServiceImpl implements MeetingRoomService{
 	}
 	
 	@Override
-	public void updateRoomDetails(MeetingRoom room) throws RoomNotFoundException
+	public boolean updateRoomDetails(MeetingRoom room) throws RoomNotFoundException
 	{
 		MeetingRoom roomToBeUpdated = getRoomDetailsByRoomName(room.getRoomName());
 		//update
@@ -53,9 +53,10 @@ public class MeetingRoomServiceImpl implements MeetingRoomService{
 	}
 	
 	@Override
-	public void addRoom(MeetingRoom room)
+	public boolean addRoom(MeetingRoom room)
 	{
 		//Add to meetingRoom table
+		return true;
 	}
 
 	
