@@ -72,7 +72,15 @@ public class AdminController extends HttpServlet {
 			break;
 
 		case "getAllRooms":
-			adminService.getAllRooms();
+		adminService.getAllRooms();
+			break;
+
+		case "getAdminDetails":
+			//redux ? 
+			
+
+			
+
 			break;
 
 		case "editMeetingRoom":
