@@ -30,7 +30,7 @@ public class GlobalServerlet extends HttpServlet {
 		String action = request.getHeader("act");
 		switch(action) {
 		case "login":
-			String username = request.getHeader("username");
+			int username = Integer.parseInt(request.getHeader("userId"));
 			String password = request.getHeader("password");
 			System.out.println(username);
 			System.out.println(password);
