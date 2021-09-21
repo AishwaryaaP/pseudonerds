@@ -4,5 +4,5 @@ import com.AutomatedMeetingBookingSystem.model.User;
 
 public interface UserServiceInterface {
 
-	public User getUserDetails(int userId, String password);
+	public User getUserDetails(String  name, String email);
 }
