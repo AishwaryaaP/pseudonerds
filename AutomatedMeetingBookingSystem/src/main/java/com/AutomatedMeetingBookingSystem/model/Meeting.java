@@ -30,6 +30,11 @@ public class Meeting {
 	}
 
 
+	public Meeting() {
+		super();
+	}
+
+
 	public int getUniqueID() {
 		return uniqueID;
 	}
@@ -90,7 +95,7 @@ public class Meeting {
 
 
 	public LocalTime getStartTime() {
-		return starttime;
+		return startTime;
 	}
 
 

@@ -8,6 +8,9 @@ import static com.AutomatedMeetingBookingSystem.enums.MeetingType.CLASSROOMTRAIN
 import static com.AutomatedMeetingBookingSystem.enums.MeetingType.BUSINESS ;
 import static com.AutomatedMeetingBookingSystem.enums.MeetingType.CONFERENCECALL;
 import static com.AutomatedMeetingBookingSystem.enums.MeetingType.ONLINETRAINING;
+
+import com.AutomatedMeetingBookingSystem.model.BookingInformation;
+import com.AutomatedMeetingBookingSystem.model.Meeting;
 import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
 import com.AutomatedMeetingBookingSystem.utility.ObjectFactory;
 public class  BookingInformationServiceImpl implements BookingInformationService {
@@ -41,7 +44,7 @@ public class  BookingInformationServiceImpl implements BookingInformationService
 
 	@Override
 	public void saveBookingInformation(Meeting meeting){
-		BookingInformation bookingInformation = new BookingInformation(meeting.getuniqueId(), meeting.getInfoMeetingRoomName(), meeting.getDate(), meeting.getStartTime(), meeting.getEndTime(), meeting.getOrganizedBy());
+		BookingInformation bookingInformation = new BookingInformation(meeting.getUniqueID(), meeting.getInfoMeetingRoomName(), meeting.getDate(), meeting.getStartTime(), meeting.getEndTime(), meeting.getOrganizedBy());
 		bookingInformationDao.saveBookingInformation(bookingInformation);
 	}
 	

@@ -18,27 +18,24 @@ public class ManagerServiceImpl implements ManagerService{
 	
 	public ManagerServiceImpl() {
 		super();
-//		meetingService = ServiceFactory.getMeetingServiceInstance();
-//		meetingRoomService = new ServiceFactory.getMeetingRoomServiceInstance();
-//		userService = new ServiceFactory.getUserServiceInstance();
-		meetingService = new MeetingServiceImpl();
-		meetingRoomService = new MeetingRoomServiceImpl();
-		userService = new UserServiceImp();
+		meetingService = ServiceFactory.getMeetingServiceInstance();
+		meetingRoomService = ServiceFactory.getMeetingRoomServiceInstance();
+		userService = ServiceFactory.getUserService();
 	}
 
 	@Override
-	public Meeting createMeeting(int organizedBy, String roomName, String title, String date, String startHours, String startMinutes, String endHours, String endMinutes, String type, String listOfMembers) {
+	public boolean createMeeting(int organizedBy, String roomName, String title, String date, String startHours, String startMinutes, String endHours, String endMinutes, String type, String listOfMembers) {
 			LocalDate meetingDate = LocalDate.parse(date);
 			LocalTime startTime = LocalTime.of(Integer.parseInt(startHours), Integer.parseInt(startMinutes));
 			LocalTime endTime = LocalTime.of(Integer.parseInt(endHours), Integer.parseInt(endMinutes));
 			Meeting meeting = meetingService.saveMeeting(organizedBy, roomName, title, meetingDate, startTime, endTime, type, listOfMembers);
 			bookingInfoService.saveBookingInformation(meeting);
-			return meeting;
+			return true;
 	}
 
 	@Override
-	public List<Meeting> getSchedule(User u) {
-		List<Meeting> schedules = meetingService.fetchMeetingsByUserID(u.getEmpId());
+	public List<Meeting> getSchedule(int userId) {
+		List<Meeting> schedules = meetingService.fetchMeetingsByUserID(userId);
 		return schedules;
 	}
 
