@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -10,23 +11,24 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.AutomatedMeetingBookingSystem.model.BookingInformation;
 import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
 
 public class BookingInformationDaoImpl implements BookingInformationDao {
 
-	private static final String INSERT_BOOKINGINFO = "insert into bookinginformation (UniqueId, roomName, date, starttime, endtime, organizedBy) values (?,?,?,?,?,?)";
+	private static final String INSERT_BOOKING_INFO = "insert into bookinginformation (UniqueId, roomName, date, starttime, endtime, organizedBy) values (?,?,?,?,?,?)";
 
 	@Override
-	public void saveBookingInformation(bookingInformation){
+	public void saveBookingInformation(BookingInformation bookingInformation){
 		try {
 			Connection connection = DBUtility.getConnection();
-			PreparedStatement statement = connection.prepareStatement(INSERT_MEETING, Statement.RETURN_GENERATED_KEYS);
-			statement.setInt(1, bookingInformation.getUniqueID());
-			statement.setString(2, bookingInformation.getInfoMeetingRoomName());
+			PreparedStatement statement = connection.prepareStatement(INSERT_BOOKING_INFO, Statement.RETURN_GENERATED_KEYS);
+			statement.setInt(1, bookingInformation.getUniqueId());
+			statement.setString(2, bookingInformation.getRoomName());
 			statement.setString(4, bookingInformation.getDate().toString());
 			statement.setString(5, bookingInformation.getStartTime().toString());
 			statement.setString(6, bookingInformation.getEndTime().toString());
-			statement.setString(7, bookingInformation.getOrganizedBy());
+			statement.setInt(7, bookingInformation.getOrganizedBy());
 
 			ResultSet rs = statement.getGeneratedKeys();
 			int id = 0;

@@ -1,20 +1,37 @@
+package com.AutomatedMeetingBookingSystem.service;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import org.json.JSONArray;
+
+import com.AutomatedMeetingBookingSystem.dao.DaoFactory;
 import com.AutomatedMeetingBookingSystem.dao.MeetingDAO;
 import com.AutomatedMeetingBookingSystem.exception.ConnectionFailedException;
 import com.AutomatedMeetingBookingSystem.model.Meeting;
 
 public class MeetingServiceImpl implements MeetingService {
-	private MeetingDAO dao = MeetingDAO.getInstance();
-	public Meeting saveMeeting(Meeting meeting) {
+	
+	private MeetingDAO dao;
+	
+	public MeetingServiceImpl() {
+		super();
+		 dao = DaoFactory.getMeetingDaoInstance();
+	}
+	
+	public Meeting saveMeeting(int organizedBy, String roomName, String title, LocalDate meetingDate, LocalTime startTime, LocalTime endTime, String type, String listOfMembers) {
 		Meeting meeting1 = null;
 		try {
-			meeting1 = this.dao.createMeeting(meeting);
+			meeting1 = this.dao.createMeeting(organizedBy, roomName, title, meetingDate, startTime, endTime, type, listOfMembers);
 		} catch (ConnectionFailedException e) {
 			System.out.println(e.getMessage());
 		}
 		return meeting1;
 	}
+	
 	public Meeting fetchMeetingByUniqueID(int uniqueID) {
 		Meeting meeting1 = null;
 		try {
@@ -24,19 +41,29 @@ public class MeetingServiceImpl implements MeetingService {
 		}
 		return meeting1;
 	}
+	
 	public List<Meeting> fetchMeetingsByUserID(int userID) {
 		List<Meeting> meetings = new ArrayList<>();
-		List<Integer> uniqueIDs; 
 		try {
-			uniqueIDs = this.dao.fetchMeetingsByUserID(userID);
-			for (int uniqueID : uniqueIDs) {
-				Meeting meeting = fetchMeetingByUniqueID(uniqueID);
-				meetings.add(meeting);
-			}
-		} catch (ConnectionFailedException e) {
+			List<Meeting> allMeetings = this.dao.fetchAllMeetings();
+			for(Meeting meeting: allMeetings) {
+				String userDetails = meeting.getListOfMember();
+				
+				JSONArray userIds = new JSONArray(userDetails);
+				Iterator<Object> iterator = userIds.iterator();
+				while(iterator.hasNext()) 
+				{
+					if((iterator.next()).equals(String.valueOf(userID)))
+					{
+						meetings.add(meeting);
+						break;
+					}
+				}
+		}
+		}catch (ConnectionFailedException e) {
 			System.out.println(e.getMessage());
 		}
 		return meetings;
 	}
 }
-}
+

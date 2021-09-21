@@ -8,10 +8,10 @@ import com.AutomatedMeetingBookingSystem.model.User;
 
 public interface ManagerService {
 
-	Meeting createMeeting(int organizedBy, String roomName, String title, String date, String startHours,
+	boolean createMeeting(int organizedBy, String roomName, String title, String date, String startHours,
 			String startMinutes, String endHours, String endMinutes, String type, String listOfMembers);
 
-	List<Meeting> getSchedule(User u);
+	List<Meeting> getSchedule(int userId);
 
 	List<MeetingRoom> getAvailableRooms(String date, String startHours, String startMinutes, String endHours,
 			String endMinutes, String type);

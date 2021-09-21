@@ -1,5 +1,7 @@
 package com.AutomatedMeetingBookingSystem.service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import com.AutomatedMeetingBookingSystem.model.Meeting;
@@ -10,7 +12,7 @@ public interface MeetingService {
 		return new MeetingServiceImpl();
 	}
 
-	Meeting saveMeeting(Meeting Meeting);
+	Meeting saveMeeting(int organizedBy, String roomName, String title, LocalDate meetingDate, LocalTime startTime, LocalTime endTime, String type, String listOfMembers);
 
 	Meeting fetchMeetingByUniqueID(int uniqueID);
 
