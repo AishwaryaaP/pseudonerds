@@ -13,7 +13,7 @@ public interface MeetingDAO {
 
 	Meeting createMeeting(Meeting meeting) throws ConnectionFailedException;
 
-	List<Integer> fetchMeetingsByUserID(int userID) throws ConnectionFailedException;
+	List<Meeting> fetchMeetingsByUserID(int userID) throws ConnectionFailedException;
 
 	Meeting fetchMeetingByUniqueID(int uniqueID) throws ConnectionFailedException;
 }
