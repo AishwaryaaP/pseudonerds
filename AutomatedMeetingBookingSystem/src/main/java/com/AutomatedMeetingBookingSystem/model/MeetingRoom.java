@@ -9,18 +9,19 @@ import com.AutomatedMeetingBookingSystem.exception.ResourceNotFoundException;
 
 public class MeetingRoom {
 
+	private int roomId;
 	private String roomName;
 	private int creditPerHour;
 	private int seatingCapacity;
 	private double rating;
 	private int ratingSum=0,ratingCount=0;
 	private Set<String> amenities = new HashSet<>();
-	private static Map<String,Integer> amenitiesCredit = new HashMap<>();
 	
 	
-	public MeetingRoom(String roomName, int creditPerHour, int seatingCapacity, double rating, int ratingSum,
+	public MeetingRoom(int roomId, String roomName, int creditPerHour, int seatingCapacity, double rating, int ratingSum,
 			int ratingCount, Set<String> amenities) {
 		super();
+		this.roomId = roomId;
 		this.roomName = roomName;
 		this.creditPerHour = creditPerHour;
 		this.seatingCapacity = seatingCapacity;
@@ -32,26 +33,13 @@ public class MeetingRoom {
 	public MeetingRoom(){
 	}
 	
-	public static Map<String,Integer> getAmenitiesCredit()
-	{
-		amenitiesCredit.put("PROJECTOR", 5);
-		amenitiesCredit.put("WIFICONNECTION", 10);
-		amenitiesCredit.put("CONFERENCECALL", 15);
-		amenitiesCredit.put("WHITEBOARD", 5);
-		amenitiesCredit.put("WATERDISPENCER", 5);
-		amenitiesCredit.put("TV", 10);
-		amenitiesCredit.put("COFFEEMACHINE", 10);
-		return amenitiesCredit;
+	
+	//Getter Setter
+	public int getRoomId() {
+		return roomId;
 	}
-	public static boolean addNewAmenitiesCredit(String aminity, int credit)
-	{
-		if(aminity!=null)
-		{
-		amenitiesCredit.put(aminity, credit);
-		return true;
-		}
-		else
-			return false;
+	public void setRoomId(int roomId) {
+		this.roomId = roomId;
 	}
 	public String getRoomName() {
 		return roomName;
@@ -94,7 +82,11 @@ public class MeetingRoom {
 	}
 	public void setAmenities(Set<String> amenities) {
 		this.amenities = amenities;
-	}	
+	}
+	
+	
+	
+	//Custom
 	public void addAminity(String amenitiy) {
 		this.amenities.add(amenitiy);
 	}
@@ -104,14 +96,9 @@ public class MeetingRoom {
 		else
 			throw new ResourceNotFoundException();
 	}
-
-	public void addRating(int rating) {
-		ratingSum+=rating;
-		ratingCount++;
-		this.rating = ratingSum/ratingCount;
-	}
-
 	
+	
+	//toString
 	@Override
 	public String toString() {
 		return "MeetingRoom [roomName=" + roomName + ", creditPerHour=" + creditPerHour + ", seatingCapacity="

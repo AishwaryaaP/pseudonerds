@@ -67,7 +67,7 @@ public class AdminController extends HttpServlet {
 				amenities.add(str);
 				creditPerHour += creditMap.get(str);
 			}
-			MeetingRoom meetingRoom = new MeetingRoom(roomName, creditPerHour, seatingCapacity, rating, amenities);
+			MeetingRoom meetingRoom = new MeetingRoom(roomName, creditPerHour, seatingCapacity, rating, ratingSum, ratingCount, amenities);
 			adminService.createMeetingRoom(meetingRoom);
 			break;
 
@@ -92,7 +92,7 @@ public class AdminController extends HttpServlet {
 				amenities1.add(str);
 				creditPerHour1 += creditMap1.get(str);
 			}
-			MeetingRoom meetingRoom1 = new MeetingRoom(roomName1, creditPerHour1, seatingCapacity1, rating1, amenities1);
+			MeetingRoom meetingRoom1 = new MeetingRoom(roomName1, creditPerHour1, seatingCapacity1, rating1, ratingSum1, ratingCount1, amenities1);
 			
 
 			boolean updated = adminService.editMeetingRoom(meetingRoom1);

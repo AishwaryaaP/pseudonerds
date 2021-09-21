@@ -26,7 +26,7 @@ public class ManagerController extends HttpServlet {
 	private ManagerService managerService;
     
 	public ManagerController() {
-		managerService = ServiceFactory.getManagerServiceInstance();
+		managerService = ServiceFactory.getManagerService();
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -1,20 +1,14 @@
 package com.AutomatedMeetingBookingSystem.service;
 
-import com.AutomatedMeetingBookingSystem.service.MeetingService;
-import com.AutomatedMeetingBookingSystem.service.MeetingServiceImpl;
-import com.AutomatedMeetingBookingSystem.model.User;
-import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
-
-import java.util.List;
-
 import com.AutomatedMeetingBookingSystem.model.Meeting;
+import com.AutomatedMeetingBookingSystem.model.User;
 
 public class MemberServiceImpl implements MemberService{
 
 	@Override
-	public List<Meeting> memberMeetingSchedule(int userId) {
+	public Meeting memberMeetingSchedule(int userId) {
 		MeetingService meetingService = ServiceFactory.getMeetingService();
-		List<Meeting> meetingList;
+		Meeting meetingList;
 		meetingList = meetingService.fetchMeetingByUniqueID(userId);
 		return meetingList;
 	}
