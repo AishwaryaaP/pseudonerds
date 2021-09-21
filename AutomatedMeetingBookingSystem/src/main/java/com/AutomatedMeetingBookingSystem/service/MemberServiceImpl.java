@@ -11,20 +11,18 @@ import com.AutomatedMeetingBookingSystem.model.Meeting;
 
 public class MemberServiceImpl implements MemberService{
 
+	MeetingService meetingService;
+	public MemberServiceImpl(){
+		meetingService = ServiceFactory.getMeetingService();
+	}
 	@Override
 	public List<Meeting> memberMeetingSchedule(int userId) {
-		MeetingService meetingService = ServiceFactory.getMeetingService();
+		
 		List<Meeting> meetingList;
-		meetingList = meetingService.fetchMeetingByUniqueID(userId);
+		meetingList = meetingService.fetchMeetingsByUserID(userId);
 		return meetingList;
 	}
 
-	@Override
-	public User memberDetails(int userId, String password) {
-		UserServiceInterface service = ServiceFactory.getUserService();
-		User u = service.getUserDetails(userId, password);
-		return u;
-	}
 	
 
 }

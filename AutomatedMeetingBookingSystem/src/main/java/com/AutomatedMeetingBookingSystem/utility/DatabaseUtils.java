@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import com.AutomatedMeetingBookingSystem.model.Meeting.meetingType;
+import com.AutomatedMeetingBookingSystem.model.Meeting;
 
 public class DatabaseUtils {
 	/**
