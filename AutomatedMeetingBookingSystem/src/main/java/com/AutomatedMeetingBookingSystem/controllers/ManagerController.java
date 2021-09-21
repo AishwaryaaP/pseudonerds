@@ -61,7 +61,7 @@ public class ManagerController extends HttpServlet {
 			String endHours = request.getParameter("endHours");
 			String endMinutes = request.getParameter("endMinutes");
 			String type = request.getParameter("type");
-			String listOfMembers = null;
+			String listOfMembers = request.getParameter("listOfMembers");
 			Meeting meeting = managerService.createMeeting(organizedBy, roomName, title, date, startHours, startMinutes, endHours, endMinutes, type, listOfMembers);
 		}
 		else if(action.equals("getSchedule")) {

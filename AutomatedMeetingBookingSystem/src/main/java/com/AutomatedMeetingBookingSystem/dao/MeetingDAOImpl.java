@@ -3,10 +3,12 @@ package com.AutomatedMeetingBookingSystem.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.SQLException;
 
 import com.AutomatedMeetingBookingSystem.exception.ConnectionFailedException;
 import com.AutomatedMeetingBookingSystem.model.Meeting;
@@ -22,31 +24,41 @@ public class MeetingDAOImpl implements MeetingDAO {
 	private static final String SELECT_MEETINGS_BY_DATE = "Select * from meeting where date = ?";
 	private static final String SELECT_MEETING_BY_UNIQUEID = "Select * From Meeting where uniqueID = ?";//to be edited
 	
-	public Meeting createMeeting(Meeting meeting) throws ConnectionFailedException {
+	public Meeting createMeeting(int organizedBy, String roomName, String title, LocalDate date, LocalTime startTime, LocalTime endTime, String type, String listOfMembers) throws ConnectionFailedException {
 		if (connection != null) 
 		{
 			try {
-				PreparedStatement statement = connection.prepareStatement(INSERT_MEETING);
+				PreparedStatement statement = connection.prepareStatement(INSERT_MEETING, Statement.RETURN_GENERATED_KEYS);
 				//statement.setInt(1, meeting.getUniqueID());
-				statement.setInt(1, meeting.getOrganizedBy());
-				statement.setString(2, meeting.getInfoMeetingRoomName());
-				statement.setString(3, meeting.getTitle());
-				statement.setString(4, meeting.getDate().toString());
-				statement.setString(5, meeting.getStarttime().toString());
-				statement.setString(6, meeting.getEndtime().toString());
-			    statement.setString(7, meeting.getType().toString());
+				statement.setInt(1, organisedBy);
+				statement.setString(2, roomName);
+				statement.setString(3, title);
+				statement.setString(4, date.toString());
+				statement.setString(5, startTime.toString());
+				statement.setString(6, endTime.toString());
+			    statement.setString(7, type.toString());
+				statement.setString(8, listOfMembers);
 			    
-				int recordsUpdated = statement.executeUpdate();
-				
-				if (recordsUpdated > 0) {
-					connection.commit();
-					return meeting;
+				ResultSet rs = statement.getGeneratedKeys();
+				int id = 0;
+				while(rs.next()) {
+					id = rs.getInt(1);
 				}
-			} catch (Exception e) {
+
+				if (id != 0) {
+					statement.close();
+					connection.commit();
+					return fetchMeetingByUniqueID(id);
+				}
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+			catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		throw new ConnectionFailedException("While meeting creation");
+		throw new ConnectionFailedException("Error while meeting creation");
 	}
 
 

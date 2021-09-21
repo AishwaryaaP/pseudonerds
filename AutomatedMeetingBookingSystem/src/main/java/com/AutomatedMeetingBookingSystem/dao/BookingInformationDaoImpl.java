@@ -13,7 +13,37 @@ import java.util.Set;
 import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
 
 public class BookingInformationDaoImpl implements BookingInformationDao {
-	
+
+	private static final String INSERT_BOOKINGINFO = "insert into bookinginformation (UniqueId, roomName, date, starttime, endtime, organizedBy) values (?,?,?,?,?,?)";
+
+	@Override
+	public void saveBookingInformation(bookingInformation){
+		try {
+			Connection connection = DBUtility.getConnection();
+			PreparedStatement statement = connection.prepareStatement(INSERT_MEETING, Statement.RETURN_GENERATED_KEYS);
+			statement.setInt(1, bookingInformation.getUniqueID());
+			statement.setString(2, bookingInformation.getInfoMeetingRoomName());
+			statement.setString(4, bookingInformation.getDate().toString());
+			statement.setString(5, bookingInformation.getStartTime().toString());
+			statement.setString(6, bookingInformation.getEndTime().toString());
+			statement.setString(7, bookingInformation.getOrganizedBy());
+
+			ResultSet rs = statement.getGeneratedKeys();
+			int id = 0;
+			while(rs.next()) {
+				id = rs.getInt(1);
+			}
+
+			if (id != 0) {
+				statement.close();
+				connection.commit();
+			}
+		}
+		catch(SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
 	@Override
 	public List<String> getMeetingRoomsByFilter(List<String> amenities) {
 		List<String> avaliableMeetingRooms = new ArrayList<>();

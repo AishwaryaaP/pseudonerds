@@ -31,9 +31,8 @@ public class ManagerServiceImpl implements ManagerService{
 			LocalDate meetingDate = LocalDate.parse(date);
 			LocalTime startTime = LocalTime.of(Integer.parseInt(startHours), Integer.parseInt(startMinutes));
 			LocalTime endTime = LocalTime.of(Integer.parseInt(endHours), Integer.parseInt(endMinutes));
-			List<User> userList = null;
-			Meeting meeting = meetingService.saveMeeting(organizedBy, roomName, title, date, startTime, endTime, type, userList);
-			bookingInfoService.saveBookingInformation(roomName, meetingDate, startTime, endTime, organizedBy);
+			Meeting meeting = meetingService.saveMeeting(organizedBy, roomName, title, meetingDate, startTime, endTime, type, listOfMembers);
+			bookingInfoService.saveBookingInformation(meeting);
 			return meeting;
 	}
 
