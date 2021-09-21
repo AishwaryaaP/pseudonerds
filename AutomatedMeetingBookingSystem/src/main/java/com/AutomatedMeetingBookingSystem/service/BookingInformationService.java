@@ -6,4 +6,6 @@ import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
 
 public interface BookingInformationService {
 	public List<MeetingRoom> getAvailableMeetingRoom(MeetingType meetingType);
+
+	public void saveBookingInformation(Meeting meeting);
 }

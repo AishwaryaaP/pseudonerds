@@ -1,13 +1,19 @@
 package com.AutomatedMeetingBookingSystem.controllers;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
 import com.AutomatedMeetingBookingSystem.model.User;
-
+import com.AutomatedMeetingBookingSystem.service.AdminServiceImpl;
+import com.AutomatedMeetingBookingSystem.service.AdminServiceInterface;
+import com.AutomatedMeetingBookingSystem.service.MeetingRoomService;
+import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
 
 
 
@@ -28,8 +34,9 @@ import com.AutomatedMeetingBookingSystem.model.User;
 
 public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private AdminServiceInterface adminService;
 	public AdminController() {
+		adminService = ServiceFactory.getAdminService();
 	}
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -47,27 +54,11 @@ public class AdminController extends HttpServlet {
 			String roomName = req.getHeader("roomName");
 			int seatingCapacity = Integer.valueOf(req.getHeader("seatingCapacity"));
 			int rating = 0;
-			// aminities???
-
-			break;
-		case "addEmployee":
-			//dummy for reference.
-			int empId; // get from DB and increment
-			String name = req.getHeader("name");
-			String email = req.getHeader("email");
-			String phoneNumber = req.getHeader("phoneNumber");
-			String role = req.getHeader("role");
-			int credit = Integer.valueOf(req.getHeader("credit"));
-			// pass object to service layer
-
-			System.out.println(name + " " + role);
-			resp.getWriter().write(name);
+	// aminities???
 			break;
 
 		case "getAllRooms":
-			// call service layer for meetingroom.getall
-//			MeetingRoomService meetingRoomService = ServiceFactory.getSeriveInstance();
-//			List<MeetingRoom> allMeetingRooms = meetingRoomService.getAllRooms();
+			adminService.getAllRooms();
 			break;
 
 		case "getAdminDetails":
@@ -77,14 +68,20 @@ public class AdminController extends HttpServlet {
 
 		case "editMeetingRoom":
 			// get meeting room Id pass to service layer clickable so pass id from FE
+			
+			String roomName1;
+			int perHourCost;
+			int seatingCapacity1;
+			double rating1;
+			
 			int meetingRoomIdForEdit = Integer.valueOf( req.getHeader("meetingId") ) ;
-			//call service layer with this id
+			boolean updated = adminService.editMeetingRoom(meetingRoomIdForEdit);
 			break;
 
 		case "deleteMeetingRoom":
 			// get meeting room Id pass to service layer clickable so pass id from FE
 			int meetingRoomIdForDelete = Integer.valueOf( req.getHeader("meetingId") ) ;
-			//call service layer with this id
+			adminService.deleteMeetingRoom(meetingRoomIdForDelete);
 		}
 
 	}

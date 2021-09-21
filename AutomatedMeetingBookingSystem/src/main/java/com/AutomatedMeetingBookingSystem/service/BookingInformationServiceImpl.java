@@ -38,5 +38,11 @@ public class  BookingInformationServiceImpl implements BookingInformationService
 		List<MeetingRoom> meetingRoomsDetails = bookingInformationDao.getMeetingRoomsDetails(availableMeetingRooms);
 		return meetingRoomsDetails;
 	}
+
+	@Override
+	public void saveBookingInformation(Meeting meeting){
+		BookingInformation bookingInformation = new BookingInformation(meeting.getuniqueId(), meeting.getInfoMeetingRoomName(), meeting.getDate(), meeting.getStartTime(), meeting.getEndTime(), meeting.getOrganizedBy());
+		bookingInformationDao.saveBookingInformation(bookingInformation);
+	}
 	
 }

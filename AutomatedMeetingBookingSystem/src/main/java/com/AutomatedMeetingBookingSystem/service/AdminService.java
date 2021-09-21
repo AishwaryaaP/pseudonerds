@@ -2,47 +2,58 @@ package com.AutomatedMeetingBookingSystem.service;
 
 import java.util.List;
 
-import com.AutomatedMeetingBookingSystem.dao.DummyDao;
+import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
+import com.AutomatedMeetingBookingSystem.model.User;
+import com.AutomatedMeetingBookingSystem.service.MeetingRoomServiceImpl;
 
-public class AdminService {
-	public static List<MeetingRooms> getAllRooms(Object meetingRooms) { // checking if the object of meetingroom is null
-																		// or not
-		try {
+import com.AutomatedMeetingBookingSystem.dao.AdminDao;
+import com.AutomatedMeetingBookingSystem.dao.DaoFactory;
 
-			if (meetingRooms == null)
+public class AdminService implements AdminServiceInterface {
 
-				throw new NullPointerException("No meeting room is created");
-		} catch (Exception e) {
-			System.err.println(e.getMessage()); //to print the error message when exception is thrown
-		}
-
-		return meetingRooms;
+	public List<MeetingRoom> getAllRooms() {
+		MeetingRoomService meetingroom = ServiceFactory.getMeetingRoomService();
+		return meetingroom.getAllMeetingRooms();
 	}
 
-	public static List<Employee> getAdminDetails(Object admin) 
-	{
-		try {
-			if(admin == null)
-				throw new NullPointerException("No admin is created");
-		}
-		catch(Exception e)
-		{
-			System.err.println(e.getMessage());
-		}
-		return admin;
+// This function returns the details of a particular admin currently logged in
+	// exception handling ????
+	public User getAdminDetails(int empId) {
+		 UserDao adminDao = DaoFactory.getUserDaoInstance();
+		 
+		return adminDao.getUserDetails(empId);
+		return null;
 	}
 
-	public static List<MeetingRooms> createMeetingRoom(Object meetingrooms) { // logic to create a customized meeting
-																				// room by calling the manager details
-		return meetingrooms;
+	// to craete a meeting room
+	public MeetingRoom createMeetingRoom(MeetingRoom room) {
+
+		MeetingRoomService meetingRoomService = ServiceFactory.getMeetingRoomService();
+//name***************************** 
+		meetingRoomService.addRoom(room);
+		return room;
 	}
 
-	public static String editMeeting(String uniqueID)
-
-	{
-		// logic to edit the meeting time / date etc
-		return uniqueID;
+	public void deleteMeetingRoom(int uniqueId) {// have to implement
+		MeetingRoomService meetingRoomService = ServiceFactory.getMeetingRoomService();
+		// name param*****************************
+		// add method
+		meetingRoomService.deleteMeetingRoom(uniqueId);
 
 	}
 
+	public boolean editMeetingRoom(int uniqueId) {// have to implement
+		MeetingRoomService meetingRoomService = ServiceFactory.getMeetingRoomService();
+		// name param*****************************
+		
+		boolean updated = meetingRoomService.updateRoomDetails(uniqueId);
+		if(updated)
+			return true;
+		
+		return false;
+	}
+
+	
+
+	
 }
