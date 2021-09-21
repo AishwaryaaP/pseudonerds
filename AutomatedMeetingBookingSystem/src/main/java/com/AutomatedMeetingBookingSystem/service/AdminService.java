@@ -29,9 +29,9 @@ public class AdminService implements AdminServiceInterface {
 		return false;
 	}
 
-	public boolean deleteMeetingRoom(int uniqueId) {// have to implement
+	public boolean deleteMeetingRoom(String roomName) {// have to implement
 		
-		boolean deleted = meetingRoomService.deleteMeetingRoom(uniqueId);
+		boolean deleted = meetingRoomService.deleteRoomByRoomName(roomName);
 		if(deleted)
 			return true;
 		return false;

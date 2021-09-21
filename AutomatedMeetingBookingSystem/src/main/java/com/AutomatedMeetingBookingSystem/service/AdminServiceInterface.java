@@ -10,12 +10,10 @@ public interface AdminServiceInterface {
 
 	public List<MeetingRoom> getAllRooms();
 
-	//public User getAdminDetails(int empId);
-
 	public boolean createMeetingRoom(MeetingRoom room);
 	public boolean editMeetingRoom(MeetingRoom meetingRoom);
 
-	public boolean deleteMeetingRoom(int uniqueId);
+	public boolean deleteMeetingRoom(String uniqueId);
 
 	public Map<String, Integer> getAmenitiesCredit();
 

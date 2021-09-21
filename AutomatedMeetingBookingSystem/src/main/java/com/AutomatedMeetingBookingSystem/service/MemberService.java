@@ -4,7 +4,7 @@ import com.AutomatedMeetingBookingSystem.model.User;
 
 public interface MemberService {
 	
-	public Meeting memberMeetingSchedule(int userId);
-	public User memberDetails(int userId, String password);
+
+	public List<Meeting> memberMeetingSchedule(int userId);
 
 }
