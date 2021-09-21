@@ -2,6 +2,7 @@ package com.AutomatedMeetingBookingSystem.model;
 
 import java.time.LocalTime;
 import java.time.LocalDate;
+import com.AutomatedMeetingBookingSystem.enums.MeetingType;
 
 public class Meeting {
 	private int uniqueID;
@@ -136,7 +137,7 @@ public class Meeting {
 	public String toString() {
 		return "Meeting [getUniqueID()=" + getUniqueID() + ", getOrganizedBy()=" + getOrganizedBy()
 				+ ", getInfoMeetingRoomName()=" + getInfoMeetingRoomName() + ", getTitle()=" + getTitle()
-				+ ", getDate()=" + getDate() + ", getStarttime()=" + getStartTime() + ", getEndtime()=" + getEndTime()
+				+ ", getDate()=" + getDate() + ", getStartTime()=" + getStartTime() + ", getEndTime()=" + getEndTime()
 				+ ", getType()=" + getType() + ", getListOfMember()=" + getListOfMember() + "]";
 	}
 }
