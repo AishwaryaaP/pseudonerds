@@ -3,17 +3,19 @@ package com.AutomatedMeetingBookingSystem.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.AutomatedMeetingBookingSystem.dao.MeetingRoomDao;
 import com.AutomatedMeetingBookingSystem.exception.RoomNotFoundException;
 import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
 
 public class MeetingRoomServiceImpl implements MeetingRoomService{
+	MeetingRoomDao roomDao = MeetingRoomDao.getInstance();
 	private List<MeetingRoom> roomList = new ArrayList<>();
 	
 	@Override
 	public void getSchedule(String roomName)
 	{
 		//Dao serviceDao = DummyDao.getMeetingServiceClass();
-		//List<Meeting> meetings = serviceDao.getMeetingsForRoom(roomName);
+		//List<Meeting> meetings = serviceDao.getMeetingsOnDate(roomName,private LocalTime endtime;);
 		//Extract schedule for all meetings and return available time
 	}
 	
@@ -30,24 +32,36 @@ public class MeetingRoomServiceImpl implements MeetingRoomService{
 	@Override
 	public List<MeetingRoom> getAllMeetingRooms()
 	{
+		roomList = this.roomDao.fetchAllMeetingRooms();
 		return roomList;
 		//returns all meeting rooms
 	}
 	
 	@Override
-	public void updateRoomDetails(MeetingRoom room) throws RoomNotFoundException
+	public boolean updateRoomDetails(MeetingRoom roomToBeUpdated) throws RoomNotFoundException
+
 	{
-		for(MeetingRoom oldRoom : getAllMeetingRooms())
-			if(oldRoom.getRoomName()==room.getRoomName())
-				//update room
-		
-		throw new RoomNotFoundException();
+		boolean result = this.roomDao.updateMeetingRoom(roomToBeUpdated);
+		if(!result)
+			throw new RoomNotFoundException();
+			return result;
 	}
 	
 	@Override
-	public void addRoom(MeetingRoom room)
+	public boolean deleteRoomByRoomName(String roomName) throws RoomNotFoundException
 	{
-		//Add to meetingRoom table
+		boolean result = this.roomDao.deleteMeetingRoomByName(roomName);
+		if(!result)
+			throw new RoomNotFoundException();
+		return result;
+	}
+	
+	@Override
+	public boolean addRoom(MeetingRoom room)
+	{
+		boolean result = this.roomDao.insertMeetingRoom(room);
+				return result;
+
 	}
 
 	

@@ -1,6 +1,11 @@
-package service;
+package com.AutomatedMeetingBookingSystem.service;
 
 import java.util.List;
+
+import com.AutomatedMeetingBookingSystem.model.Meeting;
+import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
+import com.AutomatedMeetingBookingSystem.model.User;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -8,29 +13,29 @@ public class ManagerServiceImpl implements ManagerService{
 
 	private MeetingRoomService meetingRoomService;
 	private MeetingService meetingService;
-	private BookingInfoService bookingInfoService;
-	private UserService userService;
+	private BookingInformationService bookingInfoService;
+	private UserServiceInterface userService;
 	
 	public ManagerServiceImpl() {
 		super();
-		meetingService = new ServiceFactory.getMeetingServiceInstance();
-		meetingRoomService = new ServiceFactory.getMeetingRoomServiceInstance();
-		userService = new ServiceFactory.getUserServiceInstance();
+		meetingService = ServiceFactory.getMeetingServiceInstance();
+		meetingRoomService = ServiceFactory.getMeetingRoomServiceInstance();
+		userService = ServiceFactory.getUserService();
 	}
 
 	@Override
-	public Meeting createMeeting(int organizedBy, String roomName, int title, String date, String startHours, String startMinutes, String endHours, String endMinutes, String type, List<User> listOfMembers) {
+	public boolean createMeeting(int organizedBy, String roomName, String title, String date, String startHours, String startMinutes, String endHours, String endMinutes, String type, String listOfMembers) {
 			LocalDate meetingDate = LocalDate.parse(date);
 			LocalTime startTime = LocalTime.of(Integer.parseInt(startHours), Integer.parseInt(startMinutes));
 			LocalTime endTime = LocalTime.of(Integer.parseInt(endHours), Integer.parseInt(endMinutes));
-			Meeting meeting = meetingService.saveMeeting(organizedBy, roomName, title, date, startTime, endTime, type, listOfMembers);
-			bookingInfoService.saveBookingInfo(roomName, meetingDate, startTime, endTime, organizedBy);
-			return meeting;
+			Meeting meeting = meetingService.saveMeeting(organizedBy, roomName, title, meetingDate, startTime, endTime, type, listOfMembers);
+			bookingInfoService.saveBookingInformation(meeting);
+			return true;
 	}
 
 	@Override
-	public List<BookingInfo> getSchedule(User u) {
-		List<BookingInfo> schedules = bookingInfoService.getSchedule(u);
+	public List<Meeting> getSchedule(int userId) {
+		List<Meeting> schedules = meetingService.fetchMeetingsByUserID(userId);
 		return schedules;
 	}
 

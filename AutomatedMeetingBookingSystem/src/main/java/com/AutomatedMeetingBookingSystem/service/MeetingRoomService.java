@@ -10,6 +10,8 @@ public interface MeetingRoomService {
 	public void getSchedule(String roomName);
 	public MeetingRoom getRoomDetailsByRoomName(String roomName) throws RoomNotFoundException;
 	public List<MeetingRoom> getAllMeetingRooms();
-	public void updateRoomDetails(MeetingRoom room) throws RoomNotFoundException;
-	public void addRoom(MeetingRoom room);
+	public boolean updateRoomDetails(MeetingRoom room) throws RoomNotFoundException;
+	public boolean addRoom(MeetingRoom room);
+	public boolean deleteRoomByRoomName(String room) throws RoomNotFoundException;
+
 }
