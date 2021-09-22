@@ -90,4 +90,18 @@ public class UserDaoImpl implements UserDao{
 			System.out.println(e.getMessage());
 		}
 	}
+
+	@Override
+	public void resetManagerCredits() {
+		try {
+			Connection connection = new DaoUtility().getInstance();
+			PreparedStatement statement = connection.prepareStatement("Update user set credit=2000 where role = ?");
+			statement.setString(1, "MANAGER");
+			statement.executeUpdate();
+			statement.close();
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
 }

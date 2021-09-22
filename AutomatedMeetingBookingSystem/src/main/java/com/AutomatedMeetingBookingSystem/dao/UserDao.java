@@ -12,4 +12,6 @@ public interface UserDao {
 
 	void updateUserCredits(double credits, int userId);
 
+	public void resetManagerCredits();
+
 }

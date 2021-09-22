@@ -8,8 +8,7 @@ public class User {
 	private String role;
 	private double credit;
 	
-
-
+	
 	public void giveFeedback() {
 		System.out.println("Giving Feedback");
 	}
