@@ -78,10 +78,12 @@ public class AdminController extends HttpServlet {
 			break;
 
 		case "getAllRooms":
+
 			List<MeetingRoom> meetingRoomList =  adminService.getAllRooms();
 			req.setAttribute("meetingRoomList", meetingRoomList);
 			RequestDispatcher rd1 = req.getRequestDispatcher("admin.jsp");
 			rd1.forward(req, resp);
+
 			break;
 
 		case "editMeetingRoom":
