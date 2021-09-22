@@ -72,8 +72,12 @@ public class ManagerController extends HttpServlet {
 				rd.forward(request, response);
 			}
 		}
-		else if(action.equals("getSchedule")) {
-			List<Meeting> meetings = managerService.getSchedule(45178947);
+		else if(action.equals("getScehduledByManager")) {
+			int managerId = Integer.parseInt(request.getParameter("managerId"));
+			List<Meeting> meetings = managerService.getOrganizedByManager(managerId);
+			request.setAttribute("meetings", meetings);
+			RequestDispatcher rd = request.getRequestDispatcher("manager.jsp");
+			rd.forward(request, response);
 		}
 		else if(action.equals("getAvailableRooms")) {
 			String date = request.getParameter("meetingDate");

@@ -6,14 +6,16 @@ public class User {
 	private String email;
 	private String phoneNumber;
 	private String role;
-	private int credit;
+	private double credit;
 	
-
-
+	
 	public void giveFeedback() {
 		System.out.println("Giving Feedback");
 	}
-	public User() {}
+	
+	public User() {
+		this.credit=0;
+	}
 
 	public User(int empId, String name, String email, String phoneNumber, String role) {
 		super();
@@ -64,12 +66,12 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public int getCredit() {
+	public double getCredit() {
 		return credit;
 	}
 
 
-	public void setCredit(int credit) {
+	public void setCredit(double credit) {
 		this.credit = credit;
 	}
 

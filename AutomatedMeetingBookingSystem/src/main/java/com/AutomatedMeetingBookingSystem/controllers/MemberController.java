@@ -43,9 +43,11 @@ public class MemberController extends HttpServlet {
 		System.out.println("param = " + request.getParameter("act"));
 		String action = request.getParameter("act");
 		System.out.println(action);
+
 		int userId = Integer.parseInt(request.getParameter("userId"));
 		String password = (String)request.getParameter("password");
 		MemberService memberService = ServiceFactory.getMemberService();
+
 		switch (action)
 		{
 
