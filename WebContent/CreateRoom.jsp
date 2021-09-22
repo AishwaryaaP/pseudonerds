@@ -8,20 +8,18 @@
 </head>
 <body>
 	
-	<%
-		request.setAttribute("act","createRoom");
-		RequestDispatcher dispatcher = request.getRequestDispatcher("AdminController");
-		dispatcher.forward(request, response);
-	%>    
+	
 	
 
     <h1>Create Room</h1>
-    <form action="AdminController" onsubmit = "validateForm()">
+    <form action="AdminController" onsubmit = "validateForm()" >
         <label for="meetingRoom">Meeting Room Name</label>
         <input type="text"  placeholder="Enter room name" name="meetingRoom">
         
         <label for="seatingCapacity">Seating Capacity</label>
         <input type=number step=any /> Step any<br />
+
+
 
         <label for="amenities">Amenities</label>
         <label for="projector">Projector</label><br>
@@ -44,9 +42,17 @@
 
         <label for="CoffeMachine">CoffeMachine</label><br>
         <input type="CoffeMachine" id="CoffeMachine" name="CoffeMachine" value="CoffeMachine">
-                
+        
+        
+        <button onclick = "AdminHome.jsp">SUBMIT</button>
+        
+              
     </form>
-    
+    <%
+		request.setAttribute("act","createRoom");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("AdminController");
+		dispatcher.forward(request, response);
+	%>    
 
 
     
