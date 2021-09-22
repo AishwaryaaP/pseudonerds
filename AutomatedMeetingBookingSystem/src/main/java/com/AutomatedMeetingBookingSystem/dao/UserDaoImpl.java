@@ -6,8 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.AutomatedMeetingBookingSystem.exceptions.ConnectionFailedException;
 import com.AutomatedMeetingBookingSystem.model.User;
 import com.AutomatedMeetingBookingSystem.utility.DaoUtility;
 import com.AutomatedMeetingBookingSystem.utility.DaoUtilityInterface;
@@ -24,8 +22,7 @@ public class UserDaoImpl implements UserDao{
 	public User getUserDetails(int userId, String password) {
 		DaoUtilityInterface dao = new DaoUtility();
 		Connection conn = dao.getInstance();
-		if (conn != null)
-		{
+	
 			User u;
 			try
 			{
@@ -49,17 +46,12 @@ public class UserDaoImpl implements UserDao{
 			
 			return u;
 
-		}
-		else
-			throw new ConnectionFailedException("While fetching user data by id");
-		
+			
 	}
 	public List<User> getAllUser()
 	{
 		DaoUtilityInterface dao = new DaoUtility();
 		Connection conn = dao.getInstance();
-		if (conn != null)
-		{
 			List<User> allUser = new ArrayList<>();
 			try {
 				PreparedStatement statement = conn.prepareStatement("select * from user");
@@ -78,8 +70,6 @@ public class UserDaoImpl implements UserDao{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		else
-			throw new ConnectionFailedException("While fetching user data by id");
+		
 	}
 }
