@@ -77,14 +77,16 @@ public class MeetingDAOImpl implements MeetingDAO {
 					while(result.next())
 					{
 						meeting.setUniqueID(result.getInt(1));
-						meeting.setTitle(result.getString(2));
+						meeting.setTitle(result.getString(3));
+						meeting.setInfoMeetingRoomName(result.getString(9));
+
+						meeting.setDate(result.getDate(4).toLocalDate());
+						meeting.setStartTime(result.getTime(5).toLocalTime());
+						meeting.setEndTime(result.getTime(6).toLocalTime());
+						meeting.setType(MeetingType.valueOf(result.getString(7)));
+						meeting.setListOfMember(result.getString(8));
+						meeting.setOrganizedBy(result.getInt(2));
 						
-						meeting.setDate(result.getDate(3).toLocalDate());
-						meeting.setStartTime(result.getTime(4).toLocalTime());
-						meeting.setEndTime(result.getTime(5).toLocalTime());
-						meeting.setType(MeetingType.valueOf(result.getString(6)));
-						meeting.setListOfMember(result.getString(7));
-						meeting.setOrganizedBy(uniqueID);
 						return meeting;
 					}
 
@@ -109,13 +111,13 @@ public class MeetingDAOImpl implements MeetingDAO {
 					Meeting meeting1 = new Meeting();
 					meeting1.setUniqueID(rs.getInt(1));
 					meeting1.setOrganizedBy(rs.getInt(2));
-					meeting1.setInfoMeetingRoomName(rs.getString(3));
-					meeting1.setTitle(rs.getString(4));
-					meeting1.setDate(rs.getDate(5).toLocalDate());
-					meeting1.setStartTime(rs.getTime(6).toLocalTime());
-					meeting1.setEndTime(rs.getTime(7).toLocalTime());
+					meeting1.setInfoMeetingRoomName(rs.getString(9));
+					meeting1.setTitle(rs.getString(3));
+					meeting1.setDate(rs.getDate(4).toLocalDate());
+					meeting1.setStartTime(rs.getTime(5).toLocalTime());
+					meeting1.setEndTime(rs.getTime(6).toLocalTime());
 					meeting1.setListOfMember(rs.getString(8));
-					meeting1.setType(MeetingType.valueOf(rs.getString(9)));
+					meeting1.setType(MeetingType.valueOf(rs.getString(7)));
 					meetings.add(meeting1);
 				}
 				return meetings;
