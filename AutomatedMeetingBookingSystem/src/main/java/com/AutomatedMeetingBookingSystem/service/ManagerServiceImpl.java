@@ -7,6 +7,7 @@ import com.AutomatedMeetingBookingSystem.model.Meeting;
 import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
 import com.AutomatedMeetingBookingSystem.model.User;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -29,15 +30,18 @@ public class ManagerServiceImpl implements ManagerService{
 			LocalDate meetingDate = LocalDate.parse(date);
 			LocalTime startTime = LocalTime.of(Integer.parseInt(startHours), Integer.parseInt(startMinutes));
 			LocalTime endTime = LocalTime.of(Integer.parseInt(endHours), Integer.parseInt(endMinutes));
-			Meeting meeting = meetingService.saveMeeting(organizedBy, roomName, title, meetingDate, startTime, endTime, type, listOfMembers);
-			bookingInfoService.saveBookingInformation(meeting);
-			return true;
-	}
-
-	@Override
-	public List<Meeting> getSchedule(int userId) {
-		List<Meeting> schedules = meetingService.fetchMeetingsByUserID(userId);
-		return schedules;
+			int meetingRoomCredits = meetingRoomService.getRoomPerHourCredits(roomName);
+			double meetingDuration = Duration.between(startTime, endTime).toMinutes();
+			double creditsReqForMeeting = meetingDuration*meetingRoomCredits;
+			double managerCredits = userService.getUserCredits(organizedBy);
+			double updatedCredits = managerCredits - creditsReqForMeeting;
+			if(updatedCredits > 0) {
+				Meeting meeting = meetingService.saveMeeting(organizedBy, roomName, title, meetingDate, startTime, endTime, type, listOfMembers);
+				userService.updateUserCredits(updatedCredits, organizedBy);
+				bookingInfoService.saveBookingInformation(meeting);
+				return true;
+			}
+			return false;
 	}
 
 	@Override
@@ -48,6 +52,11 @@ public class ManagerServiceImpl implements ManagerService{
 		List<MeetingRoom> availableRooms = bookingInfoService.getAvailableMeetingRoom(MeetingType.valueOf(type));
 		return availableRooms;
 	}
-	
+
+	@Override
+	public List<Meeting> getOrganizedByManager(int managerId) {
+		List<Meeting> schedules = meetingService.fetchMeetingsByOrganizedByManager(managerId);
+		return schedules;
+	}
 
 }

@@ -4,6 +4,7 @@ package com.AutomatedMeetingBookingSystem.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +44,8 @@ public class UserDaoImpl implements UserDao{
 					u.setRole(rs.getString(6));
 					allUser.add(u);
 				}
+
+				statement.close();
 				
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -51,5 +54,40 @@ public class UserDaoImpl implements UserDao{
 		}
 		return allUser;
 		
+	}
+
+	@Override
+	public double getUserCredits(int userId) {
+		double credits = 0;
+		try {
+			Connection connection = new DaoUtility().getInstance();
+			PreparedStatement statement = connection.prepareStatement("select credit from user where UserID = ?");
+			statement.setInt(1, userId);
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+				credits = rs.getDouble(1);
+			}
+
+			statement.close();
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return credits;
+	}
+
+	@Override
+	public void updateUserCredits(double credits, int userId) {
+		try {
+			Connection connection = new DaoUtility().getInstance();
+			PreparedStatement statement = connection.prepareStatement("Update user set credit=? where UserID = ?");
+			statement.setDouble(1, credits);
+			statement.setInt(2, userId);
+			statement.executeUpdate();
+			statement.close();
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 }
