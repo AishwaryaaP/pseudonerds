@@ -125,6 +125,13 @@ public class MeetingRoomServiceImpl implements MeetingRoomService{
 		room.setRating(room.getRatingSum()/room.getRatingCount());
 		roomDao.updateMeetingRoom(room);
 	}
+	
+	@Override
+	public double getRoomPerHourCredits(String roomName)
+	{
+		MeetingRoom room = getRoomDetailsByRoomName(roomName);
+		return room.getRating();
+	}
 
 	
 
