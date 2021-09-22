@@ -9,6 +9,7 @@ import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,7 +33,7 @@ import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
  *ManagerDaoImp
  * 
  * */
-
+@WebServlet("/AdminController")
 public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private AdminServiceInterface adminService;
@@ -80,8 +81,11 @@ public class AdminController extends HttpServlet {
 		case "getAllRooms":
 
 			List<MeetingRoom> meetingRoomList =  adminService.getAllRooms();
+			for(MeetingRoom meetingRoom1 : meetingRoomList) {
+				System.out.println(meetingRoom1.toString());
+			}
 			req.setAttribute("meetingRoomList", meetingRoomList);
-			RequestDispatcher rd1 = req.getRequestDispatcher("admin.jsp");
+			RequestDispatcher rd1 = req.getRequestDispatcher("Admin.jsp");
 			rd1.forward(req, resp);
 
 			break;
