@@ -138,10 +138,10 @@ public class MeetingRoomServiceImpl implements MeetingRoomService{
 	}
 	
 	@Override
-	public double getRoomPerHourCredits(String roomName)
+	public int getRoomPerHourCredits(String roomName)
 	{
 		MeetingRoom room = getRoomDetailsByRoomName(roomName);
-		return room.getRating();
+		return room.getCreditPerHour();
 	}
 
 	
