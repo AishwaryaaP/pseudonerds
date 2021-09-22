@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,7 +27,7 @@ public class ManagerController extends HttpServlet {
 	private ManagerService managerService;
     
 	public ManagerController() {
-		managerService = ServiceFactory.getManagerServiceInstance();
+		managerService = ServiceFactory.getManagerService();
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -61,10 +62,14 @@ public class ManagerController extends HttpServlet {
 			boolean isMeetingCreated = false;
 			isMeetingCreated = managerService.createMeeting(organizedBy, roomName, title, date, startHours, startMinutes, endHours, endMinutes, type, listOfMembers);
 			if(isMeetingCreated) {
-				
+				request.setAttribute("meetingCreated", true);
+				RequestDispatcher rd = request.getRequestDispatcher("manager.jsp");
+				rd.forward(request, response);
 			}
 			else {
-				
+				request.setAttribute("meetingCreated", false);
+				RequestDispatcher rd = request.getRequestDispatcher("manager.jsp");
+				rd.forward(request, response);
 			}
 		}
 		else if(action.equals("getSchedule")) {
@@ -78,6 +83,10 @@ public class ManagerController extends HttpServlet {
 			String endMinutes = request.getParameter("endMinutes");
 			String type = request.getParameter("type");
 			List<MeetingRoom> meetingRooms = managerService.getAvailableRooms(date, startHours, startMinutes, endHours, endMinutes, type);
+			
+			request.setAttribute("meetingRooms", meetingRooms);
+			RequestDispatcher rd = request.getRequestDispatcher("manager.jsp");
+			rd.forward(request, response);
 		}
 	}
 

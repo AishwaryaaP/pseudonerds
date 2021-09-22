@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+
 import com.AutomatedMeetingBookingSystem.model.User;
 import com.AutomatedMeetingBookingSystem.utility.DaoUtility;
 import com.AutomatedMeetingBookingSystem.utility.DaoUtilityInterface;
@@ -19,6 +21,7 @@ public class UserDaoImpl implements UserDao{
 //	public boolean deleteRoom(MeetingRoom obj) {
 //		
 //	}
+
 	public User getUserDetails(int userId, String password) {
 		DaoUtilityInterface dao = new DaoUtility();
 		Connection conn = dao.getInstance();
@@ -48,16 +51,19 @@ public class UserDaoImpl implements UserDao{
 
 			
 	}
+
 	public List<User> getAllUser()
 	{
 		DaoUtilityInterface dao = new DaoUtility();
 		Connection conn = dao.getInstance();
+
 			List<User> allUser = new ArrayList<>();
+
 			try {
 				PreparedStatement statement = conn.prepareStatement("select * from user");
 				ResultSet rs = statement.executeQuery();
 				while (rs.next()) {
-					User u;
+					User u = new User();
 					u.setUserId(Integer.parseInt(rs.getString(1)));
 					u.setName(rs.getString(2));
 					u.setEmail(rs.getString(3));
@@ -66,10 +72,14 @@ public class UserDaoImpl implements UserDao{
 					u.setRole(rs.getString(6));
 					allUser.add(u);
 				}
-				return allUser;
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		
+=
+			
+		}
+		return allUser;
+
 	}
 }
