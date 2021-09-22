@@ -23,7 +23,7 @@ public class MeetingDAOImpl implements MeetingDAO {
 	Connection connection = dao.getInstance();
 
 	private static final String INSERT_MEETING = "insert into meeting (organisedBy, infoMeetingRoomName, title, date, starttime, endtime, type, listOfMember) values (?,?,?,?,?,?,?,?)";// "insert
-																																														// into
+	private static final String SELECT_MEETING_BY_MANAGERID = "Select uniqueId, type, infoMeetingRoomName, title, date, startTime, endTime from meeting where organizedBy = ?";																																													// into
 																																														// meeting
 																																														// values
 																																														// (?,?,?,?,?,?,?,?,?)";
@@ -124,5 +124,31 @@ public class MeetingDAOImpl implements MeetingDAO {
 			}
 		}
 		throw new ConnectionFailedException("While fetching meetings by userID");
+	}
+	
+	@Override
+	public List<Meeting> fetchMeetingsByManagerID(int managerId) {
+		List<Meeting> meetings = new ArrayList<>();
+		if (connection != null) {
+			try {
+				PreparedStatement statement = connection.prepareStatement(SELECT_MEETING_BY_MANAGERID);
+				statement.setInt(1, managerId);
+				ResultSet rs = statement.executeQuery();
+				while (rs.next()) {
+					Meeting meeting1 = new Meeting();
+					meeting1.setUniqueID(rs.getInt(1));
+					meeting1.setType(MeetingType.valueOf(rs.getString(2)));
+					meeting1.setInfoMeetingRoomName(rs.getString(3));
+					meeting1.setTitle(rs.getString(4));
+					meeting1.setDate(rs.getDate(5).toLocalDate());
+					meeting1.setStartTime(rs.getTime(6).toLocalTime());
+					meeting1.setEndTime(rs.getTime(7).toLocalTime());
+					meetings.add(meeting1);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return meetings;
 	}
 }
