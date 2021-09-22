@@ -15,5 +15,7 @@ public interface ManagerService {
 			String endMinutes, String type);
 	
 	List<Meeting> getOrganizedByManager(int managerId);
+	
+	void resetManagerCredits();
 
 }

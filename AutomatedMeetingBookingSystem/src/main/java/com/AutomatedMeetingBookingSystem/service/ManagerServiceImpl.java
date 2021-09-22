@@ -2,6 +2,8 @@ package com.AutomatedMeetingBookingSystem.service;
 
 import java.util.List;
 
+import com.AutomatedMeetingBookingSystem.dao.DaoFactory;
+import com.AutomatedMeetingBookingSystem.dao.UserDao;
 import com.AutomatedMeetingBookingSystem.enums.MeetingType;
 import com.AutomatedMeetingBookingSystem.model.Meeting;
 import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
@@ -17,12 +19,14 @@ public class ManagerServiceImpl implements ManagerService{
 	private MeetingService meetingService;
 	private BookingInformationService bookingInfoService;
 	private UserServiceInterface userService;
+	private UserDao userDao;
 	
 	public ManagerServiceImpl() {
 		super();
 		meetingService = ServiceFactory.getMeetingService();
 		meetingRoomService = ServiceFactory.getMeetingRoomService();
 		userService = ServiceFactory.getUserService();
+		userDao = DaoFactory.getUserDaoInstance();
 	}
 
 	@Override
@@ -57,6 +61,15 @@ public class ManagerServiceImpl implements ManagerService{
 	public List<Meeting> getOrganizedByManager(int managerId) {
 		List<Meeting> schedules = meetingService.fetchMeetingsByOrganizedByManager(managerId);
 		return schedules;
+	}
+
+	@Override
+	public void resetManagerCredits() {
+		String dayOfWeek = LocalDate.now().getDayOfWeek().toString();
+		if(dayOfWeek.equals("MONDAY"))
+		{
+			userDao.resetManagerCredits();
+		}
 	}
 
 }
