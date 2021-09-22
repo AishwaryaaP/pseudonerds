@@ -16,6 +16,7 @@ public interface MeetingRoomService {
 	public Map<String, Integer> getAmenitiesCredit();
 	boolean addNewAmenitiesCredit(String aminity, int credit);
 	void addRating(String roomName, int rating);
+	double getRoomPerHourCredits(String roomName);
 
 
 }
