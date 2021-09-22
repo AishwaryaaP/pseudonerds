@@ -1,17 +1,21 @@
 package com.AutomatedMeetingBookingSystem.service;
 
 import java.util.List;
+import java.util.Map;
 
-import com.AutomatedMeetingBookingSystem.exception.RoomNotFoundException;
 import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
 
 public interface MeetingRoomService {
 
 	public void getSchedule(String roomName);
-	public MeetingRoom getRoomDetailsByRoomName(String roomName) throws RoomNotFoundException;
+	public MeetingRoom getRoomDetailsByRoomName(String roomName);
 	public List<MeetingRoom> getAllMeetingRooms();
-	public boolean updateRoomDetails(MeetingRoom room) throws RoomNotFoundException;
+	public boolean updateRoomDetails(MeetingRoom room);
 	public boolean addRoom(MeetingRoom room);
-	public boolean deleteRoomByRoomName(String room) throws RoomNotFoundException;
+	public boolean deleteRoomByRoomName(String room);
+	public Map<String, Integer> getAmenitiesCredit();
+	boolean addNewAmenitiesCredit(String aminity, int credit);
+	void addRating(String roomName, int rating);
+
 
 }
