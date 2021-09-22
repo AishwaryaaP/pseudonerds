@@ -125,6 +125,7 @@ public class MeetingDAOImpl implements MeetingDAO {
 		}
 		throw new ConnectionFailedException("While fetching meetings by userID");
 	}
+
 	
 	@Override
 	public List<Meeting> fetchMeetingsByManagerID(int managerId) {

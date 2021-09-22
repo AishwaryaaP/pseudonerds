@@ -1,6 +1,8 @@
 package com.AutomatedMeetingBookingSystem.controllers;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,6 +38,7 @@ public class GlobalServerlet extends HttpServlet {
 			System.out.println(email);
 			UserServiceInterface userService = ServiceFactory.getUserService();
 			User user = userService.getUserDetails(name , email);
+			//return object
 			switch(user.getRole()) {
 			case "admin":
 				System.out.println("Admin");
