@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +19,7 @@ import com.AutomatedMeetingBookingSystem.model.User;
 /**
  * Servlet implementation class MemberController
  */
+@WebServlet("/MemberController")
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -56,9 +58,9 @@ public class MemberController extends HttpServlet {
 				List<Meeting> scheduledMeeting = memberService.memberMeetingSchedule(userId);
 				// Setting the attribute of the request object
 			    // which will be later fetched by a JSP page
-			    request.setAttribute("meetingList", scheduledMeeting);
-			    RequestDispatcher rd2 = request.getRequestDispatcher("MemberJsp.jsp");
-			    rd2.forward(request, response);
+//			    request.setAttribute("meetingList", scheduledMeeting);
+//			    RequestDispatcher rd2 = request.getRequestDispatcher("MemberJsp.jsp");
+//			    rd2.forward(request, response);
 
 				break;
 		}
