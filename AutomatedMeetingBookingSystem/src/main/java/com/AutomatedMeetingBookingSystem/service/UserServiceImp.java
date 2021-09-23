@@ -14,9 +14,16 @@ public class UserServiceImp implements UserServiceInterface{
 	}
 
 	@Override
-	public User getUserDetails(String name, String email) {
-		User newUser = new User(1313, "Mohit", "mt@gmail.com", "9767982409", "Admin");
-		return newUser;
+	public User getUserDetails(int userId, String email) {
+		
+		User user = userDao.getUserByNameAndEmail(userId, email);
+		if(user!=null) {
+			return user;
+		}
+		else {
+			//Exception
+			return null;
+		}
 	}
 
 	@Override

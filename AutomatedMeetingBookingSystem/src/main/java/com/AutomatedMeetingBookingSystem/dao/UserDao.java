@@ -13,5 +13,6 @@ public interface UserDao {
 	void updateUserCredits(double credits, int userId);
 
 	public void resetManagerCredits();
+	public User getUserByNameAndEmail(int userId, String email);
 
 }
