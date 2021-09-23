@@ -16,10 +16,12 @@ import com.AutomatedMeetingBookingSystem.model.Meeting;
 public class MeetingServiceImpl implements MeetingService {
 	
 	private MeetingDao meetingDao;
+	private MeetingRoomService meetingRoomService;
 	
 	public MeetingServiceImpl() {
 		super();
 		meetingDao = DaoFactory.getMeetingDaoInstance();
+		meetingRoomService = ServiceFactory.getMeetingRoomService();
 	}
 	
 	public Meeting saveMeeting(int organizedBy, String roomName, String title, LocalDate meetingDate, LocalTime startTime, LocalTime endTime, String type, String listOfMembers) {
@@ -27,6 +29,7 @@ public class MeetingServiceImpl implements MeetingService {
 		try {
 			int meetingId = this.meetingDao.createMeeting(organizedBy, roomName, title, meetingDate, startTime, endTime, type, listOfMembers);
 			meeting1 = this.meetingDao.fetchMeetingByUniqueID(meetingId);
+			meetingRoomService.incrementMeetingCount(roomName);
 		} catch (ConnectionFailedException e) {
 			System.out.println(e.getMessage());
 		}

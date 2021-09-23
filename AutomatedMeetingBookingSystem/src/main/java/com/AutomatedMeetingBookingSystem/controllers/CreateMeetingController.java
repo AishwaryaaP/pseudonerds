@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.AutomatedMeetingBookingSystem.service.ManagerService;
 import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
 
-@WebServlet("/CreateMeetingController")
+//@WebServlet("/CreateMeetingController")
 public class CreateMeetingController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ManagerService managerService;

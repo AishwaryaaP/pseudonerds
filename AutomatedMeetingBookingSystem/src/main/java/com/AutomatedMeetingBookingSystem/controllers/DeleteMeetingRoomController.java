@@ -15,7 +15,7 @@ import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
 /**
  * Servlet implementation class DeleteMeetingRoomController
  */
-@WebServlet("/DeleteMeetingRoomController")
+//@WebServlet("/DeleteMeetingRoomController")
 public class DeleteMeetingRoomController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private AdminServiceInterface adminService;

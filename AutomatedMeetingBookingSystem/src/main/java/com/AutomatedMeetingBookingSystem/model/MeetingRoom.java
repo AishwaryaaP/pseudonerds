@@ -14,9 +14,14 @@ public class MeetingRoom {
 	private int creditPerHour;
 	private int seatingCapacity;
 	private double rating;
+	private int count;
 	private int ratingSum=0,ratingCount=0;
 	private Set<String> amenities = new HashSet<>();
 	
+	public MeetingRoom()
+	{
+		super();
+	}
 	
 	public MeetingRoom(String roomName, int creditPerHour, int seatingCapacity, double rating, int ratingSum,
 			int ratingCount, Set<String> amenities) {
@@ -28,9 +33,9 @@ public class MeetingRoom {
 		this.ratingSum = ratingSum;
 		this.ratingCount = ratingCount;
 		this.amenities = amenities;
+		this.count=0;
 	}
-	public MeetingRoom(){
-	}
+	
 	
 	
 	//Getter Setter
@@ -40,6 +45,15 @@ public class MeetingRoom {
 	public void setRoomId(int roomId) {
 		this.roomId = roomId;
 	}
+	
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
 	public String getRoomName() {
 		return roomName;
 	}
