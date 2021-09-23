@@ -18,7 +18,7 @@
 	</ul>
 	<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>      
 	
-	<a href = "/GetAllRoomsController">User Details</a>	
+	<a href = "GetAllRoomsController">User Details</a>	
 	
 	
     <h1>Created Rooms</h1>    
@@ -29,12 +29,12 @@
                <th>Credit per hour</th>
                <th>Average Rating</th>
             </tr>            
-             <c:forEach items="${meetingRoomList}" >         		
+             <c:forEach items="${meetingRoomList}" var='i' >         		
                  <tr>
-                     <td><a href = "EditRoom.jsp"><c:out value="${items.roomName}"/></a> </td>
-                     <td><c:out value="${items.seatingCapacity}"/></td>  
-                     <td><c:out value="${items.creditPerHour}"/></td>  
-                     <td><c:out value="${items.avgRating}"/></td>  
+                     <td><a href = "EditRoom.jsp"><c:out value="${i.roomName}"/></a> </td>
+                     <td><c:out value="${i.seatingCapacity}"/></td>  
+                     <td><c:out value="${i.creditPerHour}"/></td>  
+                      <td><c:out value="${i.rating}"/></td> 
                  </tr>
                 </c:forEach>
              

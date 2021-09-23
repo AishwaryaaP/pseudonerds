@@ -33,7 +33,7 @@ public class GetScheduledByManagerController extends HttpServlet {
 		int managerId = Integer.parseInt(request.getParameter("managerId"));
 		List<Meeting> meetings = managerService.getOrganizedByManager(managerId);
 		request.setAttribute("meetings", meetings);
-		RequestDispatcher rd = request.getRequestDispatcher("manager.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("ManagerHome.jsp");
 		rd.forward(request, response);
 	}
 

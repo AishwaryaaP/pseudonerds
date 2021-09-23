@@ -1,48 +1,96 @@
-<web-app>
-  <display-name>Archetype Created Web Application</display-name>
-  <servlet>
-  	<servlet-name>AdminController</servlet-name>
-  	<display-name>AdminController</display-name>
-  	<description></description>
-  	<servlet-class>com.AutomatedMeetingBookingSystem.controllers.AdminController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>AdminController</servlet-name>
-  	<url-pattern>/AdminController</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
-  	<servlet-name>GlobalServerlet</servlet-name>
-  	<display-name>GlobalServerlet</display-name>
-  	<description></description>
-  	<servlet-class>com.AutomatedMeetingBookingSystem.controllers.GlobalServerlet</servlet-class>
-  </servlet>
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   
-  <servlet>
 
-  	<servlet-name>MemberController</servlet-name>
-  	<display-name>MemberController</display-name>
-  	<description></description>
-  	<servlet-class>com.AutomatedMeetingBookingSystem.controllers.MemberController</servlet-class>
-  </servlet>
   <servlet>
-  	<servlet-name>ManagerController</servlet-name>
-  	<display-name>ManagerController</display-name>
-  	<description></description>
-  	<servlet-class>com.AutomatedMeetingBookingSystem.controllers.ManagerController</servlet-class>
+    <servlet-name>GetAllRoomsController</servlet-name>
+    <servlet-class>com.AutomatedMeetingBookingSystem.controllers.GetAllRoomsController</servlet-class>
   </servlet>
- 
   <servlet-mapping>
-  	<servlet-name>GlobalServerlet</servlet-name>
-  	<url-pattern>/GlobalServerlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>MemberController</servlet-name>
-  	<url-pattern>/MemberController</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>ManagerController</servlet-name>
-  	<url-pattern>/ManagerController</url-pattern>
+    <servlet-name>GetAllRoomsController</servlet-name>
+    <url-pattern>/GetAllRoomsController</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <display-name>CreateMeetingController</display-name>
+    <servlet-name>CreateMeetingController</servlet-name>
+    <servlet-class>com.AutomatedMeetingBookingSystem.controllers.CreateMeetingController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateMeetingController</servlet-name>
+    <url-pattern>/CreateMeetingController</url-pattern>
+  </servlet-mapping>
+
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>CreateRoomController</display-name>
+    <servlet-name>CreateRoomController</servlet-name>
+    <servlet-class>com.AutomatedMeetingBookingSystem.controllers.CreateRoomController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateRoomController</servlet-name>
+    <url-pattern>/CreateRoomController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EditMeetingRoom</display-name>
+    <servlet-name>EditMeetingRoom</servlet-name>
+    <servlet-class>com.AutomatedMeetingBookingSystem.controllers.EditMeetingRoom</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditMeetingRoom</servlet-name>
+    <url-pattern>/EditMeetingRoom</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>DeleteMeetingRoomController</display-name>
+    <servlet-name>DeleteMeetingRoomController</servlet-name>
+    <servlet-class>com.AutomatedMeetingBookingSystem.controllers.DeleteMeetingRoomController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteMeetingRoomController</servlet-name>
+    <url-pattern>/DeleteMeetingRoomController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>LogOutController</display-name>
+    <servlet-name>LogOutController</servlet-name>
+    <servlet-class>com.AutomatedMeetingBookingSystem.controllers.LogOutController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogOutController</servlet-name>
+    <url-pattern>/LogOutController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>GetScheduledByManager</servlet-name>
+    <servlet-class>GetScheduledByManager</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetScheduledByManager</servlet-name>
+    <url-pattern>/GetScheduledByManager</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>GetScheduledByManagerController</display-name>
+    <servlet-name>GetScheduledByManagerController</servlet-name>
+    <servlet-class>com.AutomatedMeetingBookingSystem.controllers.GetScheduledByManagerController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetScheduledByManagerController</servlet-name>
+    <url-pattern>/GetScheduledByManagerController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>GetAvailableRooms</display-name>
+    <servlet-name>GetAvailableRooms</servlet-name>
+    <servlet-class>com.AutomatedMeetingBookingSystem.controllers.GetAvailableRooms</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetAvailableRooms</servlet-name>
+    <url-pattern>/GetAvailableRooms</url-pattern>
+  </servlet-mapping>
 </web-app>

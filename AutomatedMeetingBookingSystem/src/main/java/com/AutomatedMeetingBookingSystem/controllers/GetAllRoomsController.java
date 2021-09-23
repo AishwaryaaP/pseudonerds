@@ -17,7 +17,7 @@ import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
 /**
  * Servlet implementation class getAllRooms
  */
-@WebServlet("/GetAllRoomsController")
+//@WebServlet("/GetAllRoomsController")
 public class GetAllRoomsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private AdminServiceInterface adminService;
@@ -35,7 +35,7 @@ public class GetAllRoomsController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("Hello");
 		List<MeetingRoom> meetingRoomList =  adminService.getAllRooms();
 		for(MeetingRoom meetingRoom1 : meetingRoomList) {
 			System.out.println(meetingRoom1.toString());
