@@ -2,8 +2,6 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom" %>
-<%@page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom"%>
-
 <%@ page import="java.util.*" %>
     
 <!DOCTYPE html>
@@ -16,12 +14,9 @@
 	<ul>		
 		<li> <a href="CreateRoom.jsp">Create Room </a>		
 	</ul>
-	<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>   
-	<jsp:include page="AdminController">
-	<jsp:param value="getAllRooms" name="act"/>
-	</jsp:include>    
+	<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>       
 	
-	<a href = "UserProfile.jsp">User Details</a>	
+	<a href = "AdminController">User Details</a>	
 	
 	
     <h1>Created Rooms</h1>    

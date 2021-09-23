@@ -7,21 +7,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
-	
-	
-
     <h1>Create Room</h1>
+     <%
+		request.setAttribute("act","createRoom");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("AdminController");
+		dispatcher.forward(request, response);
+	%>    
     <form action="AdminController" onsubmit = "validateForm()" >
         <label for="meetingRoom">Meeting Room Name</label>
         <input type="text"  placeholder="Enter room name" name="meetingRoom">
         
         <label for="seatingCapacity">Seating Capacity</label>
-        <input type=number step=any /> Step any<br />
-
-
-
-        <label for="amenities">Amenities</label>
+        <input type=number step=any /> Step any<br />        <label for="amenities">Amenities</label>
         <label for="projector">Projector</label><br>
         <input type="checkbox" id="projector" name="projector" value="projector">
         
@@ -49,10 +46,13 @@
               
     </form>
     <%
-		request.setAttribute("act","createRoom");
-		RequestDispatcher dispatcher = request.getRequestDispatcher("AdminController");
-		dispatcher.forward(request, response);
-	%>    
+    if(((String)request.getAttribute("created")).equals("created"))
+   	 System.out.println("Room created");
+       else
+       System.out.println(" Plz try again");
+  
+    %>
+    
 
 
     
