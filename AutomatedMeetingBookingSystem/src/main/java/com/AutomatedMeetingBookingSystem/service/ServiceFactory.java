@@ -8,37 +8,37 @@ public class ServiceFactory {
 		
 	}
 	
-	public static MemberService getMemberServiceInstance(){
+	public static MemberService getMemberService(){
 		
 		return new MemberServiceImpl();
 	
 	}
 	
-	public static MeetingRoomService getMeetingRoomServiceInstance(){
+	public static MeetingRoomService getMeetingRoomService(){
 		
 		return new MeetingRoomServiceImpl();
 	
 	}
 	
-	public static BookingInformationService getBookingInformationServiceInstance(){
+	public static BookingInformationService getBookingInformationService(){
 		
 		return new BookingInformationServiceImpl();
 	
 	}
 	
-	public static MeetingService getMeetingServiceInstance(){
+	public static MeetingService getMeetingService(){
 		
 		return new MeetingServiceImpl();
 		
 	}
 	
-	public static AdminServiceInterface getAdminServiceInterfaceInstance() {
+	public static AdminServiceInterface getAdminService() {
 		
-		return new AdminServiceImpl();
+		return new AdminService();
 		
 	}
 	
-	public static ManagerService getManagerServiceInstance() {
+	public static ManagerService getManagerService() {
 		
 		return new ManagerServiceImpl();
 		

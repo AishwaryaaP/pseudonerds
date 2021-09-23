@@ -1,57 +1,57 @@
 package com.AutomatedMeetingBookingSystem.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
 import com.AutomatedMeetingBookingSystem.model.User;
 import com.AutomatedMeetingBookingSystem.service.MeetingRoomServiceImpl;
 
-import com.AutomatedMeetingBookingSystem.dao.AdminDao;
 import com.AutomatedMeetingBookingSystem.dao.DaoFactory;
+import com.AutomatedMeetingBookingSystem.dao.UserDao;
 
 public class AdminService implements AdminServiceInterface {
 
+	MeetingRoomService meetingRoomService;
+	public AdminService() {
+		meetingRoomService = ServiceFactory.getMeetingRoomService();
+	}
+	
 	public List<MeetingRoom> getAllRooms() {
-		MeetingRoomService meetingroom = ServiceFactory.getMeetingRoomService();
-		return meetingroom.getAllMeetingRooms();
+		return meetingRoomService.getAllMeetingRooms();
 	}
 
-// This function returns the details of a particular admin currently logged in
-	// exception handling ????
-	public User getAdminDetails(int empId) {
-		 UserDao adminDao = DaoFactory.getUserDaoInstance();
-		 
-		return adminDao.getUserDetails(empId);
-		return null;
+
+	public boolean createMeetingRoom(MeetingRoom room) {
+		boolean inserted = meetingRoomService.addRoom(room);
+		if(inserted)
+			return true;
+		return false;
 	}
 
-	// to craete a meeting room
-	public MeetingRoom createMeetingRoom(MeetingRoom room) {
-
-		MeetingRoomService meetingRoomService = ServiceFactory.getMeetingRoomService();
-//name***************************** 
-		meetingRoomService.addRoom(room);
-		return room;
-	}
-
-	public void deleteMeetingRoom(int uniqueId) {// have to implement
-		MeetingRoomService meetingRoomService = ServiceFactory.getMeetingRoomService();
-		// name param*****************************
-		// add method
-		meetingRoomService.deleteMeetingRoom(uniqueId);
-
-	}
-
-	public boolean editMeetingRoom(int uniqueId) {// have to implement
-		MeetingRoomService meetingRoomService = ServiceFactory.getMeetingRoomService();
-		// name param*****************************
+	public boolean deleteMeetingRoom(String roomName) {// have to implement
 		
-		boolean updated = meetingRoomService.updateRoomDetails(uniqueId);
+		boolean deleted = meetingRoomService.deleteRoomByRoomName(roomName);
+		if(deleted)
+			return true;
+		return false;
+	}
+
+	public boolean editMeetingRoom(MeetingRoom updatedMeetingRoom) {
+		boolean updated = meetingRoomService.updateRoomDetails(updatedMeetingRoom);
 		if(updated)
 			return true;
 		
 		return false;
 	}
+
+	
+	@Override
+	public Map<String, Integer> getAmenitiesCredit() {
+		return meetingRoomService.getAmenitiesCredit();
+		
+	}
+
 
 	
 

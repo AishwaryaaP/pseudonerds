@@ -6,7 +6,12 @@ import com.AutomatedMeetingBookingSystem.model.User;
 
 public interface UserDao {
 	
-	public User getUserDetails(int userId, String password);
 	public List<User> getAllUser();
+
+	public double getUserCredits(int userId);
+
+	void updateUserCredits(double credits, int userId);
+
+	public void resetManagerCredits();
 
 }

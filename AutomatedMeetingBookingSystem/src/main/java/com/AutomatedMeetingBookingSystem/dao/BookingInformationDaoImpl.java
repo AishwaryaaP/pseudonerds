@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -10,23 +11,39 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.LogManager;
+
+import com.AutomatedMeetingBookingSystem.model.BookingInformation;
 import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
+import com.AutomatedMeetingBookingSystem.service.MeetingRoomService;
+import org.apache.log4j.BasicConfigurator;  
+import org.apache.log4j.LogManager;  
+import org.apache.log4j.Logger;  
 
 public class BookingInformationDaoImpl implements BookingInformationDao {
 
-	private static final String INSERT_BOOKINGINFO = "insert into bookinginformation (UniqueId, roomName, date, starttime, endtime, organizedBy) values (?,?,?,?,?,?)";
+	private static final String INSERT_BOOKING_INFO = "insert into bookinginformation (UniqueId, roomName, date, starttime, endtime, organizedBy) values (?,?,?,?,?,?)";
+
+	
+	private static Logger logger;
+	
+	public BookingInformationDaoImpl() {
+		 logger = LogManager.getLogger(BookingInformationDaoImpl.class);
+		BasicConfigurator.configure(); 
+	}
 
 	@Override
-	public void saveBookingInformation(bookingInformation){
+	public void saveBookingInformation(BookingInformation bookingInformation){
 		try {
 			Connection connection = DBUtility.getConnection();
-			PreparedStatement statement = connection.prepareStatement(INSERT_MEETING, Statement.RETURN_GENERATED_KEYS);
-			statement.setInt(1, bookingInformation.getUniqueID());
-			statement.setString(2, bookingInformation.getInfoMeetingRoomName());
+			PreparedStatement statement = connection.prepareStatement(INSERT_BOOKING_INFO, Statement.RETURN_GENERATED_KEYS);
+			statement.setInt(1, bookingInformation.getUniqueId());
+			statement.setString(2, bookingInformation.getRoomName());
 			statement.setString(4, bookingInformation.getDate().toString());
 			statement.setString(5, bookingInformation.getStartTime().toString());
 			statement.setString(6, bookingInformation.getEndTime().toString());
-			statement.setString(7, bookingInformation.getOrganizedBy());
+			statement.setInt(7, bookingInformation.getOrganizedBy());
 
 			ResultSet rs = statement.getGeneratedKeys();
 			int id = 0;
@@ -41,6 +58,7 @@ public class BookingInformationDaoImpl implements BookingInformationDao {
 		}
 		catch(SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
+			logger.info(e.getMessage());
 		}
 	}
 
@@ -76,6 +94,7 @@ public class BookingInformationDaoImpl implements BookingInformationDao {
 			}
 		    catch(SQLException | ClassNotFoundException e) {
 		    	e.printStackTrace();
+		    	logger.info(e.getMessage());
 		}
 		return avaliableMeetingRooms;
 	}
@@ -100,6 +119,7 @@ public class BookingInformationDaoImpl implements BookingInformationDao {
 			
 		} catch(SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
+			logger.info(e.getMessage());
 		}
 		return avaliableMeetingRooms;
 	}
@@ -124,11 +144,19 @@ public class BookingInformationDaoImpl implements BookingInformationDao {
 				meetingRoomDetail.setSeatingCapacity(result.getInt(2));
 				meetingRoomDetail.setCreditPerHour(result.getInt(3));
 				meetingRoomDetail.setRating(result.getInt(4));
-				meetingRoomDetail.setAmenities(result.getString(5));
+				String amenitiesStr = result.getString(5);
+
+				String[] aminities = amenitiesStr.split(" ");
+				Set<String> aminitiesSet = new HashSet<>();
+				for (String str : aminities) {
+					aminitiesSet.add(str);
+				}
+				meetingRoomDetail.setAmenities(aminitiesSet);
 				meetingRoomsDetails.add(meetingRoomDetail);
 			}	
 		} catch(SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
+			logger.info(e.getMessage());
 		}
 		return meetingRoomsDetails;
 	}

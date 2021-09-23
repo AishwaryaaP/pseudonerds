@@ -1,6 +1,8 @@
 package com.AutomatedMeetingBookingSystem.controllers;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,15 +29,16 @@ public class GlobalServerlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String action = request.getHeader("act");
+		String action = request.getParameter("act");
 		switch(action) {
 		case "login":
-			int username = Integer.parseInt(request.getHeader("userId"));
-			String password = request.getHeader("password");
-			System.out.println(username);
-			System.out.println(password);
+			String name = request.getParameter("name");
+			String email = request.getParameter("email");
+			System.out.println(name);
+			System.out.println(email);
 			UserServiceInterface userService = ServiceFactory.getUserService();
-			User user = userService.getUserDetails(username , password);
+			User user = userService.getUserDetails(name , email);
+			//return object
 			switch(user.getRole()) {
 			case "admin":
 				System.out.println("Admin");

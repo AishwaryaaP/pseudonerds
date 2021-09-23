@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,7 +27,7 @@ public class ManagerController extends HttpServlet {
 	private ManagerService managerService;
     
 	public ManagerController() {
-		managerService = ServiceFactory.getManagerServiceInstance();
+		managerService = ServiceFactory.getManagerService();
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,19 +40,15 @@ public class ManagerController extends HttpServlet {
 		String action = request.getParameter("action");
 		String name = request.getParameter("name");
 		System.out.println(action + " " + name);
-		PrintWriter pw = response.getWriter();
-		pw.print("<html><body>");
-		pw.print("Hello" + name + " " + action);
-		pw.print("</body></html>");
 		
 		//Not sure about this
 		HttpSession session = request.getSession();
 		//User u = session.getAttribute("user");
-		User u = null;
+		//User u = null;
 
 		
 		if(action.equals("createMeeting")) {
-			int organizedBy = u.getId();
+			int organizedBy = Integer.parseInt(request.getParameter("userId"));
 			String meetingId = request.getParameter("meetingId");
 			String roomName = request.getParameter("roomName");
 			String title = request.getParameter("title");
@@ -62,10 +59,25 @@ public class ManagerController extends HttpServlet {
 			String endMinutes = request.getParameter("endMinutes");
 			String type = request.getParameter("type");
 			String listOfMembers = request.getParameter("listOfMembers");
-			Meeting meeting = managerService.createMeeting(organizedBy, roomName, title, date, startHours, startMinutes, endHours, endMinutes, type, listOfMembers);
+			boolean isMeetingCreated = false;
+			isMeetingCreated = managerService.createMeeting(organizedBy, roomName, title, date, startHours, startMinutes, endHours, endMinutes, type, listOfMembers);
+			if(isMeetingCreated) {
+				request.setAttribute("meetingCreated", true);
+				RequestDispatcher rd = request.getRequestDispatcher("manager.jsp");
+				rd.forward(request, response);
+			}
+			else {
+				request.setAttribute("meetingCreated", false);
+				RequestDispatcher rd = request.getRequestDispatcher("manager.jsp");
+				rd.forward(request, response);
+			}
 		}
-		else if(action.equals("getSchedule")) {
-			List<Meeting> meetings = managerService.getSchedule(u);
+		else if(action.equals("getScehduledByManager")) {
+			int managerId = Integer.parseInt(request.getParameter("managerId"));
+			List<Meeting> meetings = managerService.getOrganizedByManager(managerId);
+			request.setAttribute("meetings", meetings);
+			RequestDispatcher rd = request.getRequestDispatcher("manager.jsp");
+			rd.forward(request, response);
 		}
 		else if(action.equals("getAvailableRooms")) {
 			String date = request.getParameter("meetingDate");
@@ -75,9 +87,10 @@ public class ManagerController extends HttpServlet {
 			String endMinutes = request.getParameter("endMinutes");
 			String type = request.getParameter("type");
 			List<MeetingRoom> meetingRooms = managerService.getAvailableRooms(date, startHours, startMinutes, endHours, endMinutes, type);
-		}
-		else if(action.equals("getManagerDetails")) {
-			//Return User object stored in session
+			
+			request.setAttribute("meetingRooms", meetingRooms);
+			RequestDispatcher rd = request.getRequestDispatcher("manager.jsp");
+			rd.forward(request, response);
 		}
 	}
 

@@ -1,23 +1,25 @@
 package com.AutomatedMeetingBookingSystem.model;
 
 public class User {
-	private int empId;
+	private int userId;
 	private String name;
 	private String email;
 	private String phoneNumber;
 	private String role;
-	private int credit;
+	private double credit;
 	
-
-
+	
 	public void giveFeedback() {
 		System.out.println("Giving Feedback");
 	}
 	
+	public User() {
+		this.credit=0;
+	}
 
 	public User(int empId, String name, String email, String phoneNumber, String role) {
 		super();
-		this.empId = empId;
+		this.userId = empId;
 		this.name = name;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
@@ -25,12 +27,12 @@ public class User {
 	}
 
 
-	public int getEmpId() {
-		return empId;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setEmpId(int empId) {
-		this.empId = empId;
+	public void setUserId(int empId) {
+		this.userId = empId;
 	}
 
 	public String getName() {
@@ -64,19 +66,19 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public int getCredit() {
+	public double getCredit() {
 		return credit;
 	}
 
 
-	public void setCredit(int credit) {
+	public void setCredit(double credit) {
 		this.credit = credit;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Employee [empId=" + empId + ", name=" + name + ", email=" + email + ", phoneNumber=" + phoneNumber
+		return "Employee [empId=" + userId + ", name=" + name + ", email=" + email + ", phoneNumber=" + phoneNumber
 				+ ", role=" + role + ", credit=" + credit + "]";
 	}
 

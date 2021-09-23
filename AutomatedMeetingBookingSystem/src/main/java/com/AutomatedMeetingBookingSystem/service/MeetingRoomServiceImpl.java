@@ -1,14 +1,37 @@
 package com.AutomatedMeetingBookingSystem.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.AutomatedMeetingBookingSystem.dao.MeetingRoomDao;
 import com.AutomatedMeetingBookingSystem.exception.RoomNotFoundException;
 import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
+import org.apache.log4j.BasicConfigurator;  
+import org.apache.log4j.LogManager;  
+import org.apache.log4j.Logger;  
 
 public class MeetingRoomServiceImpl implements MeetingRoomService{
+	MeetingRoomDao roomDao = MeetingRoomDao.getInstance();
 	private List<MeetingRoom> roomList = new ArrayList<>();
+	private static Map<String,Integer> amenitiesCredit = new HashMap<>();
 	
+	
+	
+	private static Logger logger;
+	public MeetingRoomServiceImpl() {
+		amenitiesCredit.put("PROJECTOR", 5);
+		amenitiesCredit.put("WIFICONNECTION", 10);
+		amenitiesCredit.put("CONFERENCECALL", 15);
+		amenitiesCredit.put("WHITEBOARD", 5);
+		amenitiesCredit.put("WATERDISPENCER", 5);
+		amenitiesCredit.put("TV", 10);
+		amenitiesCredit.put("COFFEEMACHINE", 10);
+		logger = LogManager.getLogger(MeetingRoomService.class);
+		BasicConfigurator.configure();  
+	}
+
 	@Override
 	public void getSchedule(String roomName)
 	{
@@ -18,44 +41,107 @@ public class MeetingRoomServiceImpl implements MeetingRoomService{
 	}
 	
 	@Override
-	public MeetingRoom getRoomDetailsByRoomName(String roomName) throws RoomNotFoundException
+	public MeetingRoom getRoomDetailsByRoomName(String roomName)
 	{
-		for(MeetingRoom room : getAllMeetingRooms())
-			if(room.getRoomName()==roomName)
-				return room;
+		MeetingRoom room = null;
+		try
+		{
+		room = roomDao.fetchMeetingRoomByName(roomName);
+		if(room==null)
+			throw new RoomNotFoundException("Room not found!!");
 		
-		throw new RoomNotFoundException();
+		}
+		catch(RoomNotFoundException e)
+		{
+			System.err.println(e.getMessage());
+			logger.info(e.getMessage());
+		}
+		return room;		
 	}
 	
 	@Override
 	public List<MeetingRoom> getAllMeetingRooms()
 	{
+		roomList = this.roomDao.fetchAllMeetingRooms();
 		return roomList;
-		//returns all meeting rooms
 	}
 	
 	@Override
-	public void updateRoomDetails(MeetingRoom room) throws RoomNotFoundException
+	public boolean updateRoomDetails(MeetingRoom roomToBeUpdated)
+
 	{
-		MeetingRoom roomToBeUpdated = getRoomDetailsByRoomName(room.getRoomName());
-		//update
-		
-		throw new RoomNotFoundException();
+		boolean result = roomDao.updateMeetingRoom(roomToBeUpdated);
+		try
+		{
+		if(!result)
+			throw new RoomNotFoundException("Room not found!!");
+		}
+		catch(RoomNotFoundException e)
+		{
+			System.err.println(e.getMessage());
+			logger.info(e.getMessage());
+		}
+		return result;
 	}
 	
 	@Override
-	public void deleteRoomByRoomName(String roomName) throws RoomNotFoundException
+	public boolean deleteRoomByRoomName(String roomName)
 	{
-		MeetingRoom roomToBeDeleted = getRoomDetailsByRoomName(roomName);
-		//delete
-		
-		throw new RoomNotFoundException();
+		boolean result = roomDao.deleteMeetingRoomByName(roomName);
+		try
+		{
+		if(!result)
+			throw new RoomNotFoundException("Room Not found!!");
+		}
+		catch(RoomNotFoundException e)
+		{
+			System.err.println(e.getMessage());
+			logger.info(e.getMessage());
+		}
+		return result;
 	}
 	
 	@Override
-	public void addRoom(MeetingRoom room)
+	public boolean addRoom(MeetingRoom room)
 	{
-		//Add to meetingRoom table
+		boolean result = roomDao.insertMeetingRoom(room);
+				return result;
+
+	}
+
+	@Override
+	public Map<String,Integer> getAmenitiesCredit()
+	{
+		return amenitiesCredit;
+	}
+	
+	@Override
+	public boolean addNewAmenitiesCredit(String aminity, int credit)
+	{
+		if(aminity!=null)
+		{
+		amenitiesCredit.put(aminity, credit);
+		return true;
+		}
+		else
+			return false;
+	}
+	
+	@Override
+	public void addRating(String roomName, int rating)
+	{
+		MeetingRoom room = getRoomDetailsByRoomName(roomName);
+		room.setRatingSum(room.getRatingSum()+rating);
+		room.setRatingCount(room.getRatingCount()+1);
+		room.setRating(room.getRatingSum()/room.getRatingCount());
+		roomDao.updateMeetingRoom(room);
+	}
+	
+	@Override
+	public int getRoomPerHourCredits(String roomName)
+	{
+		MeetingRoom room = getRoomDetailsByRoomName(roomName);
+		return room.getCreditPerHour();
 	}
 
 	

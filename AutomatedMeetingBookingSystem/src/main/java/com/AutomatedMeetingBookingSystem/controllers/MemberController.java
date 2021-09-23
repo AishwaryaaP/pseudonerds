@@ -5,18 +5,21 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.AutomatedMeetingBookingSystem.service.MemberService;
 import com.AutomatedMeetingBookingSystem.service.MemberServiceImpl;
+import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
 import com.AutomatedMeetingBookingSystem.model.Meeting;
 import com.AutomatedMeetingBookingSystem.model.User;
 
 /**
  * Servlet implementation class MemberController
  */
+@WebServlet("/MemberController")
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -39,42 +42,25 @@ public class MemberController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("param = " + request.getHeader("act"));
-		String action = request.getHeader("act");
+		System.out.println("param = " + request.getParameter("act"));
+		String action = request.getParameter("act");
 		System.out.println(action);
-		String userId = (String)request.getAttribute("userId");
-		String password = (String)request.getAttribute("password");
-		MemberService service = ServiceFactory.getMemberService();
+
+		int userId = Integer.parseInt(request.getParameter("userId"));
+		String password = (String)request.getParameter("password");
+		MemberService memberService = ServiceFactory.getMemberService();
+
 		switch (action)
 		{
-			case "getMemberDetails":
-				User u = service.memberDetails(userId, password);
-				
-				// Setting the attribute of the request object
-			    // which will be later fetched by a JSP page
-			    request.setAttribute("userObject", u);
-			  
-			    // Creating a RequestDispatcher object to dispatch
-			    // the request the request to another resource
-			    RequestDispatcher rd1 = request.getRequestDispatcher("MemberJsp.jsp");
-			  
-			    // The request will be forwarded to the resource specified
-			    rd1.forward(request, response);
-				
-			    break;
+
 			
 			case "getScheduledMeetings":
-				List<Meeting> scheduledMeeting = service.memberMeetingSchedule(userId);
+				List<Meeting> scheduledMeeting = memberService.memberMeetingSchedule(userId);
 				// Setting the attribute of the request object
 			    // which will be later fetched by a JSP page
-			    request.setAttribute("meetingList", scheduledMeeting);
-			  
-			    // Creating a RequestDispatcher object to dispatch
-			    // the request the request to another resource
-			    RequestDispatcher rd2 = request.getRequestDispatcher("MemberJsp.jsp");
-			  
-			    // The request will be forwarded to the resource specified
-			    rd2.forward(request, response);
+//			    request.setAttribute("meetingList", scheduledMeeting);
+//			    RequestDispatcher rd2 = request.getRequestDispatcher("MemberJsp.jsp");
+//			    rd2.forward(request, response);
 
 				break;
 		}
