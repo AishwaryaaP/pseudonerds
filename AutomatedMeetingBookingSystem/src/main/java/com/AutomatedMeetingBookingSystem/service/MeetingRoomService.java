@@ -17,6 +17,7 @@ public interface MeetingRoomService {
 	boolean addNewAmenitiesCredit(String aminity, int credit);
 	void addRating(String roomName, int rating);
 	int getRoomPerHourCredits(String roomName);
+	public void incrementMeetingCount(String roomName);
 
 
 }

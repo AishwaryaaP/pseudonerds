@@ -19,6 +19,7 @@ import com.AutomatedMeetingBookingSystem.model.User;
 import com.AutomatedMeetingBookingSystem.service.AdminService;
 import com.AutomatedMeetingBookingSystem.service.AdminServiceInterface;
 import com.AutomatedMeetingBookingSystem.service.MeetingRoomService;
+import com.AutomatedMeetingBookingSystem.service.MeetingService;
 import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
 
 /*
@@ -33,13 +34,15 @@ import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
  *ManagerDaoImp
  * 
  * */
-@WebServlet("/AdminController")
+
 public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private AdminServiceInterface adminService;
+	private MeetingService meetingService;
 
 	public AdminController() {
 		adminService = ServiceFactory.getAdminService();
+		meetingService = ServiceFactory.getMeetingService();
 	}
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -81,7 +84,7 @@ public class AdminController extends HttpServlet {
 				System.out.println(meetingRoom1.toString());
 			}
 			req.setAttribute("meetingRoomList", meetingRoomList);
-			 req.getRequestDispatcher("AdminHome.jsp").forward(req, resp);
+			req.getRequestDispatcher("AdminHome.jsp").forward(req, resp);
 			break;
 
 		case "editMeetingRoom":
