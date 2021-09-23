@@ -17,5 +17,7 @@ public interface MeetingService {
 	Meeting fetchMeetingByUniqueID(int uniqueID);
 
 	List<Meeting> fetchMeetingsByUserID(int userID);
+	
+	List<Meeting> fetchMeetingsByOrganizedByManager(int managerId);
 
 }

@@ -9,23 +9,24 @@ import java.util.List;
 import org.json.JSONArray;
 
 import com.AutomatedMeetingBookingSystem.dao.DaoFactory;
-import com.AutomatedMeetingBookingSystem.dao.MeetingDAO;
+import com.AutomatedMeetingBookingSystem.dao.MeetingDao;
 import com.AutomatedMeetingBookingSystem.exception.ConnectionFailedException;
 import com.AutomatedMeetingBookingSystem.model.Meeting;
 
 public class MeetingServiceImpl implements MeetingService {
 	
-	private MeetingDAO dao;
+	private MeetingDao meetingDao;
 	
 	public MeetingServiceImpl() {
 		super();
-		 dao = DaoFactory.getMeetingDaoInstance();
+		meetingDao = DaoFactory.getMeetingDaoInstance();
 	}
 	
 	public Meeting saveMeeting(int organizedBy, String roomName, String title, LocalDate meetingDate, LocalTime startTime, LocalTime endTime, String type, String listOfMembers) {
 		Meeting meeting1 = null;
 		try {
-			meeting1 = this.dao.createMeeting(organizedBy, roomName, title, meetingDate, startTime, endTime, type, listOfMembers);
+			int meetingId = this.meetingDao.createMeeting(organizedBy, roomName, title, meetingDate, startTime, endTime, type, listOfMembers);
+			meeting1 = this.meetingDao.fetchMeetingByUniqueID(meetingId);
 		} catch (ConnectionFailedException e) {
 			System.out.println(e.getMessage());
 		}
@@ -35,7 +36,7 @@ public class MeetingServiceImpl implements MeetingService {
 	public Meeting fetchMeetingByUniqueID(int uniqueID) {
 		Meeting meeting1 = null;
 		try {
-			meeting1 = this.dao.fetchMeetingByUniqueID(uniqueID);
+			meeting1 = this.meetingDao.fetchMeetingByUniqueID(uniqueID);
 		} catch (ConnectionFailedException e) {
 			System.out.println(e.getMessage());
 		}
@@ -45,7 +46,7 @@ public class MeetingServiceImpl implements MeetingService {
 	public List<Meeting> fetchMeetingsByUserID(int userID) {
 		List<Meeting> meetings = new ArrayList<>();
 		try {
-			List<Meeting> allMeetings = this.dao.fetchAllMeetings();
+			List<Meeting> allMeetings = this.meetingDao.fetchAllMeetings();
 			for(Meeting meeting: allMeetings) {
 				String userDetails = meeting.getListOfMember();
 				
@@ -63,6 +64,12 @@ public class MeetingServiceImpl implements MeetingService {
 		}catch (ConnectionFailedException e) {
 			System.out.println(e.getMessage());
 		}
+		return meetings;
+	}
+
+	@Override
+	public List<Meeting> fetchMeetingsByOrganizedByManager(int managerId) {
+		List<Meeting> meetings = meetingDao.fetchMeetingsByManagerID(managerId);
 		return meetings;
 	}
 }

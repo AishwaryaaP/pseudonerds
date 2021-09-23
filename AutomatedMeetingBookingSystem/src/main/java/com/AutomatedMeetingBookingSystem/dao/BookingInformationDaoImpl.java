@@ -11,12 +11,27 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.LogManager;
+
 import com.AutomatedMeetingBookingSystem.model.BookingInformation;
 import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
+import com.AutomatedMeetingBookingSystem.service.MeetingRoomService;
+import org.apache.log4j.BasicConfigurator;  
+import org.apache.log4j.LogManager;  
+import org.apache.log4j.Logger;  
 
 public class BookingInformationDaoImpl implements BookingInformationDao {
 
 	private static final String INSERT_BOOKING_INFO = "insert into bookinginformation (UniqueId, roomName, date, starttime, endtime, organizedBy) values (?,?,?,?,?,?)";
+
+	
+	private static Logger logger;
+	
+	public BookingInformationDaoImpl() {
+		 logger = LogManager.getLogger(BookingInformationDaoImpl.class);
+		BasicConfigurator.configure(); 
+	}
 
 	@Override
 	public void saveBookingInformation(BookingInformation bookingInformation){
@@ -43,6 +58,7 @@ public class BookingInformationDaoImpl implements BookingInformationDao {
 		}
 		catch(SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
+			logger.info(e.getMessage());
 		}
 	}
 
@@ -78,6 +94,7 @@ public class BookingInformationDaoImpl implements BookingInformationDao {
 			}
 		    catch(SQLException | ClassNotFoundException e) {
 		    	e.printStackTrace();
+		    	logger.info(e.getMessage());
 		}
 		return avaliableMeetingRooms;
 	}
@@ -102,6 +119,7 @@ public class BookingInformationDaoImpl implements BookingInformationDao {
 			
 		} catch(SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
+			logger.info(e.getMessage());
 		}
 		return avaliableMeetingRooms;
 	}
@@ -138,6 +156,7 @@ public class BookingInformationDaoImpl implements BookingInformationDao {
 			}	
 		} catch(SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
+			logger.info(e.getMessage());
 		}
 		return meetingRoomsDetails;
 	}

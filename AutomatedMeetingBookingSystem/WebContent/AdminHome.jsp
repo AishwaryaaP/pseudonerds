@@ -1,5 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom" %>
+<%@page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom"%>
+
+<%@ page import="java.util.*" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,40 +13,32 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<ul>		
+		<li> <a href="CreateRoom.jsp">Create Room </a>		
+	</ul>
+	<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>   
+	<jsp:include page="AdminController">
+	<jsp:param value="getAllRooms" name="act"/>
+	</jsp:include>    
 	
-	<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-
-   
-	<%
-		request.setAttribute("act","getAllRooms");
-		RequestDispatcher dispatcher = request.getRequestDispatcher("AdminController");
-		dispatcher.forward(request, response);
-	%>    
-	HttpSession session = request.getSession();
+	<a href = "UserProfile.jsp">User Details</a>	
 	
-    <h1>Created Rooms</h1>
-    
+	
+    <h1>Created Rooms</h1>    
         <table  BORDER="5">
             <tr>
                <th>Room Name</th>
                <th>seatingCapacity</th>
                <th>Credit per hour</th>
                <th>Average Rating</th>
-            </tr>
-            
-            
-             <%=getAllMeeting%>
-             <c:forEach items="${getAllMeeting}">
-         		
+            </tr>            
+             <c:forEach items="${meetingRoomList}" >         		
                  <tr>
-                     <td><a href = "EditRoom.jsp"><c:out value="${items.roomName}"/></a>
-                     <form input type="hidden" name="roomName" value="${items.roomName}"></form>
-                     <% session.setAttribute("roomName", items.getRoomName()); %></td>
+                     <td><a href = "EditRoom.jsp"><c:out value="${items.roomName}"/></a> </td>
                      <td><c:out value="${items.seatingCapacity}"/></td>  
                      <td><c:out value="${items.creditPerHour}"/></td>  
                      <td><c:out value="${items.avgRating}"/></td>  
                  </tr>
-                 
                 </c:forEach>
              
         </table>

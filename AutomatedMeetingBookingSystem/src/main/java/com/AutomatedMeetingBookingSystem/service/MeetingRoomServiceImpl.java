@@ -8,12 +8,18 @@ import java.util.Map;
 import com.AutomatedMeetingBookingSystem.dao.MeetingRoomDao;
 import com.AutomatedMeetingBookingSystem.exception.RoomNotFoundException;
 import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
+import org.apache.log4j.BasicConfigurator;  
+import org.apache.log4j.LogManager;  
+import org.apache.log4j.Logger;  
 
 public class MeetingRoomServiceImpl implements MeetingRoomService{
 	MeetingRoomDao roomDao = MeetingRoomDao.getInstance();
 	private List<MeetingRoom> roomList = new ArrayList<>();
 	private static Map<String,Integer> amenitiesCredit = new HashMap<>();
 	
+	
+	
+	private static Logger logger;
 	public MeetingRoomServiceImpl() {
 		amenitiesCredit.put("PROJECTOR", 5);
 		amenitiesCredit.put("WIFICONNECTION", 10);
@@ -22,6 +28,8 @@ public class MeetingRoomServiceImpl implements MeetingRoomService{
 		amenitiesCredit.put("WATERDISPENCER", 5);
 		amenitiesCredit.put("TV", 10);
 		amenitiesCredit.put("COFFEEMACHINE", 10);
+		logger = LogManager.getLogger(MeetingRoomService.class);
+		BasicConfigurator.configure();  
 	}
 
 	@Override
@@ -46,6 +54,7 @@ public class MeetingRoomServiceImpl implements MeetingRoomService{
 		catch(RoomNotFoundException e)
 		{
 			System.err.println(e.getMessage());
+			logger.info(e.getMessage());
 		}
 		return room;		
 	}
@@ -70,6 +79,7 @@ public class MeetingRoomServiceImpl implements MeetingRoomService{
 		catch(RoomNotFoundException e)
 		{
 			System.err.println(e.getMessage());
+			logger.info(e.getMessage());
 		}
 		return result;
 	}
@@ -86,6 +96,7 @@ public class MeetingRoomServiceImpl implements MeetingRoomService{
 		catch(RoomNotFoundException e)
 		{
 			System.err.println(e.getMessage());
+			logger.info(e.getMessage());
 		}
 		return result;
 	}
@@ -124,6 +135,13 @@ public class MeetingRoomServiceImpl implements MeetingRoomService{
 		room.setRatingCount(room.getRatingCount()+1);
 		room.setRating(room.getRatingSum()/room.getRatingCount());
 		roomDao.updateMeetingRoom(room);
+	}
+	
+	@Override
+	public int getRoomPerHourCredits(String roomName)
+	{
+		MeetingRoom room = getRoomDetailsByRoomName(roomName);
+		return room.getCreditPerHour();
 	}
 
 	
