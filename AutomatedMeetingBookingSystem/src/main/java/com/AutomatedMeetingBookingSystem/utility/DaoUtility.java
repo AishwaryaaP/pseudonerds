@@ -14,7 +14,7 @@ public class DaoUtility implements DaoUtilityInterface{
     	try {
 	        if (obj==null) {
 	        	Class.forName("com.mysql.jdbc.Driver");  	        	
-	            obj = DriverManager.getConnection("jdbc:mysql://localhost:3306/meetingsystem","root","Mohitt@13");
+	            obj = DriverManager.getConnection("jdbc:mysql://localhost:3306/meetingsystem","root","");
 	        }
     	}
     	catch(Exception e) {
