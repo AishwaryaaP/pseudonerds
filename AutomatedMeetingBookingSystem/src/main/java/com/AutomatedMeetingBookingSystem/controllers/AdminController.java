@@ -43,7 +43,82 @@ public class AdminController extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("param = " + req.getParameter("act"));
+		String action = req.getParameter("act");
+		System.out.println(action);
 
+		switch (action) {
+
+		case "createRoom":
+
+			String roomName = req.getParameter("roomName");
+			int seatingCapacity = Integer.valueOf(req.getParameter("seatingCapacity"));
+			int creditPerHour = 0;
+			double rating = 0;
+			int ratingSum = 0;
+			int ratingCount = 0;
+			Set<String> amenities = new HashSet<>();
+			Map<String, Integer> creditMap = adminService.getAmenitiesCredit();
+			String amenitiesString = req.getParameter("amenities");
+			String[] s = amenitiesString.split(" ");
+			for (String str : s) {
+				amenities.add(str);
+				creditPerHour += creditMap.get(str);
+			}
+        
+			MeetingRoom meetingRoom = new MeetingRoom(roomName, creditPerHour, seatingCapacity, rating, ratingSum,
+					ratingCount, amenities);
+			boolean created = adminService.createMeetingRoom(meetingRoom);
+			req.setAttribute("created", created);
+			RequestDispatcher rd = req.getRequestDispatcher("AdminHome.jsp");
+			rd.forward(req, resp);
+			break;
+
+		case "getAllRooms":
+
+			List<MeetingRoom> meetingRoomList =  adminService.getAllRooms();
+			for(MeetingRoom meetingRoom1 : meetingRoomList) {
+				System.out.println(meetingRoom1.toString());
+			}
+			req.setAttribute("meetingRoomList", meetingRoomList);
+			 req.getRequestDispatcher("AdminHome.jsp").forward(req, resp);
+			break;
+
+		case "editMeetingRoom":
+
+			String roomName1 = req.getParameter("roomName");
+			int seatingCapacity1 = Integer.valueOf(req.getParameter("seatingCapacity"));
+			int creditPerHour1 = 0;
+			double rating1 = 0;
+			int ratingSum1 = 0;
+			int ratingCount1 = 0;
+			Set<String> amenities1 = new HashSet<>();
+			Map<String, Integer> creditMap1 = adminService.getAmenitiesCredit();
+			String amenitiesString1 = req.getParameter("amenities");
+			String[] s1 = amenitiesString1.split(" ");
+			for (String str : s1) {
+				amenities1.add(str);
+				creditPerHour1 += creditMap1.get(str);
+			}
+
+			MeetingRoom meetingRoom1 = new MeetingRoom(roomName1, creditPerHour1, seatingCapacity1, rating1, ratingSum1,
+					ratingCount1, amenities1);
+
+			boolean updated = adminService.editMeetingRoom(meetingRoom1);
+			req.setAttribute("updated", updated);
+			RequestDispatcher rd2 = req.getRequestDispatcher("admin.jsp");
+			rd2.forward(req, resp);
+			break;
+
+		case "deleteMeetingRoom":
+			// get meeting room Id pass to service layer clickable so pass id from FE
+			String meetingRoomIdForDelete =req.getParameter("roomName");
+			boolean deleted = adminService.deleteMeetingRoom(meetingRoomIdForDelete);
+			req.setAttribute("deleted", deleted);
+			RequestDispatcher rd3 = req.getRequestDispatcher("admin.jsp");
+			rd3.forward(req, resp);
+			break;
+		}
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -85,9 +160,7 @@ public class AdminController extends HttpServlet {
 				System.out.println(meetingRoom1.toString());
 			}
 			req.setAttribute("meetingRoomList", meetingRoomList);
-			RequestDispatcher rd1 = req.getRequestDispatcher("Admin.jsp");
-			rd1.forward(req, resp);
-
+			 req.getRequestDispatcher("Admin.jsp").forward(req, resp);
 			break;
 
 		case "editMeetingRoom":

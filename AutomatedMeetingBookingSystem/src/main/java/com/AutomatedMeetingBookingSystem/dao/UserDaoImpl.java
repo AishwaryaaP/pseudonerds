@@ -12,6 +12,7 @@ import com.AutomatedMeetingBookingSystem.exception.ConnectionFailedException;
 import com.AutomatedMeetingBookingSystem.model.User;
 import com.AutomatedMeetingBookingSystem.utility.DaoUtility;
 import com.AutomatedMeetingBookingSystem.utility.DaoUtilityInterface;
+import com.mysql.cj.xdevapi.Statement;
 
 public class UserDaoImpl implements UserDao{
 
@@ -55,6 +56,41 @@ public class UserDaoImpl implements UserDao{
 		return allUser;
 		
 	}
+	@Override
+	public User getUserByNameAndEmail(int userId, String email)
+	{
+		DaoUtilityInterface dao = new DaoUtility();
+		Connection conn = dao.getInstance();
+		User allUser = new User();
+		if (conn != null)
+		{
+			
+			try {
+				PreparedStatement statement = conn.prepareStatement("select * from user where name =?");
+				statement.setInt(1, userId);
+				ResultSet rs = statement.executeQuery();
+				while (rs.next()) {
+					User u = new User();
+					u.setUserId(Integer.parseInt(rs.getString(1)));
+					u.setName(rs.getString(2));
+					u.setEmail(rs.getString(3));
+					u.setPhoneNumber(rs.getString(4));
+					u.setCredit(Integer.parseInt(rs.getString(5)));
+					u.setRole(rs.getString(6));
+					return allUser;
+				}
+
+				statement.close();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		return allUser;
+		
+	}
+	
 
 	@Override
 	public double getUserCredits(int userId) {
