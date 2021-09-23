@@ -10,4 +10,6 @@ public interface UserServiceInterface {
 
 	void updateUserCredits(double creditsReqForMeeting, int userId);
 	
+	public User getUserDetails(String  name, String email);
+	public boolean searchUserByEmailAndPassword(User user);
 }

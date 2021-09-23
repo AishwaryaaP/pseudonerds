@@ -3,7 +3,11 @@ package com.AutomatedMeetingBookingSystem.controllers;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.AutomatedMeetingBookingSystem.enums.MeetingType;
 import com.AutomatedMeetingBookingSystem.model.BookingInformation;
 import com.AutomatedMeetingBookingSystem.model.Meeting;
 import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
@@ -21,7 +26,7 @@ import com.AutomatedMeetingBookingSystem.service.ManagerService;
 import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
 
 
-@WebServlet("/ManagerController")
+//@WebServlet("/ManagerController")
 public class ManagerController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ManagerService managerService;
@@ -41,8 +46,7 @@ public class ManagerController extends HttpServlet {
 		String name = request.getParameter("name");
 		System.out.println(action + " " + name);
 		
-		//Not sure about this
-		HttpSession session = request.getSession();
+		
 		//User u = session.getAttribute("user");
 		//User u = null;
 
@@ -62,6 +66,8 @@ public class ManagerController extends HttpServlet {
 			boolean isMeetingCreated = false;
 			isMeetingCreated = managerService.createMeeting(organizedBy, roomName, title, date, startHours, startMinutes, endHours, endMinutes, type, listOfMembers);
 			if(isMeetingCreated) {
+				HttpSession session = request.getSession();				
+				session.setAttribute( "scheduleDetail", isMeetingCreated );
 				request.setAttribute("meetingCreated", true);
 				RequestDispatcher rd = request.getRequestDispatcher("manager.jsp");
 				rd.forward(request, response);
@@ -92,6 +98,36 @@ public class ManagerController extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("manager.jsp");
 			rd.forward(request, response);
 		}
+		
+		else if(action.equals("editMeeting")) {
+
+			/*
+			 * int uniqueID = Integer.valueOf(request.getParameter("uniqueId")); int
+			 * organizedBy ; String infoMeetingRoomName; String title =
+			 * request.getParameter("title"); String date = request.getParameter("date");
+			 * String startTime = request.getParameter("startTime"); String endTime =
+			 * request.getParameter("endTime"); String listOfMember =
+			 * request.getParameter("listOfMember"); String type =
+			 * request.getParameter("type"); Meeting meeting = new Meeting(uniqueID,
+			 * organizedBy, infoMeetingRoomName, title, date, startTime, endTime, type,
+			 * listOfMember);
+			 * 
+			 * boolean updated = managerService.editMeeting(meeting);
+			 * request.setAttribute("updated", updated); RequestDispatcher rd2 =
+			 * request.getRequestDispatcher("EditRoom.jsp"); rd2.forward(request, response);
+			 */	}
+
+		else if(action.equals("deleteMeeting")) {
+		// get meeting Id pass to service layer clickable so pass id from FE
+		
+		int uniqueId =Integer.valueOf(request.getParameter("uniqueId"));
+		boolean deleted = managerService.deleteMeeting(uniqueId);
+		request.setAttribute("deleted", deleted);
+		RequestDispatcher rd3 = request.getRequestDispatcher("EditMeeting.jsp");
+		rd3.forward(request, response);
 	}
+
+	}
+		
 
 }

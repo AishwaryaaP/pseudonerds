@@ -9,6 +9,16 @@ public class User {
 	private double credit;
 	
 	
+<<<<<<< Updated upstream
+=======
+
+
+	public User(int userId, String email) {
+		super();
+		this.userId = userId;
+		this.email = email;
+	}
+>>>>>>> Stashed changes
 	public void giveFeedback() {
 		System.out.println("Giving Feedback");
 	}

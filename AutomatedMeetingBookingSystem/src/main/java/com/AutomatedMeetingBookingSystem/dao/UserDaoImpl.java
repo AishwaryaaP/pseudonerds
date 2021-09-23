@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import com.AutomatedMeetingBookingSystem.exception.ConnectionFailedException;
 import com.AutomatedMeetingBookingSystem.model.User;
 import com.AutomatedMeetingBookingSystem.utility.DaoUtility;
 import com.AutomatedMeetingBookingSystem.utility.DaoUtilityInterface;
@@ -23,44 +23,15 @@ public class UserDaoImpl implements UserDao{
 //	public boolean deleteRoom(MeetingRoom obj) {
 //		
 //	}
-
-	public User getUserDetails(int userId, String password) {
-		DaoUtilityInterface dao = new DaoUtility();
-		Connection conn = dao.getInstance();
 	
-			User u;
-			try
-			{
-				PreparedStatement ps = conn.prepareStatement ( "select userId, name, email, phone, credit, role from User where userId = ? and password = ?");
-				ps.setInt ( 1, userId );
-				ps.setString ( 2, password );
-				ResultSet rs = ps.executeQuery ();
-				while(rs.next())
-				{
-					u.setUserId(Integer.parseInt(rs.getString(1)));
-					u.setName(rs.getString(2));
-					u.setEmail(rs.getString(3));
-					u.setPhoneNumber(rs.getString(4));
-					u.setCredit(Integer.parseInt(rs.getString(5)));
-					u.setRole(rs.getString(6));
-				}
-			}catch(Exception e) {
-
-				System.out.println(e);
-			}
-			
-			return u;
-
-			
-	}
-
 	public List<User> getAllUser()
 	{
 		DaoUtilityInterface dao = new DaoUtility();
 		Connection conn = dao.getInstance();
-
-			List<User> allUser = new ArrayList<>();
-
+		List<User> allUser = new ArrayList<>();
+		if (conn != null)
+		{
+			
 			try {
 				PreparedStatement statement = conn.prepareStatement("select * from user");
 				ResultSet rs = statement.executeQuery();
@@ -80,11 +51,35 @@ public class UserDaoImpl implements UserDao{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-=
 			
 		}
 		return allUser;
+		
+	}
 
+@Override
+public boolean searchUserByEmailAndPassword(User user) {
+	boolean status = false;
+	DaoUtilityInterface dao = new DaoUtility();
+	Connection conn = dao.getInstance();	
+	if (conn != null)
+	{
+		
+		try {
+			PreparedStatement statement = conn.prepareStatement("select * from user where email =? AND userid = ?");
+			statement.setString(1, user.getEmail());
+			statement.setInt(2, user.getUserId());
+			ResultSet rs = statement.executeQuery();
+			if (rs.next()) {
+				return true;
+			}
+
+			statement.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	@Override
 	public User getUserByNameAndEmail(int userId, String email)
@@ -170,4 +165,8 @@ public class UserDaoImpl implements UserDao{
 			System.out.println(e.getMessage());
 		}
 	}
+	return status;
+}
+
+	
 }

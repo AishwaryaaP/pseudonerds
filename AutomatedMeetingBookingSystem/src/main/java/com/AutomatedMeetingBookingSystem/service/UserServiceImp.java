@@ -3,6 +3,8 @@ package com.AutomatedMeetingBookingSystem.service;
 import com.AutomatedMeetingBookingSystem.dao.DaoFactory;
 import com.AutomatedMeetingBookingSystem.dao.UserDao;
 import com.AutomatedMeetingBookingSystem.model.User;
+import com.AutomatedMeetingBookingSystem.dao.DaoFactory;
+import com.AutomatedMeetingBookingSystem.dao.UserDao;
 
 public class UserServiceImp implements UserServiceInterface{
 
@@ -35,6 +37,13 @@ public class UserServiceImp implements UserServiceInterface{
 	@Override
 	public void updateUserCredits(double updatedCredits, int userId) {
 		userDao.updateUserCredits(updatedCredits, userId);
+	}
+
+	public boolean searchUserByEmailAndPassword(User user) {
+		DaoFactory dao = new DaoFactory();
+		UserDao userDao = dao.getUserDaoInstance();
+		
+		return userDao.searchUserByEmailAndPassword(user);
 	}
 
 

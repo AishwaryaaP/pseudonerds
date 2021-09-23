@@ -17,7 +17,7 @@ import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
 /**
  * Servlet implementation class getAllRooms
  */
-@WebServlet("/GetAllRoomsController")
+//@WebServlet("/GetAllRoomsController")
 public class GetAllRoomsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private AdminServiceInterface adminService;

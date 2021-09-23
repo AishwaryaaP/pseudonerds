@@ -1,7 +1,6 @@
 package com.AutomatedMeetingBookingSystem.controllers;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,31 +9,42 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.AutomatedMeetingBookingSystem.model.Meeting;
 import com.AutomatedMeetingBookingSystem.service.ManagerService;
 import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
 
-//@WebServlet("/GetScheduledByManagerController")
-public class GetScheduledByManagerController extends HttpServlet {
+/**
+ * Servlet implementation class DeleteMeeting
+ */
+@WebServlet("/DeleteMeeting")
+public class DeleteMeeting extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ManagerService managerService;
-	
-    public GetScheduledByManagerController() {
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public DeleteMeeting() {
         super();
-        managerService = ServiceFactory.getManagerService();
+        // TODO Auto-generated constructor stub
     }
-    
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int managerId = Integer.parseInt(request.getParameter("managerId"));
-		List<Meeting> meetings = managerService.getOrganizedByManager(managerId);
-		request.setAttribute("meetings", meetings);
-		RequestDispatcher rd = request.getRequestDispatcher("manager.jsp");
-		rd.forward(request, response);
+		ManagerService managerService = ServiceFactory.getManagerService();
+		int uniqueId =Integer.valueOf(request.getParameter("uniqueId"));
+		boolean deleted = managerService.deleteMeeting(uniqueId);
+		request.setAttribute("deleted", deleted);
+		RequestDispatcher rd3 = request.getRequestDispatcher("EditMeeting.jsp");
+		rd3.forward(request, response);
 	}
 
 }

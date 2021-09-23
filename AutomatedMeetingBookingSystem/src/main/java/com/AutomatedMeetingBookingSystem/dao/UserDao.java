@@ -7,6 +7,7 @@ import com.AutomatedMeetingBookingSystem.model.User;
 public interface UserDao {
 	
 	public List<User> getAllUser();
+	public boolean searchUserByEmailAndPassword(User user);
 
 	public double getUserCredits(int userId);
 

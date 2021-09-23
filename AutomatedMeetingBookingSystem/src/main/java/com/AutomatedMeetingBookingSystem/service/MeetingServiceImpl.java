@@ -11,6 +11,7 @@ import org.json.JSONArray;
 import com.AutomatedMeetingBookingSystem.dao.DaoFactory;
 import com.AutomatedMeetingBookingSystem.dao.MeetingDao;
 import com.AutomatedMeetingBookingSystem.exception.ConnectionFailedException;
+import com.AutomatedMeetingBookingSystem.exception.RoomNotFoundException;
 import com.AutomatedMeetingBookingSystem.model.Meeting;
 
 public class MeetingServiceImpl implements MeetingService {
@@ -71,6 +72,15 @@ public class MeetingServiceImpl implements MeetingService {
 	public List<Meeting> fetchMeetingsByOrganizedByManager(int managerId) {
 		List<Meeting> meetings = meetingDao.fetchMeetingsByManagerID(managerId);
 		return meetings;
+	public boolean deleteMeetingByUniqueId(int uniqueId) {
+		boolean result = dao.deleteMeetingByUniqueId(uniqueId);
+		return result;
+	}
+
+	@Override
+	public boolean updateMeeting(Meeting meeting) {
+		boolean result = dao.updateMeeting(meeting);
+		return result;
 	}
 }
 

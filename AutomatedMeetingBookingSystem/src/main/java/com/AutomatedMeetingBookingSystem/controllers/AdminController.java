@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
 import com.AutomatedMeetingBookingSystem.model.User;
@@ -43,6 +44,7 @@ public class AdminController extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 		System.out.println("param = " + req.getParameter("act"));
 		String action = req.getParameter("act");
 		System.out.println(action);
@@ -119,11 +121,12 @@ public class AdminController extends HttpServlet {
 			rd3.forward(req, resp);
 			break;
 		}
+		doPost(req, resp);
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("param = " + req.getParameter("act"));
-		String action = req.getParameter("act");
+		
+		String action = (String)req.getAttribute("act");
 		System.out.println(action);
 
 		switch (action) {
@@ -147,9 +150,11 @@ public class AdminController extends HttpServlet {
         
 			MeetingRoom meetingRoom = new MeetingRoom(roomName, creditPerHour, seatingCapacity, rating, ratingSum,
 					ratingCount, amenities);
+			HttpSession session = req.getSession();				
+			session.setAttribute( "meetingDetail", meetingRoom );
 			boolean created = adminService.createMeetingRoom(meetingRoom);
 			req.setAttribute("created", created);
-			RequestDispatcher rd = req.getRequestDispatcher("admin.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("CreatedRoom.jsp");
 			rd.forward(req, resp);
 			break;
 
@@ -161,6 +166,14 @@ public class AdminController extends HttpServlet {
 			}
 			req.setAttribute("meetingRoomList", meetingRoomList);
 			 req.getRequestDispatcher("Admin.jsp").forward(req, resp);
+			for(MeetingRoom m: meetingRoomList) {
+				System.out.println(m.getRoomId());
+			}
+			
+			  RequestDispatcher rd1 = req.getRequestDispatcher("AdminHome.jsp");
+			  rd1.forward(req, resp);
+			 
+
 			break;
 
 		case "editMeetingRoom":
@@ -185,7 +198,7 @@ public class AdminController extends HttpServlet {
 
 			boolean updated = adminService.editMeetingRoom(meetingRoom1);
 			req.setAttribute("updated", updated);
-			RequestDispatcher rd2 = req.getRequestDispatcher("admin.jsp");
+			RequestDispatcher rd2 = req.getRequestDispatcher("EditRoom.jsp");
 			rd2.forward(req, resp);
 			break;
 
@@ -194,7 +207,7 @@ public class AdminController extends HttpServlet {
 			String meetingRoomIdForDelete =req.getParameter("roomName");
 			boolean deleted = adminService.deleteMeetingRoom(meetingRoomIdForDelete);
 			req.setAttribute("deleted", deleted);
-			RequestDispatcher rd3 = req.getRequestDispatcher("admin.jsp");
+			RequestDispatcher rd3 = req.getRequestDispatcher("EditRoom.jsp");
 			rd3.forward(req, resp);
 			break;
 		}

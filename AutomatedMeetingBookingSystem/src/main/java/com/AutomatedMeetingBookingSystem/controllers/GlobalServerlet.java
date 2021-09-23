@@ -8,6 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.RequestDispatcher;
+
 
 import com.AutomatedMeetingBookingSystem.service.UserServiceInterface;
 import com.AutomatedMeetingBookingSystem.model.User;
@@ -38,6 +41,21 @@ public class GlobalServerlet extends HttpServlet {
 			UserServiceInterface userService = ServiceFactory.getUserService();
 			User user = userService.getUserDetails(userId , email);			
 			if ( user != null ) {
+		String action = request.getParameter("act");
+		switch(action) {
+		case "login":
+			int userId =Integer.parseInt( request.getParameter("userId"));
+			String userEmail = request.getParameter("email");
+//			System.out.println(name);
+//			System.out.println(email);
+			User user = new User( userId, userEmail );
+			
+			ServiceFactory service = new ServiceFactory();
+			UserServiceInterface userService = service.getUserService();
+			
+			boolean status = userService.searchUserByEmailAndPassword( user );
+			
+			if ( status ) {
 				request.getSession().setAttribute( "userDetail", user );
 				RequestDispatcher dispatcher1= request.getRequestDispatcher( "UserProfile.jsp" );
 				request.getSession().setAttribute( "LOGINSTATUS", "SUCCESS");
@@ -51,6 +69,10 @@ public class GlobalServerlet extends HttpServlet {
 				case "member":
 					RequestDispatcher dispatcher4= request.getRequestDispatcher( "home.jsp" );		
 					break;
+				case "manager":
+					RequestDispatcher dispatcher3= request.getRequestDispatcher( "MemberHome.jsp" );
+				case "member":
+					RequestDispatcher dispatcher4= request.getRequestDispatcher( "home.jsp" );						
 				}
 						
 				
@@ -61,12 +83,14 @@ public class GlobalServerlet extends HttpServlet {
 				
 				
 
-			}
-				
-			
-			
-			
-		
+			} break;
+		case "logout":
+			HttpSession session = request.getSession();
+	         session.invalidate();
+	        RequestDispatcher dispatcher = request.getRequestDispatcher( "home.jsp" );
+	        dispatcher.forward( request, response );
+	        break;
 	}
 
+}
 }

@@ -2,8 +2,6 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom" %>
-<%@page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom"%>
-
 <%@ page import="java.util.*" %>
     
 <!DOCTYPE html>
@@ -17,11 +15,8 @@
 		<li> <a href="CreateRoom.jsp">Create Room </a>		
 	</ul>
 	<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>   
-	<jsp:include page="AdminController">
-	<jsp:param value="getAllRooms" name="act"/>
-	</jsp:include>    
 	
-	<a href = "UserProfile.jsp">User Details</a>	
+	<a href = "AdminController">User Details</a>	
 	
 	
     <h1>Created Rooms</h1>    
@@ -32,12 +27,12 @@
                <th>Credit per hour</th>
                <th>Average Rating</th>
             </tr>            
-             <c:forEach items="${meetingRoomList}" >         		
+             <c:forEach items="${meetingRoomList}" var ='i' >         		
                  <tr>
-                     <td><a href = "EditRoom.jsp"><c:out value="${items.roomName}"/></a> </td>
-                     <td><c:out value="${items.seatingCapacity}"/></td>  
-                     <td><c:out value="${items.creditPerHour}"/></td>  
-                     <td><c:out value="${items.avgRating}"/></td>  
+                     <td><a href = "EditRoom.jsp"><c:out value="${i.roomName}"/></a> </td>
+                     <td><c:out value="${i.seatingCapacity}"/></td>  
+                     <td><c:out value="${i.creditPerHour}"/></td>  
+                     <td><c:out value="${i.avgRating}"/></td>  
                  </tr>
                 </c:forEach>
              
