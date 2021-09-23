@@ -8,9 +8,9 @@ public class DaoFactory {
 		
 	}
 	
-	public static MeetingDAO getMeetingDaoInstance() {
+	public static MeetingDao getMeetingDaoInstance() {
 		
-		return new MeetingDAOImpl();
+		return new MeetingDaoImpl();
 		
 	}
 	

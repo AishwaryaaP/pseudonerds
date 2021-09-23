@@ -9,13 +9,13 @@ import java.util.List;
 import org.json.JSONArray;
 
 import com.AutomatedMeetingBookingSystem.dao.DaoFactory;
-import com.AutomatedMeetingBookingSystem.dao.MeetingDAO;
+import com.AutomatedMeetingBookingSystem.dao.MeetingDao;
 import com.AutomatedMeetingBookingSystem.exception.ConnectionFailedException;
 import com.AutomatedMeetingBookingSystem.model.Meeting;
 
 public class MeetingServiceImpl implements MeetingService {
 	
-	private MeetingDAO meetingDao;
+	private MeetingDao meetingDao;
 	
 	public MeetingServiceImpl() {
 		super();
