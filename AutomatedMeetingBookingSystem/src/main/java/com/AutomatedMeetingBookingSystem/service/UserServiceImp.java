@@ -1,5 +1,7 @@
 package com.AutomatedMeetingBookingSystem.service;
 
+import java.util.ArrayList;
+
 import com.AutomatedMeetingBookingSystem.dao.DaoFactory;
 import com.AutomatedMeetingBookingSystem.dao.UserDao;
 import com.AutomatedMeetingBookingSystem.model.User;
@@ -35,6 +37,12 @@ public class UserServiceImp implements UserServiceInterface{
 	@Override
 	public void updateUserCredits(double updatedCredits, int userId) {
 		userDao.updateUserCredits(updatedCredits, userId);
+	}
+
+	@Override
+	public boolean addUsers(ArrayList<User> userList) {
+		System.out.println("oks");
+		return false;
 	}
 
 

@@ -3,12 +3,12 @@
   
 
   <servlet>
-    <servlet-name>getAllRooms</servlet-name>
-    <servlet-class>com.AutomatedMeetingBookingSystem.controllers.getAllRooms</servlet-class>
+    <servlet-name>GetAllRoomsController</servlet-name>
+    <servlet-class>com.AutomatedMeetingBookingSystem.controllers.GetAllRoomsController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>getAllRooms</servlet-name>
-    <url-pattern>/getAllRooms</url-pattern>
+    <servlet-name>GetAllRoomsController</servlet-name>
+    <url-pattern>/GetAllRoomsController</url-pattern>
   </servlet-mapping>
 
   <servlet>

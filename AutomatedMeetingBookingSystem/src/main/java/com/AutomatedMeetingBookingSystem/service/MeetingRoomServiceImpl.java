@@ -144,6 +144,12 @@ public class MeetingRoomServiceImpl implements MeetingRoomService{
 		return room.getCreditPerHour();
 	}
 
+	@Override
+	public void incrementMeetingCount(String roomName) {
+		int currentCount = getRoomDetailsByRoomName(roomName).getCount();
+		roomDao.incrementMeetingCount(roomName, currentCount);
+	}
+
 	
 
 }
