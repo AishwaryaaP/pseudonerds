@@ -17,7 +17,7 @@ import com.AutomatedMeetingBookingSystem.utility.DaoUtility;
 import com.AutomatedMeetingBookingSystem.utility.DaoUtilityInterface;
 import com.mysql.cj.protocol.Resultset.Type;
 
-public class MeetingDAOImpl implements MeetingDAO {
+public class MeetingDaoImpl implements MeetingDao {
 
 	DaoUtilityInterface dao = new DaoUtility();
 	Connection connection = dao.getInstance();
