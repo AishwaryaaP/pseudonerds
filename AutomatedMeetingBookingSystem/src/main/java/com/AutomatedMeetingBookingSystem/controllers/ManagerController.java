@@ -21,7 +21,7 @@ import com.AutomatedMeetingBookingSystem.service.ManagerService;
 import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
 
 
-@WebServlet("/ManagerController")
+
 public class ManagerController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ManagerService managerService;
