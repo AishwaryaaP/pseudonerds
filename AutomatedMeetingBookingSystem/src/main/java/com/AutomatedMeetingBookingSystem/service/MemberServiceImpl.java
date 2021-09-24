@@ -18,7 +18,5 @@ public class MemberServiceImpl implements MemberService{
 		meetingList = meetingService.fetchMeetingsByUserID(userId);
 		return meetingList;
 	}
-
 	
-
 }
