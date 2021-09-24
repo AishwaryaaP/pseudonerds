@@ -10,4 +10,6 @@ import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
 public interface BookingInformationService {
 
 	List<MeetingRoom> getAvailableMeetingRoom(LocalDate meetingDate, LocalTime startTime, LocalTime endTime, MeetingType type);
+	
+	public void saveBookingInformation(Meeting meeting);
 }
