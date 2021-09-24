@@ -11,6 +11,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.AutomatedMeetingBookingSystem.controllers.*"%>
 <%@ page import="com.AutomatedMeetingBookingSystem.enums.*"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +26,8 @@
 	int uniqueId = meeting.getUniqueID();
 	MeetingService service = ServiceFactory.getMeetingService();
 	Meeting meeting_details = service.fetchMeetingByUniqueID(uniqueId);
+	session.setAttribute("organizedBy", meeting.getOrganizedBy());
+	session.setAttribute("uniqueId", uniqueId);
 	%>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<%@ page import="java.util.Set"%>
@@ -80,8 +83,42 @@
 		%>
 
 
-		<button onClick="edit()" value ="editMeeting" name = "act"></button>    <button onClick="delete()" value ="deleteMeeting" name = "act"></button>     <button onClick="ManagerHome.jsp" value ="Edit" name = "act"></button>
+		
 	</form>
+	
+	<h1>Available Meeting Rooms</h1>
+    
+        <table  BORDER="5">
+            <tr>
+               <th>Room Name</th>
+               <th>seatingCapacity</th>
+               <th>Credit per hour</th>
+               <th>Average Rating</th>
+               <th>Amenities</th>
+            </tr>
+             <c:forEach items="${getAvailabeRooms}" var='i'>
+         		
+             	
+                 <tr>
+                     <td><c:out value="${i.roomName}"/></td>
+                     <td><c:out value="${i.seatingCapacity}"/></td>  
+                     <td><c:out value="${i.creditPerHour}"/></td>  
+                     <td><c:out value="${i.avgRating}"/></td>
+                     <td><c:out value="${i.amenities}"/></td>  
+                 </tr>
+                 <form>
+                 	<input type="hidden" name="roomName" value=${i.roomName} />
+            		<input type="submit" value="deny" name="act" id="box_button" class="accept">
+            		<input type="submit" value="accept" name="act" id="box_button" class="deny">
+                 </form>
+                 	
+                 
+                </c:forEach>
+             
+        </table>
+        
+        <button onClick="edit()" value ="editMeeting" name = "act"></button>    <button onClick="delete()" value ="deleteMeeting" name = "act"></button>     <button onClick="ManagerHome.jsp" value ="Edit" name = "act"></button>
+	
 	<%
     	if(((String)request.getAttribute("act")).equals("editMeeting"))
     	{
@@ -101,6 +138,7 @@
     	////conflict of act in attribute and button
     	
 	%>   
+	
 	
 
 
