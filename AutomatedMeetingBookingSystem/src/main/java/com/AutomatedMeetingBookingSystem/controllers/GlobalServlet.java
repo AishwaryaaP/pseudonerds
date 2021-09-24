@@ -49,7 +49,7 @@ public class GlobalServlet extends HttpServlet {
 					dispatcher= request.getRequestDispatcher( "GetScheduledByManagerController" );
 					break;
 				case "MEMBER":
-					dispatcher= request.getRequestDispatcher( "MemberHome.jsp" );		
+					dispatcher= request.getRequestDispatcher( "MeetingForMember" );		
 					break;
 				}
 				dispatcher.forward(request, response);

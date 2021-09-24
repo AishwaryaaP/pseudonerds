@@ -119,4 +119,14 @@
     <servlet-name>EditMeetingController</servlet-name>
     <url-pattern>/EditMeetingController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MeetingForMember</display-name>
+    <servlet-name>MeetingForMember</servlet-name>
+    <servlet-class>com.AutomatedMeetingBookingSystem.controllers.MeetingForMember</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MeetingForMember</servlet-name>
+    <url-pattern>/MeetingForMember</url-pattern>
+  </servlet-mapping>
 </web-app>

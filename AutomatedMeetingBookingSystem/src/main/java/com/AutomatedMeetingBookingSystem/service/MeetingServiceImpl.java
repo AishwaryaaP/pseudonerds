@@ -3,6 +3,8 @@ package com.AutomatedMeetingBookingSystem.service;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class MeetingServiceImpl implements MeetingService {
 	private MeetingRoomService meetingRoomService;
 	
 	public MeetingServiceImpl() {
-		super();
+		super();                                                                                 
 		meetingDao = DaoFactory.getMeetingDaoInstance();
 		meetingRoomService = ServiceFactory.getMeetingRoomService();
 	}
@@ -48,22 +50,19 @@ public class MeetingServiceImpl implements MeetingService {
 	
 	public List<Meeting> fetchMeetingsByUserID(int userID) {
 		List<Meeting> meetings = new ArrayList<>();
-		try {
+		try {        
 			List<Meeting> allMeetings = this.meetingDao.fetchAllMeetings();
 			for(Meeting meeting: allMeetings) {
-				String userDetails = meeting.getListOfMember();
-				
-				JSONArray userIds = new JSONArray(userDetails);
-				Iterator<Object> iterator = userIds.iterator();
-				while(iterator.hasNext()) 
-				{
-					if((iterator.next()).equals(String.valueOf(userID)))
-					{
+				String userDetails = meeting.getListOfMember();				
+				userDetails = userDetails.substring(1,userDetails.length()-1);
+				String[] members = userDetails.split(",");	
+				for(String member : members){
+					if(member.trim().equals(String.valueOf(userID))) {
 						meetings.add(meeting);
 						break;
 					}
 				}
-		}
+			}
 		}catch (ConnectionFailedException e) {
 			System.out.println(e.getMessage());
 		}
