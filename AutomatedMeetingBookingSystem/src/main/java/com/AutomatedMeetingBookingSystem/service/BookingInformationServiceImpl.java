@@ -1,8 +1,12 @@
 package com.AutomatedMeetingBookingSystem.service;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.AutomatedMeetingBookingSystem.dao.BookingInformationDao;
+import com.AutomatedMeetingBookingSystem.dao.DaoFactory;
 import com.AutomatedMeetingBookingSystem.enums.MeetingType;
 import static com.AutomatedMeetingBookingSystem.enums.MeetingType.CLASSROOMTRAINING;
 import static com.AutomatedMeetingBookingSystem.enums.MeetingType.BUSINESS ;
@@ -15,38 +19,40 @@ import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
 import com.AutomatedMeetingBookingSystem.utility.ObjectFactory;
 public class  BookingInformationServiceImpl implements BookingInformationService {
 	
-	BookingInformationDao bookingInformationDao = new ObjectFactory().getBookingDaoInstance();
+	BookingInformationDao bookingInformationDao;
+	
+	
 		
 
+	public BookingInformationServiceImpl(BookingInformationDao bookingInformationDao) {
+		super();
+		this.bookingInformationDao = DaoFactory.getBookingDaoInstance();
+	}
+
+
+
+
 	@Override
-	public List<MeetingRoom> getAvailableMeetingRoom(MeetingType type) {
-		List<String> amenities = new ArrayList<>();
+	public List<MeetingRoom> getAvailableMeetingRoom(LocalDate meetingDate, LocalTime startTime, LocalTime endTime, MeetingType type) {
+		String amenities = "%";
 		switch (type) {
 			case CLASSROOMTRAINING : 
-				amenities.add("WHITEBOARD");
-				amenities.add("PROJECTOR");		
+				amenities+="WHITEBOARD" + "%";
+				amenities+="PROJECTOR" + "%";
 				break;
-			case ONLINETRAINING : 
-				amenities.add("WIFICONNECTION");
-				amenities.add("PROJECTOR");		
+			case ONLINETRAINING :
+				amenities+="WIFICONNECTION" + "%";
+				amenities+="PROJECTOR" + "%";		
 				break;
-			case CONFERENCECALL : 
-				amenities.add("CONFERENCECALL");				
+			case CONFERENCECALL :
+				amenities+="CONFERENCECALL" + "%";			
 				break;
 			case BUSINESS:		
-				amenities.add("PROJECTOR");		
+				amenities+="PROJECTOR" + "%";	
 				break;
 		}
-		List<String> filteredMeetingRooms = bookingInformationDao.getMeetingRoomsByFilter(amenities);
-		List<String> availableMeetingRooms = bookingInformationDao.getAvailableMeetingRooms(filteredMeetingRooms);
-		List<MeetingRoom> meetingRoomsDetails = bookingInformationDao.getMeetingRoomsDetails(availableMeetingRooms);
+		List<MeetingRoom> meetingRoomsDetails = bookingInformationDao.getAvailableMeetingRooms(meetingDate, startTime, endTime, amenities);
 		return meetingRoomsDetails;
 	}
 
-	@Override
-	public void saveBookingInformation(Meeting meeting){
-		BookingInformation bookingInformation = new BookingInformation(meeting.getUniqueID(), meeting.getInfoMeetingRoomName(), meeting.getDate(), meeting.getStartTime(), meeting.getEndTime(), meeting.getOrganizedBy());
-		bookingInformationDao.saveBookingInformation(bookingInformation);
-	}
-	
 }
