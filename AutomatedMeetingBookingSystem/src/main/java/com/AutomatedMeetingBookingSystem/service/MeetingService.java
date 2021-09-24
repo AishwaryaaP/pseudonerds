@@ -19,5 +19,10 @@ public interface MeetingService {
 	List<Meeting> fetchMeetingsByUserID(int userID);
 	
 	List<Meeting> fetchMeetingsByOrganizedByManager(int managerId);
+	
+	public boolean deleteMeetingByUniqueId(int uniqueId);
+	
+	public boolean updateMeeting(Meeting meeting);
+
 
 }

@@ -15,4 +15,9 @@ public interface MeetingDao {
 	Meeting fetchMeetingByUniqueID(int uniqueID) throws ConnectionFailedException;
 
 	List<Meeting> fetchMeetingsByManagerID(int managerId);
+	
+	public boolean deleteMeetingByUniqueId(int uniqueId);
+	
+	public boolean updateMeeting(Meeting meeting);
+
 }
