@@ -11,7 +11,6 @@
 
 	<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
-
    
 	<%
 		request.setAttribute("act","getScheduledByManager");		
@@ -26,12 +25,7 @@
 	User u = (User)session.getAttribute("userDetail");
 	System.out.println(u.getCredit());
 	%>	
-
-   <form action="GetScheduledByManagerController" method= "post">
-   	<input type=submit value = 1></input>
-   </form>
 	
-
 	HttpSession session = request.getSession();
 	
     <h1>Created Meetings</h1>
@@ -48,16 +42,16 @@
             </tr>
             
             
-           <c:forEach items="${meetings}" var ='i'>
-         		
-             	
+            
+             <c:forEach items="${getScheduledByManager}">
                  <tr>
-                     <td><a href = "EditMeeting.jsp"><c:out value="${i.uniqueId}"/></a></td>
-                     <td><c:out value="${i.title}"/></td>
-                     <td><c:out value="${i.date}"/></td>  
-                     <td><c:out value="${i.startTime}"/></td>  
-                     <td><c:out value="${i.endTime}"/></td>
-                     <td><c:out value="${i.type}"/></td>  
+                     <td><a href = "EditMeeting.jsp"><c:out value="${items.uniqueId}"/></a></td>
+                     <td><c:out value="${items.title}"/></td>
+                     <td><c:out value="${items.date}"/></td>  
+                     <td><c:out value="${items.startTime}"/></td>  
+                     <td><c:out value="${items.endTime}"/></td>
+                     <td><c:out value="${items.type}"/></td>
+                     <td><c:out value="${items.infoMeetingRoomName}"/></td>
                  </tr>
                  
                 </c:forEach>

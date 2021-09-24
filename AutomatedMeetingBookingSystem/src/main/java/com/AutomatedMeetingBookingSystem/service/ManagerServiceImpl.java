@@ -53,7 +53,7 @@ public class ManagerServiceImpl implements ManagerService{
 		LocalDate meetingDate = LocalDate.parse(date);
 		LocalTime startTime = LocalTime.of(Integer.parseInt(startHours), Integer.parseInt(startMinutes));
 		LocalTime endTime = LocalTime.of(Integer.parseInt(endHours), Integer.parseInt(endMinutes));
-		List<MeetingRoom> availableRooms = bookingInfoService.getAvailableMeetingRoom(MeetingType.valueOf(type));
+		List<MeetingRoom> availableRooms = bookingInfoService.getAvailableMeetingRoom(meetingDate, startTime, endTime, MeetingType.valueOf(type));
 		return availableRooms;
 	}
 
@@ -71,5 +71,22 @@ public class ManagerServiceImpl implements ManagerService{
 			userDao.resetManagerCredits();
 		}
 	}
+	
+	public boolean deleteMeeting(int uniqueId) {// have to implement
+		
+		boolean deleted = meetingService.deleteMeetingByUniqueId(uniqueId);
+		if(deleted)
+			return true;
+		return false;
+	}
+
+	public boolean editMeeting(Meeting meeting) {
+		boolean updated = meetingService.updateMeeting(meeting);
+		if(updated)
+			return true;
+		
+		return false;
+	}
+	
 
 }
