@@ -17,7 +17,7 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 
 	private static final String SELECT_BY_ROOM_NAME = "SELECT roomId,roomName,seatingCapacity,rating,ratingSum,ratingCount,creditPerHour,amenities, count FROM MeetingRoom WHERE roomName=?";
 	private static final String SELECT_ALL_ROOMS = "SELECT roomId,roomName,seatingCapacity,rating,ratingSum,ratingCount,creditPerHour,amenities, count FROM MeetingRoom";
-	private static final String INSERT_ROOM = "INSERT INTO MeetingRoom(roomName, seatingCapacity, rating, ratingSum, ratingCount, creditPerHour, amenities, count) VALUES (?,?,?,?,?,?,?)";
+	private static final String INSERT_ROOM = "INSERT INTO MeetingRoom(roomName, seatingCapacity, rating, ratingSum, ratingCount, creditPerHour, amenities, count) VALUES (?,?,?,?,?,?,?,?)";
 	private static final String UPDATE_ROOM = "UPDATE MeetingRoom SET roomId=?, seatingCapacity=?, rating=?, ratingSum=?, ratingCount=?, creditPerHour=?, amenities=?, count=? WHERE roomName=?";
 	private static final String DELETE_ROOM_BY_NAME = "DELETE FROM MeetingRoom WHERE roomName=?";
 	private static final String UPDATE_MEETING_COUNT = "Update MeetingRoom SET count=? WHERE roomName=?";
@@ -139,15 +139,14 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 			}
 			try {
 				stmt = connection.prepareStatement(INSERT_ROOM);
-				stmt.setInt(1, room.getRoomId());
-				stmt.setString(2, room.getRoomName());
-				stmt.setInt(3, room.getSeatingCapacity());
-				stmt.setDouble(4, room.getRating());
-				stmt.setInt(5, room.getRatingSum());
-				stmt.setInt(6, room.getRatingCount());
-				stmt.setInt(7, room.getCreditPerHour());
-				stmt.setString(8, amenitiesStr);
-				stmt.setInt(9, room.getCount());
+				stmt.setString(1, room.getRoomName());
+				stmt.setInt(2, room.getSeatingCapacity());
+				stmt.setDouble(3, room.getRating());
+				stmt.setInt(4, room.getRatingSum());
+				stmt.setInt(5, room.getRatingCount());
+				stmt.setInt(6, room.getCreditPerHour());
+				stmt.setString(7, amenitiesStr);
+				stmt.setInt(8, room.getCount());
 
 				int recordsUpdated = stmt.executeUpdate();
 				if(recordsUpdated>0)
