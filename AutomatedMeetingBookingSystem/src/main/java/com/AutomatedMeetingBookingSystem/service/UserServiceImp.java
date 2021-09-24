@@ -23,7 +23,7 @@ public class UserServiceImp implements UserServiceInterface{
 			return user;
 		}
 		else {
-			//Exception
+			throw new UserNotFoundException("No such user found");
 			return null;
 		}
 	}
