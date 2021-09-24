@@ -9,12 +9,23 @@ import com.AutomatedMeetingBookingSystem.service.MeetingRoomServiceImpl;
 
 import com.AutomatedMeetingBookingSystem.dao.DaoFactory;
 import com.AutomatedMeetingBookingSystem.dao.UserDao;
+import com.AutomatedMeetingBookingSystem.exception.NoServiceFoundException;
 
 public class AdminService implements AdminServiceInterface {
 
 	MeetingRoomService meetingRoomService;
 	public AdminService() {
+		try {
 		meetingRoomService = ServiceFactory.getMeetingRoomService();
+		if(meetingRoomService == null) {
+			throw new NoServiceFoundException("No Meeting Room Service Found");
+		}
+		
+		}
+		catch(NoServiceFoundException e) {
+			System.err.println(e.getMessage());
+		}
+		
 	}
 	
 	public List<MeetingRoom> getAllRooms() {

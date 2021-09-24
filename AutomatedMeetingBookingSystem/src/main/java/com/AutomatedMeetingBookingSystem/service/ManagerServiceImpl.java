@@ -80,13 +80,29 @@ public class ManagerServiceImpl implements ManagerService{
 		return false;
 	}
 
-	public boolean editMeeting(Meeting meeting) {
-		boolean updated = meetingService.updateMeeting(meeting);
+	@Override
+	public boolean editMeeting(int uniqueId , int organizedBy, String roomName, String title, String date, String startHours,
+		String startMinutes, String endHours, String endMinutes, String type, String listOfMembers) {
+		LocalDate meetingDate = LocalDate.parse(date);
+		LocalTime startTime = LocalTime.of(Integer.parseInt(startHours), Integer.parseInt(startMinutes));
+		LocalTime endTime = LocalTime.of(Integer.parseInt(endHours), Integer.parseInt(endMinutes));
+		int meetingRoomCredits = meetingRoomService.getRoomPerHourCredits(roomName);
+		double meetingDuration = Duration.between(startTime, endTime).toMinutes();
+		double creditsReqForMeeting = meetingDuration*meetingRoomCredits;
+		double managerCredits = userService.getUserCredits(organizedBy);
+		double updatedCredits = managerCredits - creditsReqForMeeting;
+	
+		Meeting newMeeting =  new Meeting(uniqueId,  organizedBy,  roomName,  title, meetingDate,  startTime,
+				 endTime,MeetingType.valueOf(type),  listOfMembers);
+		boolean updated = meetingService.updateMeeting(newMeeting);
 		if(updated)
 			return true;
-		
 		return false;
+		
 	}
+
+	
+
 	
 
 }
