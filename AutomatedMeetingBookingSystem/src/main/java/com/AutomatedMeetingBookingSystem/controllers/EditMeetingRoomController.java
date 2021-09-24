@@ -20,7 +20,7 @@ import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
  * Servlet implementation class EditMeetingRoom
  */
 
-//@WebServlet("/EditMeetingRoomController")
+@WebServlet("/EditMeetingRoomController")
 public class EditMeetingRoomController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private AdminServiceInterface adminService;

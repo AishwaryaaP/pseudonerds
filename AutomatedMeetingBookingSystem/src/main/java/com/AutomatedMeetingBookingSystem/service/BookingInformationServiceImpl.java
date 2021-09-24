@@ -24,7 +24,7 @@ public class  BookingInformationServiceImpl implements BookingInformationService
 	
 		
 
-	public BookingInformationServiceImpl(BookingInformationDao bookingInformationDao) {
+	public BookingInformationServiceImpl() {
 		super();
 		this.bookingInformationDao = DaoFactory.getBookingDaoInstance();
 	}

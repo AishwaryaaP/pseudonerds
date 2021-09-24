@@ -41,7 +41,9 @@ public class UserServiceImp implements UserServiceInterface{
 
 	@Override
 	public boolean addUsers(ArrayList<User> userList) {
-		System.out.println("oks");
+		if(userDao.addUsers(userList)) {
+			return true;
+		}
 		return false;
 	}
 
