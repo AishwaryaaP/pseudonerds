@@ -17,5 +17,10 @@ public interface ManagerService {
 	List<Meeting> getOrganizedByManager(int managerId);
 	
 	void resetManagerCredits();
+	
+	public boolean deleteMeeting(int uniqueId);
+	
+	public boolean editMeeting(Meeting meeting);
+
 
 }

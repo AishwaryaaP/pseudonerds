@@ -75,5 +75,17 @@ public class MeetingServiceImpl implements MeetingService {
 		List<Meeting> meetings = meetingDao.fetchMeetingsByManagerID(managerId);
 		return meetings;
 	}
+	
+	public boolean deleteMeetingByUniqueId(int uniqueId) {
+		boolean result = meetingDao.deleteMeetingByUniqueId(uniqueId);
+		return result;
+	}
+
+	@Override
+	public boolean updateMeeting(Meeting meeting) {
+		boolean result = meetingDao.updateMeeting(meeting);
+		return result;
+	}
+
 }
 
