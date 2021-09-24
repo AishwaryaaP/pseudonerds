@@ -9,7 +9,12 @@
 <body>
 
 <h1>Create Room</h1>
-    <form action="ManagerController" >
+    <form action="ManagerController" onsubmit = "validateForm()" >
+    	 <%
+		request.setAttribute("act","getAvailableRooms");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ManagerController");
+		dispatcher.forward(request, response);
+		%>    
         <label for="type">Choose meeting type:</label>
   		<select id="type" name="type">
     		<option value="classroomTraining">ClassRoom Training</option>
@@ -32,13 +37,5 @@
         
               
     </form>
-      
-
-
-	
-        
-        
-	
-
 </body>
 </html>
