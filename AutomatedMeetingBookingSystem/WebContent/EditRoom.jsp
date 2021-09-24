@@ -15,6 +15,7 @@
 </head>
 <body>
 	<%
+
 		MeetingRoom room = (MeetingRoom)request.getAttribute("MeetingRoom");				
 	%>
 	
@@ -92,6 +93,7 @@
 				
 		<button > submit</button>        </form>
     	  
+
 	
 
 

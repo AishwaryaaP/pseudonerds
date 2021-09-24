@@ -1,5 +1,4 @@
 package com.AutomatedMeetingBookingSystem.controllers;
-import com.AutomatedMeetingBookingSystem.model.User;
 
 import java.io.IOException;
 
@@ -28,25 +27,27 @@ public class CreateMeetingController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int organizedBy = ((User)request.getSession().getAttribute("userDetail")).getUserId();
+		int organizedBy = Integer.parseInt(request.getParameter("userId"));
 		String meetingId = request.getParameter("meetingId");
 		String roomName = request.getParameter("roomName");
 		String title = request.getParameter("title");
-		String date = request.getParameter("date");
-		String startTime = request.getParameter("startTime");
-		String endTime = request.getParameter("endTime");
+		String date = request.getParameter("meetingDate");
+		String startHours = request.getParameter("startHours");
+		String startMinutes = request.getParameter("startMinutes");
+		String endHours = request.getParameter("endHours");
+		String endMinutes = request.getParameter("endMinutes");
 		String type = request.getParameter("type");
 		String listOfMembers = request.getParameter("listOfMembers");
 		boolean isMeetingCreated = false;
-		isMeetingCreated = managerService.createMeeting(organizedBy,meetingId, roomName, title, date, startTime, endTime, type, listOfMembers);
+		isMeetingCreated = managerService.createMeeting(organizedBy, roomName, title, date, startHours, startMinutes, endHours, endMinutes, type, listOfMembers);
 		if(isMeetingCreated) {
 			request.setAttribute("meetingCreated", true);
-			RequestDispatcher rd = request.getRequestDispatcher("ManagerHome.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("manager.jsp");
 			rd.forward(request, response);
 		}
 		else {
 			request.setAttribute("meetingCreated", false);
-			RequestDispatcher rd = request.getRequestDispatcher("ManagerHome.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("manager.jsp");
 			rd.forward(request, response);
 		}
 	}

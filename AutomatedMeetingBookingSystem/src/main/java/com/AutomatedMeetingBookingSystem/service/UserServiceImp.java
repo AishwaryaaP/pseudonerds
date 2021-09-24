@@ -23,7 +23,7 @@ public class UserServiceImp implements UserServiceInterface{
 			return user;
 		}
 		else {
-			//Exception
+			throw new UserNotFoundException("No such user found");
 			return null;
 		}
 	}
@@ -41,7 +41,9 @@ public class UserServiceImp implements UserServiceInterface{
 
 	@Override
 	public boolean addUsers(ArrayList<User> userList) {
-		System.out.println("oks");
+		if(userDao.addUsers(userList)) {
+			return true;
+		}
 		return false;
 	}
 

@@ -1,6 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"pageEncoding="ISO-8859-1"%>
 <%@ page import="com.AutomatedMeetingBookingSystem.model.Meeting" %>
+
+<%@ page
+	import="com.AutomatedMeetingBookingSystem.service.ServiceFactory.*"%>
+<%@ page
+	import="com.AutomatedMeetingBookingSystem.service.ServiceFactory"%>
+<%@page
+	import="com.AutomatedMeetingBookingSystem.service.MeetingService"%>
+<%@ page import="com.AutomatedMeetingBookingSystem.model.Meeting"%>
+<%@ page import="javax.servlet.http.HttpSession.*"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.AutomatedMeetingBookingSystem.controllers.*"%>
+<%@ page import="com.AutomatedMeetingBookingSystem.enums.*"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,6 +83,12 @@
 		<button > submit</button>        </form>
     	  
 	
+
+
+
+	
+	
+
 
 
 </body>

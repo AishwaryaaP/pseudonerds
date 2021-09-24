@@ -142,4 +142,39 @@ public class UserDaoImpl implements UserDao{
 			System.out.println(e.getMessage());
 		}
 	}
+	@Override
+	public boolean addUsers(ArrayList<User> userList) {
+		for(User u : userList) {
+			DaoUtilityInterface dao = new DaoUtility();
+			Connection conn = dao.getInstance();
+			User user = new User();
+			if (conn != null)
+			{
+				
+				try {
+					PreparedStatement statement = conn.prepareStatement("INSERT INTO meetingsystem.user(\"UserID\",\"name\",\"email\",\"phone\",\"credit\",\"role\")VALUES(?,?,?,?,?,?);");
+					statement.setInt(1, user.getUserId());
+					statement.setString(2, user.getName());
+					statement.setString(3, user.getEmail());
+					statement.setString(4, user.getPhoneNumber());
+					statement.setDouble(5, user.getCredit());
+					statement.setString(6, user.getRole());
+
+
+					int rs = statement.executeUpdate();
+					if(rs==0) {
+						//Exception
+						return false;
+					}
+
+					statement.close();
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			}
+		}
+		return true;
+	}
 }
