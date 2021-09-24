@@ -14,14 +14,11 @@ public interface ManagerService {
 	List<MeetingRoom> getAvailableRooms(String date, String startHours, String startMinutes, String endHours,
 			String endMinutes, String type);
 	
-<<<<<<< Updated upstream
 	List<Meeting> getOrganizedByManager(int managerId);
 	
 	void resetManagerCredits();
-=======
 	public boolean deleteMeeting(int uniqueId);
 	
 	public boolean editMeeting(Meeting meeting);
->>>>>>> Stashed changes
 
 }
