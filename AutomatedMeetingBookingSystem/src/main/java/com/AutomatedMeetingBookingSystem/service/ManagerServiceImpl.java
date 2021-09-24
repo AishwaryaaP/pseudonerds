@@ -71,5 +71,22 @@ public class ManagerServiceImpl implements ManagerService{
 			userDao.resetManagerCredits();
 		}
 	}
+	
+	public boolean deleteMeeting(int uniqueId) {// have to implement
+		
+		boolean deleted = meetingService.deleteMeetingByUniqueId(uniqueId);
+		if(deleted)
+			return true;
+		return false;
+	}
+
+	public boolean editMeeting(Meeting meeting) {
+		boolean updated = meetingService.updateMeeting(meeting);
+		if(updated)
+			return true;
+		
+		return false;
+	}
+	
 
 }
