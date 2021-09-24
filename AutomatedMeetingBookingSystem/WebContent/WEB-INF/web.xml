@@ -91,35 +91,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-<<<<<<< HEAD
-    <display-name>FetchMeetingRoomDetailsController</display-name>
-    <servlet-name>FetchMeetingRoomDetailsController</servlet-name>
-    <servlet-class>com.AutomatedMeetingBookingSystem.controllers.FetchMeetingRoomDetailsController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>FetchMeetingRoomDetailsController</servlet-name>
-    <url-pattern>/FetchMeetingRoomDetailsController</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>FetchMeetingDetailsController</display-name>
-    <servlet-name>FetchMeetingDetailsController</servlet-name>
-    <servlet-class>com.AutomatedMeetingBookingSystem.controllers.FetchMeetingDetailsController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>FetchMeetingDetailsController</servlet-name>
-    <url-pattern>/FetchMeetingDetailsController</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>EditMeetingController</display-name>
-    <servlet-name>EditMeetingController</servlet-name>
-    <servlet-class>com.AutomatedMeetingBookingSystem.controllers.EditMeetingController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>EditMeetingController</servlet-name>
-    <url-pattern>/EditMeetingController</url-pattern>
-=======
     <display-name>EditMeeting</display-name>
     <servlet-name>EditMeeting</servlet-name>
     <servlet-class>com.AutomatedMeetingBookingSystem.controllers.EditMeeting</servlet-class>
@@ -127,6 +98,5 @@
   <servlet-mapping>
     <servlet-name>EditMeeting</servlet-name>
     <url-pattern>/EditMeeting</url-pattern>
->>>>>>> 8045b89179b0268b257fdaff30b667712dca43ef
   </servlet-mapping>
 </web-app>

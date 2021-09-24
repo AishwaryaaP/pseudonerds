@@ -21,7 +21,7 @@ import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
 /**
  * Servlet implementation class EditMeeting
  */
-@WebServlet("/EditMeeting")
+//@WebServlet("/EditMeeting")
 public class EditMeeting extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
