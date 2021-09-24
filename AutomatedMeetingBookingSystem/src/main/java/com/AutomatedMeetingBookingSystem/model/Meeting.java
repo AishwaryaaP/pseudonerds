@@ -32,6 +32,7 @@ public class Meeting {
 
 	public Meeting() {
 		super();
+		
 	}
 
 

@@ -14,16 +14,16 @@ import com.AutomatedMeetingBookingSystem.model.User;
 import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
 
 /**
- * Servlet implementation class GlobalServerlet
+ * Servlet implementation class GlobalServlet
  */
-@WebServlet("/GlobalServerlet")
-public class GlobalServerlet extends HttpServlet {
+@WebServlet("/GlobalServlet")
+public class GlobalServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GlobalServerlet() {
+    public GlobalServlet() {
         super();
     }
 
@@ -31,7 +31,7 @@ public class GlobalServerlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			int userId = Integer.parseInt( request.getParameter("name"));
+			int userId = Integer.parseInt( request.getParameter("userId"));
 			String email = request.getParameter("email");
 			System.out.println(userId);
 			System.out.println(email);
@@ -39,34 +39,25 @@ public class GlobalServerlet extends HttpServlet {
 			User user = userService.getUserDetails(userId , email);			
 			if ( user != null ) {
 				request.getSession().setAttribute( "userDetail", user );
-				RequestDispatcher dispatcher1= request.getRequestDispatcher( "UserProfile.jsp" );
 				request.getSession().setAttribute( "LOGINSTATUS", "SUCCESS");
+				RequestDispatcher dispatcher = null;
 				switch(user.getRole()) {
-				case "admin":
-					RequestDispatcher dispatcher2= request.getRequestDispatcher( "AdminHome.jsp" );
+				case "ADMIN":
+					dispatcher= request.getRequestDispatcher( "AdminHome.jsp" );
 					break;
-				case "manager":
-					RequestDispatcher dispatcher3= request.getRequestDispatcher( "MemberHome.jsp" );
+				case "MANAGER":
+					dispatcher= request.getRequestDispatcher( "GetScheduledByManagerController" );
 					break;
-				case "member":
-					RequestDispatcher dispatcher4= request.getRequestDispatcher( "home.jsp" );		
+				case "MEMBER":
+					dispatcher= request.getRequestDispatcher( "MemberHome.jsp" );		
 					break;
 				}
-						
-				
+				dispatcher.forward(request, response);
 			} else {
 				request.getSession().setAttribute( "LOGINSTATUS", "FAILURE");
 				RequestDispatcher dispatcher = request.getRequestDispatcher( "Login.jsp" );
-				
-				
-				
-
+				dispatcher.forward(request, response);
 			}
-				
-			
-			
-			
-		
 	}
 
 }

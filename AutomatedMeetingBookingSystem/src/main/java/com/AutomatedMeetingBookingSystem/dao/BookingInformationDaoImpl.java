@@ -102,12 +102,12 @@ public class BookingInformationDaoImpl implements BookingInformationDao {
 					String aminitiesStr = result.getString(8);
 					room.setCount(result.getInt(9));
 
-					String[] amininityArray = aminitiesStr.split(" ");
-					for(String aminityItr : amininityArray)
-					{
-						aminitySet.add(aminityItr);
-					}
-					room.setAmenities(aminitySet);
+					/*
+					 * String[] amininityArray = aminitiesStr.split(" "); for(String aminityItr :
+					 * amininityArray) { aminitySet.add(aminityItr); }
+					 */
+					room.setAmenities(aminitiesStr);
+
 					meetingRooms.add(room);
 					aminitySet.clear();
 

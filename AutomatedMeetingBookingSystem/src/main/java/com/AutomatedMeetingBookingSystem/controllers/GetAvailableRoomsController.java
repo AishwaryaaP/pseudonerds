@@ -1,6 +1,8 @@
 package com.AutomatedMeetingBookingSystem.controllers;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -9,39 +11,48 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.AutomatedMeetingBookingSystem.enums.MeetingType;
 import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
+import com.AutomatedMeetingBookingSystem.service.BookingInformationService;
 import com.AutomatedMeetingBookingSystem.service.ManagerService;
 import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
 
 
 public class GetAvailableRoomsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ManagerService managerService;
+	private BookingInformationService bookingInformationService;
        
     public GetAvailableRoomsController() {
         super();
-        managerService = ServiceFactory.getManagerService();
+        bookingInformationService = ServiceFactory.getBookingInformationService();
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request, response);
 	}
 
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String date = request.getParameter("meetingDate");
-		String startHours = request.getParameter("startHours");
-		String startMinutes = request.getParameter("startMinutes");
-		String endHours = request.getParameter("endHours");
-		String endMinutes = request.getParameter("endMinutes");
-		String type = request.getParameter("type");
-		List<MeetingRoom> meetingRooms = managerService.getAvailableRooms(date, startHours, startMinutes, endHours, endMinutes, type);
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		request.setAttribute("meetingRooms", meetingRooms);
-		RequestDispatcher rd = request.getRequestDispatcher("manager.jsp");
-		rd.forward(request, response);
+		String date = req.getParameter("date");
+		LocalDate localDate = LocalDate.parse(date);
+		String sTime = req.getParameter("startTime");	
+		LocalTime startTime = LocalTime.parse(sTime);
+		String eTime = req.getParameter("endTime");
+		LocalTime endTime = LocalTime.parse(eTime);
+		String Mtype = req.getParameter("type");
+		MeetingType type = MeetingType.valueOf(Mtype);
+		List<MeetingRoom> meetingRooms = bookingInformationService.getAvailableMeetingRoom(localDate, startTime, endTime, type);
+		
+		req.setAttribute("meetingRooms", meetingRooms);
+		req.getSession().setAttribute("date", localDate);
+		req.getSession().setAttribute("startTime", startTime);
+		req.getSession().setAttribute("endTime", endTime);
+		req.getSession().setAttribute("type", type);
+		RequestDispatcher rd = req.getRequestDispatcher("AvailableMeetingRooms.jsp");
+		rd.forward(req, resp);
 	}
 
 }

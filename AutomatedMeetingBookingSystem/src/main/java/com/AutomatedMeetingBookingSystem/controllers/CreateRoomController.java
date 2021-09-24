@@ -31,7 +31,7 @@ public class CreateRoomController extends HttpServlet {
     }
 
 
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.getWriter().append("Served at: ").append(req.getContextPath());
 		String roomName = req.getParameter("roomName");
 		int seatingCapacity = Integer.valueOf(req.getParameter("seatingCapacity"));
@@ -39,28 +39,61 @@ public class CreateRoomController extends HttpServlet {
 		double rating = 0;
 		int ratingSum = 0;
 		int ratingCount = 0;
-		Set<String> amenities = new HashSet<>();
+		String amenities ="";
 		Map<String, Integer> creditMap = adminService.getAmenitiesCredit();
-		String amenitiesString = req.getParameter("amenities");
-		String[] s = amenitiesString.split(" ");
-		for (String str : s) {
-			amenities.add(str);
-			creditPerHour += creditMap.get(str);
+		String [] amenitiesList = req.getParameterValues("amenities");
+		for(String amenity : amenitiesList) {
+			switch(amenity) {
+			case "projector" :
+				amenities += "PROJECTOR" + " ";
+				creditPerHour += creditMap.get("PROJECTOR");
+				break;
+			case "Wifi-Connection" :
+				amenities += "WIFICONNECTION" + " ";
+				creditPerHour += creditMap.get("WIFICONNECTION");
+				break;
+			case "Con-Call" :
+				amenities += "CONFERENCECALL" + " ";
+				creditPerHour += creditMap.get("CONFERENCECALL");
+				break;
+			case "Whiteboard" :
+				amenities += "WHITEBOARD" + " ";
+				creditPerHour += creditMap.get("WHITEBOARD");
+				break;
+			case "WaterDispenser" :
+				amenities += "WATERDISPENCER" + " ";
+				creditPerHour += creditMap.get("WATERDISPENCER");
+				break;
+			case "TV" :
+				amenities += "TV" + " ";
+				creditPerHour += creditMap.get("TV");
+				break;
+			case "CoffeMachine" :
+				amenities += "COFFEEMACHINE" + " ";
+				creditPerHour += creditMap.get("COFFEEMACHINE");
+				break;
+			}
 		}
-    
-		MeetingRoom meetingRoom = new MeetingRoom(roomName, creditPerHour, seatingCapacity, rating, ratingSum,
-				ratingCount, amenities);
+		System.out.println(amenities);
+		MeetingRoom meetingRoom = new MeetingRoom(roomName, creditPerHour, seatingCapacity, rating, ratingSum,ratingCount, amenities);
 		boolean created = adminService.createMeetingRoom(meetingRoom);
-		req.setAttribute("created", created);
-		RequestDispatcher rd = req.getRequestDispatcher("AdminHome.jsp");
-		rd.forward(req, resp);
+		if(created == true){
+	  		System.out.println("meetingRoom Created");
+		}
+		
+		
+		  
+		  RequestDispatcher dispatcher = req.getRequestDispatcher( "AdminHome.jsp" );
+		  dispatcher.forward(req, resp);
+		 
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 	}
 
 }

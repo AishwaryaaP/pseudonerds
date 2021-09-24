@@ -11,10 +11,10 @@
 	<form action="GlobalServlet">
 	
 	<label for="userId">Enter UserId</label>
-	<input type=number name="userId" id="userId" value="userId">
+	<input type=number name="userId" id="userId" >
 	
 	<label for="email">Enter Email</label>
-	<input type=email name="email" id="email" value="email">
+	<input type=email name="email" id="email" >
 	
 	<button>SUBMIT</button>
 	

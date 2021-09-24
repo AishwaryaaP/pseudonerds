@@ -15,74 +15,85 @@
 </head>
 <body>
 	<%
-		MeetingRoom room = (MeetingRoom)request.getSession().getAttribute("meetingDetail");
-		String roomName = room.getRoomName();	
- 		MeetingRoomService service = ServiceFactory.getMeetingRoomService();
-		MeetingRoom meeting_details = service.getRoomDetailsByRoomName(roomName);			
+
+		MeetingRoom room = (MeetingRoom)request.getAttribute("MeetingRoom");				
 	%>
 	
 	<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-	<%@ page import="java.util.Set" %>
-		<form onsubmit = "validateForm()" action = "AdminController">
-		<%
-		request.setAttribute("act","editMeetingRoom");
-		RequestDispatcher dispatcher = request.getRequestDispatcher("AdminController");
-		dispatcher.forward(request, response);
-		%>
-        <label 
-		for="meetingRoom">Meeting Room Name</label>
-        <input type="text"  placeholder="Enter room name" name="meetingRoom" value="<%=meeting_details.getRoomName()%>">
+		<form  action = "EditMeetingRoomController">
+		
+        <label for="roomName">Meeting Room Name</label>
+        <input type="text"  placeholder="Enter room name" name="roomName" id="roomName" value="<%=room.getRoomName()%>" readonly>
         
         <label for="seatingCapacity">Seating Capacity</label>
-        <input type=number step=any name="seatingCapacity" value="<%=meeting_details.getSeatingCapacity()%>"><br />
+        <input type=number step=any name="seatingCapacity" value="<%=room.getSeatingCapacity()%>"><br />
 
 		<% 		
-		 Set<String> amenities = new HashSet<>();
-        amenities = meeting_details.getAmenities();
-        if(amenities.contains("projector"))
-        	%> 
-      	   <label for="projector">Projector</label><br>
-             <input type="checkbox" id="projector" name="projector" Checked value="projector">
-        if(amenities.contains("Wifi-Connection")) 
-       	   <label for="Wifi-Connection">Projector</label><br>
-              <input type="checkbox" id="Wifi-Connection" name="Wifi-Connection" Checked value="Wifi-Connection"> 
-        if(amenities.contains("Con-Call")) 
-       	   <label for="Con-Call">Projector</label><br>
-              <input type="checkbox" id="Con-Call" name="Con-Call" Checked value="Con-Call">
-        if(amenities.contains("Whiteboard")) 
-       	   <label for="Whiteboard">Projector</label><br>
-              <input type="checkbox" id="Whiteboard" name="Whiteboard" Checked value="Whiteboard">
-        if(amenities.contains("WaterDispenser")) 
-      	   <label for="WaterDispenser">Projector</label><br>
-             <input type="checkbox" id="WaterDispenser" name="WaterDispenser" Checked value="WaterDispenser">
-        if(amenities.contains("TV")) 
-       	   <label for="TV">Projector</label><br>
-              <input type="checkbox" id="TV" name="TV" Checked value="TV">
-        if(amenities.contains("CoffeMachine")) 
-       	   <label for="CoffeMachine">Projector</label><br>
-              <input type="checkbox" id="CoffeMachine" name="CoffeMachine" Checked value="CoffeMachine">
-		%>  
-		<button onClick="edit()" value ="editMeetingRoom" name = "act"></button>    <button onClick="delete()" value ="deleteMeetingRoom" name = "act"></button>     <button onClick="AdminHome.jsp" value ="Edit" name = "act"></button>           
-    </form>
-    	<%
-    	if(((String)request.getAttribute("act")).equals("editMeetingRoom"))
-    	{
-    	if(((String)request.getAttribute("updated")).equals("updated"))
-    	 System.out.println("Updated");
-        else
-        System.out.println("Not Updated! Plz try again");
-    	}
-    	if(((String)request.getAttribute("act")).equals("deleteMeetingRoom"))
-    	{
-    	if(((String)request.getAttribute("deleted")).equals("deleted"))
-    	 System.out.println("deleted");
-        else
-        System.out.println("Not Deleted! Plz try again");
-    	}
-    	
-    	////conflict of act in attribute and button
-    	
-	%>   
+		 String [] amenitiesString = room.getAmenities().split(" ");
+         Set<String> amenities = new HashSet<>();
+         for(String amenity : amenitiesString) {
+        	 amenities.add(amenity);
+         }
+         %> 
+         <label for="projector">Projector</label><br>
+         <% if(amenities.contains("PROJECTOR")) { %> 
+             <input type="checkbox" id="projector" name="amenities" Checked value="projector">
+         <% } 
+            else { %>
+             <input type="checkbox" id="projector" name="amenities"  value="projector">
+         <% } %>
+         
+         <label for="Wifi-Connection">Wifi-Connection</label><br>
+         <% if(amenities.contains("WIFICONNECTION")) { %> 
+             <input type="checkbox" id="Wifi-Connection" name="amenities" Checked value="Wifi-Connection">
+         <% } 
+            else { %>
+             <input type="checkbox" id="Wifi-Connection" name="amenities"  value="Wifi-Connection">
+         <% } %>
+         
+         <label for="Con-Call">Con-Call</label><br>
+         <% if(amenities.contains("CONFERENCECALL")) { %> 
+             <input type="checkbox" id="Con-Call" name="amenities" Checked value="Con-Call">
+         <% } 
+            else { %>
+             <input type="checkbox" id="Con-Call" name="amenities"  value="Con-Call">
+         <% } %>
+         
+         <label for="Whiteboard">Whiteboard</label><br>
+         <% if(amenities.contains("WHITEBOARD")) { %> 
+             <input type="checkbox" id="Whiteboard" name="amenities" Checked value="Whiteboard">
+         <% } 
+            else { %>
+             <input type="checkbox" id="Whiteboard" name="amenities"  value="Whiteboard">
+         <% } %>
+         
+         <label for="WaterDispenser">WaterDispenser</label><br>
+         <% if(amenities.contains("WATERDISPENCER")) { %> 
+             <input type="checkbox" id="WaterDispenser" name="amenities" Checked value="WaterDispenser">
+         <% } 
+            else { %>
+             <input type="checkbox" id="WaterDispenser" name="amenities"  value="WaterDispenser">
+         <% } %>
+         
+         <label for="TV">TV</label><br>
+         <% if(amenities.contains("TV")) { %> 
+             <input type="checkbox" id="TV" name="amenities" Checked value="TV">
+         <% } 
+            else { %>
+             <input type="checkbox" id="TV" name="amenities"  value="TV">
+         <% } %>
+         
+         <label for="CoffeMachine">CoffeMachine</label><br>
+         <% if(amenities.contains("COFFEEMACHINE")) { %> 
+             <input type="checkbox" id="CoffeMachine" name="amenities" Checked value="CoffeMachine">
+         <% } 
+            else { %>
+             <input type="checkbox" id="CoffeMachine" name="amenities"  value="CoffeMachine">
+         <% } %>
+				
+		<button > submit</button>        </form>
+    	  
+
 	
 
 

@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"pageEncoding="ISO-8859-1"%>
+<%@ page import="com.AutomatedMeetingBookingSystem.model.Meeting" %>
+
 <%@ page
 	import="com.AutomatedMeetingBookingSystem.service.ServiceFactory.*"%>
 <%@ page
@@ -11,6 +12,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.AutomatedMeetingBookingSystem.controllers.*"%>
 <%@ page import="com.AutomatedMeetingBookingSystem.enums.*"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,89 +20,73 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
 	<%
-	Meeting meeting = (Meeting)request.getSession().getAttribute("scheduleDetail");
-	int uniqueId = meeting.getUniqueID();
-	MeetingService service = ServiceFactory.getMeetingService();
-	Meeting meeting_details = service.fetchMeetingByUniqueID(uniqueId);
+		Meeting meeting = (Meeting)request.getAttribute("meeting");				
 	%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-	<%@ page import="java.util.Set"%>
-	<form onsubmit="validateForm()" action="ManagerController">
-		<label for="title">title</label> 
-		<input type="text" placeholder="Enter meeting title" name="title" value="<%=meeting_details.getTitle()%>"> 
-			
-			<label for="date">Date</label>
-		<input type=date name="date" value="<%=meeting_details.getDate()%>"><br />
-
-		<label for="startTime">startTime</label> <input type=time
-			name="startTime" value="<%=meeting_details.getStartTime()%>"><br />
-
-		<label for="endTime">Date</label> <input type=time name="endTime"
-			value="<%=meeting_details.getEndTime()%>"><br />
-		<%
-			MeetingType type = meeting_details.getType();
-				switch (type) {
-				case CLASSROOMTRAINING : 
-					%>
-					<label for="type">Choose meeting type:</label> <select id="type"
-						name="type">
-						<option value="classroomTraining" selected="selected">ClassRoom
-							Training</option>
-						<%
-					break;
-				case ONLINETRAINING : 
-					%>
-					<option value="OnlineTraining" selected="selected">Online
-						Training</option>
-					<%	
-					break;
-				case CONFERENCECALL : 
-					%>
-					<option value="ConferenceCall" selected="selected">ConferenceCall</option>
-					<%			
-					break;
-				case BUSINESS:	
-					%>
-					<option value="business" selected="selected">Business</option>
-					</select>
-					<%	break;
-			}
-				%>
+	
+	<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+		<form  action = "EditMeetingController">
 		
-		 <label for="listOfMembers">listOfMembers</label> <input type=text
-			id="listOfMembers" name="listOfMembers"
-			value="<%=meeting_details.getListOfMember()%>"> </br>
-		<%
-			request.setAttribute("act", "editMeeting");
-		RequestDispatcher dispatcher = request.getRequestDispatcher("ManagerController");
-		dispatcher.forward(request, response);
-		%>
+        <label for="uniqueID">Meeting ID</label>
+        <input type="text"   name="uniqueID" id="uniqueID" value="<%=meeting.getUniqueID()%>" readonly>
+        
+        <label for="organizedBy">organizedby</label>
+        <input type=number  name="organizedBy" value="<%=meeting.getOrganizedBy()%>" readonly><br />
+        
+         <label for="title">title</label>
+        <input type=text  name="title" value="<%=meeting.getTitle()%>"><br />
+        
+        <label for="date">date</label>
+        <input type=date  name="date" value="<%=meeting.getDate()%>"><br />
+        
+        <label for="startTime">startTime</label>
+        <input type=time  name="startTime" value="<%=meeting.getStartTime()%>"><br />
+        
+        <label for="endTime">endTime</label>
+        <input type=time  name="endTime" value="<%=meeting.getEndTime()%>"><br />
+     
+          <label for="type">Choose meeting type:</label>
+          <select id="type" name="type">
+          <% if( meeting.getType().value.equals("CLASSROOMTRAINING") ){	  %>
+  			<option value="classroomTraining" Selected>ClassRoom Training</option>
+    		<% }
+          		else { %>
+    		<option value="classroomTraining" >ClassRoom Training</option>
+    		<%}
+              if( meeting.getType().value.equals("ONLINETRAINING")){
+        	  %>
+    		<option value="OnlineTraining"Selected>Online Training</option>
+    		<% }
+    		else {
+    		%>
+    		<option value="OnlineTraining">Online Training</option>
+    		<% }
+    			if(meeting.getType().value.equals("CONFERENCECALL")){
+        	  %>
+    		<option value="ConferenceCall"Selected>ConferenceCall</option>
+    		<% }
+    		else {
+    		%>
+    		<option value="ConferenceCall">ConferenceCall</option>
+    		<% }
+    			if( meeting.getType().value.equals("BUSINESS")){
+        	  %>
+    		<option value="business"Selected>Business</option>
+    		<%  }
+    		else {
+    		%>
+    		<option value="business">Business</option>
+    		<% } %>
+  		</select>
+  		
+				
+		<button > submit</button>        </form>
+    	  
+	
 
 
-		<button onClick="edit()" value ="editMeeting" name = "act"></button>    <button onClick="delete()" value ="deleteMeeting" name = "act"></button>     <button onClick="ManagerHome.jsp" value ="Edit" name = "act"></button>
-	</form>
-	<%
-    	if(((String)request.getAttribute("act")).equals("editMeeting"))
-    	{
-    	if(((String)request.getAttribute("updated")).equals("updated"))
-    	 System.out.println("Updated");
-        else
-        System.out.println("Not Updated! Plz try again");
-    	}
-    	if(((String)request.getAttribute("act")).equals("deleteMeeting"))
-    	{
-    	if(((String)request.getAttribute("deleted")).equals("deleted"))
-    	 System.out.println("deleted");
-        else
-        System.out.println("Not Deleted! Plz try again");
-    	}
-    	
-    	////conflict of act in attribute and button
-    	
-	%>   
+
+	
 	
 
 

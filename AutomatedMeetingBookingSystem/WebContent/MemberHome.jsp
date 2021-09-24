@@ -10,12 +10,6 @@
 
 	<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
-   
-	<%
-		request.setAttribute("act","getScheduledMeetings");
-		RequestDispatcher dispatcher = request.getRequestDispatcher("AdminController");
-		dispatcher.forward(request, response);
-	%>    
 	HttpSession session = request.getSession();
 	
 	<a href = "UserProfile.jsp">User Details</a>

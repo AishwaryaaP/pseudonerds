@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="com.AutomatedMeetingBookingSystem.model.User" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,24 +9,8 @@
 <body>
 
 	<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-
-   
-	<%
-		request.setAttribute("act","getScheduledByManager");		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("ManagerController");
-		dispatcher.forward(request, response);
-	%>   
-	
-	<a href = "UserProfile.jsp">User Details</a> 
-	
-	<h1>MANAGER CREDITS</h1>
-	<%
-	User u = (User)session.getAttribute("userDetail");
-	System.out.println(u.getCredit());
-	%>	
-	
-	HttpSession session = request.getSession();
-	
+    <a href = "GetAvailableRoomsController"> CREATE MEETING</a>
+    
     <h1>Created Meetings</h1>
     
         <table  BORDER="5">
@@ -38,20 +21,19 @@
                <th>startTime</th>
                <th>endTime</th>
                <th>Type</th>
-               <th>Meeting Room Name</th>
+               
             </tr>
             
             
             
-             <c:forEach items="${getScheduledByManager}">
+             <c:forEach items="${meetings}" var ='i'>
                  <tr>
-                     <td><a href = "EditMeeting.jsp"><c:out value="${items.uniqueId}"/></a></td>
-                     <td><c:out value="${items.title}"/></td>
-                     <td><c:out value="${items.date}"/></td>  
-                     <td><c:out value="${items.startTime}"/></td>  
-                     <td><c:out value="${items.endTime}"/></td>
-                     <td><c:out value="${items.type}"/></td>
-                     <td><c:out value="${items.infoMeetingRoomName}"/></td>
+                     <td><a href = "FetchMeetingDetailsController?uniqueID=${i.uniqueID}"><c:out value="${i.uniqueID}"/></a></td>
+                     <td><c:out value="${i.title}"/></td>
+                     <td><c:out value="${i.date}"/></td>  
+                     <td><c:out value="${i.startTime}"/></td>  
+                     <td><c:out value="${i.endTime}"/></td>
+                     <td><c:out value="${i.type}"/></td>  
                  </tr>
                  
                 </c:forEach>
