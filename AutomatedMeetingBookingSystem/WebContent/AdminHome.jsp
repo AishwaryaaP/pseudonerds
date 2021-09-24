@@ -2,8 +2,6 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom" %>
-<%@page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom"%>
-
 <%@ page import="java.util.*" %>
     
 <!DOCTYPE html>
@@ -19,6 +17,7 @@
 	<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>      
 	
 	<a href = "GetAllRoomsController">User Details</a>	
+
 	
 	
     <h1>Created Rooms</h1>    

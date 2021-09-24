@@ -10,6 +10,12 @@
 
 <h1>Create Room</h1>
     <form action="ManagerController" onsubmit = "validateForm()" >
+    	 <%
+		request.setAttribute("act","getAvailableRooms");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ManagerController");
+		dispatcher.forward(request, response);
+		%>    
+    	
         <label for="type">Choose meeting type:</label>
   		<select id="type" name="type">
     		<option value="classroomTraining">ClassRoom Training</option>
@@ -37,12 +43,7 @@
         
               
     </form>
-    <%
-		request.setAttribute("act","getAvailableRooms");
-		RequestDispatcher dispatcher = request.getRequestDispatcher("ManagerController");
-		dispatcher.forward(request, response);
-	%>    
-
+   
 
 	<h1>Available Meeting Rooms</h1>
     
@@ -55,9 +56,6 @@
                <th>Amenities</th>
                <th>Select Room</th>
             </tr>
-            
-            
-             <%=getAvailabeRooms%>
              <c:forEach items="${getAvailabeRooms}">
          		
              	
