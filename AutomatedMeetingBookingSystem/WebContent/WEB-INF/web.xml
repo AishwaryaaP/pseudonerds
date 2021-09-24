@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-  
-
   <servlet>
     <servlet-name>GetAllRoomsController</servlet-name>
     <servlet-class>com.AutomatedMeetingBookingSystem.controllers.GetAllRoomsController</servlet-class>
@@ -10,7 +8,6 @@
     <servlet-name>GetAllRoomsController</servlet-name>
     <url-pattern>/GetAllRoomsController</url-pattern>
   </servlet-mapping>
-
   <servlet>
     <display-name>CreateMeetingController</display-name>
     <servlet-name>CreateMeetingController</servlet-name>
@@ -20,7 +17,6 @@
     <servlet-name>CreateMeetingController</servlet-name>
     <url-pattern>/CreateMeetingController</url-pattern>
   </servlet-mapping>
-
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -92,5 +88,35 @@
   <servlet-mapping>
     <servlet-name>GetAvailableRooms</servlet-name>
     <url-pattern>/GetAvailableRooms</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FetchMeetingRoomDetailsController</display-name>
+    <servlet-name>FetchMeetingRoomDetailsController</servlet-name>
+    <servlet-class>com.AutomatedMeetingBookingSystem.controllers.FetchMeetingRoomDetailsController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FetchMeetingRoomDetailsController</servlet-name>
+    <url-pattern>/FetchMeetingRoomDetailsController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FetchMeetingDetailsController</display-name>
+    <servlet-name>FetchMeetingDetailsController</servlet-name>
+    <servlet-class>com.AutomatedMeetingBookingSystem.controllers.FetchMeetingDetailsController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FetchMeetingDetailsController</servlet-name>
+    <url-pattern>/FetchMeetingDetailsController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EditMeetingController</display-name>
+    <servlet-name>EditMeetingController</servlet-name>
+    <servlet-class>com.AutomatedMeetingBookingSystem.controllers.EditMeetingController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditMeetingController</servlet-name>
+    <url-pattern>/EditMeetingController</url-pattern>
   </servlet-mapping>
 </web-app>

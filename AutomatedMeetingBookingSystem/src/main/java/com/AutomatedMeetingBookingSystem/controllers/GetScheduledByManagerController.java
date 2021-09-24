@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.AutomatedMeetingBookingSystem.model.Meeting;
+import com.AutomatedMeetingBookingSystem.model.User;
 import com.AutomatedMeetingBookingSystem.service.ManagerService;
 import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
 
@@ -25,16 +26,15 @@ public class GetScheduledByManagerController extends HttpServlet {
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int managerId = Integer.parseInt(request.getParameter("managerId"));
-		List<Meeting> meetings = managerService.getOrganizedByManager(managerId);
+		User user = (User)request.getSession().getAttribute("userDetail");
+		List<Meeting> meetings = managerService.getOrganizedByManager(user.getUserId());
 		request.setAttribute("meetings", meetings);
 		RequestDispatcher rd = request.getRequestDispatcher("ManagerHome.jsp");
 		rd.forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
 	}
 
 }

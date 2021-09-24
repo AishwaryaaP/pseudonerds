@@ -17,5 +17,10 @@ public interface ManagerService {
 	List<Meeting> getOrganizedByManager(int managerId);
 	
 	void resetManagerCredits();
+	
+	public boolean deleteMeeting(int uniqueId);
+
+	boolean editMeeting(int uniqueId,int organizedBy, String roomName, String title, String date, String startHours,
+			String startMinutes, String endHours, String endMinutes, String type, String listOfMembers);
 
 }

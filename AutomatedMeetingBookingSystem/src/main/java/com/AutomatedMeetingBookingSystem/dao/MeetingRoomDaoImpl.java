@@ -17,8 +17,8 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 
 	private static final String SELECT_BY_ROOM_NAME = "SELECT roomId,roomName,seatingCapacity,rating,ratingSum,ratingCount,creditPerHour,amenities, count FROM MeetingRoom WHERE roomName=?";
 	private static final String SELECT_ALL_ROOMS = "SELECT roomId,roomName,seatingCapacity,rating,ratingSum,ratingCount,creditPerHour,amenities, count FROM MeetingRoom";
-	private static final String INSERT_ROOM = "INSERT INTO MeetingRoom(roomName, seatingCapacity, rating, ratingSum, ratingCount, creditPerHour, amenities, count) VALUES (?,?,?,?,?,?,?)";
-	private static final String UPDATE_ROOM = "UPDATE MeetingRoom SET roomId=?, seatingCapacity=?, rating=?, ratingSum=?, ratingCount=?, creditPerHour=?, amenities=?, count=? WHERE roomName=?";
+	private static final String INSERT_ROOM = "INSERT INTO MeetingRoom(roomName, seatingCapacity, rating, ratingSum, ratingCount, creditPerHour, amenities, count) VALUES (?,?,?,?,?,?,?,?)";
+	private static final String UPDATE_ROOM = "UPDATE MeetingRoom SET seatingCapacity=?, creditPerHour=?, amenities=? WHERE roomName=?";
 	private static final String DELETE_ROOM_BY_NAME = "DELETE FROM MeetingRoom WHERE roomName=?";
 	private static final String UPDATE_MEETING_COUNT = "Update MeetingRoom SET count=? WHERE roomName=?";
 
@@ -49,13 +49,7 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 					room.setCreditPerHour(result.getInt(7));
 					String aminitiesStr = result.getString(8);
 					room.setCount(result.getInt(9));
-
-					String[] amininityArray = aminitiesStr.split(" ");
-					for(String aminityItr : amininityArray)
-					{
-						aminitySet.add(aminityItr);
-					}
-					room.setAmenities(aminitySet);
+					room.setAmenities(aminitiesStr);
 				}
 
 			}
@@ -99,12 +93,7 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 					String aminitiesStr = result.getString(8);
 					room.setCount(result.getInt(9));
 
-					String[] amininityArray = aminitiesStr.split(" ");
-					for(String aminityItr : amininityArray)
-					{
-						aminitySet.add(aminityItr);
-					}
-					room.setAmenities(aminitySet);
+					room.setAmenities(aminitiesStr);
 					roomList.add(room);
 					aminitySet.clear();
 
@@ -131,29 +120,26 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 		if (connection != null) 
 		{
 			PreparedStatement stmt;
-			String amenitiesStr=null;
+			String amenitiesStr=room.getAmenities();
 
-			for(String amenityItr : room.getAmenities())
-			{
-				amenitiesStr+=" " + amenityItr;
-			}
+		
 			try {
 				stmt = connection.prepareStatement(INSERT_ROOM);
-				stmt.setInt(1, room.getRoomId());
-				stmt.setString(2, room.getRoomName());
-				stmt.setInt(3, room.getSeatingCapacity());
-				stmt.setDouble(4, room.getRating());
-				stmt.setInt(5, room.getRatingSum());
-				stmt.setInt(6, room.getRatingCount());
-				stmt.setInt(7, room.getCreditPerHour());
-				stmt.setString(8, amenitiesStr);
-				stmt.setInt(9, room.getCount());
+				//stmt.setInt(1, room.getRoomId());
+				stmt.setString(1, room.getRoomName());
+				stmt.setInt(2, room.getSeatingCapacity());
+				stmt.setDouble(3, room.getRating());
+				stmt.setInt(4, room.getRatingSum());
+				stmt.setInt(5, room.getRatingCount());
+				stmt.setInt(6, room.getCreditPerHour());
+				stmt.setString(7, amenitiesStr);
+				stmt.setInt(8, room.getCount());
 
 				int recordsUpdated = stmt.executeUpdate();
 				if(recordsUpdated>0)
 				{
 					stmt.close();
-					connection.commit();
+					/* connection.commit(); */
 					return true;
 				}
 			}
@@ -172,29 +158,20 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 		if (connection != null) 
 		{
 			PreparedStatement stmt;
-			String amenitiesStr=null;
+			String amenitiesStr=room.getAmenities();
 
-			for(String amenityItr : room.getAmenities())
-			{
-				amenitiesStr+=" " + amenityItr;
-			}
+			
 			try {
-				stmt = connection.prepareStatement(UPDATE_ROOM);
-				stmt.setInt(1, room.getRoomId());
-				stmt.setInt(2, room.getSeatingCapacity());
-				stmt.setDouble(3, room.getRating());
-				stmt.setInt(4, room.getRatingSum());
-				stmt.setInt(5, room.getRatingCount());
-				stmt.setInt(6, room.getCreditPerHour());
-				stmt.setString(7, amenitiesStr);
-				stmt.setString(8, room.getRoomName());
-				stmt.setInt(9, room.getCount());
-
+				stmt = connection.prepareStatement(UPDATE_ROOM);				
+				stmt.setInt(1, room.getSeatingCapacity());				
+				stmt.setInt(2, room.getCreditPerHour());
+				stmt.setString(3, amenitiesStr);
+				stmt.setString(4, room.getRoomName());				
 				int recordsUpdated = stmt.executeUpdate();
 				if(recordsUpdated>0)
 				{
 					stmt.close();
-					connection.commit();
+					//connection.commit();
 					return true;
 				}
 			}
@@ -222,7 +199,7 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 				if(recordsUpdated>0)
 				{
 					stmt.close();
-					connection.commit();
+					//connection.commit();
 					return true;
 				}
 			}
@@ -248,7 +225,7 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 				if(recordsUpdated>0)
 				{
 					stmt.close();
-					connection.commit();
+				//	connection.commit();
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();

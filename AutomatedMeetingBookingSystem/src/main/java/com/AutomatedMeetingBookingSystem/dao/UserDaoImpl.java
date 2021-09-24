@@ -61,25 +61,27 @@ public class UserDaoImpl implements UserDao{
 	{
 		DaoUtilityInterface dao = new DaoUtility();
 		Connection conn = dao.getInstance();
-		User allUser = new User();
+		User u = null;
 		if (conn != null)
 		{
 			
 			try {
-				PreparedStatement statement = conn.prepareStatement("select * from user where name =?");
+				PreparedStatement statement = conn.prepareStatement("select userId,name,email,phone,credit,role from user where userId =?;");
 				statement.setInt(1, userId);
+				System.out.println(statement.toString());
 				ResultSet rs = statement.executeQuery();
-				while (rs.next()) {
-					User u = new User();
-					u.setUserId(Integer.parseInt(rs.getString(1)));
+				if(rs != null) {
+					rs.next();
+					u = new User();
+					u.setUserId(rs.getInt(1));
 					u.setName(rs.getString(2));
 					u.setEmail(rs.getString(3));
 					u.setPhoneNumber(rs.getString(4));
-					u.setCredit(Integer.parseInt(rs.getString(5)));
+					u.setCredit(rs.getInt(5));
 					u.setRole(rs.getString(6));
-					return allUser;
+					System.out.println(rs.getString(6));
 				}
-
+				System.out.println(u.toString());
 				statement.close();
 				
 			} catch (Exception e) {
@@ -87,7 +89,7 @@ public class UserDaoImpl implements UserDao{
 			}
 			
 		}
-		return allUser;
+		return u;
 		
 	}
 	

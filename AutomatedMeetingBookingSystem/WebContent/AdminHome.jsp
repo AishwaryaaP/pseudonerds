@@ -19,22 +19,22 @@
 	<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>      
 	
 	<a href = "GetAllRoomsController">User Details</a>	
-	
-	
     <h1>Created Rooms</h1>    
         <table  BORDER="5">
             <tr>
                <th>Room Name</th>
                <th>seatingCapacity</th>
                <th>Credit per hour</th>
-               <th>Average Rating</th>
+               <th>Count</th>
+               <th>DELETE</th>
             </tr>            
              <c:forEach items="${meetingRoomList}" var='i' >         		
                  <tr>
-                     <td><a href = "EditRoom.jsp"><c:out value="${i.roomName}"/></a> </td>
+                     <td><a href = "FetchMeetingRoomDetailsController?roomName=${i.roomName}"><c:out value="${i.roomName}"/></a> </td>
                      <td><c:out value="${i.seatingCapacity}"/></td>  
                      <td><c:out value="${i.creditPerHour}"/></td>  
-                      <td><c:out value="${i.rating}"/></td> 
+                      <td><c:out value="${i.count}"/></td> 
+                      <td><a href = "DeleteMeetingRoomController?roomName=${i.roomName}"> delete</a></td>
                  </tr>
                 </c:forEach>
              
