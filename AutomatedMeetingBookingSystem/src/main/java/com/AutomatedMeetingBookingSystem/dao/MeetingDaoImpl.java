@@ -30,6 +30,10 @@ public class MeetingDaoImpl implements MeetingDao {
 	private static final String SELECT_ALL_MEETINGS = "Select * from meeting";
 	private static final String SELECT_MEETINGS_BY_DATE = "Select * from meeting where date = ?";
 	private static final String SELECT_MEETING_BY_UNIQUEID = "Select * From Meeting where uniqueID = ?";// to be edited
+	
+	private static final String UPDATE_MEETING = "UPDATE Meeting SET infoMeetingRoomName=?, title=?, date=?, startTime=?, endTime=?,  type=?, listOfMember=?, WHERE uniqueId=?";
+	private static final String DELETE_MEETING_BY_ID = "DELETE FROM Meeting WHERE uniqueId=?";
+	
 
 	public int createMeeting(int organizedBy, String roomName, String title, LocalDate date, LocalTime startTime,
 			LocalTime endTime, String type, String listOfMembers) throws ConnectionFailedException {
@@ -154,4 +158,72 @@ public class MeetingDaoImpl implements MeetingDao {
 		}
 		return meetings;
 	}
+	
+	public boolean updateMeeting(Meeting meeting)
+	{
+		if (connection != null) 
+		{
+			PreparedStatement statement;
+		
+			
+			try {
+				statement = connection.prepareStatement(UPDATE_MEETING);
+				statement.setString(1, meeting.getInfoMeetingRoomName());
+				statement.setString(2, meeting.getTitle());
+				statement.setString(3, meeting.getDate().toString());
+				statement.setString(4, meeting.getStartTime().toString());
+				statement.setString(5, meeting.getEndTime().toString());
+			    statement.setString(6, meeting.getType().toString());
+				statement.setString(7, meeting.getListOfMember());
+
+				statement.executeUpdate();
+				ResultSet rs = statement.getGeneratedKeys();
+				int id = 0;
+				while(rs.next()) {
+					id = rs.getInt(1);
+				}
+
+				if (id != 0) {
+					statement.close();
+					connection.commit();
+					return true;
+				}
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+	
+	public boolean deleteMeetingByUniqueId(int uniqueId)
+	{
+		if (connection != null) 
+		{
+			PreparedStatement stmt;
+
+			try {
+				stmt = connection.prepareStatement(DELETE_MEETING_BY_ID);
+				stmt.setInt(1, uniqueId);
+
+				int recordsUpdated = stmt.executeUpdate();
+				if(recordsUpdated>0)
+				{
+					stmt.close();
+					connection.commit();
+					return true;
+				}
+			}
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+
+		}
+		return false;
+	}
+	
 }
