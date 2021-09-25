@@ -4,7 +4,7 @@
   --lime-green: hsl(136, 65%, 51%);
   --bright-cyan: hsl(192, 70%, 51%);
   --grayish-blue: hsl(233, 8%, 62%);
-  --light-grayish-blue: hsl(220, 16%, 96%);
+  --light-grayish-blue: rgb(243, 244, 246);
   --very-light-gray: hsl(0, 0%, 98%);
   --white: hsl(0, 0%, 100%);
   --mix: linear-gradient(to right, var(--lime-green), var(--bright-cyan));
@@ -36,6 +36,14 @@ section{
     padding:5rem 0;  
 }
 
+.section-heading{
+	font-size:4rem;
+	font-style: bold;
+	text-shadow: 0 0 3px hsl(232, 15%, 28%), 0 0 5px hsl(232, 15%, 28%);  
+	color: lime;
+	font-variant: inherit;
+	align: center;
+}
 .container{
     width: 100%;
     max-width: 150rem;
@@ -232,6 +240,7 @@ header{
     padding-bottom: 5rem;
     color: var(--grayish-blue);
 }
+
 .contact-container .form-container{
     width: 50%;
 }
@@ -247,7 +256,7 @@ header{
     border-radius: 1rem;
     justify-content: center;
 }
-.form-container input{
+.form-container input, .form-container textarea{
     display: block;
     width: 100%;
     font-size:1.5rem;
@@ -262,10 +271,10 @@ header{
     outline: none;
 }
 .form-container1{
-    display: inline-flex;
+    display: flex;
     width: 100%;
     font-size:1.5rem;
-    font-weight: 400;
+    font-weight: 200;
     padding:0.5rem;
     margin:0.5rem;
     border:0.2rem solid var(--lime-green) ;
@@ -304,9 +313,9 @@ header{
     align-items: center;
     justify-content: center;
 }
+
 .rate {
-    display: inline-flex;
-    float: right;
+    float: left;
     height: 46px;
     padding: 0 10px;
 }
@@ -320,11 +329,11 @@ header{
     overflow:hidden;
     white-space:nowrap;
     cursor:pointer;
-    font-size:30px;
+    font-size:20px;
     color:#ccc;
 }
 .rate:not(:checked) > label:before {
-    content: '★ ';
+    content: '@';
 }
 .rate > input:checked ~ label {
     color: #ffc700;    
@@ -340,35 +349,37 @@ header{
 .rate > label:hover ~ input:checked ~ label {
     color: #c59b08;
 }
-
 /* Footer */
 .footer {
     padding: 0.1rem 0;
-    background-color: var(--dark-blue);
-    color: var(--dark-blue);
+    background-color: hsl(232, 26%, 16%);
+    box-shadow:5px 0px 20px 0px  hsl(232, 26%, 16%);
 }
 
 .footer {
+	width:100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-    row-gap:1 rem;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    row-gap:0.2 rem;
     column-gap: 2rem;
-    padding-top: 3rem;
+    padding-top: 0.2rem;
+    box-shadow:5px 0px 20px 0px  hsl(232, 26%, 16%);
 }
 
 .footer-icons {
-    padding-top: 3.5rem;
+    padding-top: 0.5rem;
     padding-left: 3.5rem;
 }
 
 .footer-links ul li {
-    padding-top: 1.5rem;
+    padding-top: 1rem;
     list-style: none;
-    padding-bottom: 1.5rem;
+    padding-bottom: 1rem;
 }
 
 .footer-links ul li a {
     color: var(--very-light-gray);
+    font-size: 2rem; 
 }
 
 .footer-links ul li a:hover {
@@ -376,9 +387,9 @@ header{
 }
 
 .footer-credit{
+	padding-top: 1.3rem;
+	position: relative;
     font-size:xx-large;
-    padding-top: 1.5rem;
-    padding-bottom: 0rem;
 }
 
 
@@ -467,3 +478,53 @@ header{
 
 .attribution { font-size: 11px; text-align: center; }
 .attribution a { color: hsl(228, 45%, 44%); }
+
+/* Table */
+h1{
+    font-size: 30px;
+    color: black;
+    text-transform: uppercase;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  table{
+    width:100%;
+    table-layout: fixed;
+  }
+  .tbl-header{
+    background-color: rgb(0,0,0);
+   }
+  .tbl-content{
+    height:300px;
+    overflow-x:auto;
+    margin-top: 0px;
+    border: 1px solid black;
+  }
+  th{
+    padding: 1rem;
+    text-align: left;
+    font-weight: 900;
+    font-size: 20px;
+    color: black;
+    text-transform: uppercase;
+  }
+  td{
+    padding: 1rem;
+    text-align: left;
+    vertical-align:middle;
+    font-weight: 500;
+    font-size: 15px;
+    color: black;
+    border-bottom: solid 1px rgb(0, 0, 0);
+  }
+  
+  ::-webkit-scrollbar {
+      width: 6px;
+  } 
+  ::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  } 
+  ::-webkit-scrollbar-thumb {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  }
