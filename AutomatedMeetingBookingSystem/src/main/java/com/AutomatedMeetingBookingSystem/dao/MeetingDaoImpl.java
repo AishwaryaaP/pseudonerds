@@ -36,7 +36,7 @@ public class MeetingDaoImpl implements MeetingDao {
 		BasicConfigurator.configure();
 	}
 
-	private static final String INSERT_MEETING = "insert into meeting (organisedBy, infoMeetingRoomName, title, date, starttime, endtime, type, listOfMember) values (?,?,?,?,?,?,?,?)";// "insert
+	private static final String INSERT_MEETING = "insert into meeting (organizedBy, infoMeetingRoomName, title, date, starttime, endtime, type, listOfMember) values (?,?,?,?,?,?,?,?)";// "insert
 	private static final String SELECT_MEETING_BY_MANAGERID = "Select uniqueId, type, infoMeetingRoomName, title, date, startTime, endTime from meeting where organizedBy = ?"; // into
 	// meeting
 	// values
@@ -65,12 +65,12 @@ public class MeetingDaoImpl implements MeetingDao {
 			statement.setString(8, listOfMembers);
 			statement.executeUpdate();
 			ResultSet rs = statement.getGeneratedKeys();
-
+			rs.next();
 			id = rs.getInt(1);
 
 			if (id != 0) {
 				statement.close();
-				connection.commit();
+				//connection.commit();
 				return id;
 			}
 		} catch (SQLException e) {

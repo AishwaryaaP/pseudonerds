@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +18,7 @@ import com.AutomatedMeetingBookingSystem.service.BookingInformationService;
 import com.AutomatedMeetingBookingSystem.service.ManagerService;
 import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
 
-
+@WebServlet("/GetAvailableRoomsController")
 public class GetAvailableRoomsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BookingInformationService bookingInformationService;
@@ -35,7 +36,7 @@ public class GetAvailableRoomsController extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		System.out.println("Hi");
 		String date = req.getParameter("date");
 		LocalDate localDate = LocalDate.parse(date);
 		String sTime = req.getParameter("startTime");	
@@ -45,14 +46,16 @@ public class GetAvailableRoomsController extends HttpServlet {
 		String Mtype = req.getParameter("type");
 		MeetingType type = MeetingType.valueOf(Mtype);
 		List<MeetingRoom> meetingRooms = bookingInformationService.getAvailableMeetingRoom(localDate, startTime, endTime, type);
-		
-		req.setAttribute("meetingRooms", meetingRooms);
-		req.getSession().setAttribute("date", localDate);
-		req.getSession().setAttribute("startTime", startTime);
-		req.getSession().setAttribute("endTime", endTime);
-		req.getSession().setAttribute("type", type);
-		RequestDispatcher rd = req.getRequestDispatcher("AvailableMeetingRooms.jsp");
-		rd.forward(req, resp);
+		for(MeetingRoom meetingRoom :meetingRooms ) {
+			System.out.println(meetingRoom.getRoomId());
+		}
+//		req.setAttribute("meetingRooms", meetingRooms);
+//		req.getSession().setAttribute("date", localDate);
+//		req.getSession().setAttribute("startTime", startTime);
+//		req.getSession().setAttribute("endTime", endTime);
+//		req.getSession().setAttribute("type", type);
+//		RequestDispatcher rd = req.getRequestDispatcher("AvailableMeetingRooms.jsp");
+//		rd.forward(req, resp);
 	}
 
 }

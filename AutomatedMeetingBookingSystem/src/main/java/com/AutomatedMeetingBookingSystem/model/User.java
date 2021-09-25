@@ -1,5 +1,9 @@
 package com.AutomatedMeetingBookingSystem.model;
 
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 public class User {
 	private int userId;
 	private String name;
@@ -7,6 +11,16 @@ public class User {
 	private String phoneNumber;
 	private String role;
 	private double credit;
+	
+
+	@SuppressWarnings("deprecation")
+	private String getDateTime() {
+	    
+	    
+	}
+	public String setDateTime() {
+		
+	}
 	
 	
 	public void giveFeedback() {
