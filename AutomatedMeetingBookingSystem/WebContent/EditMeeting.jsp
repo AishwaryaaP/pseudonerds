@@ -21,7 +21,7 @@
 </head>
 <body>
 	<%
-		Meeting meeting = (Meeting)request.getAttribute("meeting");				
+
 	%>
 	
 	<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
@@ -86,8 +86,6 @@
 
 
 
-	
-	
 
 
 
