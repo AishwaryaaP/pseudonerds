@@ -27,6 +27,7 @@ import com.mysql.cj.protocol.Resultset.Type;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import java.util.stream.Collectors; 
 
 public class MeetingDaoImpl implements MeetingDao {
 	private static Logger logger;
@@ -41,7 +42,7 @@ public class MeetingDaoImpl implements MeetingDao {
 		BasicConfigurator.configure();
 	}
 
-	private static final String INSERT_MEETING = "insert into meeting (organisedBy, infoMeetingRoomName, title, date, starttime, endtime, type, listOfMember) values (?,?,?,?,?,?,?,?)";// "insert
+	private static final String INSERT_MEETING = "insert into meeting (organizedBy, infoMeetingRoomName, title, date, starttime, endtime, type, listOfMember) values (?,?,?,?,?,?,?,?)";// "insert
 	private static final String SELECT_MEETING_BY_MANAGERID = "Select uniqueId, type, infoMeetingRoomName, title, date, startTime, endTime from meeting where organizedBy = ?"; // into
 	// meeting
 	// values
@@ -58,29 +59,31 @@ public class MeetingDaoImpl implements MeetingDao {
 		int id = 0;
 		try {
 			
-			List<String> availableRoomNames = bookingInformationService.getAvailableMeetingRoom(date, startTime, endTime, MeetingType.valueOf(type)).stream().map(m -> m.getRoomName()).Collectors(collect.toList());
+			List<String> availableRoomNames = bookingInformationService.getAvailableMeetingRoom(date, startTime, endTime, MeetingType.valueOf(type)).stream().map(m -> m.getRoomName()).collect(Collectors.toList());
 			if(availableRoomNames.contains(roomName))
 			{
-				PreparedStatement statement = connection.prepareStatement(INSERT_MEETING, Statement.RETURN_GENERATED_KEYS);
-				// statement.setInt(1, meeting.getUniqueID());
-				statement.setInt(1, organizedBy);
-				statement.setString(2, roomName);
-				statement.setString(3, title);
-				statement.setString(4, date.toString());
-				statement.setString(5, startTime.toString());
-				statement.setString(6, endTime.toString());
-				statement.setString(7, type.toString());
-				statement.setString(8, listOfMembers);
-				statement.executeUpdate();
-				ResultSet rs = statement.getGeneratedKeys();
 
-				id = rs.getInt(1);
 
-				if (id != 0) {
-					statement.close();
-					connection.commit();
-					return id;
-				}
+			PreparedStatement statement = connection.prepareStatement(INSERT_MEETING, Statement.RETURN_GENERATED_KEYS);
+			// statement.setInt(1, meeting.getUniqueID());
+			statement.setInt(1, organizedBy);
+			statement.setString(2, roomName);
+			statement.setString(3, title);
+			statement.setString(4, date.toString());
+			statement.setString(5, startTime.toString());
+			statement.setString(6, endTime.toString());
+			statement.setString(7, type.toString());
+			statement.setString(8, listOfMembers);
+			statement.executeUpdate();
+			ResultSet rs = statement.getGeneratedKeys();
+			rs.next();
+			id = rs.getInt(1);
+
+			if (id != 0) {
+				statement.close();
+				//connection.commit();
+				return id;
+			}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
