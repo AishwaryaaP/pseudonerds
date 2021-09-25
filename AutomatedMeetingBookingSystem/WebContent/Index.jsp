@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" sizes="32x32"
 	href="./IMAGES/favicon-32x32.png">
 <title>PseudoNerds|MeetPro</title>
-<link rel="stylesheet" href="./indexStyle.css">
+<link rel="stylesheet" href="./IndexStyle.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -94,45 +94,18 @@
 		<div class="container welcome ">
 			<div class="welcome-text">
 				<h1 class="u mb-small">
-					Next generation <span>meeting room booking system</span>
+					ProMeet: Next generation <span>meeting room booking system</span>
 				</h1>
 				<p class="u-mb-large">Take your boardroom life online. Your
 					ProMeet account will be a one-stop-solution for creating rooms,
 					scheduling meetings, managing rooms, inviting members, and much
 					more.</p>
-				<a><input type="file" name="myFile" accept="application/XML"
-					class="btn" required />Import Users</a>
 			</div>
 		</div>
 	</section>
-
-	<!-- About Section -->
-	<section class="about" id="about">
-		<div class="container about moveUP">
-			<div class="about-text">
-				<h2 class="u-mb-small heading-secondary">Why choose Easybank?</h2>
-				<p class="u-mb-large">We leverage Open Banking to turn your bank
-					account into your financial hub. Control your finances like never
-					before.</p>
-			</div>
-			<div class="about-item">
-				<div class="about-item-box">
-					<img src="./images/icon-online.svg" alt="" class="u-mb-small">
-					<h3 class="heading-tertiary u-mb-small">Online Banking</h3>
-					<p>Upload the json file containing user records to be inserted into database.</p>
-					<form action="ImportUserController" method="post"
-						enctype="multipart/form-data">
-						<input type="file" name="myFile" accept="application/XML" required />
-						<button type="submit" name="submit" value="insert data">Upload
-							File</button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--table-->
-	<section class="table-room">
-		<h2 class="section-heading">Created Rooms</h2class="section-heading">>
+<!--table-->
+<section class="table">
+		<h2 class="section-heading">Created Rooms</h2>
 		<div class="tbl-header">
 			<table cellpadding="0" cellspacing="0" border="0">
 				<thead>
@@ -143,6 +116,34 @@
 						<th>Count</th>
 						<th>DELETE</th>
 					</tr>
+					<tr>
+            <td>AAD</td>
+            <td>AUSENCO</td>
+            <td>$2.38</td>
+            <td>-0.01</td>
+            <td>-1.36%</td>
+          </tr>
+          <tr>
+            <td>AAX</td>
+            <td>ADELAIDE</td>
+            <td>$3.22</td>
+            <td>+0.01</td>
+            <td>+1.36%</td>
+          </tr>
+          <tr>
+            <td>XXD</td>
+            <td>ADITYA BIRLA</td>
+            <td>$1.02</td>
+            <td>-1.01</td>
+            <td>+2.36%</td>
+          </tr>
+          <tr>
+            <td>AAC</td>
+            <td>AUSTRALIAN COMPANY </td>
+            <td>$1.38</td>
+            <td>+2.01</td>
+            <td>-0.36%</td>
+          </tr>
 				</thead>
 			</table>
 		</div>
@@ -151,19 +152,35 @@
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tbody>
 						<tr>
-							<td><a
-								href="FetchMeetingRoomDetailsController?roomName=${i.roomName}"><c:out
-										value="${i.roomName}" /></a></td>
+							<td><a href="FetchMeetingRoomDetailsController?roomName=${i.roomName}"></a></td>
+							<td><c:out value="${i.roomName}" /></a></td>
 							<td><c:out value="${i.seatingCapacity}" /></td>
 							<td><c:out value="${i.creditPerHour}" /></td>
 							<td><c:out value="${i.count}" /></td>
-							<td><a
-								href="DeleteMeetingRoomController?roomName=${i.roomName}">delete</a></td>
 						</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 			</div>
+	</section>
+	
+	<!-- Import Section -->
+	<section class="import" id="import">
+		<div class="container about moveUP">
+			<div class="about-text">
+				<h2 class="u-mb-small heading-secondary">Upload XML File to Import Users</h2>
+				<p class="u-mb-large">XML file containing user records to be inserted into database.</p>
+			</div>
+			<div class="about-item">
+				<div class="about-item-box">
+					<img src="./images/icon-online.svg" alt="" class="u-mb-small">
+					<form action="ImportUserController" method="post" enctype="multipart/form-data">
+						<input type="file" name="myFile" accept="application/XML" required />
+						<button type="submit" name="submit" value="insert data">Upload File</button>
+					</form>
+				</div>
+			</div>
+		</div>
 	</section>
 
 	<!-- FeedBack -->

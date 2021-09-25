@@ -4,11 +4,11 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom"%>
 <%@page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom"%>
-<%@page import="com.AutomatedMeetingBookingSystem.model.User"%>
-<%@page import="com.AutomatedMeetingBookingSystem.controllers.GetAllRoomsController" %>
+<%@page import="com.AutomatedMeetingBookingSystem.model.User" %>
 
 <%@ page import="java.util.*"%>
-response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+<%
+	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 	response.setHeader("Pragma", "no-cache");
 	response.setHeader("Expires", "0");
 		
@@ -34,7 +34,6 @@ response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 	}
 %>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,18 +43,10 @@ response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 	href="./images/favicon-32x32.png">
 <title>MeetPro|Manager</title>
 <link rel="stylesheet" href="./AdminHomeStyle.css">
-
 </head>
-
 <body>
 
-    
 
-
-
-	<%
-		User user = (User) session.getAttribute("userDetail");
-	%>
 
 
 	<!-- Nav Bar -->
@@ -66,8 +57,9 @@ response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 			<div class="container1" id="container1">
 				<ul class="nav-ul" id="nav-ul">
 					<li class="nav-link"><a href="GetAllRoomsController">Room Details</a></li>
-					<li class="nav-link"><a>Last Loggedin: <%=user.getLastLoggedIn()%></a></li>
-					<li claas="nav-link"><a href="UserProfile.jsp">Hello <%=user.getName() %></a></li>
+					<li class="nav-link"><a>Last Loggedin: 12pm</a></li>
+					<li claas="nav-link"><a href="UserProfile.jsp">Hello
+							Admin!</a></li>
 				</ul>
 			</div>
 			<div class="menuToggle" id="menuToggle">
@@ -95,7 +87,7 @@ response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 	<!--table-->
 	<section class="table-room">
 
-		<h2 class="section-heading">Created Rooms</h2>
+		<h1>Created Rooms</h1>
 		<div class="tbl-header">
 			<table cellpadding="0" cellspacing="0" border="0">
 				<thead>
@@ -106,37 +98,6 @@ response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 						<th>Count</th>
 						<th>DELETE</th>
 					</tr>
-					<tr>
-					 <td>AAD</td>
-            <td>AUSENCO</td>
-            <td>$2.38</td>
-            <td>-0.01</td>
-            <td>-1.36%</td>
-          </tr>
-          <tr>
-            <td>AAX</td>
-            <td>ADELAIDE</td>
-            <td>$3.22</td>
-            <td>+0.01</td>
-            <td>+1.36%</td>
-          </tr>
-          <tr>
-            <td>XXD</td>
-            <td>ADITYA BIRLA</td>
-            <td>$1.02</td>
-            <td>-1.01</td>
-            <td>+2.36%</td>
-          </tr>
-          <tr>
-            <td>AAC</td>
-            <td>AUSTRALIAN COMPANY </td>
-            <td>$1.38</td>
-            <td>+2.01</td>
-            <td>-0.36%</td>
-          </tr>
-				</thead>
-			</table>
-		</div>
 				</thead>
 			</table>
 		</div>
@@ -144,7 +105,7 @@ response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 
 		<c:forEach items="${meetingRoomList}" var='i'>
 			<div class="tbl-content">
-				<table cellpadding="0" cellspacing="0" border="0" >
+				<table cellpadding="0" cellspacing="0" border="0">
 					<tbody>
 						<tr>
 							<td><a

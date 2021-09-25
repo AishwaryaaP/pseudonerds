@@ -3,7 +3,6 @@
 <%@page import="com.AutomatedMeetingBookingSystem.enums.MeetingType" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
 <%@page import="com.AutomatedMeetingBookingSystem.model.User" %>
 
 <%
@@ -32,7 +31,6 @@
 		}
 	}
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,6 +38,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!-- M -->
+
 	<form action="CreateMeetingController">
 		 <%
 		 String roomName = request.getParameter("roomName");

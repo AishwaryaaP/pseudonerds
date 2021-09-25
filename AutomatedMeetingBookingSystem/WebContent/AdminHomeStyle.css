@@ -71,7 +71,7 @@ section{
 
 a{
     text-decoration:none;
-    color:var(--lime-green);
+    color:var(--black);
 }
 
 .btn{
@@ -167,7 +167,31 @@ header{
     width: 100%;
     background-color: var(--light-grayish-blue);
 }
+section{
+    padding:5rem 0;  
+    align: center;
+}
 
+header{
+    width:100%;
+    height: 6.25rem;
+    padding: 1.5rem 0;
+    background-color: var(--dark-blue);
+    color: var(--dark-blue);
+    box-shadow:0px 5px 20px 0px var(--dark-blue);
+    position:fixed;
+    z-index:999;
+    top:0;
+}
+.section-heading{
+	
+	font-size:4rem;
+	font-style: bold;
+	text-shadow: 0 0 3px lime, 0 0 5px lime;  
+	color: var(--dark-blue);
+	font-variant: inherit;
+	align: center;
+}
 .welcome {
     display: flex;
     flex-direction: column-reverse;
@@ -538,26 +562,19 @@ max-width:100rem;
 .attribution a { color: hsl(228, 45%, 44%); }
 
 /* Table */
-h1{
-    font-size: 30px;
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: 300;
-    text-align: center;
-    margin-bottom: 15px;
-  }
   table{
     width:100%;
     table-layout: fixed;
+    background: -webkit-linear-gradient(left, #25c481, #25b7c4);
   }
   .tbl-header{
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(255,255,255,0.3);
    }
   .tbl-content{
     height:300px;
     overflow-x:auto;
     margin-top: 0px;
-    border: 1px solid rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255,255,255,0.3);
   }
   th{
     padding: 20px 15px;
@@ -573,9 +590,10 @@ h1{
     vertical-align:middle;
     font-weight: 500;
     font-size: 15px;
-    color: black;
-    border-bottom: solid 1px rgba(0, 0, 0, 0.5);
-  } 
+    color: #fff;
+    border-bottom: solid 1px rgba(255,255,255,0.1);
+  }
+  
   
   /* for custom scrollbar for webkit browser*/
   

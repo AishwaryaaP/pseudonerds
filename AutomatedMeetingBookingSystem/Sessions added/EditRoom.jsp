@@ -38,7 +38,6 @@
 		}
 	}
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,6 +45,8 @@
 <link rel="stylesheet" href="./CreateRoomStyle.css">
 </head>
 <body>
+<!-- A -->
+
 	<%
 		MeetingRoom room = (MeetingRoom) request.getAttribute("MeetingRoom");
 	%>

@@ -1,6 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@page import="com.AutomatedMeetingBookingSystem.model.User"%>
+<%
+	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	response.setHeader("Pragma", "no-cache");
+	response.setHeader("Expires", "0");
+		
+	if ((request.getSession(false) == null) || 
+			(session.getAttribute ( "LOGINSTATUS" ) != "SUCCESS" )) {
+		
+		request.getRequestDispatcher("Login.jsp").forward ( request, response );		
+	
+	}
+	else
+	{
+		User user = (User)session.getAttribute("userDetail");
+		
+		if ( user.getRole().equals ( "ADMIN" ) )
+		{
+			request.getRequestDispatcher("AdminHome.jsp").forward ( request, response );
+			
+		}
+		else if ( user.getRole().equals ( "MANAGER" ) )
+		{
+			request.getRequestDispatcher("ManagerHome.jsp").forward ( request, response );
+		}
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +52,7 @@
 				<ul class="nav-ul" id="nav-ul">
 					<li class="nav-link"><a href="GetAllRoomsController">Room
 							Details</a></li>
-					<li class="nav-link">Last Loggedin: <%=user.getLastLoggedIn()%></li>
+					<li class="nav-link"><a>Last Loggedin: <%=user.getLastLoggedIn()%></a></li>
 					<li claas="nav-link"><a href="UserProfile.jsp">Hello
 							<%=user.getName() %></a></li>
 				</ul>
@@ -54,7 +80,7 @@
 		<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
-		<h1>Scheduled Meetings for Member</h1>
+		<h2 class="section-heading">Scheduled Meetings for Member</h2>
 		<div class="tbl-header">
 			<table cellpadding="0" cellspacing="0" border="0">
 				<thead>
@@ -67,9 +93,41 @@
 						<th>Type</th>
 
 					</tr>
+			<tr>
+					 <td>AAD</td>
+            <td>AUSENCO</td>
+            <td>$2.38</td>
+            <td>-0.01</td>
+            <td>-1.36%</td>
+          </tr>
+          <tr>
+            <td>AAX</td>
+            <td>ADELAIDE</td>
+            <td>$3.22</td>
+            <td>+0.01</td>
+            <td>+1.36%</td>
+          </tr>
+          <tr>
+            <td>XXD</td>
+            <td>ADITYA BIRLA</td>
+            <td>$1.02</td>
+            <td>-1.01</td>
+            <td>+2.36%</td>
+          </tr>
+          <tr>
+            <td>AAC</td>
+            <td>AUSTRALIAN COMPANY </td>
+            <td>$1.38</td>
+            <td>+2.01</td>
+            <td>-0.36%</td>
+          </tr>
 				</thead>
 			</table>
 		</div>
+				</thead>
+			</table>
+		</div>
+
 
 		<c:forEach items="${meetings}" var='i'>
 			<div class="tbl-content">

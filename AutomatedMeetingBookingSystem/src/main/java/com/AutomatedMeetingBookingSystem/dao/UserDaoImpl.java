@@ -57,7 +57,7 @@ public class UserDaoImpl implements UserDao{
 		{
 			
 			try {
-				PreparedStatement statement = conn.prepareStatement("select userId,name,email,phone,credit,role from user where userId =?;");
+				PreparedStatement statement = conn.prepareStatement("select userId,name,email,phone,credit,role, lastloggedin from user where userId =?;");
 				statement.setInt(1, userId);
 				System.out.println(statement.toString());
 				ResultSet rs = statement.executeQuery();
@@ -70,6 +70,7 @@ public class UserDaoImpl implements UserDao{
 					u.setPhoneNumber(rs.getString(4));
 					u.setCredit(rs.getInt(5));
 					u.setRole(rs.getString(6));
+					u.setLastLoggedIn(Timestamp.valueOf(rs.getString(7)));
 					System.out.println(rs.getString(6));
 				}
 				System.out.println(u.toString());
