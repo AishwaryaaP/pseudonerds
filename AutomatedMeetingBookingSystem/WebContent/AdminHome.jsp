@@ -22,15 +22,12 @@ response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 	{
 		User user = (User)session.getAttribute("userDetail");
 		
-		if ( user.getRole().equals ( "MEMBER" ) )
+		if ( user.getRole().equals ( "MEMBER" ) || user.getRole().equals ( "MANAGER" ))
 		{
-			request.getRequestDispatcher("MemberHome.jsp").forward ( request, response );
+			request.getRequestDispatcher("Index.jsp").forward ( request, response );
 			
 		}
-		else if ( user.getRole().equals ( "MANAGER" ) )
-		{
-			request.getRequestDispatcher("ManagerHome.jsp").forward ( request, response );
-		}
+		
 	}
 %>
 

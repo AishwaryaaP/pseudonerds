@@ -16,14 +16,10 @@
 	{
 		User user = (User)session.getAttribute("userDetail");
 		
-		if ( user.getRole().equals ( "ADMIN" ) )
+		if ( user.getRole().equals ( "ADMIN" ) || user.getRole().equals ( "MANAGER" ))
 		{
-			request.getRequestDispatcher("AdminHome.jsp").forward ( request, response );
+			request.getRequestDispatcher("Index.jsp").forward ( request, response );
 			
-		}
-		else if ( user.getRole().equals ( "MANAGER" ) )
-		{
-			request.getRequestDispatcher("ManagerHome.jsp").forward ( request, response );
 		}
 	}
 %>
@@ -35,7 +31,7 @@
 <link rel="icon" type="image/png" sizes="32x32"
 	href="./images/favicon-32x32.png">
 <title>MeetPro|Manager</title>
-<link rel="stylesheet" href="./MemberHomeStyle.css">
+<link rel="stylesheet" href="./ManagerHomeStyle.css">
 </head>
 <body>
 

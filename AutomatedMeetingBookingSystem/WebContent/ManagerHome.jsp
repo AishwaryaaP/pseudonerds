@@ -17,14 +17,10 @@
 	{
 		User user = (User)session.getAttribute("userDetail");
 		
-		if ( user.getRole().equals ( "MEMBER" ) )
+		if ( user.getRole().equals ( "MEMBER" ) || user.getRole().equals ( "ADMIN" ))
 		{
-			request.getRequestDispatcher("MemberHome.jsp").forward ( request, response );
+			request.getRequestDispatcher("Index.jsp").forward ( request, response );
 			
-		}
-		else if ( user.getRole().equals ( "ADMIN" ) )
-		{
-			request.getRequestDispatcher("AdminHome.jsp").forward ( request, response );
 		}
 	}
 %>
@@ -37,7 +33,7 @@
 <link rel="icon" type="image/png" sizes="32x32"
 	href="./images/favicon-32x32.png">
 <title>MeetPro|Manager</title>
-<link rel="stylesheet" href="./MemberHomeStyle.css">
+<link rel="stylesheet" href="./ManagerHomeStyle.css">
 </head>
 <body>
 
@@ -54,7 +50,7 @@
 			<img class="logo" src="./images/pnlogo.svg" alt="MeetPro" href="#">
 			<div class="container1" id="container1">
 				<ul class="nav-ul" id="nav-ul">
-					<li class="nav-link"><a href="GetAllRoomsController">Room
+					<li class="nav-link"><a href="GetScheduledByManagerController">Room
 							Details</a></li>
 					<li class="nav-link"><a>Credit: <%=user.getCredit() %></a></li>
 					<li class="nav-link"><a>Last Loggedin: <%=user.getLastLoggedIn()%></a></li>
