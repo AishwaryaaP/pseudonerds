@@ -30,9 +30,8 @@ import org.apache.log4j.Logger;
 import java.util.stream.Collectors; 
 
 public class MeetingDaoImpl implements MeetingDao {
-	private static Logger logger;
-
 	
+	private static Logger logger;
 	private DaoUtilityInterface dao = new DaoUtility();
 	private BookingInformationService bookingInformationService = ServiceFactory.getBookingInformationService();
 	Connection connection = dao.getInstance();

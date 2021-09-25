@@ -9,7 +9,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
+import com.AutomatedMeetingBookingSystem.service.MeetingRoomService;
 import com.AutomatedMeetingBookingSystem.utility.DaoUtility;
 import com.AutomatedMeetingBookingSystem.utility.DaoUtilityInterface;
 
@@ -24,8 +29,15 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 	private static final String DELETE_ROOM_BY_NAME = "DELETE FROM MeetingRoom WHERE roomName=?";
 	private static final String UPDATE_MEETING_COUNT = "Update MeetingRoom SET count=? WHERE roomName=?";
 
-	DaoUtilityInterface dao = new DaoUtility();
-	Connection connection = dao.getInstance();
+	private DaoUtilityInterface dao = new DaoUtility();
+	private Connection connection = dao.getInstance();
+	private static Logger logger;
+
+	public MeetingRoomDaoImpl() {
+		super();
+		LogManager.getLogger(MeetingRoomService.class);
+		BasicConfigurator.configure();
+	}
 
 	@Override
 	public MeetingRoom fetchMeetingRoomByName(String roomName)
@@ -57,6 +69,7 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 			}
 			catch (SQLException e) {
 				e.printStackTrace();
+				logger.info(e.getMessage());
 			}
 			finally
 			{
@@ -64,6 +77,7 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 					stmt.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
+					logger.info(e.getMessage());
 				}
 			}
 		}
@@ -102,6 +116,7 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
+				logger.info(e.getMessage());
 			}
 			finally
 			{
@@ -109,6 +124,7 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 					stmt.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
+					logger.info(e.getMessage());
 				}
 			}
 
@@ -148,6 +164,8 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 			catch (SQLException e)
 			{
 				e.printStackTrace();
+
+				logger.info(e.getMessage());
 			}
 
 		}
@@ -180,6 +198,8 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 			catch (SQLException e)
 			{
 				e.printStackTrace();
+
+				logger.info(e.getMessage());
 			}
 
 		}
@@ -208,6 +228,7 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 			catch (SQLException e)
 			{
 				e.printStackTrace();
+				logger.info(e.getMessage());
 			}
 
 		}
@@ -231,6 +252,7 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
+				logger.info(e.getMessage());
 			}
 			
 		}

@@ -109,4 +109,14 @@
     <servlet-name>FetchMeetingRoomDetailsController</servlet-name>
     <url-pattern>/FetchMeetingRoomDetailsController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FeedbackController</display-name>
+    <servlet-name>FeedbackController</servlet-name>
+    <servlet-class>com.AutomatedMeetingBookingSystem.controllers.FeedbackController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FeedbackController</servlet-name>
+    <url-pattern>/FeedbackController</url-pattern>
+  </servlet-mapping>
 </web-app>
