@@ -4,25 +4,16 @@ package com.AutomatedMeetingBookingSystem.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.AutomatedMeetingBookingSystem.exception.ConnectionFailedException;
+
 import com.AutomatedMeetingBookingSystem.model.User;
 import com.AutomatedMeetingBookingSystem.utility.DaoUtility;
 import com.AutomatedMeetingBookingSystem.utility.DaoUtilityInterface;
-import com.mysql.cj.xdevapi.Statement;
 
 public class UserDaoImpl implements UserDao{
-
-//	public List<MeetingRoom> getAllRooms(){
-//		
-//	}
-//	
-//	public boolean deleteRoom(MeetingRoom obj) {
-//		
-//	}
 	
 	public List<User> getAllUser()
 	{
@@ -144,6 +135,7 @@ public class UserDaoImpl implements UserDao{
 			System.out.println(e.getMessage());
 		}
 	}
+	
 	@Override
 	public boolean addUsers(ArrayList<User> userList) {
 		for(User u : userList) {
@@ -178,5 +170,20 @@ public class UserDaoImpl implements UserDao{
 			}
 		}
 		return true;
+	}
+	@Override
+	public void setLastLoggedIn(int userId) {
+		try {
+			Connection connection = new DaoUtility().getInstance();
+			PreparedStatement statement = connection.prepareStatement("Update user set lastloggedin=? where userId = ?");
+			String currentTime = new Timestamp(System.currentTimeMillis()).toString();
+			statement.setString(1, currentTime);
+			statement.setInt(2, userId);
+			statement.executeUpdate();
+			statement.close();
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 }
