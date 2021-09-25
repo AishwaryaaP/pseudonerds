@@ -12,7 +12,7 @@ public interface MeetingDao {
 
 	public List<Meeting> fetchAllMeetings();
 
-	public Meeting fetchMeetingByUniqueID(int uniqueID) throws ConnectionFailedException;
+	public Meeting fetchMeetingByUniqueID(int uniqueID) ;
 
 	List<Meeting> fetchMeetingsByManagerID(int managerId);
 	
