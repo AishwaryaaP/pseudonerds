@@ -2,6 +2,7 @@ package com.AutomatedMeetingBookingSystem.model;
 
 import java.time.LocalTime;
 import java.time.LocalDate;
+import com.AutomatedMeetingBookingSystem.enums.MeetingType;
 
 public class Meeting {
 	private int uniqueID;
@@ -9,23 +10,29 @@ public class Meeting {
 	private String infoMeetingRoomName;
 	private String title;
 	private LocalDate date;
-	private LocalTime starttime;
-	private LocalTime endtime;
+	private LocalTime startTime;
+	private LocalTime endTime;
 	private String listOfMember;
 	public MeetingType type;
 
-	public Meeting( int uniqueID, int organisedBy, String infoMeetingRoomName, String title, LocalDate date, LocalTime starttime,
-			LocalTime endtime, MeetingType type, String listOfMember) {
+	public Meeting( int uniqueID, int organisedBy, String infoMeetingRoomName, String title, LocalDate date, LocalTime startTime,
+			LocalTime endTime, MeetingType type, String listOfMember) {
 		super();
 		this.uniqueID = uniqueID;
 		this.organizedBy = organisedBy;
 		this.infoMeetingRoomName = infoMeetingRoomName;
 		this.title = title;
 		this.date = date;
-		this.starttime = starttime;
-		this.endtime = endtime;
+		this.startTime = startTime;
+		this.endTime = endTime;
 		this.type = type;
 		this.listOfMember = listOfMember;
+	}
+
+
+	public Meeting() {
+		super();
+		
 	}
 
 
@@ -88,26 +95,26 @@ public class Meeting {
 
 
 
-	public LocalTime getStarttime() {
-		return starttime;
+	public LocalTime getStartTime() {
+		return startTime;
 	}
 
 
 
-	public void setStarttime(LocalTime starttime) {
-		this.starttime = starttime;
+	public void setStartTime(LocalTime startTime) {
+		this.startTime = startTime;
 	}
 
 
 
-	public LocalTime getEndtime() {
-		return endtime;
+	public LocalTime getEndTime() {
+		return endTime;
 	}
 
 
 
-	public void setEndtime(LocalTime endtime) {
-		this.endtime = endtime;
+	public void setEndTime(LocalTime endTime) {
+		this.endTime = endTime;
 	}
 
 
@@ -136,7 +143,7 @@ public class Meeting {
 	public String toString() {
 		return "Meeting [getUniqueID()=" + getUniqueID() + ", getOrganizedBy()=" + getOrganizedBy()
 				+ ", getInfoMeetingRoomName()=" + getInfoMeetingRoomName() + ", getTitle()=" + getTitle()
-				+ ", getDate()=" + getDate() + ", getStarttime()=" + getStarttime() + ", getEndtime()=" + getEndtime()
+				+ ", getDate()=" + getDate() + ", getStartTime()=" + getStartTime() + ", getEndTime()=" + getEndTime()
 				+ ", getType()=" + getType() + ", getListOfMember()=" + getListOfMember() + "]";
 	}
 }

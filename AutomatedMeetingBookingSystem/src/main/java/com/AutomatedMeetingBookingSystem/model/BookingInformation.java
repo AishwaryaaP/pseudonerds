@@ -8,14 +8,14 @@ public class BookingInformation {
     private String roomName;
     private LocalDate date;
     private LocalTime startTime;
-    private Time endTime;
+    private LocalTime endTime;
 	private int organizedBy; 
 	
     public BookingInformation() {
 		super();
 		
 	}
-	public BookingInformation(int uniqueId, String roomName, LocalDate date, LocalTime startTime, Time endTime,int organizedBy) {
+	public BookingInformation(int uniqueId, String roomName, LocalDate date, LocalTime startTime, LocalTime endTime,int organizedBy) {
 		super();
 		this.uniqueId = uniqueId;
 		this.roomName = roomName;
@@ -48,10 +48,10 @@ public class BookingInformation {
 	public void setUniqueId(int uniqueId) {
 		this.uniqueId = uniqueId;
 	}
-	public Time getEndTime() {
+	public LocalTime getEndTime() {
 		return endTime;
 	}
-	public void setEndTime(Time endTime) {
+	public void setEndTime(LocalTime endTime) {
 		this.endTime = endTime;
 	}
 	public int getOrganizedBy() {

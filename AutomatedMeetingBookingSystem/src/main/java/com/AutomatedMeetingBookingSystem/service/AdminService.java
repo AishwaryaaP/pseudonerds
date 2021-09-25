@@ -1,47 +1,84 @@
 package com.AutomatedMeetingBookingSystem.service;
 
 import java.util.List;
+import java.util.Map;
 
-import com.AutomatedMeetingBookingSystem.dao.DummyDao;
+import org.apache.log4j.Logger;
 
-public class AdminService {
-	public static List<MeetingRooms> getAllRooms(Object meetingRooms) { // checking if the object of meetingroom is null
-																		// or not
+import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
+import com.AutomatedMeetingBookingSystem.model.User;
+import com.AutomatedMeetingBookingSystem.service.MeetingRoomServiceImpl;
+
+import com.AutomatedMeetingBookingSystem.dao.DaoFactory;
+import com.AutomatedMeetingBookingSystem.dao.UserDao;
+import com.AutomatedMeetingBookingSystem.exception.NoRoomsFoundException;
+import com.AutomatedMeetingBookingSystem.exception.NoServiceFoundException;
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
+
+public class AdminService implements AdminServiceInterface {
+
+	MeetingRoomService meetingRoomService;
+	private static Logger logger;
+	public AdminService() {
 		try {
+			meetingRoomService = ServiceFactory.getMeetingRoomService();
+			if (meetingRoomService == null) {
+				throw new NoServiceFoundException("No Meeting Room Service Found");
+			}
 
-			if (meetingRooms == null)
-
-				throw new NullPointerException("No meeting room is created");
-		} catch (Exception e) {
-			System.err.println(e.getMessage()); //to print the error message when exception is thrown
-		}
-
-		return meetingRooms;
-	}
-
-	public static List<Employee> getAdminDetails(Object admin) 
-	{
-		try {
-			if(admin == null)
-				throw new NullPointerException("No admin is created");
-		}
-		catch(Exception e)
-		{
+		} catch (NoServiceFoundException e) {
 			System.err.println(e.getMessage());
 		}
-		return admin;
+		logger = LogManager.getLogger(MeetingRoomService.class);
+		BasicConfigurator.configure();
+
 	}
 
-	public static List<MeetingRooms> createMeetingRoom(Object meetingrooms) { // logic to create a customized meeting
-																				// room by calling the manager details
-		return meetingrooms;
+	public List<MeetingRoom> getAllRooms() {
+		try {
+			List<MeetingRoom>myList =  meetingRoomService.getAllMeetingRooms();
+			if(myList.size() ==0) {
+				throw new NoRoomsFoundException("No Rooms found Create a room first");
+			}
+			return myList;
+			
+		}
+		catch(NoRoomsFoundException e) {
+			System.err.println(e.getMessage());
+			logger.info(e.getMessage());
+			return null;
+		}
+		}
+
+	public boolean createMeetingRoom(MeetingRoom room) {
+		boolean inserted = meetingRoomService.addRoom(room);
+		if (inserted)
+			return true;
+		return false;
 	}
 
-	public static String editMeeting(String uniqueID)
+	public boolean deleteMeetingRoom(String roomName) {// have to implement
 
-	{
-		// logic to edit the meeting time / date etc
-		return uniqueID;
+		boolean deleted = meetingRoomService.deleteRoomByRoomName(roomName);
+		if (deleted)
+			return true;
+		return false;
+	}
+
+	public boolean editMeetingRoom(MeetingRoom updatedMeetingRoom) {
+		boolean updated = meetingRoomService.updateRoomDetails(updatedMeetingRoom);
+		if (updated)
+			return true;
+
+		return false;
+	}
+
+	@Override
+	public Map<String, Integer> getAmenitiesCredit() {
+		return meetingRoomService.getAmenitiesCredit();
 
 	}
 
