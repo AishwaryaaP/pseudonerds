@@ -30,6 +30,7 @@ public class MeetingServiceImpl implements MeetingService {
 		Meeting meeting1 = null;
 		try {
 			int meetingId = this.meetingDao.createMeeting(organizedBy, roomName, title, meetingDate, startTime, endTime, type, listOfMembers);
+			
 			meeting1 = this.meetingDao.fetchMeetingByUniqueID(meetingId);
 			meetingRoomService.incrementMeetingCount(roomName);
 		} catch (ConnectionFailedException e) {

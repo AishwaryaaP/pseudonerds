@@ -13,10 +13,9 @@
             <tr>
                <th>Room Name</th>
                <th>seatingCapacity</th>
-               <th>Credit per hour</th>
-               <th>Average Rating</th>
+               <th>Credit per hour</th>               
                <th>Amenities</th>
-               <th>Select Room</th>
+              
             </tr>
              <c:forEach items="${meetingRooms}" var = 'i'>
          		
@@ -24,8 +23,7 @@
                  <tr>
                      <td> <a href="SelectedRoom.jsp?roomName=${i.roomName}"><c:out value="${i.roomName}"/></a></td>
                      <td><c:out value="${i.seatingCapacity}"/></td>  
-                     <td><c:out value="${i.creditPerHour}"/></td>  
-                     <td><c:out value="${i.avgRating}"/></td>
+                     <td><c:out value="${i.creditPerHour}"/></td>                     
                      <td><c:out value="${i.amenities}"/></td>  
                  
                  </tr>

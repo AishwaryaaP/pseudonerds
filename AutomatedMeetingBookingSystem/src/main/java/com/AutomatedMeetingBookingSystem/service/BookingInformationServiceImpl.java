@@ -60,5 +60,10 @@ public class  BookingInformationServiceImpl implements BookingInformationService
 		BookingInformation bookingInformation = new BookingInformation(meeting.getUniqueID(), meeting.getInfoMeetingRoomName(), meeting.getDate(), meeting.getStartTime(), meeting.getEndTime(), meeting.getOrganizedBy());
 		bookingInformationDao.saveBookingInformation(bookingInformation);
 	}
+	
+	@Override
+	public boolean deleteBookingInformation(int uniqueId, LocalDate date, LocalTime startTime) {
+		return bookingInformationDao.deleteBookingInfo(uniqueId, date, startTime);
+	}
 
 }

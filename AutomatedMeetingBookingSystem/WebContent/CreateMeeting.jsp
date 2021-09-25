@@ -9,13 +9,13 @@
 <body>
 
 <h1>Create Room</h1>
-    <form action="ManagerController" >
+    <form action="GetAvailableRoomsController" >
         <label for="type">Choose meeting type:</label>
   		<select id="type" name="type">
-    		<option value="classroomTraining">ClassRoom Training</option>
-    		<option value="OnlineTraining">Online Training</option>
-    		<option value="ConferenceCall">ConferenceCall</option>
-    		<option value="business">Business</option>
+    		<option value="CLASSROOMTRAINING">ClassRoom Training</option>
+    		<option value="ONLINETRAINING">Online Training</option>
+    		<option value="CONFERENCECALL">ConferenceCall</option>
+    		<option value="BUSINESS">Business</option>
   		</select>
   		        
         <label for="startTime">Start Time</label>
@@ -26,19 +26,12 @@
 
 		
         <label for="date">Date</label>
-        <input type="date" id="date" name="date"> //validate date for past dates
+        <input type="date" id="date" name="date"> 
   		
         <button >SUBMIT</button>
         
               
     </form>
-      
-
-
-	
-        
-        
-	
 
 </body>
 </html>

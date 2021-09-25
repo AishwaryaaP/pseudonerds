@@ -9,10 +9,12 @@ import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
 
 public interface BookingInformationDao {
 
-	void saveBookingInformation(BookingInformation bookingInformation);
+	boolean saveBookingInformation(BookingInformation bookingInformation);
 
 	public List<MeetingRoom> getAvailableMeetingRooms(LocalDate meetingDate, LocalTime startTime, LocalTime endTime,
 			String amenities);
+	
+	public boolean deleteBookingInfo(int uniqueId, LocalDate date, LocalTime startTime);
 	
 }
  

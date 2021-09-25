@@ -129,4 +129,14 @@
     <servlet-name>MeetingForMember</servlet-name>
     <url-pattern>/MeetingForMember</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteMeetingController</display-name>
+    <servlet-name>DeleteMeetingController</servlet-name>
+    <servlet-class>com.AutomatedMeetingBookingSystem.controllers.DeleteMeetingController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteMeetingController</servlet-name>
+    <url-pattern>/DeleteMeetingController</url-pattern>
+  </servlet-mapping>
 </web-app>
