@@ -91,12 +91,12 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>DeleteMeeting</display-name>
-    <servlet-name>DeleteMeeting</servlet-name>
-    <servlet-class>com.AutomatedMeetingBookingSystem.controllers.DeleteMeeting</servlet-class>
+    <display-name>EditMeeting</display-name>
+    <servlet-name>EditMeeting</servlet-name>
+    <servlet-class>com.AutomatedMeetingBookingSystem.controllers.EditMeeting</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>DeleteMeeting</servlet-name>
-    <url-pattern>/DeleteMeeting</url-pattern>
+    <servlet-name>EditMeeting</servlet-name>
+    <url-pattern>/EditMeeting</url-pattern>
   </servlet-mapping>
 </web-app>

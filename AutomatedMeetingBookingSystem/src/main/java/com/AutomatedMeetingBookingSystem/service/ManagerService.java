@@ -19,8 +19,8 @@ public interface ManagerService {
 	void resetManagerCredits();
 	
 	public boolean deleteMeeting(int uniqueId);
-	
-	public boolean editMeeting(Meeting meeting);
 
+	boolean editMeeting(int uniqueId,int organizedBy, String roomName, String title, String date, String startHours,
+			String startMinutes, String endHours, String endMinutes, String type, String listOfMembers);
 
 }

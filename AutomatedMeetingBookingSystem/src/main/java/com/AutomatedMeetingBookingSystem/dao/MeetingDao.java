@@ -8,11 +8,11 @@ import com.AutomatedMeetingBookingSystem.exception.ConnectionFailedException;
 import com.AutomatedMeetingBookingSystem.model.Meeting;
 
 public interface MeetingDao {
-	int createMeeting(int organizedBy, String roomName, String title, LocalDate date, LocalTime startTime, LocalTime endTime, String type, String listOfMembers) throws ConnectionFailedException;
+	public int createMeeting(int organizedBy, String roomName, String title, LocalDate date, LocalTime startTime, LocalTime endTime, String type, String listOfMembers);
 
-	public List<Meeting> fetchAllMeetings() throws ConnectionFailedException;
+	public List<Meeting> fetchAllMeetings();
 
-	Meeting fetchMeetingByUniqueID(int uniqueID) throws ConnectionFailedException;
+	public Meeting fetchMeetingByUniqueID(int uniqueID) throws ConnectionFailedException;
 
 	List<Meeting> fetchMeetingsByManagerID(int managerId);
 	

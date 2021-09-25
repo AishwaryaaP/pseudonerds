@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.AutomatedMeetingBookingSystem.dao.DaoFactory;
 import com.AutomatedMeetingBookingSystem.dao.UserDao;
+import com.AutomatedMeetingBookingSystem.exception.UserNotFoundException;
 import com.AutomatedMeetingBookingSystem.model.User;
 
 public class UserServiceImp implements UserServiceInterface{
@@ -19,13 +20,20 @@ public class UserServiceImp implements UserServiceInterface{
 	public User getUserDetails(int userId, String email) {
 		
 		User user = userDao.getUserByNameAndEmail(userId, email);
+		try {
 		if(user!=null) {
 			return user;
 		}
 		else {
-			//Exception
-			return null;
+			
+			throw new UserNotFoundException("No such user found");
+			
 		}
+		}
+		catch(UserNotFoundException e) {
+			System.err.println(e.getMessage());
+		}
+		return user;
 	}
 
 	@Override
@@ -41,7 +49,9 @@ public class UserServiceImp implements UserServiceInterface{
 
 	@Override
 	public boolean addUsers(ArrayList<User> userList) {
-		System.out.println("oks");
+		if(userDao.addUsers(userList)) {
+			return true;
+		}
 		return false;
 	}
 

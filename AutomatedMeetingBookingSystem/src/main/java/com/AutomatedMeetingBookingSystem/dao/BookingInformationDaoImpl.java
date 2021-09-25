@@ -40,7 +40,7 @@ public class BookingInformationDaoImpl implements BookingInformationDao {
 	}
 
 	@Override
-	public void saveBookingInformation(BookingInformation bookingInformation){
+	public boolean saveBookingInformation(BookingInformation bookingInformation){
 		
 		if (connection != null) 
 		{
@@ -62,6 +62,7 @@ public class BookingInformationDaoImpl implements BookingInformationDao {
 				if (id != 0) {
 					statement.close();
 					connection.commit();
+					return true;
 				}
 			}
 			catch(SQLException e) {
@@ -69,6 +70,7 @@ public class BookingInformationDaoImpl implements BookingInformationDao {
 				logger.info(e.getMessage());
 			}
 		}
+		return false;
 	}
 
 	@Override
@@ -100,18 +102,19 @@ public class BookingInformationDaoImpl implements BookingInformationDao {
 					String aminitiesStr = result.getString(8);
 					room.setCount(result.getInt(9));
 
-					String[] amininityArray = aminitiesStr.split(" ");
-					for(String aminityItr : amininityArray)
-					{
-						aminitySet.add(aminityItr);
-					}
-					room.setAmenities(aminitySet);
+					/*
+					 * String[] amininityArray = aminitiesStr.split(" "); for(String aminityItr :
+					 * amininityArray) { aminitySet.add(aminityItr); }
+					 */
+					room.setAmenities(aminitiesStr);
+
 					meetingRooms.add(room);
 					aminitySet.clear();
 
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
+				logger.info(e.getMessage());
 			}
 			finally
 			{
@@ -119,6 +122,7 @@ public class BookingInformationDaoImpl implements BookingInformationDao {
 					stmt.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
+					logger.info(e.getMessage());
 				}
 			}
 

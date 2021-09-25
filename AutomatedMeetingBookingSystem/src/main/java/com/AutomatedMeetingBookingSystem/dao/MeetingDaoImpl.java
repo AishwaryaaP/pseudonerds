@@ -8,105 +8,129 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.LogManager;
+
 import java.sql.SQLException;
 
 import com.AutomatedMeetingBookingSystem.exception.ConnectionFailedException;
 import com.AutomatedMeetingBookingSystem.model.Meeting;
+import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
+import com.AutomatedMeetingBookingSystem.service.BookingInformationService;
+import com.AutomatedMeetingBookingSystem.service.MeetingRoomService;
+import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
 import com.AutomatedMeetingBookingSystem.enums.MeetingType;
 import com.AutomatedMeetingBookingSystem.utility.DaoUtility;
 import com.AutomatedMeetingBookingSystem.utility.DaoUtilityInterface;
 import com.mysql.cj.protocol.Resultset.Type;
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 public class MeetingDaoImpl implements MeetingDao {
+	private static Logger logger;
 
-	DaoUtilityInterface dao = new DaoUtility();
+	
+	private DaoUtilityInterface dao = new DaoUtility();
+	private BookingInformationService bookingInformationService = ServiceFactory.getBookingInformationService();
 	Connection connection = dao.getInstance();
 
+	public MeetingDaoImpl() {
+		LogManager.getLogger(MeetingRoomService.class);
+		BasicConfigurator.configure();
+	}
+
 	private static final String INSERT_MEETING = "insert into meeting (organisedBy, infoMeetingRoomName, title, date, starttime, endtime, type, listOfMember) values (?,?,?,?,?,?,?,?)";// "insert
-	private static final String SELECT_MEETING_BY_MANAGERID = "Select uniqueId, type, infoMeetingRoomName, title, date, startTime, endTime from meeting where organizedBy = ?";																																													// into
-																																														// meeting
-																																														// values
-																																														// (?,?,?,?,?,?,?,?,?)";
+	private static final String SELECT_MEETING_BY_MANAGERID = "Select uniqueId, type, infoMeetingRoomName, title, date, startTime, endTime from meeting where organizedBy = ?"; // into
+	// meeting
+	// values
+	// (?,?,?,?,?,?,?,?,?)";
 	private static final String SELECT_ALL_MEETINGS = "Select * from meeting";
 	private static final String SELECT_MEETINGS_BY_DATE = "Select * from meeting where date = ?";
 	private static final String SELECT_MEETING_BY_UNIQUEID = "Select * From Meeting where uniqueID = ?";// to be edited
-	
+
 	private static final String UPDATE_MEETING = "UPDATE Meeting SET infoMeetingRoomName=?, title=?, date=?, startTime=?, endTime=?,  type=?, listOfMember=?, WHERE uniqueId=?";
 	private static final String DELETE_MEETING_BY_ID = "DELETE FROM Meeting WHERE uniqueId=?";
-	
 
-	public int createMeeting(int organizedBy, String roomName, String title, LocalDate date, LocalTime startTime,
-			LocalTime endTime, String type, String listOfMembers) throws ConnectionFailedException {
+	public synchronized int createMeeting(int organizedBy, String roomName, String title, LocalDate date, LocalTime startTime,
+			LocalTime endTime, String type, String listOfMembers) {
 		int id = 0;
 		try {
+			
+			List<String> availableRoomNames = bookingInformationService.getAvailableMeetingRoom(date, startTime, endTime, MeetingType.valueOf(type)).stream().map(m -> m.getRoomName()).Collectors(collect.toList());
+			if(availableRoomNames.contains(roomName))
+			{
+				PreparedStatement statement = connection.prepareStatement(INSERT_MEETING, Statement.RETURN_GENERATED_KEYS);
+				// statement.setInt(1, meeting.getUniqueID());
+				statement.setInt(1, organizedBy);
+				statement.setString(2, roomName);
+				statement.setString(3, title);
+				statement.setString(4, date.toString());
+				statement.setString(5, startTime.toString());
+				statement.setString(6, endTime.toString());
+				statement.setString(7, type.toString());
+				statement.setString(8, listOfMembers);
+				statement.executeUpdate();
+				ResultSet rs = statement.getGeneratedKeys();
 
-			PreparedStatement statement = connection.prepareStatement(INSERT_MEETING, Statement.RETURN_GENERATED_KEYS);
-			// statement.setInt(1, meeting.getUniqueID());
-			statement.setInt(1, organizedBy);
-			statement.setString(2, roomName);
-			statement.setString(3, title);
-			statement.setString(4, date.toString());
-			statement.setString(5, startTime.toString());
-			statement.setString(6, endTime.toString());
-			statement.setString(7, type.toString());
-			statement.setString(8, listOfMembers);
-			statement.executeUpdate();
-			ResultSet rs = statement.getGeneratedKeys();
+				id = rs.getInt(1);
 
-			id = rs.getInt(1);
-
-			if (id != 0) {
-				statement.close();
-				connection.commit();
-				return id;
+				if (id != 0) {
+					statement.close();
+					connection.commit();
+					return id;
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			logger.info(e.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
+			logger.info(e.getMessage());
 		}
 		return id;
 	}
 
-	public Meeting fetchMeetingByUniqueID(int uniqueID) throws ConnectionFailedException {
+	public Meeting fetchMeetingByUniqueID(int uniqueID) {
 
 		Meeting meeting = new Meeting();
 		try {
-			PreparedStatement stmt=null;
-			 try {
-					stmt = connection.prepareStatement(SELECT_MEETING_BY_UNIQUEID);
-					stmt.setInt(1, uniqueID);
+			PreparedStatement stmt = null;
+			try {
+				stmt = connection.prepareStatement(SELECT_MEETING_BY_UNIQUEID);
+				stmt.setInt(1, uniqueID);
 
-					ResultSet result = stmt.executeQuery();
-					while(result.next())
-					{
-						meeting.setUniqueID(result.getInt(1));
-						meeting.setTitle(result.getString(3));
-						meeting.setInfoMeetingRoomName(result.getString(9));
+				ResultSet result = stmt.executeQuery();
+				while (result.next()) {
+					meeting.setUniqueID(result.getInt(1));
+					meeting.setTitle(result.getString(3));
+					meeting.setInfoMeetingRoomName(result.getString(9));
 
-						meeting.setDate(result.getDate(4).toLocalDate());
-						meeting.setStartTime(result.getTime(5).toLocalTime());
-						meeting.setEndTime(result.getTime(6).toLocalTime());
-						meeting.setType(MeetingType.valueOf(result.getString(7)));
-						meeting.setListOfMember(result.getString(8));
-						meeting.setOrganizedBy(result.getInt(2));
-						
-						return meeting;
-					}
+					meeting.setDate(result.getDate(4).toLocalDate());
+					meeting.setStartTime(result.getTime(5).toLocalTime());
+					meeting.setEndTime(result.getTime(6).toLocalTime());
+					meeting.setType(MeetingType.valueOf(result.getString(7)));
+					meeting.setListOfMember(result.getString(8));
+					meeting.setOrganizedBy(result.getInt(2));
 
+					return meeting;
 				}
-				catch (SQLException e) {
-					e.printStackTrace();
-				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+				logger.info(e.getMessage());
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			logger.info(e.getMessage());
 		}
 		return meeting;
 	}
 
-	public List<Meeting> fetchAllMeetings() throws ConnectionFailedException {
-		if (connection != null) {
+	public List<Meeting> fetchAllMeetings() {
+		
 			List<Meeting> meetings = new ArrayList<>();
 			try {
 				PreparedStatement statement = connection.prepareStatement(SELECT_ALL_MEETINGS);
@@ -124,15 +148,14 @@ public class MeetingDaoImpl implements MeetingDao {
 					meeting1.setType(MeetingType.valueOf(rs.getString(7)));
 					meetings.add(meeting1);
 				}
-				return meetings;
-			} catch (Exception e) {
+				
+			} catch (SQLException e) {
 				e.printStackTrace();
+				logger.info(e.getMessage());
 			}
-		}
-		throw new ConnectionFailedException("While fetching meetings by userID");
+			return meetings;
 	}
 
-	
 	@Override
 	public List<Meeting> fetchMeetingsByManagerID(int managerId) {
 		List<Meeting> meetings = new ArrayList<>();
@@ -158,14 +181,11 @@ public class MeetingDaoImpl implements MeetingDao {
 		}
 		return meetings;
 	}
-	
-	public boolean updateMeeting(Meeting meeting)
-	{
-		if (connection != null) 
-		{
+
+	public boolean updateMeeting(Meeting meeting) {
+		if (connection != null) {
 			PreparedStatement statement;
-		
-			
+
 			try {
 				statement = connection.prepareStatement(UPDATE_MEETING);
 				statement.setString(1, meeting.getInfoMeetingRoomName());
@@ -173,13 +193,13 @@ public class MeetingDaoImpl implements MeetingDao {
 				statement.setString(3, meeting.getDate().toString());
 				statement.setString(4, meeting.getStartTime().toString());
 				statement.setString(5, meeting.getEndTime().toString());
-			    statement.setString(6, meeting.getType().toString());
+				statement.setString(6, meeting.getType().toString());
 				statement.setString(7, meeting.getListOfMember());
 
 				statement.executeUpdate();
 				ResultSet rs = statement.getGeneratedKeys();
 				int id = 0;
-				while(rs.next()) {
+				while (rs.next()) {
 					id = rs.getInt(1);
 				}
 
@@ -188,21 +208,17 @@ public class MeetingDaoImpl implements MeetingDao {
 					connection.commit();
 					return true;
 				}
-			}
-			catch (SQLException e) {
+			} catch (SQLException e) {
 				e.printStackTrace();
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 		return false;
 	}
-	
-	public boolean deleteMeetingByUniqueId(int uniqueId)
-	{
-		if (connection != null) 
-		{
+
+	public boolean deleteMeetingByUniqueId(int uniqueId) {
+		if (connection != null) {
 			PreparedStatement stmt;
 
 			try {
@@ -210,20 +226,17 @@ public class MeetingDaoImpl implements MeetingDao {
 				stmt.setInt(1, uniqueId);
 
 				int recordsUpdated = stmt.executeUpdate();
-				if(recordsUpdated>0)
-				{
+				if (recordsUpdated > 0) {
 					stmt.close();
 					connection.commit();
 					return true;
 				}
-			}
-			catch (SQLException e)
-			{
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 
 		}
 		return false;
 	}
-	
+
 }

@@ -35,8 +35,12 @@ public class DeleteMeetingRoomController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String meetingRoomIdForDelete =req.getParameter("roomName");
 		boolean deleted = adminService.deleteMeetingRoom(meetingRoomIdForDelete);
+		if(deleted == true){
+	  		System.out.println("meetingRoom deleted");
+		}
+		
 		req.setAttribute("deleted", deleted);
-		RequestDispatcher rd3 = req.getRequestDispatcher("admin.jsp");
+		RequestDispatcher rd3 = req.getRequestDispatcher("AdminHome.jsp");
 		rd3.forward(req, resp);	
 	}
 

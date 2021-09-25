@@ -16,7 +16,7 @@ public class MeetingRoom {
 	private double rating;
 	private int count;
 	private int ratingSum=0,ratingCount=0;
-	private Set<String> amenities = new HashSet<>();
+	private String amenities ;
 	
 	public MeetingRoom()
 	{
@@ -24,7 +24,7 @@ public class MeetingRoom {
 	}
 	
 	public MeetingRoom(String roomName, int creditPerHour, int seatingCapacity, double rating, int ratingSum,
-			int ratingCount, Set<String> amenities) {
+			int ratingCount, String amenities) {
 		super();
 		this.roomName = roomName;
 		this.creditPerHour = creditPerHour;
@@ -90,10 +90,10 @@ public class MeetingRoom {
 	public void setRatingCount(int ratingCount) {
 		this.ratingCount = ratingCount;
 	}
-	public Set<String> getAmenities() {
+	public String getAmenities() {
 		return amenities;
 	}
-	public void setAmenities(Set<String> amenities) {
+	public void setAmenities(String amenities) {
 		this.amenities = amenities;
 	}
 	
@@ -101,14 +101,14 @@ public class MeetingRoom {
 	
 	//Custom
 	public void addAminity(String amenitiy) {
-		this.amenities.add(amenitiy);
+		this.amenities +=amenitiy +" ";
 	}
-	public void removeAminity(String amenitiy) throws ResourceNotFoundException {
-		if(this.amenities.contains(amenitiy))
-			this.amenities.remove(amenitiy);
-		else
-			throw new ResourceNotFoundException();
-	}
+//	public void removeAminity(String amenitiy) throws ResourceNotFoundException {
+//		if(this.amenities.contains(amenitiy))
+//			this.amenities.remove(amenitiy);
+//		else
+//			throw new ResourceNotFoundException();
+//	}
 	
 	
 	//toString
