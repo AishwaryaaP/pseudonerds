@@ -1,4 +1,4 @@
-<%@page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom"%>
+8<%@page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -15,9 +15,11 @@
 <link rel="icon" type="image/png" sizes="32x32"
 	href="./images/favicon-32x32.png">
 <title>MeetPro|Manager</title>
-<link rel="stylesheet" href="./AdminHodffmeStyle.css">
+<link rel="stylesheet" href="./AdminHomeStyle.css">
 </head>
 <body>
+
+
 
 
 	<!-- Nav Bar -->
@@ -27,6 +29,7 @@
 			<img class="logo" src="./images/pnlogo.svg" alt="MeetPro" href="#">
 			<div class="container1" id="container1">
 				<ul class="nav-ul" id="nav-ul">
+					<li class="nav-link"><a href="GetAllRoomsController">Room Details</a></li>
 					<li class="nav-link"><a>Last Loggedin: 12pm</a></li>
 					<li claas="nav-link"><a href="UserProfile.jsp">Hello
 							Admin!</a></li>
@@ -56,7 +59,7 @@
 
 	<!--table-->
 	<section class="table-room">
-		<a href="GetAllRoomsController">User Details</a>
+
 		<h1>Created Rooms</h1>
 		<div class="tbl-header">
 			<table cellpadding="0" cellspacing="0" border="0">

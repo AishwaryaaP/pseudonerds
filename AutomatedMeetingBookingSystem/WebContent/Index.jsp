@@ -97,13 +97,13 @@
     <div class="container welcome ">
       <div class="welcome-text">
         <h1 class="u mb-small">
-          Next generation <span>digital banking</span>
+          Next generation <span>meeting room booking system</span>
         </h1>
         <p class="u-mb-large">
-          Take your financial life online. Your Easybank account will be a one-stop-shop
-          for spending, saving, budgeting, investing, and much more.
+          Take your boardroom life online. Your ProMeet account will be a one-stop-solution
+          for creating rooms, scheduling meetings, managing rooms, inviting members, and much more.
         </p>
-        <a href="#" class="btn">Request Invite</a>
+        <a><input type="file" name="myFile" accept="application/XML" class="btn" required />Import Users</a>
       </div>
     </div>
   </section>
