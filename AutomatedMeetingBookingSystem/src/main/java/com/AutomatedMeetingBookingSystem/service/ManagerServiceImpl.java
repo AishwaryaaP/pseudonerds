@@ -27,6 +27,7 @@ public class ManagerServiceImpl implements ManagerService{
 		meetingRoomService = ServiceFactory.getMeetingRoomService();
 		userService = ServiceFactory.getUserService();
 		userDao = DaoFactory.getUserDaoInstance();
+		bookingInfoService = ServiceFactory.getBookingInformationService();
 	}
 
 	@Override
@@ -42,6 +43,7 @@ public class ManagerServiceImpl implements ManagerService{
 			if(updatedCredits > 0) {
 				Meeting meeting = meetingService.saveMeeting(organizedBy, roomName, title, meetingDate, startTime, endTime, type, listOfMembers);
 				userService.updateUserCredits(updatedCredits, organizedBy);
+				System.out.print(meeting.getInfoMeetingRoomName());
 				bookingInfoService.saveBookingInformation(meeting);
 				return true;
 			}

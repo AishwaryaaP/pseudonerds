@@ -109,7 +109,7 @@ public class MeetingServiceImpl implements MeetingService {
 		boolean result = meetingDao.deleteMeetingByUniqueId(uniqueId);
 		try {
 			if(!result)
-				throw new MeetingNotFoundException("Meeting with " + uniqueID + " not found");
+				throw new MeetingNotFoundException("Meeting with " + uniqueId + " not found");
 		}
 		catch (MeetingNotFoundException e) 
 		{

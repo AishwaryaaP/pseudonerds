@@ -11,20 +11,26 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.AutomatedMeetingBookingSystem.service.UserServiceInterface;
 import com.AutomatedMeetingBookingSystem.model.User;
+import com.AutomatedMeetingBookingSystem.service.ManagerService;
 import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
 
 /**
  * Servlet implementation class GlobalServlet
  */
+
+
+//lastLogin
+
 @WebServlet("/GlobalServlet")
 public class GlobalServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    ManagerService managerService;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public GlobalServlet() {
         super();
+        managerService = ServiceFactory.getManagerService();
     }
 
 	/**
@@ -47,6 +53,7 @@ public class GlobalServlet extends HttpServlet {
 					break;
 				case "MANAGER":
 					dispatcher= request.getRequestDispatcher( "GetScheduledByManagerController" );
+					managerService.resetManagerCredits();
 					break;
 				case "MEMBER":
 					dispatcher= request.getRequestDispatcher( "MemberHome.jsp" );		
