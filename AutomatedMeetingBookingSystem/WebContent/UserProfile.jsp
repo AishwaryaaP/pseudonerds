@@ -4,43 +4,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
+    <meta charset="UTF-8">
+    <title>MeetPro | Profile</title>
+    <link rel="stylesheet" href="./UserProfileStyle.css">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
 <body>
 	<%
 		User user = (User) session.getAttribute("UserDetail");
 	%>
-	<table>
-		<tr>
-			<th>User ID</th>
+	<header>
+        <nav class="navbar">
+			<ul class="menu">
+				<li><a class="btn" onclick="history.back()">Back</button></li>
+			</ul>
+		</nav>
 
-			<th>Name</th>
-
-			<th>Email id</th>
-
-			<th>Phone Number</th>
-
-			<th>Role</th>
-
-		</tr>
-		<tr>
-
-			<td><%=user.getUserId()%></td>
-
-			<td><%=user.getName()%></td>
-
-			<td><%=user.getEmail()%></td>
-
-		
-			<td><%=user.getPhoneNumber()%></td>
-			
-			<td><%=user.getRole()%></td>
-
-
-		</tr>
-
-
-	</table>
+	  	<div class="text-content">
+        <img class="lsogo" src="./images/avatar.svg" alt="MeetPro" href="#">
+			  <div>
+				<ul><h2>Fullname <%=user.getName()%></h2>
+				        <p>UserID: <%=user.getUserId()%></p>
+                <p>Role: <%=user.getRole()%></p>
+                <p>EMail: <%=user.getEmail()%></p>
+                <p>Phone Number: <%=user.getPhoneNumber()%></p> 
+                </ul>
+			  </div>
+		</div>
+  </header>
+	
 </body>
 </html>
