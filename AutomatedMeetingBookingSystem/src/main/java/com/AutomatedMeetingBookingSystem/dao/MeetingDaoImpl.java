@@ -16,7 +16,10 @@ import java.sql.SQLException;
 
 import com.AutomatedMeetingBookingSystem.exception.ConnectionFailedException;
 import com.AutomatedMeetingBookingSystem.model.Meeting;
+import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
+import com.AutomatedMeetingBookingSystem.service.BookingInformationService;
 import com.AutomatedMeetingBookingSystem.service.MeetingRoomService;
+import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
 import com.AutomatedMeetingBookingSystem.enums.MeetingType;
 import com.AutomatedMeetingBookingSystem.utility.DaoUtility;
 import com.AutomatedMeetingBookingSystem.utility.DaoUtilityInterface;
@@ -24,11 +27,14 @@ import com.mysql.cj.protocol.Resultset.Type;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import java.util.stream.Collectors; 
 
 public class MeetingDaoImpl implements MeetingDao {
 	private static Logger logger;
 
-	DaoUtilityInterface dao = new DaoUtility();
+	
+	private DaoUtilityInterface dao = new DaoUtility();
+	private BookingInformationService bookingInformationService = ServiceFactory.getBookingInformationService();
 	Connection connection = dao.getInstance();
 
 	public MeetingDaoImpl() {
@@ -48,10 +54,15 @@ public class MeetingDaoImpl implements MeetingDao {
 	private static final String UPDATE_MEETING = "UPDATE Meeting SET infoMeetingRoomName=?, title=?, date=?, startTime=?, endTime=?,  type=?, listOfMember=?, WHERE uniqueId=?";
 	private static final String DELETE_MEETING_BY_ID = "DELETE FROM Meeting WHERE uniqueId=?";
 
-	public int createMeeting(int organizedBy, String roomName, String title, LocalDate date, LocalTime startTime,
+	public synchronized int createMeeting(int organizedBy, String roomName, String title, LocalDate date, LocalTime startTime,
 			LocalTime endTime, String type, String listOfMembers) {
 		int id = 0;
 		try {
+			
+			List<String> availableRoomNames = bookingInformationService.getAvailableMeetingRoom(date, startTime, endTime, MeetingType.valueOf(type)).stream().map(m -> m.getRoomName()).collect(Collectors.toList());
+			if(availableRoomNames.contains(roomName))
+			{
+
 
 			PreparedStatement statement = connection.prepareStatement(INSERT_MEETING, Statement.RETURN_GENERATED_KEYS);
 			// statement.setInt(1, meeting.getUniqueID());
@@ -72,6 +83,7 @@ public class MeetingDaoImpl implements MeetingDao {
 				statement.close();
 				//connection.commit();
 				return id;
+			}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
