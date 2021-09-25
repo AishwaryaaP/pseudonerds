@@ -55,6 +55,11 @@ public class UserServiceImp implements UserServiceInterface{
 		return false;
 	}
 
+	@Override
+	public void setLastLoggedIn(int userId) {
+		userDao.setLastLoggedIn(userId);
+	}
+
 
 
 }
