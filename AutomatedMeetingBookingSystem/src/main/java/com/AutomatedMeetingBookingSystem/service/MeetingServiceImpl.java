@@ -66,7 +66,7 @@ public class MeetingServiceImpl implements MeetingService {
 			List<Meeting> allMeetings = this.meetingDao.fetchAllMeetings();
 			for(Meeting meeting: allMeetings) {
 				String userDetails = meeting.getListOfMember();
-				
+				System.out.println(userDetails);
 				JSONArray userIds = new JSONArray(userDetails);
 				Iterator<Object> iterator = userIds.iterator();
 				while(iterator.hasNext()) 

@@ -40,6 +40,13 @@ public class ManagerServiceImpl implements ManagerService{
 			double creditsReqForMeeting = meetingDuration*meetingRoomCredits;
 			double managerCredits = userService.getUserCredits(organizedBy);
 			double updatedCredits = managerCredits - creditsReqForMeeting;
+			System.out.println(startTime.toString());
+			System.out.println(endTime.toString());
+			System.out.println(meetingDuration);
+			System.out.println(updatedCredits);
+			System.out.println(creditsReqForMeeting);
+			System.out.println(managerCredits);
+			System.out.println(meetingRoomCredits);
 			if(updatedCredits > 0) {
 				Meeting meeting = meetingService.saveMeeting(organizedBy, roomName, title, meetingDate, startTime, endTime, type, listOfMembers);
 				userService.updateUserCredits(updatedCredits, organizedBy);

@@ -37,7 +37,7 @@ public class CreateMeetingController extends HttpServlet {
 		String startHours = start[0];
 		String startMinutes = start[1];
 		String endTime = request.getParameter("endTime");
-		String [] end = startTime.split(":");
+		String [] end = endTime.split(":");
 		String endHours = end[0];
 		String endMinutes = end[1];
 		String type = request.getParameter("type");
