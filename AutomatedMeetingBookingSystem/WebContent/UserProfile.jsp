@@ -12,7 +12,7 @@
    </head>
 <body>
 	<%
-		User user = (User) session.getAttribute("UserDetail");
+		User user = (User) session.getAttribute("userDetail");
 	%>
 	<header>
         <nav class="navbar">
@@ -24,7 +24,7 @@
 	  	<div class="text-content">
         <img class="lsogo" src="./images/avatar.svg" alt="MeetPro" href="#">
 			  <div>
-				<ul><h2>Fullname <%=user.getName()%></h2>
+				<ul><p>Fullname <%=user.getName()%></p>
 				        <p>UserID: <%=user.getUserId()%></p>
                 <p>Role: <%=user.getRole()%></p>
                 <p>EMail: <%=user.getEmail()%></p>

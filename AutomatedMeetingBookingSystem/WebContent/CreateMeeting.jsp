@@ -3,14 +3,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>MeetPro | CreateRoom</title>
+<link rel="stylesheet" href="./CreateRoomStyle.css">
 </head>
 <body>
 
-<h1>Create Room</h1>
-    <form action="ManagerController" >
-        <label for="type">Choose meeting type:</label>
+
+	<header>
+		<nav role="navigation">
+			<img class="logo" src="./images/pnlogo.svg" alt="MeetPro" href="#">
+			<div class="container1" id="container1">
+				<ul class="nav-ul" id="nav-ul">
+					<li claas="nav-link"><a onclick="history.back()">Return</a></li>
+				</ul>
+			</div>
+			<div class="menuToggle" id="menuToggle">
+				<input type="checkbox" /> <span></span> <span></span> <span></span>
+				<ul class="menu" id="menu">
+					<a href="#edit">
+						<li><a href="Index.jsp">Logout</a></li>
+					</a>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<div class="space"></div>
+	<div class="testbox">
+		<form action="ManagerController" >
+			<div class="banner">
+				<h1>Schedule Meeting</h1>
+			</div>
+			<div class="item">
+				<label for="type">Choose meeting type:</label>
   		<select id="type" name="type">
     		<option value="classroomTraining">ClassRoom Training</option>
     		<option value="OnlineTraining">Online Training</option>
@@ -18,23 +42,40 @@
     		<option value="business">Business</option>
   		</select>
   		        
-        <label for="startTime">Start Time</label>
-        <input type="time" id="startTime" name="startTime">
-        
-        <label for="endTime">End Time</label>
-        <input type="time" id="endTime" name="endTime">
 
-		
-        <label for="date">Date</label>
-        <input type="date" id="date" name="date"> //validate date for past dates
+			</div>
+			<div class="item">
+				<label for="startTime">Start Time<span>*</span></label>
+				<input type="time" id="startTime" name="startTime" class="input" required />
+			</div>
+			
+			<div class="item">
+				<label for="endTime">End Time<span>*</span></label>
+				<input type="time" id="endTime" name="endTime" class="input" required />
+			</div>
+	
+			<div class="item">
+				<label for="date">Date<span>*</span></label>
+				<input type="date" id="date" name="date" class="input" required />
+			</div>
+			
+	
+
   		
-        <button >SUBMIT</button>
-        
-              
-    </form>
-      
+       <div class="btn-block">
+				<button onclick="ManagerHome.jsp">SUBMIT</button>
+			</div>
+		</form>
+	</div>
+	<%--  <%
+      boolean createStatus = (boolean) session.getAttribute("created");
+		  	if(createStatus == true){
+		  		System.out.println("meetingRoom Created");
+		  	}
+		  %> --%>
 
-
+       
+    
 	
         
         

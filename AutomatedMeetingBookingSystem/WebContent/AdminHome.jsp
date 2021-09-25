@@ -4,6 +4,8 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom"%>
 <%@page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom"%>
+<%@page import="com.AutomatedMeetingBookingSystem.model.User"%>
+<%@page import="com.AutomatedMeetingBookingSystem.controllers.GetAllRoomsController" %>
 
 <%@ page import="java.util.*"%>
 
@@ -16,10 +18,19 @@
 	href="./images/favicon-32x32.png">
 <title>MeetPro|Manager</title>
 <link rel="stylesheet" href="./AdminHomeStyle.css">
+
 </head>
+
 <body>
+<%request.getRequestDispatcher("GetAllRoomsController").include(request,response);%>
+
+    
 
 
+
+	<%
+		User user = (User) session.getAttribute("userDetail");
+	%>
 
 
 	<!-- Nav Bar -->
@@ -30,9 +41,8 @@
 			<div class="container1" id="container1">
 				<ul class="nav-ul" id="nav-ul">
 					<li class="nav-link"><a href="GetAllRoomsController">Room Details</a></li>
-					<li class="nav-link"><a>Last Loggedin: 12pm</a></li>
-					<li claas="nav-link"><a href="UserProfile.jsp">Hello
-							Admin!</a></li>
+					<li class="nav-link">Last Loggedin: <%=user.getLastLoggedIn()%></li>
+					<li claas="nav-link"><a href="UserProfile.jsp">Hello <%=user.getName() %></a></li>
 				</ul>
 			</div>
 			<div class="menuToggle" id="menuToggle">
@@ -78,7 +88,7 @@
 
 		<c:forEach items="${meetingRoomList}" var='i'>
 			<div class="tbl-content">
-				<table cellpadding="0" cellspacing="0" border="0">
+				<table cellpadding="0" cellspacing="0" border="0" >
 					<tbody>
 						<tr>
 							<td><a
