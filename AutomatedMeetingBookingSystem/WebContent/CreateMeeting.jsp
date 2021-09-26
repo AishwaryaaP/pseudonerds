@@ -58,7 +58,7 @@
 	</header>
 	<div class="space"></div>
 	<div class="testbox">
-		<form action="CreateMeetingController" >
+		<form action="action="GetAvailableRoomsController" >
 			<div class="banner">
 				<h1>Schedule Meeting</h1>
 			</div>
@@ -86,7 +86,7 @@
 				<input type="date" id="date" name="date" class="input" required />
 			</div>
        <div class="btn-block">
-				<button onclick="ManagerHome.jsp">SUBMIT</button>
+				<button >SUBMIT</button>
 			</div>
 		</form>
 	</div>

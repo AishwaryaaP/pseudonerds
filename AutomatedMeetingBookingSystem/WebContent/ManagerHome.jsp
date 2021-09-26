@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@page import="com.AutomatedMeetingBookingSystem.model.User" %>
+<%@page import="com.AutomatedMeetingBookingSystem.model.User"%>
 
 <%
 	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
@@ -34,13 +34,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" sizes="32x32" href="./IMAGES/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="./IMAGES/favicon.ico">
 <title>MeetPro|Manager</title>
 <link rel="stylesheet" href="./CSS/AdminHomeStyle.css">
 </head>
 <body>
 
-<%-- <<<<<<< HEAD
+	<%-- <<<<<<< HEAD
 	<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
     <a href = "CreateMeeting.jsp"> CREATE MEETING</a>
     
@@ -95,8 +96,7 @@
 							Details</a></li>
 					<li class="nav-link"><a>Credit: <%=user.getCredit() %></a></li>
 					<li class="nav-link"><a>Last Loggedin: <%=user.getLastLoggedIn()%></a></li>
-					<li claas="nav-link"><a href="UserProfile.jsp">Hello
-							<%=user.getName() %></a></li>
+					<li claas="nav-link"><a href="UserProfile.jsp">Hello <%=user.getName() %></a></li>
 				</ul>
 			</div>
 			<div class="menuToggle" id="menuToggle">
@@ -126,7 +126,7 @@
 
 		<h2 class="section-heading">Meetings Scheduled by Manager</h2>
 		<div class="tbl-header">
-			<table cellpadding="0" cellspacing="0" border="0">
+			<table>
 				<thead>
 					<tr>
 						<th>Meeting Id</th>
@@ -135,57 +135,32 @@
 						<th>startTime</th>
 						<th>endTime</th>
 						<th>Type</th>
+						<th>Room Name</th>
+						<th>Actions</th>
 
 					</tr>
-				<tr>
-					 <td>AAD</td>
-            <td>AUSENCO</td>
-            <td>$2.38</td>
-            <td>-0.01</td>
-            <td>-1.36%</td>
-          </tr>
-          <tr>
-            <td>AAX</td>
-            <td>ADELAIDE</td>
-            <td>$3.22</td>
-            <td>+0.01</td>
-            <td>+1.36%</td>
-          </tr>
-          <tr>
-            <td>XXD</td>
-            <td>ADITYA BIRLA</td>
-            <td>$1.02</td>
-            <td>-1.01</td>
-            <td>+2.36%</td>
-          </tr>
-          <tr>
-            <td>AAC</td>
-            <td>AUSTRALIAN COMPANY </td>
-            <td>$1.38</td>
-            <td>+2.01</td>
-            <td>-0.36%</td>
-          </tr>
 				</thead>
 			</table>
 		</div>
-				</thead>
-			</table>
-		</div>
+
 
 
 		<c:forEach items="${meetings}" var='i'>
 			<div class="tbl-content">
-				<table cellpadding="0" cellspacing="0" border="0">
+				<table>
 					<tbody>
 						<tr>
-							<td><a
-								href="FetchMeetingDetailsController?uniqueID=${i.uniqueID}"><c:out
-										value="${i.uniqueID}" /></a></td>
+							<td>><c:out value="${i.uniqueID}" /></td>
 							<td><c:out value="${i.title}" /></td>
 							<td><c:out value="${i.date}" /></td>
 							<td><c:out value="${i.startTime}" /></td>
 							<td><c:out value="${i.endTime}" /></td>
 							<td><c:out value="${i.type}" /></td>
+							<td><c:out value="${i.infoMeetingRoomName}" /></td>
+							<td><a
+								href="DeleteMeetingController?uniqueID=${i.uniqueID}&date=${i.date}&startTime=${i.startTime}&endTime=${i.endTime}&roomName=${i.infoMeetingRoomName}">
+									delete </a></td>
+
 						</tr>
 						</c:forEach>
 					</tbody>
