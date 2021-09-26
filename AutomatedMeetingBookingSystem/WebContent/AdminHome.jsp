@@ -87,26 +87,25 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 						<th>Room Name</th>
 						<th>Seating Capacity</th>
 						<th>Credit per hour</th>
-						<th>Count</th>
-						<th>DELETE</th>
+						<th>Rating</th>
+						<th>Delete</th>
 					</tr>
-					
 				</thead>
 			</table>
+		</div>
+		</thead>
+		</table>
 		</div>
 		<c:forEach items="${meetingRoomList}" var='i'>
 					<div>
 						<table>
 							<tbody>
 								<tr>
-									<td><a
-										href="FetchMeetingRoomDetailsController?roomName=${i.roomName}"><c:out
-												value="${i.roomName}" /></a></td>
+									<td><a href="FetchMeetingRoomDetailsController?roomName=${i.roomName}"> <c:out value="${i.roomName}" /></a></td>
 									<td><c:out value="${i.seatingCapacity}" /></td>
 									<td><c:out value="${i.creditPerHour}" /></td>
-									<td><c:out value="${i.count}" /></td>
-									<td><a
-										href="DeleteMeetingRoomController?roomName=${i.roomName}">delete</a></td>
+									<td><c:out value="${i.rating}" /></td>
+									<td><a href="DeleteMeetingRoomController?roomName=${i.roomName}">delete</a></td>
 								</tr>
 								</c:forEach>
 							</tbody>

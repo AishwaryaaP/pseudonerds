@@ -85,28 +85,25 @@
 	<!--table-->
 	<section class="table-room">
 	<h1>                              </h1>
-		<h2 style="text-align:center; padding-inline:inherit; padding-top: 40px; padding-bottom:20px" class="section-heading">Your Scheduled Meetings</h2>
+		<h2 style="text-align:center; padding-inline:inherit; padding-top: 40px; padding-bottom:20px" class="section-heading">Scheduled Meetings</h2>
 		<div class="tbl-header">
 			<table>
 				<thead>
 					<tr>
-						<th>Meeting Id</th>
-						<th>Title</th>
-						<th>Date</th>
-						<th>startTime</th>
-						<th>endTime</th>
-						<th>Type</th>
 						<th>Room Name</th>
-						<th>Actions</th>
+						<th>Seating Capacity</th>
+						<th>Credit per hour</th>
+						<th>Count</th>
+						<th>Delete</th>
 					</tr>
 				</thead>
 			</table>
 		</div>
 		<c:forEach items="${meetings}" var='i'>
-			<div class="tbl-content">
-				<table>
-					<tbody>
-						<tr>
+					<div>
+						<table>
+							<tbody>
+								<tr>
 							<td><c:out value="${i.uniqueID}" /></td>
 							<td><c:out value="${i.title}" /></td>
 							<td><c:out value="${i.date}" /></td>
@@ -118,11 +115,31 @@
 									delete </a></td>
 
 						</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-	</section>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+					</section>
+					<!-- Import Section -->
+					<section id="import" class="import">
+						<h1>                              </h1>
+		<h2 style="text-align:center; padding-inline:inherit; padding-top: 40px; padding-bottom:20px" class="section-heading">Import Users</h2>
+		<div class="tbl-header">
+						<div class="import-container container">
+							<div class="about-text">
+								<h2 class="u-mb-small heading-secondary">Upload XML File to Import Users</h2>
+								<p class="u-mb-large">XML file containing user records to be inserted into database.</p>
+							</div>
+							<div style="display: inline-block"class="form-container1">
+								<form action="ImportUserController" method="post" enctype="multipart/form-data">
+									<input class="btn" type="file" name="myFile" accept="application/XML" required /></div>
+							<button class="btn" type="submit" name="submit" value="insert data">Upload File</button>
+						</div>
+
+						</form>
+						</div>
+						</div>
+					</section>
 </body>
 <!-- Footer -->
 <section class="footer">
@@ -144,7 +161,7 @@
 
 				<div class="footer-links">
 					<ul>
-						<li><a href="./CreateRoom.jsp">Create Room</li>
+						<li><a href="./CreateMeeting.jsp">Create Meeting</li>
 						<li><a href="./Index.jsp#feedback">Feedback</a></li>
 					</ul>
 				</div>
