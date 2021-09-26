@@ -196,10 +196,16 @@
 					placeholder="UserID" onKeyUp="checkid()" autocomplete="off"
 					required> <input type="email" name="email" class="input"
 					placeholder="Email Address" onKeyUp="checkemail()"
-					autocomplete="off" required> <input type="number"
+					autocomplete="off" required>
+					 <input type="number"
 					name="userid" class="input" placeholder="RoomName Dropdown"
 					onKeyUp="checkid()" autocomplete="off" required>
-				<div class="form-container1">
+					<select id="type" name="type">
+					<c:forEach items="${meetingRoomList}" var='i'>
+						<option value="${i.roomName}" Selected></option>
+					</c:forEach>
+					</select>
+    					<div class="form-container1">
 					<div class="rate">
 						<p>Rating</p>
 						<input type="radio" id="star1" name="rate" value="1" /> <label

@@ -29,69 +29,6 @@
 <head>
 <title>MeetPro | CreateRoom</title>
 <link rel="stylesheet" href="./CreateRoomStyle.css">
-<script>
-function timeValidation() {
-	var startTime = document.getElementById("startTime").value;
-	var endTime = document.getElementById("endTime").value;
-	var [startTimeHH, startTimeMM] = startTime.split(':');
-	var [endTimeHH, endTimeMM] = endTime.split(':');
-	var validationFailed = false;
-	
-	if (startTime === '' || startTime === null){
-		document.getElementById('startTimeError').innerHTML="<font style=\"color: crimson\">*Empty Field</font>";
-		document.getElementById('startTime').style.border='red 1px solid';
-		validationFailed = true;
-	}	
-	if (endTime === '' || endTime === null){
-		document.getElementById('endTimeError').innerHTML="<font style=\"color: crimson\">*Empty Field</font>";
-		document.getElementById('endTime').style.border='red 1px solid';
-		validationFailed = true;
-	}
-	if (startTimeHH > endTimeHH) {
-		validationFailed = true;
-	}
-	else if (startTimeHH === endTimeHH && startTimeMM >= endTimeMM) {
-		validationFailed = true;
-	}
-	if (validationFailed) {
-		document.getElementById('startTimeError').innerHTML="<font style=\"color: crimson\">!Start time should always be less than end time</font>";
-		document.getElementById('endTimeError').innerHTML="<font style=\"color: crimson\">!Start time should always be less than end time</font>";
-		document.getElementById('endTime').style.border='red 1px solid';
-		document.getElementById('startTime').style.border='red 1px solid';
-	}
-	return validationFailed;
-}
-function ready() {
-	//initialze meeting date to tomorrow's date
-	document.getElementById('date').value = new Date(getTomorrowDate()).toLocaleDateString().split('/').reverse().join('-')
-}
-function getTomorrowDate() {
-	var tomorrow = new Date();
-	tomorrow.setHours(0, 0, 0, 0)
-	return tomorrow.setDate(new Date().getDate() + 1);
-}
-function dateValidation() {
-	var meetingDate = document.getElementById("date").value;
-	document.getElementById('dateError').innerHTML = '';
-	if (new Date(meetingDate) < getTomorrowDate()) {
-		document.getElementById('dateError').innerHTML="<font style=\"color: crimson\">!Booking date should always be a later date than today</font>";
-		document.getElementById('date').style.border='red 1px solid';		
-		return false;
-	}
-	
-	return false;
-}
-function validateData() {
-	var timeFlag=timeValidation();
-	var dateFlag=dateValidation();
-	if( timeFlag && dateFlag)
-		return true;
-	else
-		return false;
-	
-}
-</script>
-
 </head>
 <body>
 
@@ -134,19 +71,16 @@ function validateData() {
 			<div class="item">
 				<label for="startTime">Start Time<span>*</span></label>
 				<input type="time" id="startTime" name="startTime" class="input" required />
-				<p id="startTimeError"></p>
 			</div>
 			
 			<div class="item">
 				<label for="endTime">End Time<span>*</span></label>
 				<input type="time" id="endTime" name="endTime" class="input" required />
-				<p id="endTimeError"></p>
 			</div>
 	
 			<div class="item">
 				<label for="date">Date<span>*</span></label>
 				<input type="date" id="date" name="date" class="input" required />
-				<p id="dateError"></p>
 			</div>
 			
 	
