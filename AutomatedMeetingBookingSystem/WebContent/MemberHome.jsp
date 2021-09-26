@@ -16,15 +16,12 @@
 	{
 		User user = (User)session.getAttribute("userDetail");
 		
-		if ( user.getRole().equals ( "ADMIN" ) )
+		if ( user.getRole().equals ( "ADMIN" ) || user.getRole().equals ( "MANAGER" ))
 		{
-			request.getRequestDispatcher("AdminHome.jsp").forward ( request, response );
+			request.getRequestDispatcher("Login.jsp").forward ( request, response );
 			
 		}
-		else if ( user.getRole().equals ( "MANAGER" ) )
-		{
-			request.getRequestDispatcher("ManagerHome.jsp").forward ( request, response );
-		}
+		
 	}
 %>
 <!DOCTYPE html>
