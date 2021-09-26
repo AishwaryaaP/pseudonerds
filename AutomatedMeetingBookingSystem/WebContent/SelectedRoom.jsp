@@ -21,15 +21,12 @@
 	{
 		User user = (User)session.getAttribute("userDetail");
 		
-		if ( user.getRole().equals ( "MEMBER" ) )
+		if ( user.getRole().equals ( "MEMBER" ) || user.getRole().equals ( "ADMIN" ))
 		{
-			request.getRequestDispatcher("MemberHome.jsp").forward ( request, response );
+			request.getRequestDispatcher("Login.jsp").forward ( request, response );
 			
 		}
-		else if ( user.getRole().equals ( "ADMIN" ) )
-		{
-			request.getRequestDispatcher("AdminHome.jsp").forward ( request, response );
-		}
+		
 	}
 %>
 

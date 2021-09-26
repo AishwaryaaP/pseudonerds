@@ -18,9 +18,10 @@
 		
 		if ( user.getRole().equals ( "ADMIN" ) || user.getRole().equals ( "MANAGER" ))
 		{
-			request.getRequestDispatcher("Index.jsp").forward ( request, response );
+			request.getRequestDispatcher("Login.jsp").forward ( request, response );
 			
 		}
+		
 	}
 %>
 <!DOCTYPE html>

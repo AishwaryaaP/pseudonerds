@@ -24,10 +24,10 @@ response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 		
 		if ( user.getRole().equals ( "MEMBER" ) || user.getRole().equals ( "MANAGER" ))
 		{
-			request.getRequestDispatcher("Index.jsp").forward ( request, response );
+
+			request.getRequestDispatcher("Login.jsp").forward ( request, response );
 			
 		}
-		
 	}
 %>
 
