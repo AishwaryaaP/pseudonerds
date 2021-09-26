@@ -11,7 +11,10 @@ public interface BookingInformationService {
 
 	List<MeetingRoom> getAvailableMeetingRoom(LocalDate meetingDate, LocalTime startTime, LocalTime endTime, MeetingType type);
 	
-	public void saveBookingInformation(Meeting meeting);
+
 	
 	public boolean deleteBookingInformation(int uniqueId, LocalDate date, LocalTime startTime);
+
+	public boolean saveBookingInformation(Meeting meeting);
+
 }

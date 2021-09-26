@@ -20,7 +20,9 @@
 <link rel="icon" type="image/png" sizes="32x32"
 	href="IMAGES/favicon.ico">
 <title>MeetPro | UserProfile</title>
+
 <link rel="stylesheet" href="./UserProfileStyle.css">
+
 </head>
 <body>
 	<%
@@ -28,6 +30,8 @@
 	%>
 
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+
 
 <div class="page-content page-container" id="page-content">
     <div class="padding">

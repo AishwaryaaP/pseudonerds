@@ -1,5 +1,7 @@
 package com.AutomatedMeetingBookingSystem.controllers;
+
 import com.AutomatedMeetingBookingSystem.model.User;
+
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -28,10 +30,13 @@ public class CreateMeetingController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.print("hit");
+
 		int organizedBy =( (User)request.getSession().getAttribute("userDetail")).getUserId();
+
+
 		String roomName = request.getParameter("roomName");
 		String title = request.getParameter("title");
-		String date = request.getParameter("date");
+		String date = request.getParameter("meetingDate");
 		String startTime = request.getParameter("startTime");
 		String [] start = startTime.split(":");
 		String startHours = start[0];
@@ -45,13 +50,17 @@ public class CreateMeetingController extends HttpServlet {
 		boolean isMeetingCreated = false;
 		isMeetingCreated = managerService.createMeeting(organizedBy, roomName, title, date, startHours, startMinutes, endHours, endMinutes, type, listOfMembers);
 		if(isMeetingCreated) {
+
 			System.out.print("meeting Created");
+
 			request.setAttribute("meetingCreated", true);
 			RequestDispatcher rd = request.getRequestDispatcher("GetScheduledByManagerController");
 			rd.forward(request, response);
 		}
 		else {
+
 			System.out.println("No meeting Created");
+
 			request.setAttribute("meetingCreated", false);
 			RequestDispatcher rd = request.getRequestDispatcher("GetScheduledByManagerController");
 			rd.forward(request, response);

@@ -9,7 +9,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
+import com.AutomatedMeetingBookingSystem.service.MeetingRoomService;
 import com.AutomatedMeetingBookingSystem.utility.DaoUtility;
 import com.AutomatedMeetingBookingSystem.utility.DaoUtilityInterface;
 
@@ -18,12 +23,21 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 	private static final String SELECT_BY_ROOM_NAME = "SELECT roomId,roomName,seatingCapacity,rating,ratingSum,ratingCount,creditPerHour,amenities, count FROM MeetingRoom WHERE roomName=?";
 	private static final String SELECT_ALL_ROOMS = "SELECT roomId,roomName,seatingCapacity,rating,ratingSum,ratingCount,creditPerHour,amenities, count FROM MeetingRoom";
 	private static final String INSERT_ROOM = "INSERT INTO MeetingRoom(roomName, seatingCapacity, rating, ratingSum, ratingCount, creditPerHour, amenities, count) VALUES (?,?,?,?,?,?,?,?)";
+
 	private static final String UPDATE_ROOM = "UPDATE MeetingRoom SET seatingCapacity=?, creditPerHour=?, amenities=? WHERE roomName=?";
+
 	private static final String DELETE_ROOM_BY_NAME = "DELETE FROM MeetingRoom WHERE roomName=?";
 	private static final String UPDATE_MEETING_COUNT = "Update MeetingRoom SET count=? WHERE roomName=?";
 
-	DaoUtilityInterface dao = new DaoUtility();
-	Connection connection = dao.getInstance();
+	private DaoUtilityInterface dao = new DaoUtility();
+	private Connection connection = dao.getInstance();
+	private static Logger logger;
+
+	public MeetingRoomDaoImpl() {
+		super();
+		LogManager.getLogger(MeetingRoomService.class);
+		BasicConfigurator.configure();
+	}
 
 	@Override
 	public MeetingRoom fetchMeetingRoomByName(String roomName)
@@ -55,6 +69,7 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 			}
 			catch (SQLException e) {
 				e.printStackTrace();
+				logger.info(e.getMessage());
 			}
 			finally
 			{
@@ -62,6 +77,7 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 					stmt.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
+					logger.info(e.getMessage());
 				}
 			}
 		}
@@ -100,6 +116,7 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
+				logger.info(e.getMessage());
 			}
 			finally
 			{
@@ -107,6 +124,7 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 					stmt.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
+					logger.info(e.getMessage());
 				}
 			}
 
@@ -125,7 +143,7 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 		
 			try {
 				stmt = connection.prepareStatement(INSERT_ROOM);
-				//stmt.setInt(1, room.getRoomId());
+
 				stmt.setString(1, room.getRoomName());
 				stmt.setInt(2, room.getSeatingCapacity());
 				stmt.setDouble(3, room.getRating());
@@ -146,6 +164,8 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 			catch (SQLException e)
 			{
 				e.printStackTrace();
+
+				logger.info(e.getMessage());
 			}
 
 		}
@@ -178,6 +198,8 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 			catch (SQLException e)
 			{
 				e.printStackTrace();
+
+				logger.info(e.getMessage());
 			}
 
 		}
@@ -206,6 +228,7 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 			catch (SQLException e)
 			{
 				e.printStackTrace();
+				logger.info(e.getMessage());
 			}
 
 		}
@@ -229,6 +252,7 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
+				logger.info(e.getMessage());
 			}
 			
 		}

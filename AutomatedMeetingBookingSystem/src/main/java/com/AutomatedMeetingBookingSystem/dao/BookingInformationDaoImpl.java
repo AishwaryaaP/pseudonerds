@@ -42,7 +42,9 @@ public class BookingInformationDaoImpl implements BookingInformationDao {
 	@Override
 
 	public boolean saveBookingInformation(BookingInformation bookingInformation){
+
 		if (connection != null) 
+
 		{
 			System.out.println("in");
 			try {
@@ -54,8 +56,22 @@ public class BookingInformationDaoImpl implements BookingInformationDao {
 				statement.setString(5, bookingInformation.getEndTime().toString());
 				statement.setInt(6, bookingInformation.getOrganizedBy());
 	
+
 				statement.executeUpdate();
 					statement.close();
+
+				ResultSet rs = statement.getGeneratedKeys();
+				int id = 0;
+				while(rs.next()) {
+					id = rs.getInt(1);
+				}
+	System.out.println(id);
+				if (id != 0) {
+					statement.close();
+					//connection.commit();
+
+				}
+
 			}
 			catch(SQLException e) {
 				e.printStackTrace();

@@ -1,6 +1,47 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%-- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"pageEncoding="ISO-8859-1"%>
 <%@ page import="com.AutomatedMeetingBookingSystem.model.Meeting" %>
+
+<%@ page
+	import="com.AutomatedMeetingBookingSystem.service.ServiceFactory.*"%>
+<%@ page
+	import="com.AutomatedMeetingBookingSystem.service.ServiceFactory"%>
+<%@page
+	import="com.AutomatedMeetingBookingSystem.service.MeetingService"%>
+<%@ page import="com.AutomatedMeetingBookingSystem.model.Meeting"%>
+<%@ page import="javax.servlet.http.HttpSession.*"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.AutomatedMeetingBookingSystem.controllers.*"%>
+<%@ page import="com.AutomatedMeetingBookingSystem.enums.*"%>
+<%@page import="com.AutomatedMeetingBookingSystem.model.User" %>
+
+<%
+	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	response.setHeader("Pragma", "no-cache");
+	response.setHeader("Expires", "0");
+		
+	if ((request.getSession(false) == null) || 
+			(session.getAttribute ( "LOGINSTATUS" ) != "SUCCESS" )) {
+		
+		request.getRequestDispatcher("Login.jsp").forward ( request, response );		
+	
+	}
+	else
+	{
+		User user = (User)session.getAttribute("userDetail");
+		
+		if ( user.getRole().equals ( "MEMBER" ) )
+		{
+			request.getRequestDispatcher("MemberHome.jsp").forward ( request, response );
+			
+		}
+		else if ( user.getRole().equals ( "ADMIN" ) )
+		{
+			request.getRequestDispatcher("AdminHome.jsp").forward ( request, response );
+		}
+	}
+%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +50,6 @@
 </head>
 <body>
 	<%
-		Meeting meeting = (Meeting)request.getAttribute("meeting");				
 	%>
 	
 	<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
@@ -73,5 +113,8 @@
 	
 
 
+
+
+
 </body>
-</html>
+</html> --%>

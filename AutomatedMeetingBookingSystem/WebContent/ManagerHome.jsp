@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@page import="com.AutomatedMeetingBookingSystem.model.User"%>
 <!DOCTYPE html>
 <html>
@@ -10,7 +9,47 @@
 
 </head>
 <body>
+
 <%
+	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	response.setHeader("Pragma", "no-cache");
+	response.setHeader("Expires", "0");
+		
+	if ((request.getSession(false) == null) || 
+			(session.getAttribute ( "LOGINSTATUS" ) != "SUCCESS" )) {
+		
+		request.getRequestDispatcher("Login.jsp").forward ( request, response );		
+	
+	}
+	else
+	{
+		User user = (User)session.getAttribute("userDetail");
+		
+		if ( user.getRole().equals ( "MEMBER" ) )
+		{
+			request.getRequestDispatcher("MemberHome.jsp").forward ( request, response );
+			
+		}
+		else if ( user.getRole().equals ( "ADMIN" ) )
+		{
+			request.getRequestDispatcher("AdminHome.jsp").forward ( request, response );
+		}
+	}
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="./IMAGES/favicon.ico">
+<title>MeetPro|Manager</title>
+<link rel="stylesheet" href="./CSS/AdminHomeStyle.css">
+</head>
+<body>
+	<%
+
 		User user = (User) session.getAttribute("userDetail");
 	%>
 
@@ -23,7 +62,9 @@
 			<img class="logo" id="logo" src="./IMAGES/pnlogo.png" type="image/png"  alt="MeetPro" href="#">
 			<div class="container1" id="container1">
 				<ul class="nav-ul" id="nav-ul">
+
 				   <%--  <li class="nav-link"><a>Last Loggedin: <%=user.getLastLoggedIn()%></a></li> --%>
+
 					<li class="nav-link"><a href="GetScheduledByManagerController">Meeting Details</a></li>
 					<li class="nav-link"><a>Credit: <%=user.getCredit() %></a></li>
 					<li claas="nav-link"><a href="UserProfile.jsp">Hello <%=user.getName() %></a></li>
@@ -46,6 +87,7 @@
 	<a href="GetAvailableRoomsController"> CREATE MEETING</a>
 
 	<!--table-->
+
 
 	<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
     <a href = "CreateMeeting.jsp"> CREATE MEETING</a>
@@ -130,6 +172,7 @@
              
       
 	
+
 
 
 </html>

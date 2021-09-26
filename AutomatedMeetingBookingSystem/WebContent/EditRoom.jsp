@@ -1,99 +1,254 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ page import="com.AutomatedMeetingBookingSystem.service.ServiceFactory.*" %>
-<%@ page import="com.AutomatedMeetingBookingSystem.service.ServiceFactory" %>
-<%@page import="com.AutomatedMeetingBookingSystem.service.MeetingRoomService" %>
-<%@ page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom" %>
-<%@ page import="javax.servlet.http.HttpSession.*" %>
-<%@ page import="java.util.*" %>
-<%@ page import="com.AutomatedMeetingBookingSystem.controllers.*" %>
+	pageEncoding="ISO-8859-1"%>
+<%@ page
+	import="com.AutomatedMeetingBookingSystem.service.ServiceFactory.*"%>
+<%@ page
+	import="com.AutomatedMeetingBookingSystem.service.ServiceFactory"%>
+<%@page
+	import="com.AutomatedMeetingBookingSystem.service.MeetingRoomService"%>
+<%@ page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom"%>
+<%@ page import="javax.servlet.http.HttpSession.*"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.AutomatedMeetingBookingSystem.controllers.*"%>
+<%@page import="com.AutomatedMeetingBookingSystem.model.User" %>
+
+<%
+	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	response.setHeader("Pragma", "no-cache");
+	response.setHeader("Expires", "0");
+		
+	if ((request.getSession(false) == null) || 
+			(session.getAttribute ( "LOGINSTATUS" ) != "SUCCESS" )) {
+		
+		request.getRequestDispatcher("Login.jsp").forward ( request, response );		
+	
+	}
+	else
+	{
+		User user = (User)session.getAttribute("userDetail");
+		
+		if ( user.getRole().equals ( "MEMBER" ) )
+		{
+			request.getRequestDispatcher("MemberHome.jsp").forward ( request, response );
+			
+		}
+		else if ( user.getRole().equals ( "MANAGER" ) )
+		{
+			request.getRequestDispatcher("ManagerHome.jsp").forward ( request, response );
+		}
+	}
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>MeetPro | EditRoom</title>
+<link rel="stylesheet" href="./CSS/CreateRoomStyle.css">
 </head>
 <body>
 	<%
-		MeetingRoom room = (MeetingRoom)request.getAttribute("MeetingRoom");				
+		MeetingRoom room = (MeetingRoom) request.getAttribute("meetingRoomList");
 	%>
-	
-	<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-		<form  action = "EditMeetingRoomController">
-		
-        <label for="roomName">Meeting Room Name</label>
-        <input type="text"  placeholder="Enter room name" name="roomName" id="roomName" value="<%=room.getRoomName()%>" readonly>
-        
-        <label for="seatingCapacity">Seating Capacity</label>
-        <input type=number step=any name="seatingCapacity" value="<%=room.getSeatingCapacity()%>"><br />
+	<header>
+		<nav role="navigation">
+			<img class="logo" src="./images/pnlogo.svg" alt="MeetPro" href="#">
+			<div class="container1" id="container1">
+				<ul class="nav-ul" id="nav-ul">
+					<li claas="nav-link"><a onclick="history.back()">Return</a></li>
+				</ul>
+			</div>
+			<div class="menuToggle" id="menuToggle">
+				<input type="checkbox" /> <span></span> <span></span> <span></span>
+				<ul class="menu" id="menu">
+					<a href="#edit">
+						<li><a href="Index.jsp">Logout</a></li>
+					</a>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<div class="space"></div>
+	<div class="testbox">
 
-		<% 		
-		 String [] amenitiesString = room.getAmenities().split(" ");
-         Set<String> amenities = new HashSet<>();
-         for(String amenity : amenitiesString) {
-        	 amenities.add(amenity);
-         }
-         %> 
-         <label for="projector">Projector</label><br>
-         <% if(amenities.contains("PROJECTOR")) { %> 
-             <input type="checkbox" id="projector" name="amenities" Checked value="projector">
-         <% } 
-            else { %>
-             <input type="checkbox" id="projector" name="amenities"  value="projector">
-         <% } %>
-         
-         <label for="Wifi-Connection">Wifi-Connection</label><br>
-         <% if(amenities.contains("WIFICONNECTION")) { %> 
-             <input type="checkbox" id="Wifi-Connection" name="amenities" Checked value="Wifi-Connection">
-         <% } 
-            else { %>
-             <input type="checkbox" id="Wifi-Connection" name="amenities"  value="Wifi-Connection">
-         <% } %>
-         
-         <label for="Con-Call">Con-Call</label><br>
-         <% if(amenities.contains("CONFERENCECALL")) { %> 
-             <input type="checkbox" id="Con-Call" name="amenities" Checked value="Con-Call">
-         <% } 
-            else { %>
-             <input type="checkbox" id="Con-Call" name="amenities"  value="Con-Call">
-         <% } %>
-         
-         <label for="Whiteboard">Whiteboard</label><br>
-         <% if(amenities.contains("WHITEBOARD")) { %> 
-             <input type="checkbox" id="Whiteboard" name="amenities" Checked value="Whiteboard">
-         <% } 
-            else { %>
-             <input type="checkbox" id="Whiteboard" name="amenities"  value="Whiteboard">
-         <% } %>
-         
-         <label for="WaterDispenser">WaterDispenser</label><br>
-         <% if(amenities.contains("WATERDISPENCER")) { %> 
-             <input type="checkbox" id="WaterDispenser" name="amenities" Checked value="WaterDispenser">
-         <% } 
-            else { %>
-             <input type="checkbox" id="WaterDispenser" name="amenities"  value="WaterDispenser">
-         <% } %>
-         
-         <label for="TV">TV</label><br>
-         <% if(amenities.contains("TV")) { %> 
-             <input type="checkbox" id="TV" name="amenities" Checked value="TV">
-         <% } 
-            else { %>
-             <input type="checkbox" id="TV" name="amenities"  value="TV">
-         <% } %>
-         
-         <label for="CoffeMachine">CoffeMachine</label><br>
-         <% if(amenities.contains("COFFEEMACHINE")) { %> 
-             <input type="checkbox" id="CoffeMachine" name="amenities" Checked value="CoffeMachine">
-         <% } 
-            else { %>
-             <input type="checkbox" id="CoffeMachine" name="amenities"  value="CoffeMachine">
-         <% } %>
-				
-		<button > submit</button>        </form>
-    	  
-	
+		<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+		<form action="EditMeetingRoomController">
+
+			<div class="banner">
+				<h1>Create Room</h1>
+			</div>
+			<div class="item">
+				<label for="name">Room Name</label> <input id="name"
+					type="text" placeholder="Enter the unique room name"
+					name="roomName" id="roomName" value="<%=room.getRoomName()%>"
+					readonly />
+			</div>
 
 
+			<div class="item">
+				<label for="seatingCapacity">Seating Capacity<span>*</span></label>
+				<input type="number" class="input"
+					placeholder="Enter the desired Seating Capacity" step=any
+					name="seatingCapacity" value="<%=room.getSeatingCapacity()%>"
+					required />
+			</div>
+
+			<%
+				String[] amenitiesString = room.getAmenities().split(" ");
+			Set<String> amenities = new HashSet<>();
+			for (String amenity : amenitiesString) {
+				amenities.add(amenity);
+			}
+			%>
+
+			<div class="question">
+				<label for="amenities">Select Amenities (minimum 2)</label>
+				<div class="question-answer">
+					<div>
+						<%
+							if (amenities.contains("PROJECTOR")) {
+						%>
+						<input type="checkbox" id="projector" name="amenities" Checked
+							value="projector">
+						<%
+							} else {
+						%>
+						<input type="checkbox" id="projector" name="amenities"
+							value="projector">
+						<%
+							}
+						%>
+						<label for="projector" class="checkbox"><span>Projector</span></label>
+					</div>
+					
+					<div>
+						<%
+						if (amenities.contains("WIFICONNECTION")) {
+					%>
+					<input type="checkbox" id="Wifi-Connection" name="amenities"
+						Checked value="Wifi-Connection">
+					<%
+						} else {
+					%>
+					<input type="checkbox" id="Wifi-Connection" name="amenities"
+						value="Wifi-Connection">
+					<%
+						}
+					%>
+
+						
+						
+						 <label
+							for="Wifi-Connection" class="checkbox"><span>Wifi-Connection</span></label>
+					</div>
+					
+					
+					<div>
+						<%
+						if (amenities.contains("CONFERENCECALL")) {
+					%>
+					<input type="checkbox" id="Con-Call" name="amenities" Checked
+						value="Con-Call">
+					<%
+						} else {
+					%>
+					<input type="checkbox" id="Con-Call" name="amenities"
+						value="Con-Call">
+					<%
+						}
+					%>
+
+					 <label for="Con-Call" class="checkbox"><span>Con-Call</span></label>
+					</div>
+					
+					<div>
+					<%
+						if (amenities.contains("WHITEBOARD")) {
+					%>
+					<input type="checkbox" id="Whiteboard" name="amenities" Checked
+						value="Whiteboard">
+					<%
+						} else {
+					%>
+					<input type="checkbox" id="Whiteboard" name="amenities"
+						value="Whiteboard">
+					<%
+						}
+					%>
+
+					 <label for="Whiteboard" class="checkbox"><span>Whiteboard</span></label>
+					</div>
+					
+					
+					<div>
+						<%
+						if (amenities.contains("WATERDISPENSER")) {
+					%>
+					<input type="checkbox" id="WaterDispenser" name="amenities" Checked
+						value="WaterDispenser">
+					<%
+						} else {
+					%>
+					<input type="checkbox" id="WaterDispenser" name="amenities"
+						value="WaterDispenser">
+					<%
+						}
+					%>
+
+ 					<label for="WaterDispenser" class="checkbox"><span>WaterDispenser</span></label>
+					</div>
+					
+					<div>
+					
+					
+					<%
+						if (amenities.contains("TV")) {
+					%>
+					<input type="checkbox" id="TV" name="amenities" Checked value="TV">
+					<%
+						} else {
+					%>
+					<input type="checkbox" id="TV" name="amenities" value="TV">
+					<%
+						}
+					%>
+
+					<label for="TV" class="checkbox"><span>TV</span></label>
+					
+					</div>
+					
+					<div>
+						<%
+						if (amenities.contains("COFFEEMACHINE")) {
+					%>
+					<input type="checkbox" id="CoffeMachine" name="amenities" Checked
+						value="CoffeMachine">
+					<%
+						} else {
+					%>
+					<input type="checkbox" id="CoffeMachine" name="amenities"
+						value="CoffeMachine">
+					<%
+						}
+					%>
+				 <label for="CoffeeMachine" class="checkbox"><span>Coffee Machine</span></label>
+					</div>
+				</div>
+			</div>
+			<div class="btn-block">
+				<button onclick="AdminHome.jsp">SUBMIT</button>
+			</div>
+		</form>
+		</div>
+	<%--  <%
+      boolean editStatus = (boolean) session.getAttribute("edited");
+		  	if(editStatus == true){
+		  		System.out.println("meetingRoom edited");
+		  	}
+		  %> --%>			
+					
+					
+					
+					
+					
 </body>
 </html>

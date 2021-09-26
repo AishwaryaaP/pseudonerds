@@ -26,6 +26,7 @@ import java.io.File;
 /**
  * Servlet implementation class ImportUserController
  */
+
 public class ImportUserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserServiceInterface userService;
@@ -50,7 +51,8 @@ public class ImportUserController extends HttpServlet {
 		try {
 
 			File file = new File(request.getParameter("filePath"));
-
+			if(file==null)
+				System.out.println("okok");
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db = dbf.newDocumentBuilder();
 			Document doc = db.parse(file);
@@ -103,3 +105,4 @@ public class ImportUserController extends HttpServlet {
 	}
 
 }
+

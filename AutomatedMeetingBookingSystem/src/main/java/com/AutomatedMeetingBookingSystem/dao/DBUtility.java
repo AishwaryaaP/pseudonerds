@@ -9,7 +9,7 @@ public class DBUtility {
 
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {
 		Class.forName(Driver.class.getName());
-		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/amrbs", "root", "1234");
+		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/meetingsystem", "root", "Mohitt@13");
 		return connection;
 	}
 }

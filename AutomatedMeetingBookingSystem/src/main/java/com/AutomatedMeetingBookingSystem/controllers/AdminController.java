@@ -70,7 +70,7 @@ public class AdminController extends HttpServlet {
 			}
         
 			MeetingRoom meetingRoom = new MeetingRoom(roomName, creditPerHour, seatingCapacity, rating, ratingSum,
-					ratingCount, amenities);
+					ratingCount, amenitiesString);
 			boolean created = adminService.createMeetingRoom(meetingRoom);
 			req.setAttribute("created", created);
 			RequestDispatcher rd = req.getRequestDispatcher("AdminHome.jsp");
@@ -105,7 +105,7 @@ public class AdminController extends HttpServlet {
 			}
 
 			MeetingRoom meetingRoom1 = new MeetingRoom(roomName1, creditPerHour1, seatingCapacity1, rating1, ratingSum1,
-					ratingCount1, amenities1);
+					ratingCount1, amenitiesString1);
 
 			boolean updated = adminService.editMeetingRoom(meetingRoom1);
 			req.setAttribute("updated", updated);
@@ -149,7 +149,7 @@ public class AdminController extends HttpServlet {
 			}
         
 			MeetingRoom meetingRoom = new MeetingRoom(roomName, creditPerHour, seatingCapacity, rating, ratingSum,
-					ratingCount, amenities);
+					ratingCount, amenitiesString);
 			boolean created = adminService.createMeetingRoom(meetingRoom);
 			req.setAttribute("created", created);
 			RequestDispatcher rd = req.getRequestDispatcher("admin.jsp");
@@ -184,7 +184,7 @@ public class AdminController extends HttpServlet {
 			}
 
 			MeetingRoom meetingRoom1 = new MeetingRoom(roomName1, creditPerHour1, seatingCapacity1, rating1, ratingSum1,
-					ratingCount1, amenities1);
+					ratingCount1, amenitiesString1);
 
 			boolean updated = adminService.editMeetingRoom(meetingRoom1);
 			req.setAttribute("updated", updated);
