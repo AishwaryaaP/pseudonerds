@@ -34,7 +34,7 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 <body>
 	<header>
 		<nav role="navigation">
-			<img class="logo" src="./images/pnlogo.svg" alt="MeetPro" href="#">
+			<img class="logo" id="logo" src="./IMAGES/pnlogo.png" type="image/png"  alt="MeetPro" href="#">
 			<div class="container1" id="container1">
 				<ul class="nav-ul" id="nav-ul">
 					<li class="nav-link"><a onclick="history.back()">Return to
@@ -58,9 +58,7 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 				<h1>Create Room</h1>
 			</div>
 			<div class="item">
-				<label for="name">Room Name<span>*</span></label> <input id="name"
-					type="text" name="roomName"
-					placeholder="Enter the unique room name" required />
+				<label for="name">Room Name<span>*</span></label> <input id="name" type="text" name="roomName"placeholder="Enter the unique room name" required />
 			</div>
 			<div class="item">
 				<label for="seatingCapacity">Seating Capacity<span>*</span></label>

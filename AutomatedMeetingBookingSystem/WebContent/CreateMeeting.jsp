@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@page import="com.AutomatedMeetingBookingSystem.model.User"%>
+<%@page import="com.AutomatedMeetingBookingSystem.controllers.GetAvailableRoomsController"%>
 <%
 	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 	response.setHeader("Pragma", "no-cache");
 	response.setHeader("Expires", "0");
 		
-	if ((request.getSession(false) == null) || 
-			(session.getAttribute ( "LOGINSTATUS" ) != "SUCCESS" )) {
-		
+	if ((request.getSession(false) == null) || (session.getAttribute ( "LOGINSTATUS" ) != "SUCCESS" )) {
 		request.getRequestDispatcher("Login.jsp").forward ( request, response );		
 	
 	}
@@ -40,7 +39,7 @@
 
 	<header>
 		<nav role="navigation">
-			<img class="logo" src="./images/pnlogo.svg" alt="MeetPro" href="#">
+			<img class="logo" id="logo" src="./IMAGES/pnlogo.png" type="image/png"  alt="MeetPro" href="#">
 			<div class="container1" id="container1">
 				<ul class="nav-ul" id="nav-ul">
 					<li claas="nav-link"><a onclick="history.back()">Return</a></li>
@@ -58,17 +57,17 @@
 	</header>
 	<div class="space"></div>
 	<div class="testbox">
-		<form action="action="GetAvailableRoomsController" >
+		<form action="GetAvailableRoomsController" >
 			<div class="banner">
 				<h1>Schedule Meeting</h1>
 			</div>
 			<div class="item">
 				<label for="type">Choose meeting type:</label>
   		<select id="type" name="type">
-    		<option value="classroomTraining">ClassRoom Training</option>
-    		<option value="OnlineTraining">Online Training</option>
-    		<option value="ConferenceCall">ConferenceCall</option>
-    		<option value="business">Business</option>
+    		<option value="CLASSROOMTRAINING">ClassRoom Training</option>
+    		<option value="ONLINETRAINING">Online Training</option>
+    		<option value="CONFERENCECALL">ConferenceCall</option>
+    		<option value="BUSINESS">Business</option>
   		</select>       
 			</div>
 			<div class="item">
@@ -86,7 +85,7 @@
 				<input type="date" id="date" name="date" class="input" required />
 			</div>
        <div class="btn-block">
-				<button >SUBMIT</button>
+				<button>SUBMIT</button>
 			</div>
 		</form>
 	</div>

@@ -26,8 +26,12 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="IMAGES/favicon.ico">
+<title>MeetPro | Admin</title>
+<link rel="stylesheet" href="./CSS/AdminHomeStyle.css">
 </head>
 <body>
 	<h1>Available Meeting Rooms</h1>

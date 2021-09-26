@@ -40,45 +40,6 @@
 <link rel="stylesheet" href="./CSS/AdminHomeStyle.css">
 </head>
 <body>
-
-	<%-- <<<<<<< HEAD
-	<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-    <a href = "CreateMeeting.jsp"> CREATE MEETING</a>
-    
-    <h1>Created Meetings</h1>
-    
-        <table  BORDER="5">
-            <tr>
-            	<th>Meeting Id</th>
-            	<th>Title</th>
-               <th>Date</th>
-               <th>startTime</th>
-               <th>endTime</th>
-               <th>Type</th>
-               <th>Room Name</th>
-               <th>Actions</th>
-               
-            </tr>
-            
-            
-            
-             <c:forEach items="${meetings}" var ='i'>
-                 <tr>
-                     <td><c:out value="${i.uniqueID}"/></a></td>
-                     <td><c:out value="${i.title}"/></td>
-                     <td><c:out value="${i.date}"/></td>  
-                     <td><c:out value="${i.startTime}"/></td>  
-                     <td><c:out value="${i.endTime}"/></td>
-                     <td><c:out value="${i.type}"/></td>  
-                     <td><c:out value="${i.infoMeetingRoomName}"/></td>
-                     <td><a href = "DeleteMeetingController?uniqueID=${i.uniqueID}&date=${i.date}&startTime=${i.startTime}&endTime=${i.endTime}&roomName=${i.infoMeetingRoomName}"> delete </a></td>
-                 </tr>
-                 
-                </c:forEach>
-             
-        </table>
-	
-======= --%>
 	<%
 		User user = (User) session.getAttribute("userDetail");
 	%>
@@ -89,24 +50,21 @@
 
 	<header>
 		<nav role="navigation">
-			<img class="logo" src="./IMAGES/pnlogo.svg" alt="MeetPro" href="#">
+			<img class="logo" id="logo" src="./IMAGES/pnlogo.png" type="image/png"  alt="MeetPro" href="#">
 			<div class="container1" id="container1">
 				<ul class="nav-ul" id="nav-ul">
-					<li class="nav-link"><a href="GetAllRoomsController">Room
-							Details</a></li>
+				    <li class="nav-link"><a>Last Loggedin: <%=user.getLastLoggedIn()%></a></li>
+					<li class="nav-link"><a href="GetScheduledByManagerController">Meeting Details</a></li>
 					<li class="nav-link"><a>Credit: <%=user.getCredit() %></a></li>
-					<li class="nav-link"><a>Last Loggedin: <%=user.getLastLoggedIn()%></a></li>
 					<li claas="nav-link"><a href="UserProfile.jsp">Hello <%=user.getName() %></a></li>
 				</ul>
 			</div>
 			<div class="menuToggle" id="menuToggle">
 				<input type="checkbox" /> <span></span> <span></span> <span></span>
 				<ul class="menu" id="menu">
-					<!--  -->
 					<a href="#">
 						<li></li>
-					</a> -->
-
+					</a>
 					<a href="#">
 						<li><a href="CreateMeeting.jsp">Create Meeting</a></li>
 						<li><a href="Index.jsp">Logout</a></li>
@@ -124,7 +82,10 @@
 		<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
-		<h2 class="section-heading">Meetings Scheduled by Manager</h2>
+	<!--table-->
+	<section class="table-room">
+	<h1>                              </h1>
+		<h2 style="text-align:center; padding-inline:inherit; padding-top: 40px; padding-bottom:20px" class="section-heading">Your Scheduled Meetings</h2>
 		<div class="tbl-header">
 			<table>
 				<thead>
@@ -137,28 +98,23 @@
 						<th>Type</th>
 						<th>Room Name</th>
 						<th>Actions</th>
-
 					</tr>
 				</thead>
 			</table>
 		</div>
-
-
-
 		<c:forEach items="${meetings}" var='i'>
 			<div class="tbl-content">
 				<table>
 					<tbody>
 						<tr>
-							<td>><c:out value="${i.uniqueID}" /></td>
+							<td><c:out value="${i.uniqueID}" /></td>
 							<td><c:out value="${i.title}" /></td>
 							<td><c:out value="${i.date}" /></td>
 							<td><c:out value="${i.startTime}" /></td>
 							<td><c:out value="${i.endTime}" /></td>
 							<td><c:out value="${i.type}" /></td>
 							<td><c:out value="${i.infoMeetingRoomName}" /></td>
-							<td><a
-								href="DeleteMeetingController?uniqueID=${i.uniqueID}&date=${i.date}&startTime=${i.startTime}&endTime=${i.endTime}&roomName=${i.infoMeetingRoomName}">
+							<td><a href="DeleteMeetingController?uniqueID=${i.uniqueID}&date=${i.date}&startTime=${i.startTime}&endTime=${i.endTime}&roomName=${i.infoMeetingRoomName}">
 									delete </a></td>
 
 						</tr>
@@ -167,41 +123,39 @@
 				</table>
 			</div>
 	</section>
-	<!-- Footer -->
+</body>
+<!-- Footer -->
+<section class="footer">
 	<footer>
 		<div class="container">
 			<div class="footer">
 
 				<div class="footer-icons">
-					<a href="#"> <img src="./IMAGES/pseudo.svg" alt="">
+					<a href="#"> <img src="" alt="">
 					</a>
 				</div>
 
 				<div class="footer-links">
 					<ul>
-						<li><a href="#about">About Us</a></li>
-						<li><a href="#contact">Contact</a></li>
+						<li><a href="./Index.jsp#about">About Us</a></li>
+						<li><a href="./Index.jsp#contact">Contact</a></li>
 					</ul>
 				</div>
 
 				<div class="footer-links">
 					<ul>
-						<li><a href="./Login.jsp">Login Page</a></li>
-						<li><a href="#feedback">Feedback</a></li>
+						<li><a href="./CreateRoom.jsp">Create Room</li>
+						<li><a href="./Index.jsp#feedback">Feedback</a></li>
 					</ul>
 				</div>
 
 				<div class="footer-credit">
-					<div class="u-mb-large">
-						<a href="https://github.com/AishwaryaaP/pseudonerds">Github
-							Repository</a>
-						<p>@PseudoNerds. All Rights Reserved</p>
-					</div>
+					<a href="https://github.com/AishwaryaaP/pseudonerds">Github
+						Repository</a>
+					<p>@PseudoNerds. All Rights Reserved</p>
 				</div>
 			</div>
 		</div>
 	</footer>
-
-
-</body>
+</section>
 </html>
