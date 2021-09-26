@@ -51,7 +51,8 @@ public class ImportUserController extends HttpServlet {
 		try {
 
 			File file = new File(request.getParameter("filePath"));
-			
+			if(file==null)
+				System.out.println("okok");
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db = dbf.newDocumentBuilder();
 			Document doc = db.parse(file);

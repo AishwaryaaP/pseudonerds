@@ -1,8 +1,7 @@
-<%-- <%@page import="jdk.internal.misc.FileSystemOption"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+ <%@page import="jdk.internal.misc.FileSystemOption"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 	<%@ page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom"%>
-	<%@ page import="com.AutomatedMeetingBookingSystem.controllers.FetchMeetingRoomDetailsController"%>
+	<%@ page import="com.AutomatedMeetingBookingSystem.controllers.GetAllRoomsController"%>
 	<%@page import="java.util.List"%>
 	
 <!DOCTYPE html>
@@ -107,19 +106,18 @@
 			</div>
 		</div>
 	</section>
-<<<<<<< HEAD
 <!--table-->
 <section class="table">
 		<h2 class="section-heading">Created Rooms</h2>
 		<div class="tbl-header">
-			<table cellpadding="0" cellspacing="0" border="0">
+			<table >
 				<thead>
 				</thead>
 			</table>
 		</div>
 		<c:forEach items="${meetingRoomList}" var='i'>
 			<div class="tbl-content">
-				<table cellpadding="0" cellspacing="0" border="0">
+				<table >
 					<tbody>
 						<tr>
 							<td><a href="FetchMeetingRoomDetailsController?roomName=${i.roomName}"></a></td>
@@ -133,7 +131,6 @@
 				</table>
 			</div>
 	</section>
-=======
 
 
 	
@@ -156,7 +153,6 @@
 		</div>
 	</section>
 
->>>>>>> 80202c3805d18fb7453543ac68b58fd029b881a3
 	<!-- FeedBack -->
 	<section id="feedback" class="feedback">
 		<h2 class="section-heading">Feedback</h2>
@@ -256,4 +252,3 @@
 
 
 
- --%>
