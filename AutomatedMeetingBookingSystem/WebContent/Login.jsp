@@ -4,7 +4,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
- <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+ <link rel="icon" type="image/png" sizes="32x32" href="./IMAGES/favicon.ico">
 <title>MeetPro | Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="CSS/LoginStyle.css">
@@ -85,7 +85,7 @@ function validateData()
 
       <div class="login-container">
 
-          <form  action="GlobalServlet" method="post">
+          <form  action="GlobalServlet" >
 
               <img src="./IMAGES/avatar.png" type= "image/png" alt="avatar" class="avatar">
 

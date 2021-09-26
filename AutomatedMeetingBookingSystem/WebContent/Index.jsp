@@ -103,7 +103,7 @@
 		</h2>
 		<div class="feedback-container container">
 			<h2 class="feedback-heading lg-heading">Next generation meeting
-				room booking system. Take your boardroom life online. Your ProMeet
+				room booking system. Take your boardroom life online. Your MeetPro
 				account will be a one-stop-solution for creating rooms, scheduling
 				meetings, managing rooms, inviting members, and much more</h2>
 			<p class="u-mb-large">
