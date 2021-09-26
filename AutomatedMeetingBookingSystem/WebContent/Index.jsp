@@ -1,5 +1,10 @@
+<%@page import="jdk.internal.misc.FileSystemOption"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom"%>
+	<%@ page import="com.AutomatedMeetingBookingSystem.controllers.FetchMeetingRoomDetailsController"%>
+	<%@page import="java.util.List"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,6 +79,7 @@
 </script>
 
 
+
 <body>
 	<header>
 		<div class="container">
@@ -103,66 +109,8 @@
 			</div>
 		</div>
 	</section>
-<!--table-->
-<section class="table">
-		<h2 class="section-heading">Created Rooms</h2>
-		<div class="tbl-header">
-			<table cellpadding="0" cellspacing="0" border="0">
-				<thead>
-					<tr>
-						<th>Room Name</th>
-						<th>seatingCapacity</th>
-						<th>Credit per hour</th>
-						<th>Count</th>
-						<th>DELETE</th>
-					</tr>
-					<tr>
-            <td>AAD</td>
-            <td>AUSENCO</td>
-            <td>$2.38</td>
-            <td>-0.01</td>
-            <td>-1.36%</td>
-          </tr>
-          <tr>
-            <td>AAX</td>
-            <td>ADELAIDE</td>
-            <td>$3.22</td>
-            <td>+0.01</td>
-            <td>+1.36%</td>
-          </tr>
-          <tr>
-            <td>XXD</td>
-            <td>ADITYA BIRLA</td>
-            <td>$1.02</td>
-            <td>-1.01</td>
-            <td>+2.36%</td>
-          </tr>
-          <tr>
-            <td>AAC</td>
-            <td>AUSTRALIAN COMPANY </td>
-            <td>$1.38</td>
-            <td>+2.01</td>
-            <td>-0.36%</td>
-          </tr>
-				</thead>
-			</table>
-		</div>
-		<c:forEach items="${meetingRoomList}" var='i'>
-			<div class="tbl-content">
-				<table cellpadding="0" cellspacing="0" border="0">
-					<tbody>
-						<tr>
-							<td><a href="FetchMeetingRoomDetailsController?roomName=${i.roomName}"></a></td>
-							<td><c:out value="${i.roomName}" /></a></td>
-							<td><c:out value="${i.seatingCapacity}" /></td>
-							<td><c:out value="${i.creditPerHour}" /></td>
-							<td><c:out value="${i.count}" /></td>
-						</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-	</section>
+
+
 	
 	<!-- Import Section -->
 	<section class="import" id="import">
@@ -276,3 +224,8 @@
 	</footer>
 </section>
 </html>
+
+
+
+
+

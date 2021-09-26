@@ -44,7 +44,7 @@ public class GlobalServlet extends HttpServlet {
 			UserServiceInterface userService = ServiceFactory.getUserService();
 			userService.setLastLoggedIn(userId);
 			User user = userService.getUserDetails(userId , email);
-			System.out.println(user.getLastLoggedIn().toString());
+			//System.out.println(user.getLastLoggedIn().toString());
 			
 			if ( user != null ) {
 			
