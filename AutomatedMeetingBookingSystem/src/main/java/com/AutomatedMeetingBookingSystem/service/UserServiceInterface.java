@@ -13,5 +13,7 @@ public interface UserServiceInterface {
 	void updateUserCredits(double creditsReqForMeeting, int userId);
 
 	public boolean addUsers(ArrayList<User> userList);
+
+	public void setLastLoggedIn(int userId);
 	
 }

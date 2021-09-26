@@ -11,33 +11,43 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.AutomatedMeetingBookingSystem.service.UserServiceInterface;
 import com.AutomatedMeetingBookingSystem.model.User;
+import com.AutomatedMeetingBookingSystem.service.ManagerService;
 import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
 
 /**
  * Servlet implementation class GlobalServlet
  */
+
+
+//lastLogin
+
 @WebServlet("/GlobalServlet")
 public class GlobalServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    ManagerService managerService;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public GlobalServlet() {
         super();
+        managerService = ServiceFactory.getManagerService();
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			int userId = Integer.parseInt( request.getParameter("userId"));
 			String email = request.getParameter("email");
 			System.out.println(userId);
 			System.out.println(email);
 			UserServiceInterface userService = ServiceFactory.getUserService();
-			User user = userService.getUserDetails(userId , email);			
+			userService.setLastLoggedIn(userId);
+			User user = userService.getUserDetails(userId , email);
+			//System.out.println(user.getLastLoggedIn().toString());
+			
 			if ( user != null ) {
+			
 				request.getSession().setAttribute( "userDetail", user );
 				request.getSession().setAttribute( "LOGINSTATUS", "SUCCESS");
 				RequestDispatcher dispatcher = null;
@@ -47,6 +57,7 @@ public class GlobalServlet extends HttpServlet {
 					break;
 				case "MANAGER":
 					dispatcher= request.getRequestDispatcher( "GetScheduledByManagerController" );
+					managerService.resetManagerCredits();
 					break;
 				case "MEMBER":
 					dispatcher= request.getRequestDispatcher( "MeetingForMember" );		

@@ -36,7 +36,7 @@ public class GetAvailableRoomsController extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		System.out.println("Hi");
 		String date = req.getParameter("date");
 		LocalDate localDate = LocalDate.parse(date);
 		String sTime = req.getParameter("startTime");	
@@ -46,14 +46,16 @@ public class GetAvailableRoomsController extends HttpServlet {
 		String Mtype = req.getParameter("type");
 		MeetingType type = MeetingType.valueOf(Mtype);
 		List<MeetingRoom> meetingRooms = bookingInformationService.getAvailableMeetingRoom(localDate, startTime, endTime, type);
-		
-		req.setAttribute("meetingRooms", meetingRooms);
-		req.getSession().setAttribute("date", localDate);
-		req.getSession().setAttribute("startTime", startTime);
-		req.getSession().setAttribute("endTime", endTime);
-		req.getSession().setAttribute("type", type);
-		RequestDispatcher rd = req.getRequestDispatcher("AvailableMeetingRooms.jsp");
-		rd.forward(req, resp);
+		for(MeetingRoom meetingRoom :meetingRooms ) {
+			System.out.println(meetingRoom.getRoomId());
+		}
+//		req.setAttribute("meetingRooms", meetingRooms);
+//		req.getSession().setAttribute("date", localDate);
+//		req.getSession().setAttribute("startTime", startTime);
+//		req.getSession().setAttribute("endTime", endTime);
+//		req.getSession().setAttribute("type", type);
+//		RequestDispatcher rd = req.getRequestDispatcher("AvailableMeetingRooms.jsp");
+//		rd.forward(req, resp);
 	}
 
 }
