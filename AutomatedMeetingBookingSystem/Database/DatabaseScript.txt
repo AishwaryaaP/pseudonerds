@@ -1,1 +1,41 @@
-
+ create database meetingsystem;
+ 
+ create table User (UserID int PRIMARY KEY auto_increment,
+ 	name varchar(50), 
+ 	email varchar(50) , 
+ 	phone bigint,
+ 	credit double ,
+ 	lastloggedin timestamp,
+ 	role ENUM ('MANAGER','ADMIN','MEMBER'))auto_increment=1;
+ 
+create table MeetingRoom (roomName varchar(50) PRIMARY KEY,
+	seatingCapacity int ,
+	rating DOUBLE,
+	ratingSum int,
+   	ratingCount int,
+	count int,
+   	amenities MEDIUMTEXT,
+   	creditPerHour FLOAT,
+   	roomId int UNIQUE auto_increment)auto_increment=1;
+	
+create table Meeting (UniqueId int PRIMARY KEY auto_increment,
+      	OrganizedBy int,
+      	title varchar(50),
+      	date Date,
+      	startTime TIME,
+      	endTime TIME,
+      	type ENUM ('CLASSROOMTRAINING','ONLINETRAINING','CONFERENCECALL','BUSINESS'),
+      	listOfMember JSON, InfoMeetingRoomName varchar(50),
+      	FOREIGN KEY(OrganizedBy)  REFERENCES User(UserID),
+	FOREIGN KEY(InfoMeetingRoomName) REFERENCES MeetingRoom(roomName)auto_increment=1;
+		
+create table BookingInformation(UniqueId int,
+      	roomName varchar(50),
+      	date Date,
+      	startTime TIME,
+      	endTime TIME,
+      	OrganizedBy int,
+      	FOREIGN KEY(UniqueId)  REFERENCES Meeting(UniqueId),
+      	FOREIGN KEY(roomName)  REFERENCES MeetingRoom(roomName),
+      	FOREIGN KEY(OrganizedBy)  REFERENCES User(UserID));
+	
