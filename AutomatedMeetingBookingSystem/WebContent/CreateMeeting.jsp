@@ -32,7 +32,8 @@
 <html>
 <head>
 <title>MeetPro | CreateRoom</title>
-<link rel="stylesheet" href="./CreateRoomStyle.css">
+<link rel="icon" type="image/png" sizes="32x32" href="./IMAGES/favicon.ico">
+<link rel="stylesheet" href="./CSS/CreateRoomStyle.css">
 </head>
 <body>
 
@@ -68,9 +69,7 @@
     		<option value="OnlineTraining">Online Training</option>
     		<option value="ConferenceCall">ConferenceCall</option>
     		<option value="business">Business</option>
-  		</select>
-  		        
-
+  		</select>       
 			</div>
 			<div class="item">
 				<label for="startTime">Start Time<span>*</span></label>
@@ -86,23 +85,10 @@
 				<label for="date">Date<span>*</span></label>
 				<input type="date" id="date" name="date" class="input" required />
 			</div>
-			
-	
-
-  		
        <div class="btn-block">
 				<button onclick="ManagerHome.jsp">SUBMIT</button>
 			</div>
 		</form>
 	</div>
-	
-
-       
-    
-	
-        
-        
-	
-
 </body>
 </html>

@@ -7,11 +7,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" sizes="32x32"
-	href="./IMAGES/favicon-32x32.png">
-<title>PseudoNerds|MeetPro</title>
-<link rel="stylesheet" href="./IndexStyle.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	href="./IMAGES/favicon.ico">
+<title>PseudoNerds | MeetPro</title>
+<link rel="stylesheet" href="./CSS/IndexStyle.css">
 </head>
 </head>
 <script>
@@ -78,10 +76,10 @@
 	<header>
 		<div class="container">
 			<nav>
-				<img class="logo" src="./images/pnlogo.svg" alt="MeetPro" href="#">
+				<img class="logo" src="./IMAGES/pnlogo.png" alt="MeetPro" href="#">
 				<ul class="nav-ul" id="nav-ul">
 					<li class="nav-link"><a href="#about">About Us</a></li>
-					<li class="nav-link"><a href="#about">Import Users</a></li>
+					<li class="nav-link"><a href="#table">Created Rooms</a></li>
 					<li class="nav-link"><a href="#feedback">Feedback</a></li>
 					<li class="nav-link"><a href="#contact">Contact Us</a></li>
 					<li class="nav-link"><a href="Login.jsp">Login</a></li>
@@ -109,41 +107,6 @@
 		<div class="tbl-header">
 			<table cellpadding="0" cellspacing="0" border="0">
 				<thead>
-					<tr>
-						<th>Room Name</th>
-						<th>seatingCapacity</th>
-						<th>Credit per hour</th>
-						<th>Count</th>
-						<th>DELETE</th>
-					</tr>
-					<tr>
-            <td>AAD</td>
-            <td>AUSENCO</td>
-            <td>$2.38</td>
-            <td>-0.01</td>
-            <td>-1.36%</td>
-          </tr>
-          <tr>
-            <td>AAX</td>
-            <td>ADELAIDE</td>
-            <td>$3.22</td>
-            <td>+0.01</td>
-            <td>+1.36%</td>
-          </tr>
-          <tr>
-            <td>XXD</td>
-            <td>ADITYA BIRLA</td>
-            <td>$1.02</td>
-            <td>-1.01</td>
-            <td>+2.36%</td>
-          </tr>
-          <tr>
-            <td>AAC</td>
-            <td>AUSTRALIAN COMPANY </td>
-            <td>$1.38</td>
-            <td>+2.01</td>
-            <td>-0.36%</td>
-          </tr>
 				</thead>
 			</table>
 		</div>
@@ -163,26 +126,6 @@
 				</table>
 			</div>
 	</section>
-	
-	<!-- Import Section -->
-	<section class="import" id="import">
-		<div class="container about moveUP">
-			<div class="about-text">
-				<h2 class="u-mb-small heading-secondary">Upload XML File to Import Users</h2>
-				<p class="u-mb-large">XML file containing user records to be inserted into database.</p>
-			</div>
-			<div class="about-item">
-				<div class="about-item-box">
-					<img src="./images/icon-online.svg" alt="" class="u-mb-small">
-					<form action="ImportUserController" method="post" enctype="multipart/form-data">
-						<input type="file" name="myFile" accept="application/XML" required />
-						<button type="submit" name="submit" value="insert data">Upload File</button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</section>
-
 	<!-- FeedBack -->
 	<section id="feedback" class="feedback">
 		<h2 class="section-heading">Feedback</h2>
@@ -213,8 +156,8 @@
 							title="text">5 stars</label>
 					</div>
 				</div>
-				<a type="submit" href="#" class="btn" value="Submit">Send
-					Feedback</a>
+				<button type="submit" href="#" class="btn" value="Submit">Send
+					Feedback</button>
 			</div>
 		</div>
 		<script type="text/javascript" src="js.main.js"></script>
@@ -234,8 +177,8 @@
 					name="email" id="email" placeholder="EMAIL" onKeyUp="checkemail()"
 					autocomplete="off" required> <input name="textarea"
 					id="textarea" cols="30" rows="5"
-					placeholder="PLEASE TYPE YOUR MESSAGE HERE" required> <a
-					type="submit" href="./LoginPage.html" class="btn" value="Submit">Submit</a>
+					placeholder="PLEASE TYPE YOUR MESSAGE HERE" required> <button
+					type="submit" href="./LoginPage.html" class="btn" value="Submit">Submit</button>
 			</div>
 		</div>
 		<script type="text/javascript" src="js.main.js"></script>
@@ -262,14 +205,15 @@
 
 				<div class="footer-links">
 					<ul>
-						<li><a href="./LoginPage.html">Login Page</a></li>
+						<li><a href="./Login.jsp">Login Page</li>
 						<li><a href="#feedback">Feedback</a></li>
 					</ul>
 				</div>
 
 				<div class="footer-credit">
-						<a href="https://github.com/AishwaryaaP/pseudonerds">Github Repository</a>
-						<p>@PseudoNerds. All Rights Reserved</p>
+					<a href="https://github.com/AishwaryaaP/pseudonerds">Github
+						Repository</a>
+					<p>@PseudoNerds. All Rights Reserved</p>
 				</div>
 			</div>
 		</div>

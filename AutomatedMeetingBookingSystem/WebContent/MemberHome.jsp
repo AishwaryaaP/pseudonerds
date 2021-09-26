@@ -33,8 +33,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" sizes="32x32"
-	href="./images/favicon-32x32.png">
-<title>MeetPro|Manager</title>
+	href="./images/favicon.ico">
+<title>MeetPro | Member</title>
 <link rel="stylesheet" href="./MemberHomeStyle.css">
 </head>
 <body>
@@ -47,7 +47,7 @@
 
 	<header>
 		<nav role="navigation">
-			<img class="logo" src="./images/pnlogo.svg" alt="MeetPro" href="#">
+			<img class="logo" src="./IMAGES/pnlogo.svg" alt="MeetPro" href="#">
 			<div class="container1" id="container1">
 				<ul class="nav-ul" id="nav-ul">
 					<li class="nav-link"><a href="GetAllRoomsController">Room
@@ -153,10 +153,10 @@
 			<div class="footer">
 
 				<div class="footer-icons">
-					<a href="#"> <img src="./images/icon-facebook.svg" alt="">
+					<a href="#"> <img src="./IMAGES/pseudo.svg" alt="">
 					</a>
 				</div>
-
+				
 				<div class="footer-links">
 					<ul>
 						<li><a href="#about">About Us</a></li>

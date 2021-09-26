@@ -43,7 +43,7 @@
 <html>
 <head>
 <title>MeetPro | EditRoom</title>
-<link rel="stylesheet" href="./CreateRoomStyle.css">
+<link rel="stylesheet" href="./CSS/CreateRoomStyle.css">
 </head>
 <body>
 	<%
