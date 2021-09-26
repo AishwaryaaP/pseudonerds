@@ -42,7 +42,9 @@ public class CreateRoomController extends HttpServlet {
 		String amenities ="";
 		Map<String, Integer> creditMap = adminService.getAmenitiesCredit();
 		String [] amenitiesList = req.getParameterValues("amenities");
-		for(String amenity : amenitiesList) {
+		for(String amenity : amenitiesList)
+		{
+			System.out.println(amenity);
 			switch(amenity) {
 			case "projector" :
 				amenities += "PROJECTOR" + " ";
