@@ -71,6 +71,7 @@ a{
     color:var(--lime-green);
 }
 
+
 .btn{
     font-size:1.5rem;
     font-weight:700;
@@ -240,7 +241,7 @@ header{
     width: 50%;
     font-weight: 900;
     padding-bottom: 5rem;
-    color: var(--grayish-blue);
+    color: var(--dark-blue);
 }
 
 .contact-container .form-container{
@@ -291,9 +292,12 @@ header{
 .feedback h2{
     font-family: 'Public Sans', sans-serif;
     text-align: center;
+	display: block;
+	margin-left:auto;
+	margin-right: auto;
     padding: 1rem 0;
     font-weight: 600;
-    text-transform: uppercase;
+    text-transform: none;
     padding-bottom: 5rem;
     padding-top: 5rem;
 }
@@ -305,8 +309,9 @@ header{
     width: 50%;
     font-weight: 900;
     padding-bottom: 5rem;
-    color: var(--grayish-blue);
+    color: var(--dark-blue);
 }
+
 .feedback-container .form-container{
     width: 50%;
 }
@@ -482,7 +487,7 @@ header{
 .attribution a { color: hsl(228, 45%, 44%); }
 
 /* Table */
-  table{
+table{
     width:100%;
     table-layout: fixed;
     background: -webkit-linear-gradient(left, #25c481, #25b7c4);
@@ -513,6 +518,7 @@ header{
     color: #fff;
     border-bottom: solid 1px rgba(255,255,255,0.1);
   }
+  
   
   /* for custom scrollbar for webkit browser*/
   

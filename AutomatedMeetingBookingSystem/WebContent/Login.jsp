@@ -80,14 +80,14 @@ function validateData()
     <div class="container">
 
       <div class="img">
-          <img src="images/back.svg">
+          <img type= "image/png" src="./IMAGES/back.png">
       </div>
 
       <div class="login-container">
 
           <form  action="GlobalServlet" method="post">
 
-              <img src="avatar.svg" alt="avatar" class="avatar">
+              <img src="./IMAGES/avatar.png" type= "image/png" alt="avatar" class="avatar">
 
               <h2>Welcome</h2>
               <!--UserID-->

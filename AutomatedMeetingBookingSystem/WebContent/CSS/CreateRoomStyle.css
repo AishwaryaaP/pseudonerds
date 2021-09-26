@@ -28,7 +28,6 @@ body {
   outline: none;
   font-family: Roboto, Arial, sans-serif;
   font-size: 14px;
-  color: #1B3B6F;
   line-height: 22px;
   }
 
@@ -58,26 +57,20 @@ form {
 width: 100%;
 padding: 20px;
 border-radius: 6px;
-background:linear-gradient(45deg,var(--lime-green),var(--dark-blue));
-box-shadow: 0 0 5px #4B40F7; 
+box-shadow: 0 0 8px #4B40F7;
+color:#ccc;
+background-color: #223942;  
 }
 .banner {
 position: relative;
 height: 300px;
-font-size: 7rem;;
-background-image: var(--lime-green);  
+font-size: 7rem;
+background-color:#b3d6e6; 
 background-size: cover;
 display: flex;
 justify-content: center;
 align-items: center;
 text-align: center;
-}
-.banner::after {
-content: "";
-background-color: rgba(0, 0, 0, 0.2); 
-position: absolute;
-width: 100%;
-height: 100%;
 }
 input, select, textarea {
 margin-bottom: 10px;
@@ -271,7 +264,7 @@ header{
     width: 100%;
     height:.3rem;
     bottom: 0;
-    background: linear-gradient(to right, var(--lime-green), var(--bright-cyan));
+    background: linear-gradient(to right, #ffafbd,#ffc3a0);
     transform: scaleX(0);
     transform-origin: left;
     transition: all .3s;
@@ -333,9 +326,7 @@ max-width:100rem;
   border-radius: 3px;
   z-index: 1;
   transform-origin: 4px 0px;
-  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-              opacity 0.55s ease;
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0), background 0.5s cubic-bezier(0.77,0.2,0.05,1.0), opacity 0.55s ease;
 }
 
 .menuToggle span:first-child

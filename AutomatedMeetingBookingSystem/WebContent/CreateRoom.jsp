@@ -26,17 +26,19 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" sizes="32x32" href="IMAGES/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="IMAGES/favicon.ico">
 <title>MeetPro | CreateRoom</title>
 <link rel="stylesheet" href="./CSS/CreateRoomStyle.css">
 </head>
 <body>
 	<header>
 		<nav role="navigation">
-			<img class="logo" src="./images/pnlogo.svg" alt="MeetPro" href="#">
+			<img class="logo" id="logo" src="./IMAGES/pnlogo.png" type="image/png"  alt="MeetPro" href="#">
 			<div class="container1" id="container1">
 				<ul class="nav-ul" id="nav-ul">
-					<li class="nav-link"><a onclick="history.back()">Return to Admin Home</a></li>
+					<li class="nav-link"><a onclick="history.back()">Return to
+							Admin Home</a></li>
 				</ul>
 			</div>
 			<div class="menuToggle" id="menuToggle">
@@ -56,9 +58,7 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 				<h1>Create Room</h1>
 			</div>
 			<div class="item">
-				<label for="name">Room Name<span>*</span></label> <input id="name"
-					type="text" name="roomName"
-					placeholder="Enter the unique room name" required />
+				<label for="name">Room Name<span>*</span></label> <input id="name" type="text" name="roomName"placeholder="Enter the unique room name" required />
 			</div>
 			<div class="item">
 				<label for="seatingCapacity">Seating Capacity<span>*</span></label>

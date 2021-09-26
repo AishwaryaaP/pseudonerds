@@ -1,4 +1,5 @@
-<%-- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@page import="com.AutomatedMeetingBookingSystem.model.User"%>
 <%
@@ -25,12 +26,16 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="IMAGES/favicon.ico">
+<title>MeetPro | Admin</title>
+<link rel="stylesheet" href="./CSS/AdminHomeStyle.css">
 </head>
 <body>
 	<h1>Available Meeting Rooms</h1>
-<<<<<<< HEAD
+	<<<<<<< HEAD
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<table BORDER="5">
 		<tr>
@@ -52,35 +57,6 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 			</tr>
 		</c:forEach>
 	</table>
-=======
-    <%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>      
-        <table  BORDER="5">
-            <tr>
-               <th>Room Name</th>
-               <th>seatingCapacity</th>
-               <th>Credit per hour</th>               
-               <th>Amenities</th>
-              
-            </tr>
-             <c:forEach items="${meetingRooms}" var = 'i'>
-         		
-             	
-                 <tr>
-                     <td> <a href="SelectedRoom.jsp?roomName=${i.roomName}"><c:out value="${i.roomName}"/></a></td>
-                     <td><c:out value="${i.seatingCapacity}"/></td>  
-                     <td><c:out value="${i.creditPerHour}"/></td>                     
-                     <td><c:out value="${i.amenities}"/></td>  
-                 
-                 </tr>
-                 	
-                 
-                </c:forEach>
-             
-        </table>
-        
-        
 	
-
->>>>>>> 80202c3805d18fb7453543ac68b58fd029b881a3
 </body>
-</html> --%>
+</html>

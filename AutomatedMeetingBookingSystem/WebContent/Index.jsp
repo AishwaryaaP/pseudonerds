@@ -1,10 +1,12 @@
-<%-- <%@page import="jdk.internal.misc.FileSystemOption"%>
+
+<%@page import="jdk.internal.misc.FileSystemOption"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	<%@ page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom"%>
-	<%@ page import="com.AutomatedMeetingBookingSystem.controllers.FetchMeetingRoomDetailsController"%>
-	<%@page import="java.util.List"%>
-	
+<%@ page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom"%>
+<%@ page
+	import="com.AutomatedMeetingBookingSystem.controllers.GetAllRoomsController"%>
+<%@page import="java.util.List"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,10 +84,10 @@
 	<header>
 		<div class="container">
 			<nav>
-				<img class="logo" src="./IMAGES/pnlogo.png" alt="MeetPro" href="#">
+				<img class="logo" id="logo" src="./IMAGES/pnlogo.png" type="image/png"  alt="MeetPro" href="#">
 				<ul class="nav-ul" id="nav-ul">
 					<li class="nav-link"><a href="#about">About Us</a></li>
-					<li class="nav-link"><a href="#table">Created Rooms</a></li>
+					<li class="nav-link"><a href="#createdroom">Created Rooms</a></li>
 					<li class="nav-link"><a href="#feedback">Feedback</a></li>
 					<li class="nav-link"><a href="#contact">Contact Us</a></li>
 					<li class="nav-link"><a href="Login.jsp">Login</a></li>
@@ -94,35 +96,47 @@
 		</div>
 	</header>
 	<!-- Showcase -->
-	<section class="welcome-section">
-		<div class="container welcome ">
-			<div class="welcome-text">
-				<h1 class="u mb-small">
-					ProMeet: Next generation <span>meeting room booking system</span>
-				</h1>
-				<p class="u-mb-large">Take your boardroom life online. Your
-					ProMeet account will be a one-stop-solution for creating rooms,
-					scheduling meetings, managing rooms, inviting members, and much
-					more.</p>
-			</div>
+	<section id="about" class="feedback">
+		<h2 class="feedback-heading lg-heading1">
+			<img class="logg" id="logo" src="./IMAGES/meetpro.png"
+				type="image/png" alt="" href="#">
+		</h2>
+		<div class="feedback-container container">
+			<h2 class="feedback-heading lg-heading">Next generation meeting
+				room booking system. Take your boardroom life online. Your ProMeet
+				account will be a one-stop-solution for creating rooms, scheduling
+				meetings, managing rooms, inviting members, and much more</h2>
+			<p class="u-mb-large">
+				<a href="#"> <img src="./IMAGES/pseudoNerds.png"
+					type="image/png" alt="MEETPRO">
+				</a>
+			</p>
+		</div>
+		</div>
 		</div>
 	</section>
-<<<<<<< HEAD
-<!--table-->
-<section class="table">
-		<h2 class="section-heading">Created Rooms</h2>
+	<!--table-->
+	<section id="createdroom" class="table">
+	<h1>                              </h1>
+		<h2 style="text-align:center; padding-inline:inherit; padding-top: 40px; padding-bottom:20px" class="section-heading">Created Rooms</h2>
 		<div class="tbl-header">
-			<table cellpadding="0" cellspacing="0" border="0">
+			<table>
 				<thead>
+					<tr>
+						<th>Room Name</th>
+						<th>Seating Capacity</th>
+						<th>Credit per hour</th>
+						<th>Count</th>
+					</tr>
+					
 				</thead>
 			</table>
 		</div>
 		<c:forEach items="${meetingRoomList}" var='i'>
 			<div class="tbl-content">
-				<table cellpadding="0" cellspacing="0" border="0">
+				<table>
 					<tbody>
 						<tr>
-							<td><a href="FetchMeetingRoomDetailsController?roomName=${i.roomName}"></a></td>
 							<td><c:out value="${i.roomName}" /></a></td>
 							<td><c:out value="${i.seatingCapacity}" /></td>
 							<td><c:out value="${i.creditPerHour}" /></td>
@@ -133,30 +147,7 @@
 				</table>
 			</div>
 	</section>
-=======
 
-
-	
-	<!-- Import Section -->
-	<section class="import" id="import">
-		<div class="container about moveUP">
-			<div class="about-text">
-				<h2 class="u-mb-small heading-secondary">Upload XML File to Import Users</h2>
-				<p class="u-mb-large">XML file containing user records to be inserted into database.</p>
-			</div>
-			<div class="about-item">
-				<div class="about-item-box">
-					<img src="./images/icon-online.svg" alt="" class="u-mb-small">
-					<form action="ImportUserController" method="post" enctype="multipart/form-data">
-						<input type="file" name="myFile" accept="application/XML" required />
-						<button type="submit" name="submit" value="insert data">Upload File</button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</section>
-
->>>>>>> 80202c3805d18fb7453543ac68b58fd029b881a3
 	<!-- FeedBack -->
 	<section id="feedback" class="feedback">
 		<h2 class="section-heading">Feedback</h2>
@@ -166,12 +157,11 @@
 				are Ever-Ready to Improvise!
 			</h2>
 			<div class="form-container">
-				<input type="number" name="userid" class="input"
-					placeholder="UserID" onKeyUp="checkid()" autocomplete="off"
-					required> <input type="email" name="email" class="input"
+				<input type="number" name="userid" class="input" placeholder="UserID" onKeyUp="checkid()" autocomplete="off" required> 
+				<input type="email" name="email" class="input"
 					placeholder="Email Address" onKeyUp="checkemail()"
-					autocomplete="off" required> <input type="number"
-					name="userid" class="input" placeholder="RoomName Dropdown"
+					autocomplete="off" required> <input type="text"
+					name="userid" class="input" placeholder="RoomName"
 					onKeyUp="checkid()" autocomplete="off" required>
 				<div class="form-container1">
 					<div class="rate">
@@ -208,8 +198,9 @@
 					name="email" id="email" placeholder="EMAIL" onKeyUp="checkemail()"
 					autocomplete="off" required> <input name="textarea"
 					id="textarea" cols="30" rows="5"
-					placeholder="PLEASE TYPE YOUR MESSAGE HERE" required> <button
-					type="submit" href="./LoginPage.html" class="btn" value="Submit">Submit</button>
+					placeholder="PLEASE TYPE YOUR MESSAGE HERE" required>
+				<button type="submit" href="./LoginPage.html" class="btn"
+					value="Submit">Submit</button>
 			</div>
 		</div>
 		<script type="text/javascript" src="js.main.js"></script>
@@ -256,4 +247,3 @@
 
 
 
- --%>
