@@ -58,7 +58,7 @@ form {
 width: 100%;
 padding: 20px;
 border-radius: 6px;
-background:linear-gradient(45deg,#5698b3,#a2c4d1);
+background:linear-gradient(45deg,var(--lime-green),var(--dark-blue));
 box-shadow: 0 0 5px #4B40F7; 
 }
 .banner {
@@ -469,3 +469,53 @@ h1{
   ::-webkit-scrollbar-thumb {
       -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
   }
+  
+section{
+    padding:5rem 0;  
+    align: center;
+}
+
+ /* Footer */
+.footer {
+    padding: 0.1rem 0;
+    background-color: hsl(232, 26%, 16%);
+    color: hsl(232, 26%, 16%);
+    box-shadow:5px 0px 20px 0px  hsl(232, 26%, 16%);
+}
+
+.footer {
+	width:100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    row-gap:0.2 rem;
+    column-gap: 2rem;
+    padding-top: 0.2rem;
+    box-shadow:5px 0px 20px 0px  hsl(232, 26%, 16%);
+}
+
+.footer-icons {
+    padding-top: 0.5rem;
+    padding-left: 3.5rem;
+}
+
+.footer-links ul li {
+    padding-top: 1rem;
+    list-style: none;
+    padding-bottom: 1rem;
+}
+
+.footer-links ul li a {
+    color: var(--very-light-gray);
+    font-size: 2rem; 
+}
+
+.footer-links ul li a:hover {
+    color: var(--lime-green);
+}
+
+.footer-credit{
+	padding-top: 1.3rem;
+	position: relative;
+    font-size:xx-large;
+}
+ 

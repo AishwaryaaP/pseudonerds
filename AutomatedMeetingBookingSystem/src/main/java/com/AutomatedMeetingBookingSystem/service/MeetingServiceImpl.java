@@ -3,6 +3,8 @@ package com.AutomatedMeetingBookingSystem.service;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -25,7 +27,7 @@ public class MeetingServiceImpl implements MeetingService {
 	private static Logger logger;
 	
 	public MeetingServiceImpl() {
-		super();
+		super();                                                                                 
 		meetingDao = DaoFactory.getMeetingDaoInstance();
 		meetingRoomService = ServiceFactory.getMeetingRoomService();
 		logger = LogManager.getLogger(MeetingRoomService.class);
@@ -36,6 +38,7 @@ public class MeetingServiceImpl implements MeetingService {
 		Meeting meeting1 = null;
 		try {
 			int meetingId = this.meetingDao.createMeeting(organizedBy, roomName, title, meetingDate, startTime, endTime, type, listOfMembers);
+			
 			meeting1 = this.meetingDao.fetchMeetingByUniqueID(meetingId);
 			if(meeting1 == null)
 				throw new FailedToCreateMeetingException("Falied to Create Meeting Exception");
@@ -62,25 +65,26 @@ public class MeetingServiceImpl implements MeetingService {
 	
 	public List<Meeting> fetchMeetingsByUserID(int userID) {
 		List<Meeting> meetings = new ArrayList<>();
-		try {
+		try {        
 			List<Meeting> allMeetings = this.meetingDao.fetchAllMeetings();
 			for(Meeting meeting: allMeetings) {
-				String userDetails = meeting.getListOfMember();
-				System.out.println(userDetails);
-				JSONArray userIds = new JSONArray(userDetails);
-				Iterator<Object> iterator = userIds.iterator();
-				while(iterator.hasNext()) 
-				{
-					if((iterator.next()).equals(String.valueOf(userID)))
-					{
+
+				String userDetails = meeting.getListOfMember();				
+				userDetails = userDetails.substring(1,userDetails.length()-1);
+				String[] members = userDetails.split(",");	
+				for(String member : members){
+					if(member.trim().equals(String.valueOf(userID))) {
+
 						meetings.add(meeting);
 						break;
 					}
 				}
+
 				if(allMeetings.size() == 0)
 					throw new MeetingNotFoundException("No meetings Found");
 		}
 		}catch (MeetingNotFoundException e) {
+
 			System.out.println(e.getMessage());
 			logger.info(e.getMessage());
 		}

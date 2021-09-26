@@ -80,5 +80,10 @@ public class  BookingInformationServiceImpl implements BookingInformationService
 		boolean result = bookingInformationDao.saveBookingInformation(bookingInformation);
 		return result;
 	}
+	
+	@Override
+	public boolean deleteBookingInformation(int uniqueId, LocalDate date, LocalTime startTime) {
+		return bookingInformationDao.deleteBookingInfo(uniqueId, date, startTime);
+	}
 
 }
