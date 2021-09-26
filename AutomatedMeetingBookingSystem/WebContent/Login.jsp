@@ -7,7 +7,9 @@
  <link rel="icon" type="image/png" sizes="32x32" href="./IMAGES/favicon.ico">
 <title>MeetPro | Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="CSS/LoginStyle.css">
+
+    <link rel="stylesheet" href="login.css">
+
 <script src="https://kit.fontawesome.com/54fd602259.js" crossorigin="anonymous"></script>
   </head>
 <script>
