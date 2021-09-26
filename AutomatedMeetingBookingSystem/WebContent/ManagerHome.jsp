@@ -68,7 +68,6 @@
 					</a> -->
 
 					<a href="#">
-						<li>Credits: <c:out value="${user.credits}" /></li>
 						<li><a href="CreateMeeting.jsp">Create Meeting</a></li>
 						<li><a href="Index.jsp">Logout</a></li>
 					</a>
