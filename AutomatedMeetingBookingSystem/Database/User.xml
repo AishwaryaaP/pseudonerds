@@ -5,3 +5,33 @@
   <phoneNumber>9767982409</phoneNumber>
   <role>MANAGER</role>
 </user>
+<user>
+  <name>Aishwarya</name>
+  <email>a@gmail.com</email>
+  <phoneNumber>9531289476</phoneNumber>
+  <role>ADMIN</role>
+</user>
+<user>
+  <name>Riya</name>
+  <email>r@gmail.com</email>
+  <phoneNumber>8792541369</phoneNumber>
+  <role>MEMBER</role>
+</user>
+<user>
+  <name>Jyoti</name>
+  <email>j@gmail.com</email>
+  <phoneNumber>7425896321</phoneNumber>
+  <role>MEMBER</role>
+</user>
+<user>
+  <name>Atharva</name>
+  <email>ad@gmail.com</email>
+  <phoneNumber>9767874409</phoneNumber>
+  <role>MEMBER</role>
+</user>
+<user>
+  <name>Sumit</name>
+  <email>s@gmail.com</email>
+  <phoneNumber>9895247963</phoneNumber>
+  <role>MEMBER</role>
+</user>
