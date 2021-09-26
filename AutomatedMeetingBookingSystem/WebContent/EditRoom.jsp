@@ -71,7 +71,7 @@
 		<form action="EditMeetingRoomController">
 
 			<div class="banner">
-				<h1>Create Room</h1>
+				<h1>Edit Room</h1>
 			</div>
 			<div class="item">
 				<label for="name">Room Name</label> <input id="name"

@@ -49,8 +49,11 @@ public class MemberController extends HttpServlet {
 		List<Meeting> scheduledMeeting = memberService.memberMeetingSchedule(userId);
 		// Setting the attribute of the request object
 			    // which will be later fetched by a JSP page
+		for(Meeting m :scheduledMeeting ) {
+			System.out.println(m.toString());
+		}
 		request.setAttribute("meetingList", scheduledMeeting);
-		RequestDispatcher rd2 = request.getRequestDispatcher("MemberJsp.jsp");
+		RequestDispatcher rd2 = request.getRequestDispatcher("MemberHome.jsp");
 		rd2.forward(request, response);
 
 		

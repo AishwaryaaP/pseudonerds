@@ -32,7 +32,7 @@
 <link rel="icon" type="image/png" sizes="32x32"
 	href="./images/favicon-32x32.png">
 <title>MeetPro|Manager</title>
-<link rel="stylesheet" href="./MemberHomeStyle.css">
+<link rel="stylesheet" href="./ManagerHomeStyle.css">
 </head>
 <body>
 

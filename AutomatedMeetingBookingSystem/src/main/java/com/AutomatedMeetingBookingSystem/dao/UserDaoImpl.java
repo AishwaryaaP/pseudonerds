@@ -108,6 +108,7 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public void updateUserCredits(double credits, int userId) {
+		System.out.println("koko");
 		try {
 			Connection connection = new DaoUtility().getInstance();
 			PreparedStatement statement = connection.prepareStatement("Update user set credit=? where UserID = ?");
@@ -115,6 +116,7 @@ public class UserDaoImpl implements UserDao{
 			statement.setInt(2, userId);
 			statement.executeUpdate();
 			statement.close();
+			System.out.println("okok");
 		}
 		catch(Exception e) {
 			System.out.println(e.getMessage());
