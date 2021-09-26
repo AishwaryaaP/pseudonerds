@@ -1,5 +1,10 @@
+<%-- <%@page import="jdk.internal.misc.FileSystemOption"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom"%>
+	<%@ page import="com.AutomatedMeetingBookingSystem.controllers.FetchMeetingRoomDetailsController"%>
+	<%@page import="java.util.List"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,6 +77,7 @@
 </script>
 
 
+
 <body>
 	<header>
 		<div class="container">
@@ -101,6 +107,7 @@
 			</div>
 		</div>
 	</section>
+<<<<<<< HEAD
 <!--table-->
 <section class="table">
 		<h2 class="section-heading">Created Rooms</h2>
@@ -126,6 +133,30 @@
 				</table>
 			</div>
 	</section>
+=======
+
+
+	
+	<!-- Import Section -->
+	<section class="import" id="import">
+		<div class="container about moveUP">
+			<div class="about-text">
+				<h2 class="u-mb-small heading-secondary">Upload XML File to Import Users</h2>
+				<p class="u-mb-large">XML file containing user records to be inserted into database.</p>
+			</div>
+			<div class="about-item">
+				<div class="about-item-box">
+					<img src="./images/icon-online.svg" alt="" class="u-mb-small">
+					<form action="ImportUserController" method="post" enctype="multipart/form-data">
+						<input type="file" name="myFile" accept="application/XML" required />
+						<button type="submit" name="submit" value="insert data">Upload File</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+>>>>>>> 80202c3805d18fb7453543ac68b58fd029b881a3
 	<!-- FeedBack -->
 	<section id="feedback" class="feedback">
 		<h2 class="section-heading">Feedback</h2>
@@ -220,3 +251,9 @@
 	</footer>
 </section>
 </html>
+
+
+
+
+
+ --%>

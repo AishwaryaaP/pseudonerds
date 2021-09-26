@@ -1,4 +1,4 @@
-8<%@page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom"%>
+<%-- <%@page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -9,6 +9,7 @@
 	import="com.AutomatedMeetingBookingSystem.controllers.GetAllRoomsController"%>
 
 <%@ page import="java.util.*"%>
+
 response.setHeader("Cache-Control", "no-cache, no-store,
 must-revalidate"); response.setHeader("Pragma", "no-cache");
 response.setHeader("Expires", "0"); if ((request.getSession(false) ==
@@ -22,6 +23,27 @@ request.getRequestDispatcher("MemberHome.jsp").forward ( request,
 response ); } else if ( user.getRole().equals ( "MANAGER" ) ) {
 request.getRequestDispatcher("ManagerHome.jsp").forward ( request,
 response ); } } %>
+<%
+response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+response.setHeader("Pragma", "no-cache");
+response.setHeader("Expires", "0");
+
+if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") != "SUCCESS")) {
+
+	request.getRequestDispatcher("Login.jsp").forward(request, response);
+
+} else {
+	User user = (User) session.getAttribute("userDetail");
+
+	if (user.getRole().equals("MEMBER")) {
+		request.getRequestDispatcher("MemberHome.jsp").forward(request, response);
+
+	} else if (user.getRole().equals("MANAGER")) {
+		request.getRequestDispatcher("ManagerHome.jsp").forward(request, response);
+	}
+}
+%>
+>>>>>>> 80202c3805d18fb7453543ac68b58fd029b881a3
 
 
 <!DOCTYPE html>
@@ -35,6 +57,14 @@ response ); } } %>
 </head>
 
 <body>
+<<<<<<< HEAD
+=======
+
+
+
+
+
+>>>>>>> 80202c3805d18fb7453543ac68b58fd029b881a3
 	<%
 	User user = (User) session.getAttribute("userDetail");
 	%>
@@ -47,9 +77,16 @@ response ); } } %>
 			<img class="logo"  type="image/png" src="./IMAGES/pnlogo.png" alt="MeetPro" href="#">
 			<div class="container1" id="container1">
 				<ul class="nav-ul" id="nav-ul">
+<<<<<<< HEAD
 					<li class="nav-link"><a href="GetAllRoomsController">Room
 							Details</a></li>
 					<li class="nav-link"><a>Last Loggedin: <%=user.getLastLoggedIn()%></a></li>
+=======
+					<li class="nav-link"><a>Last Loggedin: <%=user.getLastLoggedIn()%></a></li>
+					<li ><a href="GetAllRoomsController">Room
+							Details</a></li>
+
+>>>>>>> 80202c3805d18fb7453543ac68b58fd029b881a3
 					<li claas="nav-link"><a href="UserProfile.jsp">Hello <%=user.getName()%></a></li>
 				</ul>
 			</div>
@@ -76,7 +113,7 @@ response ); } } %>
 
 		<h2 class="section-heading">Created Rooms</h2>
 		<div class="tbl-header">
-			<table cellpadding="0" cellspacing="0" border="0">
+			<table>
 				<thead>
 					<tr>
 						<th>Room Name</th>
@@ -85,6 +122,7 @@ response ); } } %>
 						<th>Count</th>
 						<th>DELETE</th>
 					</tr>
+<<<<<<< HEAD
 					<tr>
 						<td>AAD</td>
 						<td>AUSENCO</td>
@@ -113,6 +151,9 @@ response ); } } %>
 						<td>+2.01</td>
 						<td>-0.36%</td>
 					</tr>
+=======
+					
+>>>>>>> 80202c3805d18fb7453543ac68b58fd029b881a3
 				</thead>
 			</table>
 		</div>
@@ -120,8 +161,13 @@ response ); } } %>
 		</table>
 		</div>
 		<c:forEach items="${meetingRoomList}" var='i'>
+<<<<<<< HEAD
 			<div class="tbl-content">
 				<table cellpadding="0" cellspacing="0" border="0">
+=======
+			<div >
+				<table>
+>>>>>>> 80202c3805d18fb7453543ac68b58fd029b881a3
 					<tbody>
 						<tr>
 							<td><a
@@ -138,6 +184,7 @@ response ); } } %>
 				</table>
 			</div>
 	</section>
+<<<<<<< HEAD
 	<!-- Import Section -->
 	<section id="import" class="import">
 		<h2 class="section-heading">Import Users</h2>
@@ -161,6 +208,43 @@ response ); } } %>
 		</div>
 		</div>
 	</section>
+=======
+
+	<!-- Footer -->
+	<footer>
+		<div class="container">
+			<div class="footer">
+
+				<div class="footer-icons">
+					<a href="#"> <img src="./images/icon-facebook.svg" alt="">
+					</a>
+				</div>
+
+				<div class="footer-links">
+					<ul>
+						<li><a href="#about">About Us</a></li>
+						<li><a href="#contact">Contact</a></li>
+					</ul>
+				</div>
+
+				<div class="footer-links">
+					<ul>
+						<li><a href="./LoginPage.html">Login Page</a></li>
+						<li><a href="#feedback">Feedback</a></li>
+					</ul>
+				</div>
+
+				<div class="footer-credit">
+					<div class="u-mb-large">
+						<a href="https://github.com/AishwaryaaP/pseudonerds">Github
+							Repository</a>
+						<p>@PseudoNerds. All Rights Reserved</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+>>>>>>> 80202c3805d18fb7453543ac68b58fd029b881a3
 
 </body>
 <!-- Footer -->
@@ -197,4 +281,4 @@ response ); } } %>
 		</div>
 	</footer>
 </section>
-</html>
+</html> --%>

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%-- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@page import="com.AutomatedMeetingBookingSystem.model.User"%>
 <%
@@ -30,6 +30,7 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 </head>
 <body>
 	<h1>Available Meeting Rooms</h1>
+<<<<<<< HEAD
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<table BORDER="5">
 		<tr>
@@ -51,5 +52,35 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 			</tr>
 		</c:forEach>
 	</table>
+=======
+    <%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>      
+        <table  BORDER="5">
+            <tr>
+               <th>Room Name</th>
+               <th>seatingCapacity</th>
+               <th>Credit per hour</th>               
+               <th>Amenities</th>
+              
+            </tr>
+             <c:forEach items="${meetingRooms}" var = 'i'>
+         		
+             	
+                 <tr>
+                     <td> <a href="SelectedRoom.jsp?roomName=${i.roomName}"><c:out value="${i.roomName}"/></a></td>
+                     <td><c:out value="${i.seatingCapacity}"/></td>  
+                     <td><c:out value="${i.creditPerHour}"/></td>                     
+                     <td><c:out value="${i.amenities}"/></td>  
+                 
+                 </tr>
+                 	
+                 
+                </c:forEach>
+             
+        </table>
+        
+        
+	
+
+>>>>>>> 80202c3805d18fb7453543ac68b58fd029b881a3
 </body>
-</html>
+</html> --%>
