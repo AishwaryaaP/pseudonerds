@@ -69,7 +69,7 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 							value="${i.roomName}" /></a></td>
 				<td><c:out value="${i.seatingCapacity}" /></td>
 				<td><c:out value="${i.creditPerHour}" /></td>
-				<td><c:out value="${i.avgRating}" /></td>
+				<%-- <td><c:out value="${i.avgRating}" /></td> --%>
 				<td><c:out value="${i.amenities}" /></td>
 			</tr>
 		</c:forEach>
