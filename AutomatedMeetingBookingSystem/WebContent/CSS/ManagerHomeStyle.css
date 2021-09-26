@@ -39,7 +39,6 @@ section{
     padding:5rem 0;  
     margin: 120px;
 }
-
 .section-heading{
 	
 	font-size:4rem;
@@ -81,7 +80,7 @@ section{
 
 a{
     text-decoration:none;
-    color:var(--black);
+    color:var(--lime-green);
 }
 
 .btn{
@@ -315,36 +314,32 @@ header{
 }
 
 /* Footer */
-.footer {
+footer {
     padding: 0.1rem 0;
-    background-color: hsl(232, 26%, 16%);
-    box-shadow:5px 0px 20px 0px  hsl(232, 26%, 16%);
+    background-color: var(--dark-blue);
+    color: var(--dark-blue);
 }
 
 .footer {
-	width:100%;
+    font-size: 18px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-    row-gap:0.2 rem;
-    column-gap: 2rem;
-    padding-top: 0.2rem;
-    box-shadow:5px 0px 20px 0px  hsl(232, 26%, 16%);
+    grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
+    padding-top: 0.5rem;
 }
 
 .footer-icons {
     padding-top: 0.5rem;
-    padding-left: 3.5rem;
+    padding-left: 1.5rem;
 }
 
 .footer-links ul li {
-    padding-top: 1rem;
+    padding-top: 0.5rem;
     list-style: none;
-    padding-bottom: 1rem;
+    padding-bottom: 0.5rem;
 }
 
 .footer-links ul li a {
     color: var(--very-light-gray);
-    font-size: 2rem; 
 }
 
 .footer-links ul li a:hover {
@@ -352,32 +347,11 @@ header{
 }
 
 .footer-credit{
-	padding-top: 1.3rem;
-	position: relative;
     font-size:xx-large;
+    padding-top: 0.5rem;
+    padding-bottom: 0.05rem;
 }
 
-
-/* Media Query */
-
-@media (min-width:501px) and (max-width:768px){
-    .welcome-image{
-        display:inline;
-        text-align: center;
-        height:38rem;
-    }
-    .welcome-image::before{
-        top:-35rem;
-        right:0;
-        width:65rem;
-        height:83rem;
-    }
-    .welcome-image img{
-        width:70%;
-        height:48rem;
-        transform:translateY(-15rem);
-    }
-}
 
 @media (min-width:769px){
     .welcome-section {
@@ -419,6 +393,134 @@ header{
     .about-item-box {
         text-align: left;
     }
+}
+
+/* Slide menu */
+.menuToggle
+{
+max-width:100rem;
+  display: block;
+  position: relative;
+  top: 5px;
+  left: 20px;
+  z-index: 1;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.menuToggle a
+{
+  text-decoration: none;
+  color: var(--white);
+  transition: color 0.3s ease;
+}
+
+.menuToggle a:hover
+{
+  color: tomato;
+}
+
+.menuToggle input
+{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 2;
+  -webkit-touch-callout: none;
+}
+
+/* hamburger */
+.menuToggle span
+{
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  background: #cdcdcd;
+  border-radius: 3px;
+  z-index: 1;
+  transform-origin: 4px 0px;
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+}
+
+.menuToggle span:first-child
+{
+  transform-origin: 0% 0%;
+}
+
+.menuToggle span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
+
+/* 
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+.menuToggle input:checked ~ span
+{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: white;
+}
+
+/*
+ * But let's hide the middle one.
+ */
+.menuToggle input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+ * Ohyeah and the last one should go the other direction
+ */
+.menuToggle input:checked ~ span:nth-last-child(2)
+{
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+ * Make this absolute positioned
+ * at the top left of the screen
+ */
+.menu
+{
+  position: left;
+  width: 20%;
+  margin: -100px 0 0 -50px;
+  padding: 50px;
+  padding-top: 125px;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  /* to stop flickering of text in safari */
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+.menu li
+{
+  padding: 10px 0;
+  font-weight: 500;
+  font-size: 22px;
+}
+
+/*
+ * And let's slide it in from the left
+ */
+.menuToggle input:checked ~ ul
+{
+  transform: none;
 }
 
 @keyframes moveUP {

@@ -1,9 +1,5 @@
- <%@page import="jdk.internal.misc.FileSystemOption"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-	<%@ page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom"%>
-	<%@ page import="com.AutomatedMeetingBookingSystem.controllers.GetAllRoomsController"%>
-	<%@page import="java.util.List"%>
-	
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,9 +7,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" sizes="32x32"
-	href="./IMAGES/favicon.ico">
-<title>PseudoNerds | MeetPro</title>
-<link rel="stylesheet" href="./CSS/IndexStyle.css">
+	href="./IMAGES/favicon-32x32.png">
+<title>PseudoNerds|MeetPro</title>
+<link rel="stylesheet" href="./IndexStyle.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 </head>
 <script>
@@ -76,15 +74,14 @@
 </script>
 
 
-
 <body>
 	<header>
 		<div class="container">
 			<nav>
-				<img class="logo" src="./IMAGES/pnlogo.png" alt="MeetPro" href="#">
+				<img class="logo" src="./images/pnlogo.svg" alt="MeetPro" href="#">
 				<ul class="nav-ul" id="nav-ul">
 					<li class="nav-link"><a href="#about">About Us</a></li>
-					<li class="nav-link"><a href="#table">Created Rooms</a></li>
+					<li class="nav-link"><a href="#about">Import Users</a></li>
 					<li class="nav-link"><a href="#feedback">Feedback</a></li>
 					<li class="nav-link"><a href="#contact">Contact Us</a></li>
 					<li class="nav-link"><a href="Login.jsp">Login</a></li>
@@ -110,14 +107,49 @@
 <section class="table">
 		<h2 class="section-heading">Created Rooms</h2>
 		<div class="tbl-header">
-			<table >
+			<table cellpadding="0" cellspacing="0" border="0">
 				<thead>
+					<tr>
+						<th>Room Name</th>
+						<th>seatingCapacity</th>
+						<th>Credit per hour</th>
+						<th>Count</th>
+						<th>DELETE</th>
+					</tr>
+					<tr>
+            <td>AAD</td>
+            <td>AUSENCO</td>
+            <td>$2.38</td>
+            <td>-0.01</td>
+            <td>-1.36%</td>
+          </tr>
+          <tr>
+            <td>AAX</td>
+            <td>ADELAIDE</td>
+            <td>$3.22</td>
+            <td>+0.01</td>
+            <td>+1.36%</td>
+          </tr>
+          <tr>
+            <td>XXD</td>
+            <td>ADITYA BIRLA</td>
+            <td>$1.02</td>
+            <td>-1.01</td>
+            <td>+2.36%</td>
+          </tr>
+          <tr>
+            <td>AAC</td>
+            <td>AUSTRALIAN COMPANY </td>
+            <td>$1.38</td>
+            <td>+2.01</td>
+            <td>-0.36%</td>
+          </tr>
 				</thead>
 			</table>
 		</div>
 		<c:forEach items="${meetingRoomList}" var='i'>
 			<div class="tbl-content">
-				<table >
+				<table cellpadding="0" cellspacing="0" border="0">
 					<tbody>
 						<tr>
 							<td><a href="FetchMeetingRoomDetailsController?roomName=${i.roomName}"></a></td>
@@ -131,8 +163,6 @@
 				</table>
 			</div>
 	</section>
-
-
 	
 	<!-- Import Section -->
 	<section class="import" id="import">
@@ -183,8 +213,8 @@
 							title="text">5 stars</label>
 					</div>
 				</div>
-				<button type="submit" href="#" class="btn" value="Submit">Send
-					Feedback</button>
+				<a type="submit" href="#" class="btn" value="Submit">Send
+					Feedback</a>
 			</div>
 		</div>
 		<script type="text/javascript" src="js.main.js"></script>
@@ -204,8 +234,8 @@
 					name="email" id="email" placeholder="EMAIL" onKeyUp="checkemail()"
 					autocomplete="off" required> <input name="textarea"
 					id="textarea" cols="30" rows="5"
-					placeholder="PLEASE TYPE YOUR MESSAGE HERE" required> <button
-					type="submit" href="./LoginPage.html" class="btn" value="Submit">Submit</button>
+					placeholder="PLEASE TYPE YOUR MESSAGE HERE" required> <a
+					type="submit" href="./LoginPage.html" class="btn" value="Submit">Submit</a>
 			</div>
 		</div>
 		<script type="text/javascript" src="js.main.js"></script>
@@ -232,23 +262,17 @@
 
 				<div class="footer-links">
 					<ul>
-						<li><a href="./Login.jsp">Login Page</li>
+						<li><a href="./LoginPage.html">Login Page</a></li>
 						<li><a href="#feedback">Feedback</a></li>
 					</ul>
 				</div>
 
 				<div class="footer-credit">
-					<a href="https://github.com/AishwaryaaP/pseudonerds">Github
-						Repository</a>
-					<p>@PseudoNerds. All Rights Reserved</p>
+						<a href="https://github.com/AishwaryaaP/pseudonerds">Github Repository</a>
+						<p>@PseudoNerds. All Rights Reserved</p>
 				</div>
 			</div>
 		</div>
 	</footer>
 </section>
 </html>
-
-
-
-
-

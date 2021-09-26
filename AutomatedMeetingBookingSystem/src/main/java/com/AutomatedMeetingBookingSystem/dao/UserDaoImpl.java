@@ -178,7 +178,6 @@ public class UserDaoImpl implements UserDao{
 			Connection connection = new DaoUtility().getInstance();
 			PreparedStatement statement = connection.prepareStatement("Update user set lastloggedin=? where userId = ?");
 			String currentTime = new Timestamp(System.currentTimeMillis()).toString();
-			currentTime = currentTime.substring(0, currentTime.length() - 4);
 			statement.setString(1, currentTime);
 			statement.setInt(2, userId);
 			statement.executeUpdate();

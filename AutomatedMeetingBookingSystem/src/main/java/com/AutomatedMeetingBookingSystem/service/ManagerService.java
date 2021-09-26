@@ -1,7 +1,5 @@
 package com.AutomatedMeetingBookingSystem.service;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 import com.AutomatedMeetingBookingSystem.model.Meeting;
@@ -20,7 +18,7 @@ public interface ManagerService {
 	
 	void resetManagerCredits();
 	
-	public boolean deleteMeeting(int uniqueId,LocalDate date , LocalTime startTime, LocalTime endTime, String roomName,int organizedBy);
+	public boolean deleteMeeting(int uniqueId);
 
 	boolean editMeeting(int uniqueId,int organizedBy, String roomName, String title, String date, String startHours,
 			String startMinutes, String endHours, String endMinutes, String type, String listOfMembers);

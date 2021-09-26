@@ -14,7 +14,5 @@ public interface BookingInformationDao {
 	public List<MeetingRoom> getAvailableMeetingRooms(LocalDate meetingDate, LocalTime startTime, LocalTime endTime,
 			String amenities);
 	
-	public boolean deleteBookingInfo(int uniqueId, LocalDate date, LocalTime startTime);
-	
 }
  

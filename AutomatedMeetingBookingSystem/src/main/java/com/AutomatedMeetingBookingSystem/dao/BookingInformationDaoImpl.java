@@ -42,9 +42,7 @@ public class BookingInformationDaoImpl implements BookingInformationDao {
 	@Override
 
 	public boolean saveBookingInformation(BookingInformation bookingInformation){
-
-		if (connection != null) 
-
+				if (connection != null) 
 		{
 			System.out.println("in");
 			try {
@@ -56,10 +54,6 @@ public class BookingInformationDaoImpl implements BookingInformationDao {
 				statement.setString(5, bookingInformation.getEndTime().toString());
 				statement.setInt(6, bookingInformation.getOrganizedBy());
 	
-
-				statement.executeUpdate();
-					statement.close();
-
 				ResultSet rs = statement.getGeneratedKeys();
 				int id = 0;
 				while(rs.next()) {
@@ -71,7 +65,6 @@ public class BookingInformationDaoImpl implements BookingInformationDao {
 					//connection.commit();
 
 				}
-
 			}
 			catch(SQLException e) {
 				e.printStackTrace();
@@ -148,31 +141,6 @@ public class BookingInformationDaoImpl implements BookingInformationDao {
 
 		}
 		return meetingRooms;
-	}
-	
-	@Override
-	public boolean deleteBookingInfo(int uniqueId, LocalDate date, LocalTime startTime) {
-		if (connection != null) 
-		{
-			PreparedStatement stmt=null;
-
-			try {
-				stmt = connection.prepareStatement("delete from bookinginformation where uniqueid=? and date=? and starttime=?;");
-				stmt.setInt(1, uniqueId);
-				stmt.setString(2, date.toString());
-				stmt.setString(3, startTime.toString());
-				
-				stmt.executeUpdate();
-				stmt.close();
-				return true;
-			} catch (SQLException e) {
-				e.printStackTrace();
-				logger.info(e.getMessage());
-				return false;
-			}
-
-		}
-		return false;
 	}
 
 

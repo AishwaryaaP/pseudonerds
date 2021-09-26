@@ -41,7 +41,7 @@ section{
 	
 	font-size:4rem;
 	font-style: bold;
-	text-shadow: 0 0 3px white, 0 0 5px white;  
+	text-shadow: 0 0 3px  hsl(233, 8%, 62%), 0 0 2px  hsl(233, 8%, 62%);  
 	color: var(--dark-blue);
 	font-variant: inherit;
 	align: center;

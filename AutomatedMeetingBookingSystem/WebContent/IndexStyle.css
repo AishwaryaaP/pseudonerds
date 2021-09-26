@@ -1,13 +1,13 @@
 :root{
-    --darkest-blue:#4B40F7;
-    --dark-blue: hsl(233, 26%, 24%);
-    --lime-green: hsl(136, 65%, 51%);
-    --bright-cyan: hsl(192, 70%, 51%);
-    --grayish-blue: hsl(233, 8%, 62%);
-    --light-grayish-blue: hsl(220, 16%, 96%);
-    --very-light-gray: hsl(0, 0%, 98%);
-    --white: hsl(0, 0%, 100%);
-    --mix: linear-gradient(to right, var(--lime-green), var(--bright-cyan));
+  --darkest-blue:#4B40F7;
+  --dark-blue: hsl(233, 26%, 24%);
+  --lime-green: hsl(136, 65%, 51%);
+  --bright-cyan: hsl(192, 70%, 51%);
+  --grayish-blue: hsl(233, 8%, 62%);
+  --light-grayish-blue: rgb(243, 244, 246);
+  --very-light-gray: hsl(0, 0%, 98%);
+  --white: hsl(0, 0%, 100%);
+  --mix: linear-gradient(to right, var(--lime-green), var(--bright-cyan));
 }
 *,
 *::before,
@@ -16,17 +16,14 @@
     margin: 0;
     box-sizing: border-box; 
 }
-
 html {
     font-family: 'Public Sans', sans-serif;
     font-size: 10px;
 }
 
-body{
-  width: 100%;
-  background: -webkit-linear-gradient(left, #25c481, #25b7c4);
-  background:linear-gradient(30deg,#98dfe2, #94d1e4);/*#e6b990*/
-  font-family: 'Roboto', sans-serif;
+body {
+    width: 100%;
+    font-size:1.8rem;
 }
 
 p{
@@ -37,33 +34,23 @@ p{
 
 section{
     padding:5rem 0;  
-    margin: 120px;
+    align: center;
 }
 
 .section-heading{
 	
 	font-size:4rem;
 	font-style: bold;
-	text-shadow: 0 0 3px  hsl(233, 8%, 62%), 0 0 2px  hsl(233, 8%, 62%);  
+	text-shadow: 0 0 3px lime, 0 0 5px lime;  
 	color: var(--dark-blue);
 	font-variant: inherit;
 	align: center;
 }
-
 .container{
     width: 100%;
     max-width: 150rem;
     margin:0 auto;
     padding:0 2.5rem;
-}
-
-.container1{
-    float: right;
-    width: 80%;
-    max-width: 300rem;
-    margin:0 0.5rem;
-    top: 5px;
-    left: 30px;
 }
 
 /* UTILITY CLASSES */
@@ -81,7 +68,7 @@ section{
 
 a{
     text-decoration:none;
-    color:var(--black);
+    color:var(--lime-green);
 }
 
 .btn{
@@ -104,7 +91,6 @@ a{
 /* Header */
 header{
     width:100%;
-    float: left;
     height: 6.25rem;
     padding: 1.5rem 0;
     background-color: var(--dark-blue);
@@ -112,23 +98,24 @@ header{
     box-shadow:0px 5px 20px 0px var(--dark-blue);
     position:fixed;
     z-index:999;
-    top: 0;
-}
-
-.nav{
-   display: inline-flex;
+    top:0;
 }
 
 .logo{
-    top: 15px;
-    left: 70px;
-    position: fixed;
-    vertical-align:center;
+
+    float:left;
+    vertical-align: center;
+    display:flex;
     height:6rem;
 }
 
 .check{
     display:none;
+}
+
+.hamburger{
+    display:inline-block;
+    color: var(--white);
 }
 
 .nav-ul{
@@ -255,6 +242,7 @@ header{
     padding-bottom: 5rem;
     color: var(--grayish-blue);
 }
+
 .contact-container .form-container{
     width: 50%;
 }
@@ -270,11 +258,25 @@ header{
     border-radius: 1rem;
     justify-content: center;
 }
-.form-container input,.form-container textarea{
+.form-container input, .form-container textarea{
     display: block;
     width: 100%;
     font-size:1.5rem;
     font-weight: 400;
+    padding:0.5rem;
+    margin:0.5rem;
+    border:0.2rem solid var(--lime-green) ;
+    color: var(--lime-green);
+    background:var(--very-light-gray);
+    border-bottom-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+    outline: none;
+}
+.form-container1{
+    display: flex;
+    width: 100%;
+    font-size:1.5rem;
+    font-weight: 200;
     padding:0.5rem;
     margin:0.5rem;
     border:0.2rem solid var(--lime-green) ;
@@ -314,6 +316,41 @@ header{
     justify-content: center;
 }
 
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:20px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '@';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
 /* Footer */
 .footer {
     padding: 0.1rem 0;

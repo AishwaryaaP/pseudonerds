@@ -1,7 +1,5 @@
 package com.AutomatedMeetingBookingSystem.controllers;
 
-import com.AutomatedMeetingBookingSystem.model.User;
-
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -25,15 +23,12 @@ public class CreateMeetingController extends HttpServlet {
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.print("hit");
-
-		int organizedBy =( (User)request.getSession().getAttribute("userDetail")).getUserId();
-
-
+		int organizedBy = Integer.parseInt(request.getParameter("userId"));
 		String roomName = request.getParameter("roomName");
 		String title = request.getParameter("title");
 		String date = request.getParameter("meetingDate");
@@ -50,19 +45,15 @@ public class CreateMeetingController extends HttpServlet {
 		boolean isMeetingCreated = false;
 		isMeetingCreated = managerService.createMeeting(organizedBy, roomName, title, date, startHours, startMinutes, endHours, endMinutes, type, listOfMembers);
 		if(isMeetingCreated) {
-
-			System.out.print("meeting Created");
-
+			System.out.print("okok");
 			request.setAttribute("meetingCreated", true);
-			RequestDispatcher rd = request.getRequestDispatcher("GetScheduledByManagerController");
+			RequestDispatcher rd = request.getRequestDispatcher("ManagerHome.jsp");
 			rd.forward(request, response);
 		}
 		else {
-
-			System.out.println("No meeting Created");
-
+			System.out.println("llll");
 			request.setAttribute("meetingCreated", false);
-			RequestDispatcher rd = request.getRequestDispatcher("GetScheduledByManagerController");
+			RequestDispatcher rd = request.getRequestDispatcher("ManagerHome.jsp");
 			rd.forward(request, response);
 		}
 	}

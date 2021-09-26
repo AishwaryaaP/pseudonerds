@@ -21,25 +21,24 @@
 			request.getRequestDispatcher("Index.jsp").forward ( request, response );
 			
 		}
+	}
 %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" sizes="32x32"
-	href="IMAGES/favicon.ico">
 <title>MeetPro | CreateRoom</title>
-<link rel="stylesheet" href="./CSS/CreateRoomStyle.css">
+<link rel="stylesheet" href="./CreateRoomStyle.css">
 </head>
 <body>
+
+
+
 	<header>
 		<nav role="navigation">
 			<img class="logo" src="./images/pnlogo.svg" alt="MeetPro" href="#">
 			<div class="container1" id="container1">
 				<ul class="nav-ul" id="nav-ul">
-					<li class="nav-link"><a onclick="history.back()">Return to
-							Admin Home</a></li>
+					<li claas="nav-link"><a onclick="history.back()">Return</a></li>
 				</ul>
 			</div>
 			<div class="menuToggle" id="menuToggle">
@@ -60,8 +59,8 @@
 			</div>
 			<div class="item">
 				<label for="name">Room Name<span>*</span></label> <input id="name"
-					type="text" name="roomName"
-					placeholder="Enter the unique room name" required />
+					type="text" name="roomName" placeholder="Enter the unique room name"
+					required />
 			</div>
 			<div class="item">
 				<label for="seatingCapacity">Seating Capacity<span>*</span></label>
@@ -90,16 +89,22 @@
 					</div>
 					<div>
 						<input type="checkbox" value="WaterDispenser" id="WaterDispenser"
-							name="amenities" /> <label for="WaterDispenser" class="checkbox"><span>WaterDispenser</span></label>
+							name="amenities" /> <label for="WaterDispenser"
+							class="checkbox"><span>WaterDispenser</span></label>
 					</div>
 					<div>
-						<input type="checkbox" value="TV" id="TV" name="amenities" /> <label
-							for="TV" class="checkbox"><span>TV</span></label>
+					<input type="checkbox" value="TV" id="TV"
+						name="amenities" /> <label for="TV"
+						class="checkbox"><span>TV</span></label>
+										
+					
+					
 					</div>
+					
 					<div>
 						<input type="checkbox" value="CoffeeMachine" id="CoffeeMachine"
-							name="amenities" /> <label for="CoffeeMachine" class="checkbox"><span>Coffee
-								Machine</span></label>
+							name="amenities" /> <label for="CoffeeMachine"
+							class="checkbox"><span>Coffee Machine</span></label>
 					</div>
 				</div>
 			</div>
@@ -114,5 +119,8 @@
 		  		System.out.println("meetingRoom Created");
 		  	}
 		  %> --%>
+
+
+
 </body>
 </html>
