@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <title>Login Form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="LoginStyle.css">
+    <link rel="stylesheet" href="./CSS/LoginStyle.css">
 <script src="https://kit.fontawesome.com/54fd602259.js" crossorigin="anonymous"></script>
   </head>
 <script>

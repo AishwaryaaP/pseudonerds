@@ -40,7 +40,7 @@ response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 <link rel="icon" type="image/png" sizes="32x32"
 	href="./images/favicon-32x32.png">
 <title>MeetPro|Manager</title>
-<link rel="stylesheet" href="./AdminHomeStyle.css">
+<link rel="stylesheet" href="./CSS/AdminHomeStyle.css">
 
 </head>
 

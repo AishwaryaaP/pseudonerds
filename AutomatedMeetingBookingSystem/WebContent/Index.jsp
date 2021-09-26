@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" sizes="32x32"
 	href="./IMAGES/favicon-32x32.png">
 <title>PseudoNerds|MeetPro</title>
-<link rel="stylesheet" href="./IndexStyle.css">
+<link rel="stylesheet" href="./CSS/IndexStyle.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
