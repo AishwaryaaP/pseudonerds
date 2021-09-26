@@ -81,11 +81,19 @@ public class ManagerServiceImpl implements ManagerService{
 		}
 	}
 	
-	public boolean deleteMeeting(int uniqueId) {// have to implement
-		
-		boolean deleted = meetingService.deleteMeetingByUniqueId(uniqueId);
-		if(deleted)
+	@Override
+	public boolean deleteMeeting(int uniqueId, LocalDate date , LocalTime startTime, LocalTime endTime, String roomName,int organizedBy) {// have to implement
+		boolean bookingdeleted = bookingInfoService.deleteBookingInformation(uniqueId, date, startTime);
+		boolean deleted = meetingService.deleteMeetingByUniqueId(uniqueId);		
+		if(deleted && bookingdeleted) {
+			int meetingRoomCredits = meetingRoomService.getRoomPerHourCredits(roomName);
+			double meetingDuration = Duration.between(startTime, endTime).toMinutes();
+			double creditsReqForMeeting = meetingDuration*meetingRoomCredits;
+			double managerCredits = userService.getUserCredits(organizedBy);
+			double updatedCredits = managerCredits + creditsReqForMeeting;
+			userService.updateUserCredits(updatedCredits, organizedBy);
 			return true;
+		}
 		return false;
 	}
 

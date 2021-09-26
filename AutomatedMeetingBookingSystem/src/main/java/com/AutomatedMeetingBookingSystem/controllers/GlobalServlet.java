@@ -42,12 +42,12 @@ public class GlobalServlet extends HttpServlet {
 			System.out.println(userId);
 			System.out.println(email);
 			UserServiceInterface userService = ServiceFactory.getUserService();
-			userService.setLastLoggedIn(userId);
+			
 			User user = userService.getUserDetails(userId , email);
-			System.out.println(user.getLastLoggedIn().toString());
+			//System.out.println(user.getLastLoggedIn().toString());
 			
 			if ( user != null ) {
-			
+				userService.setLastLoggedIn(userId);
 				request.getSession().setAttribute( "userDetail", user );
 				request.getSession().setAttribute( "LOGINSTATUS", "SUCCESS");
 				RequestDispatcher dispatcher = null;
@@ -60,7 +60,7 @@ public class GlobalServlet extends HttpServlet {
 					managerService.resetManagerCredits();
 					break;
 				case "MEMBER":
-					dispatcher= request.getRequestDispatcher( "MemberHome.jsp" );		
+					dispatcher= request.getRequestDispatcher( "MeetingForMember" );		
 					break;
 				}
 				dispatcher.forward(request, response);

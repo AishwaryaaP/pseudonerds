@@ -43,11 +43,11 @@
 <html>
 <head>
 <title>MeetPro | EditRoom</title>
-<link rel="stylesheet" href="./CreateRoomStyle.css">
+<link rel="stylesheet" href="./CSS/CreateRoomStyle.css">
 </head>
 <body>
 	<%
-		MeetingRoom room = (MeetingRoom) request.getAttribute("MeetingRoom");
+		MeetingRoom room = (MeetingRoom) request.getAttribute("meetingRoomList");
 	%>
 	<header>
 		<nav role="navigation">

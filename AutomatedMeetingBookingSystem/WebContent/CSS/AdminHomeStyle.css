@@ -1,5 +1,5 @@
 :root{
-    --darkest-blue:#4B40F7;
+    --darkest-blue:rgb(75, 64, 247);
     --dark-blue: hsl(233, 26%, 24%);
     --lime-green: hsl(136, 65%, 51%);
     --bright-cyan: hsl(192, 70%, 51%);
@@ -24,8 +24,7 @@ html {
 
 body{
   width: 100%;
-  background: -webkit-linear-gradient(left, #25c481, #25b7c4);
-  background:linear-gradient(30deg,#98dfe2, #94d1e4);/*#e6b990*/
+  background: var(--very-light-gray);
   font-family: 'Roboto', sans-serif;
 }
 
@@ -33,21 +32,6 @@ p{
     font-size:1.6rem;
     color: var(--grayish-blue);
     line-height:1.6;
-}
-
-section{
-    padding:5rem 0;  
-    margin: 120px;
-}
-
-.section-heading{
-	
-	font-size:4rem;
-	font-style: bold;
-	text-shadow: 0 0 3px  hsl(233, 8%, 62%), 0 0 2px  hsl(233, 8%, 62%);  
-	color: var(--dark-blue);
-	font-variant: inherit;
-	align: center;
 }
 
 .container{
@@ -177,7 +161,30 @@ header{
     width: 100%;
     background-color: var(--light-grayish-blue);
 }
+section{
+    padding:5rem 0;  
+    align: center;
+}
 
+header{
+    width:100%;
+    height: 6.25rem;
+    padding: 1.5rem 0;
+    background-color: var(--dark-blue);
+    color: var(--dark-blue);
+    box-shadow:0px 5px 20px 0px var(--dark-blue);
+    position:fixed;
+    z-index:999;
+    top:0;
+}
+.section-heading{
+	font-size:4rem;
+	font-style: bold;
+	text-shadow: 0 0 3px white, 0 0 5px white;
+	color: var(--dark-blue);
+	font-variant: inherit;
+	align: center;
+}
 .welcome {
     display: flex;
     flex-direction: column-reverse;
@@ -352,10 +359,12 @@ header{
 }
 
 .footer-credit{
+	color: green;
 	padding-top: 1.3rem;
 	position: relative;
     font-size:xx-large;
 }
+
 
 
 /* Media Query */
@@ -459,6 +468,10 @@ header{
     margin-top: 0px;
     border: 1px solid rgba(255,255,255,0.3);
   }
+  .table-room{
+      margin: 120px;
+          padding:5rem 0;  	
+  }
   th{
     padding: 20px 15px;
     text-align: left;
@@ -488,3 +501,153 @@ header{
   ::-webkit-scrollbar-thumb {
       -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
   }
+/* Slide menu */
+.menuToggle
+{
+max-width:100rem;
+  display: block;
+  position: relative;
+  top: 5px;
+  left: 20px;
+  z-index: 1;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.menuToggle a
+{
+  text-decoration: none;
+  color: var(--dark-blue);
+  transition: color 0.3s ease;
+}
+
+.menuToggle a:hover
+{
+  color: tomato;
+}
+
+.menuToggle input
+{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 2;
+  -webkit-touch-callout: none;
+}
+
+/* hamburger */
+.menuToggle span
+{
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  background: #cdcdcd;
+  border-radius: 3px;
+  z-index: 1;
+  transform-origin: 4px 0px;
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+}
+
+.menuToggle span:first-child
+{
+  transform-origin: 0% 0%;
+}
+
+.menuToggle span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
+
+/* 
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+.menuToggle input:checked ~ span
+{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: white;
+}
+
+/*
+ * But let's hide the middle one.
+ */
+.menuToggle input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+ * Ohyeah and the last one should go the other direction
+ */
+.menuToggle input:checked ~ span:nth-last-child(2)
+{
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+ * Make this absolute positioned
+ * at the top left of the screen
+ */
+.menu
+{
+  position: left;
+  width: 20%;
+  margin: -100px 0 0 -50px;
+  padding: 50px;
+  padding-top: 125px;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  /* to stop flickering of text in safari */
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+.menu li
+{
+  padding: 10px 0;
+  font-weight: 500;
+  font-size: 22px;
+}
+
+/*
+ * And let's slide it in from the left
+ */
+.menuToggle input:checked ~ ul
+{
+  transform: none;
+}
+
+@keyframes moveUP {
+    0% {
+        transform: translateY(100%);
+    }
+    50% {
+        transform: translateY(50%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.moveUP {
+    animation: moveUP .8s 1 linear;
+}
+
+.tutorial h3{
+    color:white;
+}
+
+.attribution { font-size: 11px; text-align: center; }
+.attribution a { color: hsl(228, 45%, 44%); }

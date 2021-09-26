@@ -29,9 +29,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" sizes="32x32"
-	href="./images/favicon-32x32.png">
-<title>MeetPro|Manager</title>
-<link rel="stylesheet" href="./ManagerHomeStyle.css">
+	href="./images/favicon.ico">
+<title>MeetPro | Member</title>
+<link rel="stylesheet" href="./MemberHomeStyle.css">
 </head>
 <body>
 
@@ -43,14 +43,13 @@
 
 	<header>
 		<nav role="navigation">
-			<img class="logo" src="./images/pnlogo.svg" alt="MeetPro" href="#">
+			<img class="logo" src="./IMAGES/pnlogo.svg" alt="MeetPro" href="#">
 			<div class="container1" id="container1">
 				<ul class="nav-ul" id="nav-ul">
 					<li class="nav-link"><a href="GetAllRoomsController">Room
 							Details</a></li>
 					<li class="nav-link"><a>Last Loggedin: <%=user.getLastLoggedIn()%></a></li>
-					<li claas="nav-link"><a href="UserProfile.jsp">Hello
-							<%=user.getName() %></a></li>
+					<li claas="nav-link"><a href="UserProfile.jsp">Hello <%=user.getName() %></a></li>
 				</ul>
 			</div>
 			<div class="menuToggle" id="menuToggle">
@@ -60,7 +59,7 @@
 					<a href="#">
 						<li></li>
 					</a> -->
-					
+
 					<a href="#">
 						<li><a href="Index.jsp">Logout</a></li>
 					</a>
@@ -78,7 +77,7 @@
 
 		<h2 class="section-heading">Scheduled Meetings for Member</h2>
 		<div class="tbl-header">
-			<table cellpadding="0" cellspacing="0" border="0">
+			<table >
 				<thead>
 					<tr>
 						<th>Meeting Id</th>
@@ -89,37 +88,6 @@
 						<th>Type</th>
 
 					</tr>
-			<tr>
-					 <td>AAD</td>
-            <td>AUSENCO</td>
-            <td>$2.38</td>
-            <td>-0.01</td>
-            <td>-1.36%</td>
-          </tr>
-          <tr>
-            <td>AAX</td>
-            <td>ADELAIDE</td>
-            <td>$3.22</td>
-            <td>+0.01</td>
-            <td>+1.36%</td>
-          </tr>
-          <tr>
-            <td>XXD</td>
-            <td>ADITYA BIRLA</td>
-            <td>$1.02</td>
-            <td>-1.01</td>
-            <td>+2.36%</td>
-          </tr>
-          <tr>
-            <td>AAC</td>
-            <td>AUSTRALIAN COMPANY </td>
-            <td>$1.38</td>
-            <td>+2.01</td>
-            <td>-0.36%</td>
-          </tr>
-				</thead>
-			</table>
-		</div>
 				</thead>
 			</table>
 		</div>
@@ -127,7 +95,7 @@
 
 		<c:forEach items="${meetings}" var='i'>
 			<div class="tbl-content">
-				<table cellpadding="0" cellspacing="0" border="0">
+				<table >
 					<tbody>
 						<tr>
 							<td><c:out value="${i.uniqueID}" /></td>
@@ -149,7 +117,7 @@
 			<div class="footer">
 
 				<div class="footer-icons">
-					<a href="#"> <img src="./images/icon-facebook.svg" alt="">
+					<a href="#"> <img src="./IMAGES/pseudo.svg" alt="">
 					</a>
 				</div>
 

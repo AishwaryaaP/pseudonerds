@@ -4,9 +4,10 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Login Form</title>
+ <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<title>MeetPro | Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="LoginStyle.css">
+    <link rel="stylesheet" href="CSS/LoginStyle.css">
 <script src="https://kit.fontawesome.com/54fd602259.js" crossorigin="anonymous"></script>
   </head>
 <script>
@@ -86,7 +87,7 @@ function validateData()
 
           <form  action="GlobalServlet" method="post">
 
-              <img src="images/avatar.svg" alt="avatar" class="avatar">
+              <img src="avatar.svg" alt="avatar" class="avatar">
 
               <h2>Welcome</h2>
               <!--UserID-->
