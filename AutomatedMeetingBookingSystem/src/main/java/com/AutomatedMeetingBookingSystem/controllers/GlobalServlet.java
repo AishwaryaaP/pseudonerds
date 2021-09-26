@@ -60,7 +60,7 @@ public class GlobalServlet extends HttpServlet {
 					managerService.resetManagerCredits();
 					break;
 				case "MEMBER":
-					dispatcher= request.getRequestDispatcher( "MemberHome.jsp" );		
+					dispatcher= request.getRequestDispatcher( "MeetingForMember" );		
 					break;
 				}
 				dispatcher.forward(request, response);

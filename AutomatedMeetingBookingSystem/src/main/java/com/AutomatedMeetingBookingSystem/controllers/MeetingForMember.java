@@ -1,6 +1,7 @@
 package com.AutomatedMeetingBookingSystem.controllers;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,37 +10,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
-import com.AutomatedMeetingBookingSystem.service.MeetingRoomService;
+import com.AutomatedMeetingBookingSystem.model.Meeting;
+import com.AutomatedMeetingBookingSystem.model.User;
+import com.AutomatedMeetingBookingSystem.service.ManagerService;
+import com.AutomatedMeetingBookingSystem.service.MemberService;
 import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
 
 /**
- * Servlet implementation class FetchMeetingRoomDetailsController
+ * Servlet implementation class MeetingForMember
  */
-public class FetchMeetingRoomDetailsController extends HttpServlet {
+public class MeetingForMember extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private MemberService memberService;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FetchMeetingRoomDetailsController() {
+    public MeetingForMember() {
         super();
-        // TODO Auto-generated constructor stub
+        memberService = ServiceFactory.getMemberService();
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    MeetingRoomService meetingRoomService = ServiceFactory.getMeetingRoomService();
-    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("okokokokk");
-		String roomName = request.getParameter("roomName");
-		MeetingRoom meetingRoomList = meetingRoomService.getRoomDetailsByRoomName(roomName);
-		request.setAttribute("meetingRoomList", meetingRoomList);
-		RequestDispatcher dispatcher = request.getRequestDispatcher( "EditRoom.jsp" );
-		dispatcher.forward(request, response);
+		User user = (User)request.getSession().getAttribute("userDetail");
+		List<Meeting> meetings = memberService.memberMeetingSchedule(user.getUserId());
+		request.setAttribute("meetings", meetings);
+		RequestDispatcher rd = request.getRequestDispatcher("MemberHome.jsp");
+		rd.forward(request, response);
 	}
 
 	/**

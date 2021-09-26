@@ -72,8 +72,15 @@ public class MeetingDaoImpl implements MeetingDao {
 			statement.setString(5, startTime.toString());
 			statement.setString(6, endTime.toString());
 			statement.setString(7, type.toString());
+			String[] members = listOfMembers.split(" ");
+			listOfMembers ="[";
+			for ( String member : members) 
+				listOfMembers += member + ",";
+			listOfMembers = listOfMembers.substring(0,listOfMembers.length()-1);
+			listOfMembers += "]";
 			statement.setString(8, listOfMembers);
 			statement.executeUpdate();
+
 			ResultSet rs = statement.getGeneratedKeys();
 			rs.next();
 			id = rs.getInt(1);
@@ -84,12 +91,13 @@ public class MeetingDaoImpl implements MeetingDao {
 				return id;
 			}
 			}
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-			logger.info(e.getMessage());
+
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.info(e.getMessage());
+			
 		}
 		return id;
 	}
@@ -104,7 +112,7 @@ public class MeetingDaoImpl implements MeetingDao {
 				stmt.setInt(1, uniqueID);
 
 				ResultSet result = stmt.executeQuery();
-				while (result.next()) {
+				result.next();
 					meeting.setUniqueID(result.getInt(1));
 					meeting.setTitle(result.getString(3));
 					meeting.setInfoMeetingRoomName(result.getString(9));
@@ -116,8 +124,8 @@ public class MeetingDaoImpl implements MeetingDao {
 					meeting.setListOfMember(result.getString(8));
 					meeting.setOrganizedBy(result.getInt(2));
 
-					return meeting;
-				}
+					
+				
 
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -227,14 +235,12 @@ public class MeetingDaoImpl implements MeetingDao {
 				stmt = connection.prepareStatement(DELETE_MEETING_BY_ID);
 				stmt.setInt(1, uniqueId);
 
-				int recordsUpdated = stmt.executeUpdate();
-				if (recordsUpdated > 0) {
-					stmt.close();
-					connection.commit();
-					return true;
-				}
+				stmt.executeUpdate();
+				stmt.close();
+				return true;
 			} catch (SQLException e) {
 				e.printStackTrace();
+				return false;
 			}
 
 		}
