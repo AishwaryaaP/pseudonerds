@@ -3,8 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom"%>
-<%@ page
-	import="com.AutomatedMeetingBookingSystem.controllers.GetAllRoomsController"%>
+<%@ page import="com.AutomatedMeetingBookingSystem.controllers.GetAllRoomsController"%>
 <%@page import="java.util.List"%>
 
 <!DOCTYPE html>
@@ -13,8 +12,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" sizes="32x32"
-	href="./IMAGES/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="./IMAGES/favicon.ico">
 <title>PseudoNerds | MeetPro</title>
 <link rel="stylesheet" href="./CSS/IndexStyle.css">
 </head>
@@ -87,7 +85,7 @@
 				<img class="logo" id="logo" src="./IMAGES/pnlogo.png" type="image/png"  alt="MeetPro" href="#">
 				<ul class="nav-ul" id="nav-ul">
 					<li class="nav-link"><a href="#about">About Us</a></li>
-					<li class="nav-link"><a href="#createdroom">Created Rooms</a></li>
+					<li><a href="GetAllRoomsController">Created Rooms</a></li>
 					<li class="nav-link"><a href="#feedback">Feedback</a></li>
 					<li class="nav-link"><a href="#contact">Contact Us</a></li>
 					<li class="nav-link"><a href="Login.jsp">Login</a></li>
@@ -116,9 +114,12 @@
 		</div>
 	</section>
 	<!--table-->
-	<section id="createdroom" class="table">
-	<h1>                              </h1>
-		<h2 style="text-align:center; padding-inline:inherit; padding-top: 40px; padding-bottom:20px" class="section-heading">Created Rooms</h2>
+	<section class="table-room">
+		<h1></h1>
+		<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+		<h2
+			style="text-align: center; padding-inline: inherit; padding-top: 40px; padding-bottom: 20px"
+			class="section-heading"></h2>
 		<div class="tbl-header">
 			<table>
 				<thead>
@@ -126,22 +127,26 @@
 						<th>Room Name</th>
 						<th>Seating Capacity</th>
 						<th>Credit per hour</th>
+						<th>Rating</th>
 						<th>Count</th>
 					</tr>
-					
 				</thead>
 			</table>
 		</div>
+		</thead>
+		</table>
+		</div>
 		<c:forEach items="${meetingRoomList}" var='i'>
-			<div class="tbl-content">
+			<div>
 				<table>
 					<tbody>
 						<tr>
-							<td><c:out value="${i.roomName}" /></a></td>
+							<td><a href="FetchMeetingRoomDetailsController?roomName=${i.roomName}">
+							<c:out value="${i.roomName}" /></a></td>
 							<td><c:out value="${i.seatingCapacity}" /></td>
 							<td><c:out value="${i.creditPerHour}" /></td>
+							<td><c:out value="${i.rating}" /></td>
 							<td><c:out value="${i.count}" /></td>
-						</tr>
 						</c:forEach>
 					</tbody>
 				</table>

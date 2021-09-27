@@ -46,6 +46,7 @@ public class CreateMeetingController extends HttpServlet {
 		String endHours = end[0];
 		String endMinutes = end[1];
 		String type = request.getParameter("type");
+		System.out.println(type);
 		String listOfMembers = request.getParameter("listOfMembers");
 		boolean isMeetingCreated = false;
 		isMeetingCreated = managerService.createMeeting(organizedBy, roomName, title, date, startHours, startMinutes, endHours, endMinutes, type, listOfMembers);
