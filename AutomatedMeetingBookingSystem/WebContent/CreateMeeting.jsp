@@ -30,7 +30,7 @@
 
 <html>
 <head>
-<title>MeetPro | CreateRoom</title>
+<title>MeetPro | CreateMeeting</title>
 <link rel="icon" type="image/png" sizes="32x32" href="./IMAGES/favicon.ico">
 <link rel="stylesheet" href="./CSS/CreateRoomStyle.css">
 </head>
@@ -64,10 +64,10 @@
 			<div class="item">
 				<label for="type">Choose meeting type:</label>
   		<select id="type" name="type">
-    		<option value="CLASSROOMTRAINING">ClassRoom Training</option>
-    		<option value="ONLINETRAINING">Online Training</option>
-    		<option value="CONFERENCECALL">ConferenceCall</option>
-    		<option value="BUSINESS">Business</option>
+    		<option value="CLASSROOMTRAINING">CLASSROOMTRAINING</option>
+    		<option value="ONLINETRAINING">ONLINETRAINING</option>
+    		<option value="CONFERENCECALL">CONFERENCECALL</option>
+    		<option value="BUSINESS">BUSINESS</option>
   		</select>       
 			</div>
 			<div class="item">

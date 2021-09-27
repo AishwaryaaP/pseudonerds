@@ -5,7 +5,8 @@
 <%@ page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom"%>
 <%@page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom"%>
 <%@page import="com.AutomatedMeetingBookingSystem.model.User"%>
-<%@page import="com.AutomatedMeetingBookingSystem.controllers.FetchMeetingRoomDetailsController"%>
+<%@page
+	import="com.AutomatedMeetingBookingSystem.controllers.FetchMeetingRoomDetailsController"%>
 
 <%@ page import="java.util.*"%>
 <%
@@ -41,15 +42,16 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 
 <body>
 	<%
- User user = (User) session.getAttribute("userDetail");
- %>
+	User user = (User) session.getAttribute("userDetail");
+	%>
 
 
 	<!-- Nav Bar -->
 
 	<header>
 		<nav role="navigation">
-			<img class="logo" id="logo" src="./IMAGES/pnlogo.png" type="image/png"  alt="MeetPro" href="#">
+			<img class="logo" id="logo" src="./IMAGES/pnlogo.png"
+				type="image/png" alt="MeetPro" href="#">
 			<div class="container1" id="container1">
 				<ul class="nav-ul" id="nav-ul">
 
@@ -78,8 +80,10 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 
 	<!--table-->
 	<section class="table-room">
-	<h1>                              </h1>
-		<h2 style="text-align:center; padding-inline:inherit; padding-top: 40px; padding-bottom:20px" class="section-heading">Created Rooms</h2>
+		<h1></h1>
+		<h2
+			style="text-align: center; padding-inline: inherit; padding-top: 40px; padding-bottom: 20px"
+			class="section-heading">Created Rooms</h2>
 		<div class="tbl-header">
 			<table>
 				<thead>
@@ -87,52 +91,57 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 						<th>Room Name</th>
 						<th>Seating Capacity</th>
 						<th>Credit per hour</th>
-						<th>Count</th>
-						<th>DELETE</th>
+						<th>Rating</th>
+						<th>Delete</th>
 					</tr>
-					
 				</thead>
 			</table>
 		</div>
+		</thead>
+		</table>
+		</div>
 		<c:forEach items="${meetingRoomList}" var='i'>
-					<div>
-						<table>
-							<tbody>
-								<tr>
-									<td><a
-										href="FetchMeetingRoomDetailsController?roomName=${i.roomName}"><c:out
-												value="${i.roomName}" /></a></td>
-									<td><c:out value="${i.seatingCapacity}" /></td>
-									<td><c:out value="${i.creditPerHour}" /></td>
-									<td><c:out value="${i.count}" /></td>
-									<td><a
-										href="DeleteMeetingRoomController?roomName=${i.roomName}">delete</a></td>
-								</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-					</div>
-					</section>
-					<!-- Import Section -->
-					<section id="import" class="import">
-						<h1>                              </h1>
-		<h2 style="text-align:center; padding-inline:inherit; padding-top: 40px; padding-bottom:20px" class="section-heading">Import Users</h2>
+			<div>
+				<table>
+					<tbody>
+						<tr>
+							<td><a
+								href="FetchMeetingRoomDetailsController?roomName=${i.roomName}">
+									<c:out value="${i.roomName}" />
+							</a></td>
+							<td><c:out value="${i.seatingCapacity}" /></td>
+							<td><c:out value="${i.creditPerHour}" /></td>
+							<td><c:out value="${i.rating}" /></td>
+							<td><a
+								href="DeleteMeetingRoomController?roomName=${i.roomName}">delete</a></td>
+						</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+	</section>
+	<!-- Import Section -->
+	<section id="import" class="import">
+		<h1></h1>
+		<h2
+			style="text-align: center; padding-inline: inherit; padding-top: 40px; padding-bottom: 20px"
+			class="section-heading">Import Users</h2>
 		<div class="tbl-header">
-						<div class="import-container container">
-							<div class="about-text">
-								<h2 class="u-mb-small heading-secondary">Upload XML File to Import Users</h2>
-								<p class="u-mb-large">XML file containing user records to be inserted into database.</p>
-							</div>
-							<div style="display: inline-block"class="form-container1">
-								<form action="ImportUserController" method="post" enctype="multipart/form-data">
-									<input class="btn" type="file" name="myFile" accept="application/XML" required /></div>
-							<button class="btn" type="submit" name="submit" value="insert data">Upload File</button>
-						</div>
-
-						</form>
-						</div>
-						</div>
-					</section>
+			<div class="import-container container">
+				<div class="about-text">
+					<h2 class="u-mb-small heading-secondary">Upload XML File to
+						Import Users</h2>
+					<p class="u-mb-large">XML file containing user records to be
+						inserted into database.</p>
+				</div>
+				<div style="display: inline-block" class="form-container">
+					<form action="ImportUserController" method="post" enctype="multipart/form-data">
+						<input class="btn" type="file" name="myFile"accept="application/XML" required />
+						<button class="btn" type="submit" name="submit" value="insert data">Upload File</button>
+					</form>
+				</div>
+			</div>
+	</section>
 </body>
 <!-- Footer -->
 <section class="footer">

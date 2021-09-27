@@ -1,6 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@page import="com.AutomatedMeetingBookingSystem.model.User"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="./IMAGES/favicon.ico">
+<title>MeetPro | Manager</title>
+<link rel="stylesheet" href="./CSS/AdminHomeStyle.css">
+</head>
+<body>
 
 <%
 	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
@@ -28,19 +38,8 @@
 		}
 	}
 %>
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" sizes="32x32"
-	href="./IMAGES/favicon.ico">
-<title>MeetPro|Manager</title>
-<link rel="stylesheet" href="./CSS/AdminHomeStyle.css">
-</head>
-<body>
 	<%
+
 		User user = (User) session.getAttribute("userDetail");
 	%>
 
@@ -53,8 +52,7 @@
 			<img class="logo" id="logo" src="./IMAGES/pnlogo.png" type="image/png"  alt="MeetPro" href="#">
 			<div class="container1" id="container1">
 				<ul class="nav-ul" id="nav-ul">
-				    <li class="nav-link"><a>Last Loggedin: <%=user.getLastLoggedIn()%></a></li>
-					<li class="nav-link"><a href="GetScheduledByManagerController">Meeting Details</a></li>
+				   <li class="nav-link"><a>Last Loggedin: <%=user.getLastLoggedIn()%></a></li>
 					<li class="nav-link"><a>Credit: <%=user.getCredit() %></a></li>
 					<li claas="nav-link"><a href="UserProfile.jsp">Hello <%=user.getName() %></a></li>
 				</ul>
@@ -76,50 +74,44 @@
 	<a href="GetAvailableRoomsController"> CREATE MEETING</a>
 
 	<!--table-->
-	<section class="table-room">
 
 
-		<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-
-	<!--table-->
-	<section class="table-room">
-	<h1>                              </h1>
+	<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+ <section class="table-room">
 		<h2 style="text-align:center; padding-inline:inherit; padding-top: 40px; padding-bottom:20px" class="section-heading">Your Scheduled Meetings</h2>
 		<div class="tbl-header">
 			<table>
 				<thead>
 					<tr>
-						<th>Meeting Id</th>
-						<th>Title</th>
-						<th>Date</th>
-						<th>startTime</th>
-						<th>endTime</th>
-						<th>Type</th>
-						<th>Room Name</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
+            	<th>Meeting Id</th>
+            	<th>Title</th>
+               <th>Date</th>
+               <th>startTime</th>
+               <th>endTime</th>
+               <th>Type</th>
+               <th>Room Name</th>
+               <th>Actions</th>            
+            </tr>
+            </thead>
 			</table>
 		</div>
-		<c:forEach items="${meetings}" var='i'>
-			<div class="tbl-content">
+             <c:forEach items="${meetings}" var ='i'>
+             <div class="tbl-content">
 				<table>
 					<tbody>
-						<tr>
-							<td><c:out value="${i.uniqueID}" /></td>
-							<td><c:out value="${i.title}" /></td>
-							<td><c:out value="${i.date}" /></td>
-							<td><c:out value="${i.startTime}" /></td>
-							<td><c:out value="${i.endTime}" /></td>
-							<td><c:out value="${i.type}" /></td>
-							<td><c:out value="${i.infoMeetingRoomName}" /></td>
-							<td><a href="DeleteMeetingController?uniqueID=${i.uniqueID}&date=${i.date}&startTime=${i.startTime}&endTime=${i.endTime}&roomName=${i.infoMeetingRoomName}">
-									delete </a></td>
-
-						</tr>
-						</c:forEach>
-					</tbody>
+                 <tr>
+                     <td><c:out value="${i.uniqueID}"/></a></td>
+                     <td><c:out value="${i.title}"/></td>
+                     <td><c:out value="${i.date}"/></td>  
+                     <td><c:out value="${i.startTime}"/></td>  
+                     <td><c:out value="${i.endTime}"/></td>
+                     <td><c:out value="${i.type}"/></td>  
+                     <td><c:out value="${i.infoMeetingRoomName}"/></td>
+                     <td><a href = "DeleteMeetingController?uniqueID=${i.uniqueID}&date=${i.date}&startTime=${i.startTime}&endTime=${i.endTime}&roomName=${i.infoMeetingRoomName}"> delete </a></td>
+                 </tr>
+                 
+                </c:forEach>
+                </tbody>
 				</table>
 			</div>
 	</section>
