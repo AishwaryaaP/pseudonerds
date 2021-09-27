@@ -35,7 +35,6 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 </head>
 <body>
 	<h1>Available Meeting Rooms</h1>
-	<<<<<<< HEAD
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<table BORDER="5">
 		<tr>

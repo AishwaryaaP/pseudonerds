@@ -35,7 +35,7 @@
 <link rel="icon" type="image/png" sizes="32x32"
 	href="./images/favicon.ico">
 <title>MeetPro | Member</title>
-<link rel="stylesheet" href="./CSS/AdminHomeStyle.css">
+<link rel="stylesheet" href="./MemberHomeStyle.css">
 </head>
 <body>
 
@@ -47,7 +47,7 @@
 
 	<header>
 		<nav role="navigation">
-			<img class="logo" id="logo" src="./IMAGES/pnlogo.png" type="image/png"  alt="MeetPro" href="#">
+			<img class="logo" src="./IMAGES/pnlogo.svg" alt="MeetPro" href="#">
 			<div class="container1" id="container1">
 				<ul class="nav-ul" id="nav-ul">
 					<li class="nav-link"><a href="GetAllRoomsController">Room
