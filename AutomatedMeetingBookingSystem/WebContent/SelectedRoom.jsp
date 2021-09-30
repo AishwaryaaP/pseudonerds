@@ -79,34 +79,34 @@
 		   <label for="type">Choose meeting type:</label>
 	         <select id="type" name="type">
 	         <% if( type.value.equals("CLASSROOMTRAINING") ){	  %>
-	 			<option value="CLASSROOMTRAINING" Selected>ClassRoom Training</option>
+	 			<option value="CLASSROOMTRAINING" Selected>CLASSROOMTRAINING</option>
 	   		<% }
 	         		else { %>
-	   		<option value="CLASSROOMTRAINING" >ClassRoom Training</option>
+	   		<option value="CLASSROOMTRAINING" >CLASSROOMTRAINING</option>
 	   		<%}
 	             if( type.value.equals("ONLINETRAINING")){
 	       	  %>
-	   		<option value="ONLINETRAINING"Selected>Online Training</option>
+	   		<option value="ONLINETRAINING"Selected>ONLINETRAINING</option>
 	   		<% }
 	   		else {
 	   		%>
-	   		<option value="ONLINETRAINING">Online Training</option>
+	   		<option value="ONLINETRAINING">ONLINETRAINING</option>
 	   		<% }
 	   			if(type.value.equals("CONFERENCECALL")){
 	       	  %>
-	   		<option value="CONFERENCECALL"Selected>ConferenceCall</option>
+	   		<option value="CONFERENCECALL"Selected>CONFERENCECALL</option>
 	   		<% }
 	   		else {
 	   		%>
-	   		<option value="CONFERENCECALL">ConferenceCall</option>
+	   		<option value="CONFERENCECALL">CONFERENCECALL</option>
 	   		<% }
 	   			if(type.value.equals("BUSINESS")){
 	       	  %>
-	   		<option value="BUSINESS"Selected>Business</option>
+	   		<option value="BUSINESS"Selected>BUSINESS</option>
 	   		<%  }
 	   		else {
 	   		%>
-	   		<option value="BUSINESS">Business</option>
+	   		<option value="BUSINESS">BUSINESS</option>
 	   		<% } %>
 	 		</select>
 	 		

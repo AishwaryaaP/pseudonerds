@@ -21,7 +21,7 @@
 	href="IMAGES/favicon.ico">
 <title>MeetPro | UserProfile</title>
 
-<link rel="stylesheet" href="./UserProfileStyle.css">
+<link rel="stylesheet" href="./CSS/UserProfileStyle.css">
 
 </head>
 <body>
