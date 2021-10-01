@@ -1,14 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@page import="com.AutomatedMeetingBookingSystem.model.User"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<link rel="stylesheet" href="./managerStyle.css">
-
-
-<%@page import="com.AutomatedMeetingBookingSystem.model.User"%>
 <%@page import="com.AutomatedMeetingBookingSystem.controllers.MemberController"%>
 <%
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
@@ -31,24 +22,28 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 }
 %>
 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="32x32" href="./IMAGES/favicon.ico">
+<title>MeetPro | Member</title>
+<link rel="stylesheet" href="./CSS/AdminHomeStyle.css">
 </head>
 <body>
 <%
 		User user = (User) session.getAttribute("userDetail");
-	%>
-
+%>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 	<!-- Nav Bar -->
-
 	<header>
 		<nav role="navigation">
 			<img class="logo" id="logo" src="./IMAGES/pnlogo.png" type="image/png"  alt="MeetPro" href="#">
 			<div class="container1" id="container1">
 				<ul class="nav-ul" id="nav-ul">
 				   <%--  <li class="nav-link"><a>Last Loggedin: <%=user.getLastLoggedIn()%></a></li> --%>
-					<li class="nav-link"><a href="GetScheduledByManagerController">Meeting Details</a></li>
-					<li class="nav-link"><a>Credit: <%=user.getCredit() %></a></li>
+					<li class="nav-link"><a href="MeetingForMember">Meeting Details</a></li>
 					<li claas="nav-link"><a href="UserProfile.jsp">Hello <%=user.getName() %></a></li>
 				</ul>
 			</div>
@@ -59,45 +54,36 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 						<li></li>
 					</a>
 					<a href="#">
-						<li><a href="CreateMeeting.jsp">Create Meeting</a></li>
 						<li><a href="Index.jsp">Logout</a></li>
 					</a>
 				</ul>
 			</div>
 		</nav>
 	</header>
-	<a href="GetAvailableRoomsController"> CREATE MEETING</a>
-
 	<!--table-->
-
-	<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-    <a href = "CreateMeeting.jsp"> CREATE MEETING</a>
+<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
  <section class="table-room">
 	<h1>                              </h1>
 		<h2 style="text-align:center; padding-inline:inherit; padding-top: 40px; padding-bottom:20px" class="section-heading">Your Scheduled Meetings</h2>
-		<div class="tbl-header">
-    
-    
-    
-
-
-
-	<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-	
-	
-    
-        <table  BORDER="5">
-            <tr>
+		<div class="tbl-header">    
+        <table>
+             <tr>
             	<th>Meeting Id</th>
             	<th>Title</th>
                <th>Date</th>
                <th>startTime</th>
                <th>endTime</th>
                <th>Type</th>
-            </tr>           
-            
-            
+            </tr>     
+            </thead>
+			</table>
+		</div>
+						<table>
+<div class="tbl-content">
+					<tbody>
              <c:forEach items="${meetings}" var ='i'>
+
+
                  <tr>
                      <td><c:out value="${i.uniqueID}"/></td>
                      <td><c:out value="${i.title}"/></td>
@@ -106,10 +92,45 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
                      <td><c:out value="${i.endTime}"/></td>
                      <td><c:out value="${i.type}"/></td>  
                  </tr>
-                 
+                               
                 </c:forEach>
-             
-        </table>
+                </tbody>
+				</table>
+			</div>
+	</section>
+</body>
+<!-- Footer -->
+<section class="footer">
+	<footer>
+		<div class="container">
+			<div class="footer">
 
+				<div class="footer-icons">
+					<a href="#"> <img src="" alt="">
+					</a>
+				</div>
 
+				<div class="footer-links">
+					<ul>
+						<li><a href="./Index.jsp#about">About Us</a></li>
+						<li><a href="./Index.jsp#contact">Contact</a></li>
+					</ul>
+				</div>
+
+				<div class="footer-links">
+					<ul>
+						<li><a href="./CreateRoom.jsp">Create Room</li>
+						<li><a href="./Index.jsp#feedback">Feedback</a></li>
+					</ul>
+				</div>
+
+				<div class="footer-credit">
+					<a href="https://github.com/AishwaryaaP/pseudonerds">Github
+						Repository</a>
+					<p>@PseudoNerds. All Rights Reserved</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+</section>
 </html>

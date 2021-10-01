@@ -462,7 +462,6 @@ header{
     background-color: rgba(255,255,255,0.3);
    }
   .tbl-content{
-   /*  height:300px; */
     overflow-x:auto;
     margin-top: 0px;
     border: 1px solid rgba(255,255,255,0.3);
@@ -489,7 +488,7 @@ header{
     border-bottom: solid 1px rgba(255,255,255,0.1);
   }
   
-  for custom scrollbar for webkit browser
+  /* for custom scrollbar for webkit browser*/
   
   ::-webkit-scrollbar {
       width: 6px;

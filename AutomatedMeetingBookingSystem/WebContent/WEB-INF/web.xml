@@ -153,6 +153,4 @@
     <servlet-name>DeleteMeetingController</servlet-name>
     <url-pattern>/DeleteMeetingController</url-pattern>
   </servlet-mapping>
-  
-  
 </web-app>

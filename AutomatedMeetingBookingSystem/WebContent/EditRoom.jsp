@@ -42,6 +42,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="32x32" href="./IMAGES/favicon.ico">
 <title>MeetPro | EditRoom</title>
 <link rel="stylesheet" href="./CSS/CreateRoomStyle.css">
 </head>

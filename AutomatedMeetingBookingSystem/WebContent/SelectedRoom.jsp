@@ -34,22 +34,43 @@
 %>
 
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<link rel="stylesheet" href="./createMeeting.css">
+<html><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="IMAGES/favicon.ico">
+<title>MeetPro | Selected Room</title>
+<link rel="stylesheet" href="./CSS/CreateRoomStyle.css">
 </head>
 <body>
-
-	<form action="CreateMeetingController">
+<header>
+		<nav role="navigation">
+			<img class="logo" id="logo" src="./IMAGES/pnlogo.png" type="image/png"  alt="MeetPro" href="#">
+			<div class="container1" id="container1">
+				<ul class="nav-ul" id="nav-ul">
+					<li claas="nav-link"><a onclick="history.back()">Return</a></li>
+				</ul>
+			</div>
+			<div class="menuToggle" id="menuToggle">
+				<input type="checkbox" /> <span></span> <span></span> <span></span>
+				<ul class="menu" id="menu">
+					<a href="#edit">
+						<li><a href="Index.jsp">Logout</a></li>
+					</a>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<h2
+			style="text-align: center; padding-inline: inherit; padding-top: 90px; padding-bottom: 20px"
+			class="section-heading">Selected Room</h2>
+<form action="CreateMeetingController">
 		 <%
 			 String roomName = request.getParameter("roomName");
 			 LocalDate localDate = (LocalDate)request.getSession().getAttribute("date");
 			LocalTime startTime =(LocalTime) request.getSession().getAttribute("startTime");
 			LocalTime endTime = (LocalTime)request.getSession().getAttribute("endTime");
 			MeetingType type = (MeetingType)request.getSession().getAttribute("type");
-
 		 %>
 		 
 		 <label for="roomName">room Name</label>
@@ -58,34 +79,34 @@
 		   <label for="type">Choose meeting type:</label>
 	         <select id="type" name="type">
 	         <% if( type.value.equals("CLASSROOMTRAINING") ){	  %>
-	 			<option value="classroomTraining" Selected>ClassRoom Training</option>
+	 			<option value="CLASSROOMTRAINING" Selected>CLASSROOMTRAINING</option>
 	   		<% }
 	         		else { %>
-	   		<option value="classroomTraining" >ClassRoom Training</option>
+	   		<option value="CLASSROOMTRAINING" >CLASSROOMTRAINING</option>
 	   		<%}
 	             if( type.value.equals("ONLINETRAINING")){
 	       	  %>
-	   		<option value="OnlineTraining"Selected>Online Training</option>
+	   		<option value="ONLINETRAINING"Selected>ONLINETRAINING</option>
 	   		<% }
 	   		else {
 	   		%>
-	   		<option value="OnlineTraining">Online Training</option>
+	   		<option value="ONLINETRAINING">ONLINETRAINING</option>
 	   		<% }
 	   			if(type.value.equals("CONFERENCECALL")){
 	       	  %>
-	   		<option value="ConferenceCall"Selected>ConferenceCall</option>
+	   		<option value="CONFERENCECALL"Selected>CONFERENCECALL</option>
 	   		<% }
 	   		else {
 	   		%>
-	   		<option value="ConferenceCall">ConferenceCall</option>
+	   		<option value="CONFERENCECALL">CONFERENCECALL</option>
 	   		<% }
 	   			if(type.value.equals("BUSINESS")){
 	       	  %>
-	   		<option value="business"Selected>Business</option>
+	   		<option value="BUSINESS"Selected>BUSINESS</option>
 	   		<%  }
 	   		else {
 	   		%>
-	   		<option value="business">Business</option>
+	   		<option value="BUSINESS">BUSINESS</option>
 	   		<% } %>
 	 		</select>
 	 		
