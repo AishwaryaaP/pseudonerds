@@ -22,7 +22,6 @@ import static com.AutomatedMeetingBookingSystem.enums.MeetingType.ONLINETRAINING
 import com.AutomatedMeetingBookingSystem.model.BookingInformation;
 import com.AutomatedMeetingBookingSystem.model.Meeting;
 import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
-import com.AutomatedMeetingBookingSystem.utility.ObjectFactory;
 public class  BookingInformationServiceImpl implements BookingInformationService {
 	
 	private BookingInformationDao bookingInformationDao;

@@ -16,5 +16,6 @@ public interface MeetingRoomDao {
 	boolean updateMeetingRoom(MeetingRoom room);
 	boolean deleteMeetingRoomByName(String roomName);
 	void incrementMeetingCount(String roomName, int currentCount);
+	boolean updateRatingMeetingRoom(MeetingRoom room);
 
 }

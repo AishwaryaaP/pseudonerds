@@ -42,8 +42,8 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 			<img class="logo" id="logo" src="./IMAGES/pnlogo.png" type="image/png"  alt="MeetPro" href="#">
 			<div class="container1" id="container1">
 				<ul class="nav-ul" id="nav-ul">
-				   <%--  <li class="nav-link"><a>Last Loggedin: <%=user.getLastLoggedIn()%></a></li> --%>
-					<li class="nav-link"><a href="MeetingForMember">Meeting Details</a></li>
+				    <li class="nav-link"><a>Last Loggedin: <%=user.getLastLoggedIn()%></a></li>
+					<!-- <li class="nav-link"><a href="MeetingForMember">Meeting Details</a></li> -->
 					<li claas="nav-link"><a href="UserProfile.jsp">Hello <%=user.getName() %></a></li>
 				</ul>
 			</div>
@@ -119,7 +119,6 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 
 				<div class="footer-links">
 					<ul>
-						<li><a href="./CreateRoom.jsp">Create Room</li>
 						<li><a href="./Index.jsp#feedback">Feedback</a></li>
 					</ul>
 				</div>

@@ -121,12 +121,13 @@ public class MeetingRoomServiceImpl implements MeetingRoomService {
 	}
 
 	@Override
-	public void addRating(String roomName, int rating) {
+	public boolean addRating(String roomName, int rating) {
+		
 		MeetingRoom room = getRoomDetailsByRoomName(roomName);
 		room.setRatingSum(room.getRatingSum() + rating);
 		room.setRatingCount(room.getRatingCount() + 1);
 		room.setRating(room.getRatingSum() / room.getRatingCount());
-		roomDao.updateMeetingRoom(room);
+		return(roomDao.updateRatingMeetingRoom(room));
 	}
 
 	@Override
