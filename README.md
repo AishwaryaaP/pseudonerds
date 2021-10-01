@@ -29,7 +29,17 @@ The system consists of three types of Users (Employees)
   7. The base url of our application is "http://localhost:8080/Codefurry1/Index.jsp"
   8. The MeetPro application is ready to use.
 
+## Product Release Video:
+[!MeetPro](https://user-images.githubusercontent.com/41952554/135584333-37230012-4d8f-49d0-b660-f94a906bc540.mp4)
 
- 
-   
-             
+
+## Authors
+- [@AishwaryaaP](https://github.com/AishwaryaaP)
+- [@mohitt13](https://github.com/mohitt13)
+- [@atharvadixit](https://github.com/atharvadixit)
+- [@riya2905](https://github.com/riya2905)
+- [@jyotimaitpachori](https://github.com/jyotimaitpachori)
+- [@Sumit175](https://github.com/Sumit175)
+- [@shreyasingh18](https://github.com/shreyasingh18)
+- [@kopalagarwal](https://github.com/kopalagarwal)
+- [@Prarthna398](https://github.com/Prarthna398)

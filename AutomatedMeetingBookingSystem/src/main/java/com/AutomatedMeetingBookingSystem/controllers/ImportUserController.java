@@ -1,15 +1,22 @@
 package com.AutomatedMeetingBookingSystem.controllers;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringWriter;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.Part;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
+
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
@@ -27,6 +34,7 @@ import java.io.File;
  * Servlet implementation class ImportUserController
  */
 
+@MultipartConfig
 public class ImportUserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserServiceInterface userService;
@@ -46,34 +54,41 @@ public class ImportUserController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		System.out.println("ok out");
 		ArrayList<User> userList = new ArrayList<>();
 		try {
-
-			File file = new File(request.getParameter("filePath"));
-			if(file==null)
-				System.out.println("okok");
+			System.out.println("ok in");
+			Part filePart = request.getPart("myFile");
+			String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
+			InputStream fileContent = filePart.getInputStream();
+//			String text = new String(fileContent.readAllBytes(), StandardCharsets.UTF_8);	
+//			System.out.println(text);
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db = dbf.newDocumentBuilder();
-			Document doc = db.parse(file);
-
+			Document doc = db.parse(fileContent);
+			System.out.println("between");
 			doc.getDocumentElement().normalize();
 			System.out.println("Root element: " + doc.getDocumentElement().getNodeName());
 
 			NodeList nodeList = doc.getElementsByTagName("user");
-
+			System.out.println(nodeList.getLength());
 			for (int i = 0; i < nodeList.getLength(); ++i) {
 				Node node = nodeList.item(i);
 				System.out.println("\nNode Name :" + node.getNodeName());
 				if (node.getNodeType() == Node.ELEMENT_NODE) {
 					Element tElement = (Element) node;
 					User user = new User();
-					user.setUserId(Integer.parseInt(tElement.getElementsByTagName("id").item(0).getTextContent()));
+//					System.out.println(tElement.getElementsByTagName("id").item(0).getTextContent());
+//					user.setUserId(Integer.parseInt(tElement.getElementsByTagName("id").item(0).getTextContent()));
+					//System.out.println(tElement.getElementsByTagName("name").item(0).getTextContent());
+
 					user.setName(tElement.getElementsByTagName("name").item(0).getTextContent());
+					//System.out.println(tElement.getElementsByTagName("email").item(0).getTextContent());
+
 					user.setEmail(tElement.getElementsByTagName("email").item(0).getTextContent());
 					user.setPhoneNumber(tElement.getElementsByTagName("phoneNumber").item(0).getTextContent());
 					user.setRole(tElement.getElementsByTagName("role").item(0).getTextContent());
-					user.setCredit(Integer.parseInt(tElement.getElementsByTagName("credit").item(0).getTextContent()));
+					System.out.println(user.toString());	
 					userList.add(user);
 				}
 			}
@@ -105,4 +120,3 @@ public class ImportUserController extends HttpServlet {
 	}
 
 }
-
