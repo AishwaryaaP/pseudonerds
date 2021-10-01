@@ -139,21 +139,21 @@ public class UserDaoImpl implements UserDao{
 	
 	@Override
 	public boolean addUsers(ArrayList<User> userList) {
-		for(User u : userList) {
+		for(User user : userList) {
 			DaoUtilityInterface dao = new DaoUtility();
 			Connection conn = dao.getInstance();
-			User user = new User();
+			
 			if (conn != null)
 			{
 				
 				try {
-					PreparedStatement statement = conn.prepareStatement("INSERT INTO meetingsystem.user(\"UserID\",\"name\",\"email\",\"phone\",\"credit\",\"role\")VALUES(?,?,?,?,?,?);");
-					statement.setInt(1, user.getUserId());
-					statement.setString(2, user.getName());
-					statement.setString(3, user.getEmail());
-					statement.setString(4, user.getPhoneNumber());
-					statement.setDouble(5, user.getCredit());
-					statement.setString(6, user.getRole());
+					PreparedStatement statement = conn.prepareStatement("INSERT INTO meetingsystem.user(name,email,phone,role)VALUES(?,?,?,?);");
+					//statement.setInt(1, user.getUserId());
+					statement.setString(1, user.getName());
+					statement.setString(2, user.getEmail());
+					statement.setString(3, user.getPhoneNumber());
+					//statement.setDouble(5, user.getCredit());
+					statement.setString(4, user.getRole());
 
 
 					int rs = statement.executeUpdate();
