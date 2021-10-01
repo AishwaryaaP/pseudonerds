@@ -94,6 +94,18 @@
     <servlet-name>GetScheduledByManagerController</servlet-name>
     <url-pattern>/GetScheduledByManagerController</url-pattern>
   </servlet-mapping>
+
+<servlet>
+    <description></description>
+    <display-name>ImportUserController</display-name>
+    <servlet-name>ImportUserController</servlet-name>
+    <servlet-class>com.AutomatedMeetingBookingSystem.controllers.ImportUserController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ImportUserController</servlet-name>
+    <url-pattern>/ImportUserController</url-pattern>
+  </servlet-mapping>
+
   <servlet>
     <display-name>GetAvailableRooms</display-name>
     <servlet-name>GetAvailableRooms</servlet-name>

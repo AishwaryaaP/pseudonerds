@@ -50,7 +50,7 @@ public class ImportUserController extends HttpServlet {
 		ArrayList<User> userList = new ArrayList<>();
 		try {
 
-			File file = new File(request.getParameter("filePath"));
+			File file = new File(request.getParameter("myFile"));
 			if(file==null)
 				System.out.println("okok");
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -105,4 +105,3 @@ public class ImportUserController extends HttpServlet {
 	}
 
 }
-
