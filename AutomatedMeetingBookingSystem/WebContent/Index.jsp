@@ -1,4 +1,3 @@
-
 <%@page import="jdk.internal.misc.FileSystemOption"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -85,7 +84,7 @@
 				<img class="logo" id="logo" src="./IMAGES/pnlogo.png" type="image/png"  alt="MeetPro" href="#">
 				<ul class="nav-ul" id="nav-ul">
 					<li class="nav-link"><a href="#about">About Us</a></li>
-					<li><a href="GetAllRoomsController">Created Rooms</a></li>
+					<li class="nav-link"><a href="#roomtable">Created Rooms</a></li>
 					<li class="nav-link"><a href="#feedback">Feedback</a></li>
 					<li class="nav-link"><a href="#contact">Contact Us</a></li>
 					<li class="nav-link"><a href="Login.jsp">Login</a></li>
@@ -114,12 +113,12 @@
 		</div>
 	</section>
 	<!--table-->
-	<section class="table-room">
+	<section id="roomtable" class="table-room">
 		<h1></h1>
 		<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 		<h2
 			style="text-align: center; padding-inline: inherit; padding-top: 40px; padding-bottom: 20px"
-			class="section-heading"></h2>
+			class="section-heading">Current Meeting Rooms</h2>
 		<div class="tbl-header">
 			<table>
 				<thead>
@@ -141,7 +140,7 @@
 				<table>
 					<tbody>
 						<tr>
-							<td><a href="FetchMeetingRoomDetailsController?roomName=${i.roomName}">
+							<td><a style="colour: blue" href="FetchMeetingRoomDetailsController?roomName=${i.roomName}">
 							<c:out value="${i.roomName}" /></a></td>
 							<td><c:out value="${i.seatingCapacity}" /></td>
 							<td><c:out value="${i.creditPerHour}" /></td>
@@ -247,8 +246,3 @@
 	</footer>
 </section>
 </html>
-
-
-
-
-

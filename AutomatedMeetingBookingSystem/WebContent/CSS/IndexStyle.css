@@ -329,6 +329,7 @@ header{
 .rate:not(:checked) > input {
     position:absolute;
     top:-9999px;
+    color:red;
 }
 .rate:not(:checked) > label {
     float:right;

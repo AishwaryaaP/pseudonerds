@@ -58,13 +58,14 @@ public class BookingInformationDaoImpl implements BookingInformationDao {
 	
 
 				statement.executeUpdate();
-					statement.close();
+				
 
 				ResultSet rs = statement.getGeneratedKeys();
 				int id = 0;
 				while(rs.next()) {
 					id = rs.getInt(1);
 				}
+				statement.close();
 	System.out.println(id);
 				if (id != 0) {
 					statement.close();

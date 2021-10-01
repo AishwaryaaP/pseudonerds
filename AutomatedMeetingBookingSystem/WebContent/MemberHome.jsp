@@ -98,4 +98,39 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 				</table>
 			</div>
 	</section>
+</body>
+<!-- Footer -->
+<section class="footer">
+	<footer>
+		<div class="container">
+			<div class="footer">
+
+				<div class="footer-icons">
+					<a href="#"> <img src="" alt="">
+					</a>
+				</div>
+
+				<div class="footer-links">
+					<ul>
+						<li><a href="./Index.jsp#about">About Us</a></li>
+						<li><a href="./Index.jsp#contact">Contact</a></li>
+					</ul>
+				</div>
+
+				<div class="footer-links">
+					<ul>
+						<li><a href="./CreateRoom.jsp">Create Room</li>
+						<li><a href="./Index.jsp#feedback">Feedback</a></li>
+					</ul>
+				</div>
+
+				<div class="footer-credit">
+					<a href="https://github.com/AishwaryaaP/pseudonerds">Github
+						Repository</a>
+					<p>@PseudoNerds. All Rights Reserved</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+</section>
 </html>

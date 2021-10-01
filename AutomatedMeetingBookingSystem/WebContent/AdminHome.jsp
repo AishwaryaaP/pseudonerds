@@ -1,9 +1,8 @@
 <%@page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom"%>
-<%@page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom"%>
+<%@page import="com.AutomatedMeetingBookingSystem.controllers.ImportUserController"%>
 <%@page import="com.AutomatedMeetingBookingSystem.model.User"%>
 <%@page
 	import="com.AutomatedMeetingBookingSystem.controllers.FetchMeetingRoomDetailsController"%>
@@ -128,14 +127,14 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 			class="section-heading">Import Users</h2>
 		<div class="tbl-header">
 			<div class="import-container container">
-				<div class="about-text">
+				<div style="padding-left:470px">
 					<h2 class="u-mb-small heading-secondary">Upload XML File to
 						Import Users</h2>
 					<p class="u-mb-large">XML file containing user records to be
 						inserted into database.</p>
 				</div>
-				<div style="display: inline-block" class="form-container">
-					<form action="ImportUserController" method="post" enctype="multipart/form-data">
+				<div style="display: inline-block;padding-left:450px; padding-bottom:50px" class="form-container1">
+					<form action="ImportUserController" method="POST" enctype="multipart/form-data">
 						<input class="btn" type="file" name="myFile"accept="application/XML" required />
 						<button class="btn" type="submit" name="submit" value="insert data">Upload File</button>
 					</form>

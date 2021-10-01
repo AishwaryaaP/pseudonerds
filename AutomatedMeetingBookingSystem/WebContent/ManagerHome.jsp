@@ -100,7 +100,7 @@
 				<table>
 					<tbody>
                  <tr>
-                     <td><c:out value="${i.uniqueID}"/></a></td>
+                     <td><a href = "FetchMeetingDetailsController?uniqueID=${i.uniqueID}"><c:out value="${i.uniqueID}"/></a></td>
                      <td><c:out value="${i.title}"/></td>
                      <td><c:out value="${i.date}"/></td>  
                      <td><c:out value="${i.startTime}"/></td>  
@@ -136,7 +136,7 @@
 
 				<div class="footer-links">
 					<ul>
-						<li><a href="./CreateRoom.jsp">Create Room</li>
+						<li><a href="./CreateMeeting.jsp">Create Meeting</li>
 						<li><a href="./Index.jsp#feedback">Feedback</a></li>
 					</ul>
 				</div>
