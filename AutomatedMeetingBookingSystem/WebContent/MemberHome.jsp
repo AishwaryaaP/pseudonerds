@@ -29,7 +29,7 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" sizes="32x32" href="./IMAGES/favicon.ico">
 <title>MeetPro | Member</title>
-<link rel="stylesheet" href="./MemberHomeStyle.css">
+<link rel="stylesheet" href="./CSS/AdminHomeStyle.css">
 </head>
 <body>
 <%
@@ -39,7 +39,7 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 	<!-- Nav Bar -->
 	<header>
 		<nav role="navigation">
-			<img class="logo" src="./IMAGES/pnlogo.svg" alt="MeetPro" href="#">
+			<img class="logo" id="logo" src="./IMAGES/pnlogo.png" type="image/png"  alt="MeetPro" href="#">
 			<div class="container1" id="container1">
 				<ul class="nav-ul" id="nav-ul">
 				   <%--  <li class="nav-link"><a>Last Loggedin: <%=user.getLastLoggedIn()%></a></li> --%>

@@ -48,8 +48,9 @@ public class  BookingInformationServiceImpl implements BookingInformationService
 			String amenities = "%";
 			switch (type) {
 				case CLASSROOMTRAINING : 
-					amenities+="WHITEBOARD" + "%";
 					amenities+="PROJECTOR" + "%";
+					amenities+="WHITEBOARD" + "%";
+					
 					break;
 				case ONLINETRAINING :
 					amenities+="WIFICONNECTION" + "%";
