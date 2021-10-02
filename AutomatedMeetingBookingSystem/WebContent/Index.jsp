@@ -213,8 +213,8 @@
 				<div class="form-container">
 					<input type="text" autocomplete="off" name="name" id="name" placeholder="Your Name" autocomplete="off" required>
 					<input type="text" autocomplete="off" name="username" id="username" placeholder="Subject" autocomplete="off"  required>
-					<input type="email" name="email" id="email" placeholder="EMAIL" onKeyUp="checkemail()" autocomplete="off" required>
-					<input name="textarea" id="textarea" cols="30" rows="5" placeholder="PLEASE TYPE YOUR MESSAGE HERE" autocomplete="off" required>
+					<input type="email" name="email" id="email" placeholder="Your EmailID" onKeyUp="checkemail()" autocomplete="off" required>
+					<textarea name="textarea" id="textarea" cols="30" rows="5" placeholder="PLEASE TYPE YOUR MESSAGE HERE" autocomplete="off" required></textarea>
 					<input type="hidden" name="index" value="index" id="index" />
 					<button OnClick="contactusfn()" type="submit" class="btn" value="Submit">Submit</button>
 				</div>
@@ -250,8 +250,7 @@
 				</div>
 
 				<div class="footer-credit">
-					<a href="https://github.com/AishwaryaaP/pseudonerds">Github
-						Repository</a>
+					<a href="https://github.com/AishwaryaaP/pseudonerds">Github Repository</a>
 					<p>@PseudoNerds. All Rights Reserved</p>
 				</div>
 			</div>
