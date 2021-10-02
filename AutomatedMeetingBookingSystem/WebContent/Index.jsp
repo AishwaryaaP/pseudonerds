@@ -162,7 +162,7 @@
 
 	<!-- FeedBack -->
 	<section id="feedback" class="feedback">
-		<form action="FeedbackController">
+		<form action="FeedbackController" method="POST">
 			<h2 class="section-heading">Feedback</h2>
 			<div class="feedback-container container">
 				<h2 class="feedback-heading lg-heading">
@@ -212,11 +212,12 @@
 				PseudoNerds are available 24/7 !
 			</h2>
 			<div class="form-container">
+
 				<form class="form-container" action="EmailSendingServlet"
-					method="post">
-					<input type="text" autocomplete="off" name="username" id="username" placeholder="YOUR NAME" required>
+					method="POST">
+					<input type="text" autocomplete="off" name="username" id="username" placeholder="Subject" required>
 					<input type="email" name="email" id="email" placeholder="EMAIL" onKeyUp="checkemail()" autocomplete="off" required>
-					<input name="text" id="text" cols="30" rows="5" placeholder="PLEASE TYPE YOUR MESSAGE HERE" autocomplete="off" required>
+					<input name="textarea" id="textarea" cols="30" rows="5" placeholder="PLEASE TYPE YOUR MESSAGE HERE" autocomplete="off" required>
 					<input type="hidden" name="index" value="index" id="index" />
 					<button OnClick="contactusfn()" type="submit" class="btn" value="Submit">Submit</button>
 				</form>

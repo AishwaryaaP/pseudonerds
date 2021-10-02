@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <%@page import="com.AutomatedMeetingBookingSystem.model.User"%>
 <!DOCTYPE html>
 <html>
@@ -12,34 +13,36 @@
 </head>
 <body>
 
-<%
+<script type="text/javascript">
+	
+function printAlert(){
+	alert("Mail Sent");
+}
+</script>
+
+	<%
 	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 	response.setHeader("Pragma", "no-cache");
 	response.setHeader("Expires", "0");
-		
-	if ((request.getSession(false) == null) || 
-			(session.getAttribute ( "LOGINSTATUS" ) != "SUCCESS" )) {
-		
-		request.getRequestDispatcher("Login.jsp").forward ( request, response );		
-	
-	}
-	else
-	{
-		User user = (User)session.getAttribute("userDetail");
-		
-		if ( user.getRole().equals ( "MEMBER" ) )
-		{
-			request.getRequestDispatcher("MemberHome.jsp").forward ( request, response );
-			
-		}
-		else if ( user.getRole().equals ( "ADMIN" ) )
-		{
-			request.getRequestDispatcher("AdminHome.jsp").forward ( request, response );
-		}
-	}
-%>
-	<%
+
+	if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") != "SUCCESS")) {
+
+		request.getRequestDispatcher("Login.jsp").forward(request, response);
+
+	} else {
 		User user = (User) session.getAttribute("userDetail");
+
+		if (user.getRole().equals("MEMBER")) {
+			request.getRequestDispatcher("MemberHome.jsp").forward(request, response);
+
+		} else if (user.getRole().equals("ADMIN")) {
+			request.getRequestDispatcher("AdminHome.jsp").forward(request, response);
+		}
+	}
+	%>
+	<%
+	User user = (User) session.getAttribute("userDetail");
+
 	%>
 
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -48,12 +51,15 @@
 
 	<header>
 		<nav role="navigation">
-			<img class="logo" id="logo" src="./IMAGES/pnlogo.png" type="image/png"  alt="MeetPro" href="#">
+			<img class="logo" id="logo" src="./IMAGES/pnlogo.png"
+				type="image/png" alt="MeetPro" href="#">
 			<div class="container1" id="container1">
 				<ul class="nav-ul" id="nav-ul">
+
 				   <li class="nav-link"><a>Last Loggedin: <%=user.getLastLoggedIn()%></a></li>
 					<!-- <li class="nav-link"><a>Credit: <%=user.getCredit() %></a></li> -->
-					<li class="nav-link"><a href="UserProfile.jsp">Hello <%=user.getName() %></a></li>
+					<li><a href="GetScheduledByManagerController">Meeting Details</a></li>
+					<li class="nav-link"><a href="UserProfile.jsp">Hello <%=user.getName() %></a></li>		
 				</ul>
 			</div>
 			<div class="menuToggle" id="menuToggle">
@@ -75,13 +81,16 @@
 	<!--table-->
 
 
-	<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
- <section class="table-room">
-		<h2 style="text-align:center; padding-inline:inherit; padding-top: 40px; padding-bottom:20px" class="section-heading">Your Scheduled Meetings</h2>
+	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	<section class="table-room">
+		<h2
+			style="text-align: center; padding-inline: inherit; padding-top: 40px; padding-bottom: 20px"
+			class="section-heading">Your Scheduled Meetings</h2>
 		<div class="tbl-header">
 			<table>
 				<thead>
 					<tr>
+
             	<th>Meeting Id</th>
             	<th>Title</th>
                <th>Date</th>
@@ -94,26 +103,52 @@
             </thead>
 			</table>
 		</div>
-             <c:forEach items="${meetings}" var ='i'>
-             <div class="tbl-content">
+		<c:forEach items="${meetings}" var='i'>
+			<div class="tbl-content">
 				<table>
 					<tbody>
-                 <tr>
-                     <td><a href = "FetchMeetingDetailsController?uniqueID=${i.uniqueID}"><c:out value="${i.uniqueID}"/></a></td>
-                     <td><c:out value="${i.title}"/></td>
-                     <td><c:out value="${i.date}"/></td>  
-                     <td><c:out value="${i.startTime}"/></td>  
-                     <td><c:out value="${i.endTime}"/></td>
-                     <td><c:out value="${i.type}"/></td>  
-                     <td><c:out value="${i.infoMeetingRoomName}"/></td>
-                     <td><a href = "DeleteMeetingController?uniqueID=${i.uniqueID}&date=${i.date}&startTime=${i.startTime}&endTime=${i.endTime}&roomName=${i.infoMeetingRoomName}"> delete </a></td>
-                 </tr>
-                 
-                </c:forEach>
-                </tbody>
+						<tr>
+							<td><a
+								href="FetchMeetingDetailsController?uniqueID=${i.uniqueID}"><c:out
+										value="${i.uniqueID}" /></a></td>
+							<td><c:out value="${i.title}" /></td>
+							<td><c:out value="${i.date}" /></td>
+							<td><c:out value="${i.startTime}" /></td>
+							<td><c:out value="${i.endTime}" /></td>
+							<td><c:out value="${i.type}" /></td>
+							<td><c:out value="${i.infoMeetingRoomName}" /></td>
+							<td><a
+								href="DeleteMeetingController?uniqueID=${i.uniqueID}&date=${i.date}&startTime=${i.startTime}&endTime=${i.endTime}&roomName=${i.infoMeetingRoomName}">
+									delete </a></td>
+						</tr>
+
+						</c:forEach>
+					</tbody>
 				</table>
 			</div>
 	</section>
+	<div>
+		<section id="contact" class="contact">
+			<h2 class="section-heading">Request for a Customized Room</h2>
+			<div class="contact-container container">
+				<div class="form-container">
+					<form action="EmailSendingServlet" method="POST">
+						<input type="text" name="username" id="username"
+							placeholder="Subject" required> <input type="hidden"
+							name="email" id="email" placeholder="EMAIL"
+							onKeyUp="checkemail()" autocomplete="off" value = <%= user.getEmail() %> required> <textarea
+							name="textarea" id="textarea" cols="30" rows="5"
+							placeholder="PLEASE TYPE YOUR MESSAGE HERE" required></textarea>
+							<input type="hidden" name="index" value="manager" id="index" />
+							
+						<button type="submit"  onclick="printAlert()" class="btn"
+							value="Submit">Submit</button>
+					</form>
+				</div>
+			</div>
+			<script type="text/javascript" src="js.main.js"></script>
+		</section>
+	</div>
 </body>
 <!-- Footer -->
 <section class="footer">

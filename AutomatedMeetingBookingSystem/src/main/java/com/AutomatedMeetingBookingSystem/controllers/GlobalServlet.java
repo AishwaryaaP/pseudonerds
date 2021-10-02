@@ -36,7 +36,7 @@ public class GlobalServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			int userId = Integer.parseInt( request.getParameter("userId"));
 			String email = request.getParameter("email");
 			System.out.println(userId);
@@ -70,5 +70,6 @@ public class GlobalServlet extends HttpServlet {
 				dispatcher.forward(request, response);
 			}
 	}
+	
 
 }
