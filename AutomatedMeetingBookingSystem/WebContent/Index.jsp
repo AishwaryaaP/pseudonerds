@@ -9,14 +9,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" sizes="32x32"
 	href="./IMAGES/favicon.ico">
 <title>PseudoNerds | MeetPro</title>
 <link rel="stylesheet" href="./CSS/IndexStyle.css">
-</head>
 </head>
 <script>
   function checkid() {
@@ -93,7 +91,7 @@
 					type="image/png" alt="MeetPro" href="#">
 				<ul class="nav-ul" id="nav-ul">
 					<li class="nav-link"><a href="#about">About Us</a></li>
-					<li class="nav-link"><a href="/Codefurry1/#roomtable">Created Rooms</a></li>
+					<li class="nav-link"><a href="#roomtable">Created Rooms</a></li>
 					<li class="nav-link"><a href="#feedback">Feedback</a></li>
 					<li class="nav-link"><a href="#contact">Contact Us</a></li>
 					<li class="nav-link"><a href="Login.jsp">Login</a></li>
@@ -204,19 +202,19 @@
 	</section>
 
 	<!-- Contact US -->
-<section id="contact" class="contact">
-				<form class="form-container" action="EmailSendingServlet" method="POST">
-		<h2 class="section-heading">Contact Us</h2>
-		<div class="contact-container container">
-			<h2 class="contact-heading lg-heading">
+	<section id="contact" class="contact">
+		<form class="form-container" action="EmailSendingServlet" method="POST">
+			<h2 class="section-heading">Contact Us</h2>
+			<div class="contact-container container">
+				<h2 class="contact-heading lg-heading">
 				Facing Issues?<br>Feel Free to Contact Us!<br> We
 				PseudoNerds are available 24/7 !
-			</h2>	
+				</h2>
 				<div class="form-container">
-					<input type="text" autocomplete="off" name="name" id="name" placeholder="Your Name" required>
-					<input type="text" autocomplete="off" name="username" id="username" placeholder="Subject Line" required>
-					<input type="email" name="email" id="email" placeholder="Your EmailID" onKeyUp="checkemail()" autocomplete="off" required>
-					<textarea name="textarea" id="textarea" cols="30" rows="5" placeholder="PLEASE TYPE YOUR MESSAGE HERE" autocomplete="off" required></textarea>
+					<input type="text" autocomplete="off" name="name" id="name" placeholder="Your Name" autocomplete="off" required>
+					<input type="text" autocomplete="off" name="username" id="username" placeholder="Subject" autocomplete="off"  required>
+					<input type="email" name="email" id="email" placeholder="EMAIL" onKeyUp="checkemail()" autocomplete="off" required>
+					<input name="textarea" id="textarea" cols="30" rows="5" placeholder="PLEASE TYPE YOUR MESSAGE HERE" autocomplete="off" required>
 					<input type="hidden" name="index" value="index" id="index" />
 					<button OnClick="contactusfn()" type="submit" class="btn" value="Submit">Submit</button>
 				</div>

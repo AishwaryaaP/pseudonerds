@@ -39,14 +39,13 @@ public class EmailSendingServlet extends HttpServlet {
     	String name = request.getParameter("name");
         String recipient = request.getParameter("email");
         String subject = request.getParameter("username");
-        String content = request.getParameter("textarea");
-        content += " " + "\nEmail sent by : \n"+name+"\n"+recipient;
+        String cont = request.getParameter("textarea");
+        String content = cont + " " + "\nEmail sent by : \n"+ name + "\n"+ recipient;
         String page = request.getParameter("index");
         String resultMessage = "";
 
         try {
-            EmailUtility.sendEmail(host, port, user, pass, user, subject,
-                    content);
+            EmailUtility.sendEmail(host, port, user, pass, user, subject, content);
             resultMessage = "The e-mail was sent successfully";
         } catch (Exception ex) {
             ex.printStackTrace();
