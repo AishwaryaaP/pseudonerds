@@ -21,6 +21,7 @@ import com.AutomatedMeetingBookingSystem.service.AdminServiceInterface;
 import com.AutomatedMeetingBookingSystem.service.MeetingRoomService;
 import com.AutomatedMeetingBookingSystem.service.MeetingService;
 import com.AutomatedMeetingBookingSystem.service.ServiceFactory;
+import org.apache.log4j.PropertyConfigurator;
 
 /*
  * Missed Out points:
@@ -41,6 +42,7 @@ public class AdminController extends HttpServlet {
 	private MeetingService meetingService;
 
 	public AdminController() {
+       
 		adminService = ServiceFactory.getAdminService();
 		meetingService = ServiceFactory.getMeetingService();
 	}

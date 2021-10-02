@@ -205,6 +205,7 @@
 				PseudoNerds are available 24/7 !
 			</h2>
 			<div class="form-container">
+			 <form action="EmailSendingServlet" method="post">
 				<input type="text" name="username" id="username"
 					placeholder="YOUR NAME" required> <input type="email"
 					name="email" id="email" placeholder="EMAIL" onKeyUp="checkemail()"
@@ -213,6 +214,7 @@
 					placeholder="PLEASE TYPE YOUR MESSAGE HERE" required>
 				<button type="submit" href="./LoginPage.html" class="btn"
 					value="Submit">Submit</button>
+					</form>
 			</div>
 		</div>
 		<script type="text/javascript" src="js.main.js"></script>

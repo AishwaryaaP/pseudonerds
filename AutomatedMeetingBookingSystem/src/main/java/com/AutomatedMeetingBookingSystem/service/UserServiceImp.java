@@ -2,18 +2,29 @@ package com.AutomatedMeetingBookingSystem.service;
 
 import java.util.ArrayList;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.PropertyConfigurator;
+
 import com.AutomatedMeetingBookingSystem.dao.DaoFactory;
 import com.AutomatedMeetingBookingSystem.dao.UserDao;
 import com.AutomatedMeetingBookingSystem.exception.UserNotFoundException;
 import com.AutomatedMeetingBookingSystem.model.User;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 public class UserServiceImp implements UserServiceInterface{
 
 	private UserDao userDao;
+	private static Logger logger;
 	
 	public UserServiceImp() {
 		super();
 		userDao = DaoFactory.getUserDaoInstance();
+		logger = LogManager.getLogger(MeetingRoomService.class);
+		BasicConfigurator.configure();
+		//PropertyConfigurator.configure("//AutomatedMeetingBookingSystem//log4j.properties");
 	}
 
 	@Override
@@ -32,6 +43,7 @@ public class UserServiceImp implements UserServiceInterface{
 		}
 		catch(UserNotFoundException e) {
 			System.err.println(e.getMessage());
+			logger.info(e.getMessage());
 		}
 		return user;
 	}
