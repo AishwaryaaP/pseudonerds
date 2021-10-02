@@ -36,10 +36,11 @@ public class EmailSendingServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         // reads form fields
+    	String name = request.getParameter("name");
         String recipient = request.getParameter("email");
         String subject = request.getParameter("username");
         String content = request.getParameter("textarea");
-        content += " " + "\nEmail sent by : "+recipient;
+        content += " " + "\nEmail sent by : \n"+name+"\n"+recipient;
         String page = request.getParameter("index");
         String resultMessage = "";
 
