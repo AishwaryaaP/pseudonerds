@@ -77,7 +77,7 @@
         <input type="text" id="roomName" name="roomName" value="<%=roomName%>" readonly>
         
 		   <label for="type">Choose meeting type:</label>
-	         <select id="type" name="type">
+	         <select id="type" name="type" disabled="true">
 	         <% if( type.value.equals("CLASSROOMTRAINING") ){	  %>
 	 			<option value="CLASSROOMTRAINING" Selected>CLASSROOMTRAINING</option>
 	   		<% }
