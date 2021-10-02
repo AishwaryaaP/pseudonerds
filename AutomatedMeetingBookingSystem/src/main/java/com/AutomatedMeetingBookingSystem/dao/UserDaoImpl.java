@@ -8,12 +8,26 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.AutomatedMeetingBookingSystem.model.User;
+import com.AutomatedMeetingBookingSystem.service.MeetingRoomService;
 import com.AutomatedMeetingBookingSystem.utility.DaoUtility;
 import com.AutomatedMeetingBookingSystem.utility.DaoUtilityInterface;
-
+//import org.apache.log4j.BasicConfigurator;
+//import org.apache.log4j.LogManager;
+//import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 public class UserDaoImpl implements UserDao{
+	
+	public UserDaoImpl() {
+       PropertyConfigurator.configure("log4j.properties");
+
+	}
+	final Logger LOGR = LoggerFactory.getLogger(UserDaoImpl.class);
+
+	
 	
 	public List<User> getAllUser()
 	{
@@ -41,6 +55,7 @@ public class UserDaoImpl implements UserDao{
 				
 			} catch (Exception e) {
 				e.printStackTrace();
+				LOGR.error(e.toString());
 			}
 			
 		}
@@ -78,7 +93,8 @@ public class UserDaoImpl implements UserDao{
 				
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
+				LOGR.error(e.toString());			
+				}
 			
 		}
 		return u;
@@ -120,6 +136,7 @@ public class UserDaoImpl implements UserDao{
 		}
 		catch(Exception e) {
 			System.out.println(e.getMessage());
+			LOGR.error(e.toString());
 		}
 	}
 
@@ -134,6 +151,7 @@ public class UserDaoImpl implements UserDao{
 		}
 		catch(Exception e) {
 			System.out.println(e.getMessage());
+			LOGR.error(e.toString());
 		}
 	}
 	
@@ -166,6 +184,7 @@ public class UserDaoImpl implements UserDao{
 					
 				} catch (Exception e) {
 					e.printStackTrace();
+					LOGR.error(e.toString());
 				}
 				
 			}
@@ -186,6 +205,7 @@ public class UserDaoImpl implements UserDao{
 		}
 		catch(Exception e) {
 			System.out.println(e.getMessage());
+			LOGR.error(e.toString());
 		}
 	}
 }
