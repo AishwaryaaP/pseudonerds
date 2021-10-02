@@ -25,19 +25,19 @@ public class FeedbackController extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String roomName = request.getParameter("roomName");
 		System.out.println(roomName);
 		int rating = Integer.parseInt(request.getParameter("rating"));
 		System.out.println(rating);
 		meetingRoomService.addRating(roomName, rating);
 		System.out.println("add");
-		RequestDispatcher rd = request.getRequestDispatcher("Index.jsp");
-		rd.forward(request, response);
+		response.sendRedirect("/Codefurry1/");
+		
+		}
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 
 	}
 

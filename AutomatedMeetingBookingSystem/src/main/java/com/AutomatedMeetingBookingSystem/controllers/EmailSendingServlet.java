@@ -40,8 +40,9 @@ public class EmailSendingServlet extends HttpServlet {
         String subject = request.getParameter("username");
         String content = request.getParameter("textarea");
         content += " " + "\nEmail sent by : "+recipient;
+        String page = request.getParameter("index");
         String resultMessage = "";
- 
+
         try {
             EmailUtility.sendEmail(host, port, user, pass, user, subject,
                     content);
@@ -49,6 +50,14 @@ public class EmailSendingServlet extends HttpServlet {
         } catch (Exception ex) {
             ex.printStackTrace();
             resultMessage = "There were an error: " + ex.getMessage();
-        } 
+
+        } finally {
+            request.setAttribute("Message", resultMessage);
+            if(page.equalsIgnoreCase("index"))
+            	response.sendRedirect("/Codefurry1/");
+            else
+            	response.sendRedirect("/Codefurry1/ManagerHome.jsp");
+         }
+
     }
 }

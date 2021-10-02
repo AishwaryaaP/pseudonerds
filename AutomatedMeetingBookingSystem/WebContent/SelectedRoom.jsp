@@ -73,7 +73,7 @@
 			MeetingType type = (MeetingType)request.getSession().getAttribute("type");
 		 %>
 		 
-		 <label for="roomName">room Name</label>
+		 <label for="roomName">Room Name</label>
         <input type="text" id="roomName" name="roomName" value="<%=roomName%>" readonly>
         
 		   <label for="type">Choose meeting type:</label>
