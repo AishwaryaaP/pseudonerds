@@ -14,12 +14,17 @@ public class MeetingRoom {
 	private int creditPerHour;
 	private int seatingCapacity;
 	private double rating;
+	private int count;
 	private int ratingSum=0,ratingCount=0;
-	private Set<String> amenities = new HashSet<>();
+	private String amenities ;
 	
+	public MeetingRoom()
+	{
+		super();
+	}
 	
 	public MeetingRoom(String roomName, int creditPerHour, int seatingCapacity, double rating, int ratingSum,
-			int ratingCount, Set<String> amenities) {
+			int ratingCount, String amenities) {
 		super();
 		this.roomName = roomName;
 		this.creditPerHour = creditPerHour;
@@ -28,9 +33,9 @@ public class MeetingRoom {
 		this.ratingSum = ratingSum;
 		this.ratingCount = ratingCount;
 		this.amenities = amenities;
+		this.count=0;
 	}
-	public MeetingRoom(){
-	}
+	
 	
 	
 	//Getter Setter
@@ -40,6 +45,15 @@ public class MeetingRoom {
 	public void setRoomId(int roomId) {
 		this.roomId = roomId;
 	}
+	
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
 	public String getRoomName() {
 		return roomName;
 	}
@@ -76,10 +90,10 @@ public class MeetingRoom {
 	public void setRatingCount(int ratingCount) {
 		this.ratingCount = ratingCount;
 	}
-	public Set<String> getAmenities() {
+	public String getAmenities() {
 		return amenities;
 	}
-	public void setAmenities(Set<String> amenities) {
+	public void setAmenities(String amenities) {
 		this.amenities = amenities;
 	}
 	
@@ -87,14 +101,14 @@ public class MeetingRoom {
 	
 	//Custom
 	public void addAminity(String amenitiy) {
-		this.amenities.add(amenitiy);
+		this.amenities +=amenitiy +" ";
 	}
-	public void removeAminity(String amenitiy) throws ResourceNotFoundException {
-		if(this.amenities.contains(amenitiy))
-			this.amenities.remove(amenitiy);
-		else
-			throw new ResourceNotFoundException();
-	}
+//	public void removeAminity(String amenitiy) throws ResourceNotFoundException {
+//		if(this.amenities.contains(amenitiy))
+//			this.amenities.remove(amenitiy);
+//		else
+//			throw new ResourceNotFoundException();
+//	}
 	
 	
 	//toString

@@ -42,28 +42,20 @@ public class MemberController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("param = " + request.getParameter("act"));
-		String action = request.getParameter("act");
-		System.out.println(action);
-
+		
 		int userId = Integer.parseInt(request.getParameter("userId"));
 		String password = (String)request.getParameter("password");
 		MemberService memberService = ServiceFactory.getMemberService();
-
-		switch (action)
-		{
-
-			
-			case "getScheduledMeetings":
-				List<Meeting> scheduledMeeting = memberService.memberMeetingSchedule(userId);
-				// Setting the attribute of the request object
+		List<Meeting> scheduledMeeting = memberService.memberMeetingSchedule(userId);
+		// Setting the attribute of the request object
 			    // which will be later fetched by a JSP page
-//			    request.setAttribute("meetingList", scheduledMeeting);
-//			    RequestDispatcher rd2 = request.getRequestDispatcher("MemberJsp.jsp");
-//			    rd2.forward(request, response);
-
-				break;
+		for(Meeting m :scheduledMeeting ) {
+			System.out.println(m.toString());
 		}
+		request.setAttribute("meetingList", scheduledMeeting);
+		RequestDispatcher rd2 = request.getRequestDispatcher("MemberHome.jsp");
+		rd2.forward(request, response);
+
 		
 	}
 

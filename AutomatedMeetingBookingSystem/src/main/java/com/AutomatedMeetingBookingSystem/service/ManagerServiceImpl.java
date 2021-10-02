@@ -27,6 +27,7 @@ public class ManagerServiceImpl implements ManagerService{
 		meetingRoomService = ServiceFactory.getMeetingRoomService();
 		userService = ServiceFactory.getUserService();
 		userDao = DaoFactory.getUserDaoInstance();
+		bookingInfoService = ServiceFactory.getBookingInformationService();
 	}
 
 	@Override
@@ -39,9 +40,17 @@ public class ManagerServiceImpl implements ManagerService{
 			double creditsReqForMeeting = meetingDuration*meetingRoomCredits;
 			double managerCredits = userService.getUserCredits(organizedBy);
 			double updatedCredits = managerCredits - creditsReqForMeeting;
+			System.out.println(startTime.toString());
+			System.out.println(endTime.toString());
+			System.out.println(meetingDuration);
+			System.out.println(updatedCredits);
+			System.out.println(creditsReqForMeeting);
+			System.out.println(managerCredits);
+			System.out.println(meetingRoomCredits);
 			if(updatedCredits > 0) {
 				Meeting meeting = meetingService.saveMeeting(organizedBy, roomName, title, meetingDate, startTime, endTime, type, listOfMembers);
 				userService.updateUserCredits(updatedCredits, organizedBy);
+				System.out.print(meeting.getInfoMeetingRoomName());
 				bookingInfoService.saveBookingInformation(meeting);
 				return true;
 			}
@@ -53,7 +62,7 @@ public class ManagerServiceImpl implements ManagerService{
 		LocalDate meetingDate = LocalDate.parse(date);
 		LocalTime startTime = LocalTime.of(Integer.parseInt(startHours), Integer.parseInt(startMinutes));
 		LocalTime endTime = LocalTime.of(Integer.parseInt(endHours), Integer.parseInt(endMinutes));
-		List<MeetingRoom> availableRooms = bookingInfoService.getAvailableMeetingRoom(MeetingType.valueOf(type));
+		List<MeetingRoom> availableRooms = bookingInfoService.getAvailableMeetingRoom(meetingDate, startTime, endTime, MeetingType.valueOf(type));
 		return availableRooms;
 	}
 
@@ -71,5 +80,46 @@ public class ManagerServiceImpl implements ManagerService{
 			userDao.resetManagerCredits();
 		}
 	}
+	
+	@Override
+	public boolean deleteMeeting(int uniqueId, LocalDate date , LocalTime startTime, LocalTime endTime, String roomName,int organizedBy) {// have to implement
+		boolean bookingdeleted = bookingInfoService.deleteBookingInformation(uniqueId, date, startTime);
+		boolean deleted = meetingService.deleteMeetingByUniqueId(uniqueId);		
+		if(deleted && bookingdeleted) {
+			int meetingRoomCredits = meetingRoomService.getRoomPerHourCredits(roomName);
+			double meetingDuration = Duration.between(startTime, endTime).toMinutes();
+			double creditsReqForMeeting = meetingDuration*meetingRoomCredits;
+			double managerCredits = userService.getUserCredits(organizedBy);
+			double updatedCredits = managerCredits + creditsReqForMeeting;
+			userService.updateUserCredits(updatedCredits, organizedBy);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean editMeeting(int uniqueId , int organizedBy, String roomName, String title, String date, String startHours,
+		String startMinutes, String endHours, String endMinutes, String type, String listOfMembers) {
+		LocalDate meetingDate = LocalDate.parse(date);
+		LocalTime startTime = LocalTime.of(Integer.parseInt(startHours), Integer.parseInt(startMinutes));
+		LocalTime endTime = LocalTime.of(Integer.parseInt(endHours), Integer.parseInt(endMinutes));
+		int meetingRoomCredits = meetingRoomService.getRoomPerHourCredits(roomName);
+		double meetingDuration = Duration.between(startTime, endTime).toMinutes();
+		double creditsReqForMeeting = meetingDuration*meetingRoomCredits;
+		double managerCredits = userService.getUserCredits(organizedBy);
+		double updatedCredits = managerCredits - creditsReqForMeeting;
+	
+		Meeting newMeeting =  new Meeting(uniqueId,  organizedBy,  roomName,  title, meetingDate,  startTime,
+				 endTime,MeetingType.valueOf(type),  listOfMembers);
+		boolean updated = meetingService.updateMeeting(newMeeting);
+		if(updated)
+			return true;
+		return false;
+		
+	}
+
+	
+
+	
 
 }

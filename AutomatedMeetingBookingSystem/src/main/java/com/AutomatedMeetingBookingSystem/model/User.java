@@ -1,5 +1,10 @@
 package com.AutomatedMeetingBookingSystem.model;
 
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.sql.*;
+
 public class User {
 	private int userId;
 	private String name;
@@ -7,8 +12,16 @@ public class User {
 	private String phoneNumber;
 	private String role;
 	private double credit;
+	private Timestamp lastLoggedIn;
 	
-	
+	public Timestamp getLastLoggedIn() {
+		return lastLoggedIn;
+	}
+
+	public void setLastLoggedIn(Timestamp lastLoggedIn) {
+		this.lastLoggedIn = lastLoggedIn;
+	}
+
 	public void giveFeedback() {
 		System.out.println("Giving Feedback");
 	}

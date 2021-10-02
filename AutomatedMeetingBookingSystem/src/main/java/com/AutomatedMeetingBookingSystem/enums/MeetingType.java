@@ -7,7 +7,10 @@ public enum  MeetingType
     BUSINESS("BUSINESS"),
     CONFERENCECALL("CONFERENCECALL");
 	
+	public String value;
+	
 	MeetingType(String string) {
+		value = string;
 	}
 
 }

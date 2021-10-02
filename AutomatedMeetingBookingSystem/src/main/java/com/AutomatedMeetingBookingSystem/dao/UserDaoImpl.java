@@ -4,24 +4,30 @@ package com.AutomatedMeetingBookingSystem.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.AutomatedMeetingBookingSystem.exception.ConnectionFailedException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.AutomatedMeetingBookingSystem.model.User;
+import com.AutomatedMeetingBookingSystem.service.MeetingRoomService;
 import com.AutomatedMeetingBookingSystem.utility.DaoUtility;
 import com.AutomatedMeetingBookingSystem.utility.DaoUtilityInterface;
-
+//import org.apache.log4j.BasicConfigurator;
+//import org.apache.log4j.LogManager;
+//import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 public class UserDaoImpl implements UserDao{
+	
+	public UserDaoImpl() {
+       PropertyConfigurator.configure("log4j.properties");
 
-//	public List<MeetingRoom> getAllRooms(){
-//		
-//	}
-//	
-//	public boolean deleteRoom(MeetingRoom obj) {
-//		
-//	}
+	}
+	final Logger LOGR = LoggerFactory.getLogger(UserDaoImpl.class);
+
+	
 	
 	public List<User> getAllUser()
 	{
@@ -49,12 +55,52 @@ public class UserDaoImpl implements UserDao{
 				
 			} catch (Exception e) {
 				e.printStackTrace();
+				LOGR.error(e.toString());
 			}
 			
 		}
 		return allUser;
 		
 	}
+	@Override
+	public User getUserByNameAndEmail(int userId, String email)
+	{
+		DaoUtilityInterface dao = new DaoUtility();
+		Connection conn = dao.getInstance();
+		User u = null;
+		if (conn != null)
+		{
+			
+			try {
+				PreparedStatement statement = conn.prepareStatement("select userId,name,email,phone,credit,role, lastloggedin from user where userId =?;");
+				statement.setInt(1, userId);
+				System.out.println(statement.toString());
+				ResultSet rs = statement.executeQuery();
+				if(rs != null) {
+					rs.next();
+					u = new User();
+					u.setUserId(rs.getInt(1));
+					u.setName(rs.getString(2));
+					u.setEmail(rs.getString(3));
+					u.setPhoneNumber(rs.getString(4));
+					u.setCredit(rs.getInt(5));
+					u.setRole(rs.getString(6));
+					u.setLastLoggedIn(Timestamp.valueOf(rs.getString(7)));
+					System.out.println(rs.getString(6));
+				}
+				System.out.println(u.toString());
+				statement.close();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				LOGR.error(e.toString());			
+				}
+			
+		}
+		return u;
+		
+	}
+	
 
 	@Override
 	public double getUserCredits(int userId) {
@@ -78,6 +124,7 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public void updateUserCredits(double credits, int userId) {
+		System.out.println("koko");
 		try {
 			Connection connection = new DaoUtility().getInstance();
 			PreparedStatement statement = connection.prepareStatement("Update user set credit=? where UserID = ?");
@@ -85,9 +132,11 @@ public class UserDaoImpl implements UserDao{
 			statement.setInt(2, userId);
 			statement.executeUpdate();
 			statement.close();
+			System.out.println("okok");
 		}
 		catch(Exception e) {
 			System.out.println(e.getMessage());
+			LOGR.error(e.toString());
 		}
 	}
 
@@ -102,6 +151,61 @@ public class UserDaoImpl implements UserDao{
 		}
 		catch(Exception e) {
 			System.out.println(e.getMessage());
+			LOGR.error(e.toString());
+		}
+	}
+	
+	@Override
+	public boolean addUsers(ArrayList<User> userList) {
+		for(User user : userList) {
+			DaoUtilityInterface dao = new DaoUtility();
+			Connection conn = dao.getInstance();
+			
+			if (conn != null)
+			{
+				
+				try {
+					PreparedStatement statement = conn.prepareStatement("INSERT INTO meetingsystem.user(name,email,phone,role)VALUES(?,?,?,?);");
+					//statement.setInt(1, user.getUserId());
+					statement.setString(1, user.getName());
+					statement.setString(2, user.getEmail());
+					statement.setString(3, user.getPhoneNumber());
+					//statement.setDouble(5, user.getCredit());
+					statement.setString(4, user.getRole());
+
+
+					int rs = statement.executeUpdate();
+					if(rs==0) {
+						//Exception
+						return false;
+					}
+
+					statement.close();
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+					LOGR.error(e.toString());
+				}
+				
+			}
+		}
+		return true;
+	}
+	@Override
+	public void setLastLoggedIn(int userId) {
+		try {
+			Connection connection = new DaoUtility().getInstance();
+			PreparedStatement statement = connection.prepareStatement("Update user set lastloggedin=? where userId = ?");
+			String currentTime = new Timestamp(System.currentTimeMillis()).toString();
+			currentTime = currentTime.substring(0, currentTime.length() - 4);
+			statement.setString(1, currentTime);
+			statement.setInt(2, userId);
+			statement.executeUpdate();
+			statement.close();
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+			LOGR.error(e.toString());
 		}
 	}
 }
