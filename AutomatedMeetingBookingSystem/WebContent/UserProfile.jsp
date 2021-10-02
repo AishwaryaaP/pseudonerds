@@ -54,6 +54,13 @@
                                         <p class="m-b-10 f-w-600">Email</p>
                                         <h6 class="text-muted f-w-400"><%=user.getEmail() %></h6>
                                     </div>
+                                    <%if (user.getRole().equalsIgnoreCase("MANAGER")) 
+                                    { %>
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">Credit</p>
+                                        <h6 class="text-muted f-w-400"><%=user.getCredit() %></h6>
+                                    </div>
+                                    <% } %>
                                     <div class="col-sm-6">
                                         <p class="m-b-10 f-w-600">Phone</p>
                                         <h6 class="text-muted f-w-400"><%=user.getPhoneNumber() %></h6>

@@ -38,7 +38,11 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 <title>MeetPro | Admin</title>
 <link rel="stylesheet" href="./CSS/AdminHomeStyle.css">
 </head>
-
+<script>
+function importfn() {
+	alert("Users Imported");
+}
+</script>
 <body>
 	<%
 	User user = (User) session.getAttribute("userDetail");
@@ -136,7 +140,7 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 				<div style="display: inline-block;padding-left:450px; padding-bottom:50px" class="form-container1">
 					<form action="ImportUserController" method="POST" enctype="multipart/form-data">
 						<input class="btn" type="file" name="myFile"accept="application/XML" required />
-						<button class="btn" type="submit" name="submit" value="insert data">Upload File</button>
+						<button OnClick="importfn()" class="btn" type="submit" name="submit" value="insert data">Upload File</button>
 					</form>
 				</div>
 			</div>

@@ -1,6 +1,8 @@
 package com.AutomatedMeetingBookingSystem.controllers;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,15 +24,21 @@ public class FeedbackController extends HttpServlet {
     }
 
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
 
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String roomName = request.getParameter("roomName");
+		System.out.println(roomName);
 		int rating = Integer.parseInt(request.getParameter("rating"));
+		System.out.println(rating);
 		meetingRoomService.addRating(roomName, rating);
+		System.out.println("add");
+		RequestDispatcher rd = request.getRequestDispatcher("Index.jsp");
+		rd.forward(request, response);
+
 	}
 
 }

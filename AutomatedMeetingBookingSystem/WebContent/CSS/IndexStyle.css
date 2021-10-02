@@ -321,42 +321,56 @@ header{
     justify-content: center;
 }
 
-.rate {
-    float: left;
-    height: 46px;
-    padding: 0 10px;
+.wrapper {
+  float: left;
+  position: relative;
+  font-size: 14px;
+  margin: 1px auto;
+  right: 25%;
+  transform: translateX(-50%);
+  padding: 0 1px;
 }
-.rate:not(:checked) > input {
-    position:absolute;
-    top:-9999px;
-    color:red;
+
+.wrapper input {
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  opacity: 0;
 }
-.rate:not(:checked) > label {
-    float:right;
-    width:1em;
-    overflow:hidden;
-    white-space:nowrap;
-    cursor:pointer;
-    font-size:20px;
-    color:#ccc;
+
+.wrapper label {
+  position: relative;
+  float: right;
+  color: #C8C8C8;
 }
-.rate:not(:checked) > label:before {
-    content: '@';
+
+.wrapper label:before {
+  margin: 5px;
+  content: "@";
+  font-family: FontAwesome;
+  display: inline-block;
+  font-size: 1.5em;
+  color: #ccc;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
-.rate > input:checked ~ label {
-    color: #ffc700;    
+
+.wrapper input:checked ~ label:before {
+  color: #FFC107;
 }
-.rate:not(:checked) > label:hover,
-.rate:not(:checked) > label:hover ~ label {
-    color: #deb217;  
+
+.wrapper label:hover ~ label:before {
+  color: #ffdb70;
 }
-.rate > input:checked + label:hover,
-.rate > input:checked + label:hover ~ label,
-.rate > input:checked ~ label:hover,
-.rate > input:checked ~ label:hover ~ label,
-.rate > label:hover ~ input:checked ~ label {
-    color: #c59b08;
+
+.wrapper label:hover:before {
+  color: #FFC107;
 }
+
 /* Footer */
 .footer {
     padding: 0.1rem 0;
@@ -532,3 +546,16 @@ table{
   ::-webkit-scrollbar-thumb {
       -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
   }
+  
+  .dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .btn {background-color: #3e8e41;}

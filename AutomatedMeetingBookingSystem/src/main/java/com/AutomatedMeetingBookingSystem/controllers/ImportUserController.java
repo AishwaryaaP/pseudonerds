@@ -7,6 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
@@ -106,6 +107,8 @@ public class ImportUserController extends HttpServlet {
 		if (userList.size() > 0) {
 			inserted = userService.addUsers(userList);
 		}
+		RequestDispatcher rd = request.getRequestDispatcher("AdminHome.jsp");
+					rd.forward(request, response);
 
 	}
 

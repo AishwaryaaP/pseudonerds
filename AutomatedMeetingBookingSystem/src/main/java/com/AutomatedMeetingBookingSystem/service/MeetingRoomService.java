@@ -15,7 +15,7 @@ public interface MeetingRoomService {
 	public boolean deleteRoomByRoomName(String room);
 	public Map<String, Integer> getAmenitiesCredit();
 	boolean addNewAmenitiesCredit(String aminity, int credit);
-	void addRating(String roomName, int rating);
+	boolean addRating(String roomName, int rating);
 	int getRoomPerHourCredits(String roomName);
 	public void incrementMeetingCount(String roomName);
 
