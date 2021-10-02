@@ -39,20 +39,16 @@ public class EmailSendingServlet extends HttpServlet {
         String recipient = request.getParameter("email");
         String subject = request.getParameter("username");
         String content = request.getParameter("textarea");
- 
+        content += " " + "\nEmail sent by : "+recipient;
         String resultMessage = "";
  
         try {
-            EmailUtility.sendEmail(host, port, user, pass, recipient, subject,
+            EmailUtility.sendEmail(host, port, user, pass, user, subject,
                     content);
             resultMessage = "The e-mail was sent successfully";
         } catch (Exception ex) {
             ex.printStackTrace();
             resultMessage = "There were an error: " + ex.getMessage();
-        } finally {
-            request.setAttribute("Message", resultMessage);
-            getServletContext().getRequestDispatcher("/Result.jsp").forward(
-                    request, response);
-        }
+        } 
     }
 }

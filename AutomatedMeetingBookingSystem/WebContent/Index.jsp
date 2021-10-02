@@ -177,7 +177,7 @@
 					<div class="wrapper">
 						<p>Rating</p>
 						<input name="rating" type="radio" id="st1" value="1" />
-							  <label for="st1"></label>
+							  
 							  <input name="rating" type="radio" id="st2" value="2" />
 							  <label for="st2"></label>
 							  <input name="rating" type="radio" id="st3" value="3" />
@@ -207,11 +207,11 @@
 			<div class="form-container">
 			 <form action="EmailSendingServlet" method="post">
 				<input type="text" name="username" id="username"
-					placeholder="YOUR NAME" required> <input type="email"
+					placeholder="Subject" required> <input type="email"
 					name="email" id="email" placeholder="EMAIL" onKeyUp="checkemail()"
-					autocomplete="off" required> <input name="textarea"
+					autocomplete="off" required> <textarea name="textarea"
 					id="textarea" cols="30" rows="5"
-					placeholder="PLEASE TYPE YOUR MESSAGE HERE" required>
+					placeholder="PLEASE TYPE YOUR MESSAGE HERE" required></textarea>
 				<button type="submit" href="./LoginPage.html" class="btn"
 					value="Submit">Submit</button>
 					</form>
