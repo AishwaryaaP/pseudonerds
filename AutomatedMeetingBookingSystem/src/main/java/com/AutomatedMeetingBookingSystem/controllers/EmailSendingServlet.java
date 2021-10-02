@@ -39,9 +39,9 @@ public class EmailSendingServlet extends HttpServlet {
         String recipient = request.getParameter("email");
         String subject = request.getParameter("username");
         String content = request.getParameter("textarea");
- 
+        String page = request.getParameter("index");
         String resultMessage = "";
- 
+
         try {
             EmailUtility.sendEmail(host, port, user, pass, recipient, subject,
                     content);
@@ -51,8 +51,12 @@ public class EmailSendingServlet extends HttpServlet {
             resultMessage = "There were an error: " + ex.getMessage();
         } finally {
             request.setAttribute("Message", resultMessage);
-            getServletContext().getRequestDispatcher("/Result.jsp").forward(
+            if(page.equalsIgnoreCase("index"))
+            getServletContext().getRequestDispatcher("/Index.jsp").forward(
                     request, response);
-        }
+            else
+            	getServletContext().getRequestDispatcher("/ManagerHome.jsp").forward(
+                        request, response);
+         }
     }
 }

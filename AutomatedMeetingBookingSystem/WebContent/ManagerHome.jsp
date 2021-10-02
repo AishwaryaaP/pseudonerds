@@ -39,7 +39,6 @@
 	}
 %>
 	<%
-
 		User user = (User) session.getAttribute("userDetail");
 	%>
 
@@ -54,7 +53,7 @@
 				<ul class="nav-ul" id="nav-ul">
 				   <li class="nav-link"><a>Last Loggedin: <%=user.getLastLoggedIn()%></a></li>
 					<!-- <li class="nav-link"><a>Credit: <%=user.getCredit() %></a></li> -->
-					<li claas="nav-link"><a href="UserProfile.jsp">Hello <%=user.getName() %></a></li>
+					<li class="nav-link"><a href="UserProfile.jsp">Hello <%=user.getName() %></a></li>
 				</ul>
 			</div>
 			<div class="menuToggle" id="menuToggle">
@@ -86,8 +85,8 @@
             	<th>Meeting Id</th>
             	<th>Title</th>
                <th>Date</th>
-               <th>startTime</th>
-               <th>endTime</th>
+               <th>StartTime</th>
+               <th>EndTime</th>
                <th>Type</th>
                <th>Room Name</th>
                <th>Actions</th>            
