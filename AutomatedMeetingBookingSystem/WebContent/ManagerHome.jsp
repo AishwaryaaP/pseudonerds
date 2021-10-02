@@ -127,28 +127,23 @@ function printAlert(){
 				</table>
 			</div>
 	</section>
-	<div>
-		<section id="contact" class="contact">
+<div>
+	<section id="contact" class="contact">
+		<form action="EmailSendingServlet" method="POST">
 			<h2 class="section-heading">Request for a Customized Room</h2>
 			<div class="contact-container container">
-				<div class="form-container">
-					<form action="EmailSendingServlet" method="POST">
-						<input type="text" name="username" id="username"
-							placeholder="Subject" required> <input type="hidden"
-							name="email" id="email" placeholder="EMAIL"
-							onKeyUp="checkemail()" autocomplete="off" value = <%= user.getEmail() %> required> <textarea
-							name="textarea" id="textarea" cols="30" rows="5"
-							placeholder="PLEASE TYPE YOUR MESSAGE HERE" required></textarea>
-							<input type="hidden" name="index" value="manager" id="index" />
-							
-						<button type="submit"  onclick="printAlert()" class="btn"
-							value="Submit">Submit</button>
-					</form>
+				<div class="form-container">					
+					<input type="text" name="username" id="username" placeholder="Subject" required>
+					<input type="hidden" name="email" id="email" placeholder="EMAIL" onKeyUp="checkemail()" autocomplete="off" value = <%= user.getEmail() %> required>
+					<textarea name="textarea" id="textarea" cols="30" rows="5" placeholder="PLEASE TYPE YOUR MESSAGE HERE" required></textarea>
+					<input type="hidden" name="index" value="manager" id="index" />				
+					<button type="submit"  onClick="printAlert()" class="btn" value="Submit">Submit</button>
 				</div>
 			</div>
 			<script type="text/javascript" src="js.main.js"></script>
-		</section>
-	</div>
+		</form>
+	</section>
+</div>
 </body>
 <!-- Footer -->
 <section class="footer">
