@@ -70,5 +70,6 @@ public class GlobalServlet extends HttpServlet {
 				dispatcher.forward(request, response);
 			}
 	}
+	
 
 }

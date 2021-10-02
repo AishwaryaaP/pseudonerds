@@ -108,15 +108,14 @@ function importfn() {
 				<table>
 					<tbody>
 						<tr>
-							<td><a
-								href="FetchMeetingRoomDetailsController?roomName=${i.roomName}">
+							<td><a style="color: blue"	href="FetchMeetingRoomDetailsController?roomName=${i.roomName}">
 									<c:out value="${i.roomName}" />
 							</a></td>
 							<td><c:out value="${i.seatingCapacity}" /></td>
 							<td><c:out value="${i.creditPerHour}" /></td>
 							<td><c:out value="${i.rating}" /></td>
-							<td><a
-								href="DeleteMeetingRoomController?roomName=${i.roomName}">delete</a></td>
+							<td><a style="color: red"
+								href="DeleteMeetingRoomController?roomName=${i.roomName}">DELETE</a></td>
 						</tr>
 						</c:forEach>
 					</tbody>

@@ -87,7 +87,7 @@ function validateData()
 
       <div class="login-container">
 
-          <form  action="GlobalServlet" >
+          <form  action="GlobalServlet" method="get">
 
               <img src="./IMAGES/avatar.png" type= "image/png" alt="avatar" class="avatar">
 

@@ -2,7 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="com.AutomatedMeetingBookingSystem.model.MeetingRoom"%>
-<%@ page import="com.AutomatedMeetingBookingSystem.controllers.GetAllRoomsController"%>
+<%@ page
+	import="com.AutomatedMeetingBookingSystem.controllers.GetAllRoomsController"%>
 <%@page import="java.util.List"%>
 
 <!DOCTYPE html>
@@ -11,7 +12,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" sizes="32x32" href="./IMAGES/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="./IMAGES/favicon.ico">
 <title>PseudoNerds | MeetPro</title>
 <link rel="stylesheet" href="./CSS/IndexStyle.css">
 </head>
@@ -73,6 +75,12 @@
     else
       return false;
   }
+  function contactusfn() {
+  	alert("We've recieved your query. We'll get back to you within next 48 hours ! :)");
+  }
+  function feedbackfn() {
+	  alert("Thankyou for the feedback!");
+  }
 </script>
 
 
@@ -81,7 +89,8 @@
 	<header>
 		<div class="container">
 			<nav>
-				<img class="logo" id="logo" src="./IMAGES/pnlogo.png" type="image/png"  alt="MeetPro" href="#">
+				<img class="logo" id="logo" src="./IMAGES/pnlogo.png"
+					type="image/png" alt="MeetPro" href="#">
 				<ul class="nav-ul" id="nav-ul">
 					<li class="nav-link"><a href="#about">About Us</a></li>
 					<li class="nav-link"><a href="#roomtable">Created Rooms</a></li>
@@ -116,18 +125,17 @@
 	<section id="roomtable" class="table-room">
 		<h1></h1>
 		<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-		<h2
-			style="text-align: center; padding-inline: inherit; padding-top: 40px; padding-bottom: 20px"
-			class="section-heading">Current Meeting Rooms</h2>
+		<h2 style="text-align: center; padding-inline: inherit; padding-top: 40px; padding-bottom: 20px" class="section-heading">Current Meeting Rooms</h2>
 		<div class="tbl-header">
 			<table>
 				<thead>
 					<tr>
+						<th>Room ID</th>
 						<th>Room Name</th>
 						<th>Seating Capacity</th>
-						<th>Credit per hour</th>
-						<th>Rating</th>
-						<th>Count</th>
+						<th>Credit Per Hour</th>
+						<th>Room Rating</th>
+						<th>Meeting Count</th>
 					</tr>
 				</thead>
 			</table>
@@ -140,12 +148,13 @@
 				<table>
 					<tbody>
 						<tr>
+							<td><c:out value="${i.roomId}" /></td>
 							<td><c:out value="${i.roomName}" /></td>
 							<td><c:out value="${i.seatingCapacity}" /></td>
 							<td><c:out value="${i.creditPerHour}" /></td>
 							<td><c:out value="${i.rating}" /></td>
 							<td><c:out value="${i.count}" /></td>
-						</c:forEach>
+							</c:forEach>
 					</tbody>
 				</table>
 			</div>
@@ -153,46 +162,44 @@
 
 	<!-- FeedBack -->
 	<section id="feedback" class="feedback">
-				<form action="FeedbackController">
-		<h2 class="section-heading">Feedback</h2>
-		<div class="feedback-container container">
-			<h2 class="feedback-heading lg-heading">
-				Have A Feedback For Us?<br>We would love to hear that!<br>We
-				are Ever-Ready to Improvise!
-			</h2>
-			<div class="form-container">
-			<input type="number" name="userid" class="input" placeholder="UserID" onKeyUp="checkid()" autocomplete="off" required> 
-			<input type="email" name="email" class="input" placeholder="Email Address" onKeyUp="checkemail()" autocomplete="off" required>
-			<div class="form-container1">
-			<div class="dropdown-content">
-			<p>Select Room Name</p>
-			<select class="form-container1" name="roomName">
-				<c:forEach items="${meetingRoomList}" var='i'> <option value=<c:out value="${i.roomName}" />>
-				<c:out value="${i.roomName}" /></option>				 
-		   </c:forEach>
-		   </select>
-		   </div>
-		   </div>
-				<div class="form-container1">
-					<div class="wrapper">
-						<p>Rating</p>
-						<input name="rating" type="radio" id="st1" value="1" />
-							  <label for="st1"></label>
-							  <input name="rating" type="radio" id="st2" value="2" />
-							  <label for="st2"></label>
-							  <input name="rating" type="radio" id="st3" value="3" />
-							  <label for="st3"></label>
-							  <input name="rating" type="radio" id="st4" value="4" />
-							  <label for="st4"></label>
-							  <input name="rating" type="radio" id="st5" value="5" />
-							  <label for="st5"></label>
+		<form action="FeedbackController" method="POST">
+			<h2 class="section-heading">Feedback</h2>
+			<div class="feedback-container container">
+				<h2 class="feedback-heading lg-heading">
+					Have A Feedback For Us?<br>We would love to hear that!<br>We
+					are Ever-Ready to Improvise!
+				</h2>
+				<div class="form-container">
+					<input type="number" name="userid" class="input"
+						placeholder="UserID" onKeyUp="checkid()" autocomplete="off"
+						required> <input type="email" name="email" class="input"
+						placeholder="Email Address" onKeyUp="checkemail()"
+						autocomplete="off" required>
+					<div class="form-container1">
+						<div class="dropdown-content">
+							<p>Select Room Name</p>
+							<select class="form-container1" name="roomName">
+								<c:forEach items="${meetingRoomList}" var='i'>
+									<option value=<c:out value="${i.roomName}" />>
+										<c:out value="${i.roomName}" /></option>
+								</c:forEach>
+							</select>
+						</div>
 					</div>
+					<div class="form-container1">
+						<div class="wrapper">
+							<p>Rating</p>
+								<input name="rating" type="radio" id="st1" value="5" /> <label for="st1"></label> 
+								<input name="rating" type="radio" id="st2" value="4" /> <label for="st2"></label> 
+								<input name="rating" type="radio" id="st3" value="3" /> <label for="st3"></label>
+								<input name="rating" type="radio" id="st4" value="2" /> <label for="st4"></label>
+								<input name="rating" type="radio" id="st5" value="1" /> <label for="st5"></label>
+						</div>
+					</div>
+					<button OnClick="feedbackfn()" type="submit" class="btn" value="Submit">Send Feedback</button>
 				</div>
-				<button type="submit" class="btn" value="Submit">Send
-					Feedback</button>
 			</div>
-		</div>
-		<script type="text/javascript" src="js.main.js"></script>
+			<script type="text/javascript" src="js.main.js"></script>
 		</form>
 	</section>
 
@@ -205,16 +212,15 @@
 				PseudoNerds are available 24/7 !
 			</h2>
 			<div class="form-container">
-			 <form action="EmailSendingServlet" method="post">
-				<input type="text" name="username" id="username"
-					placeholder="YOUR NAME" required> <input type="email"
-					name="email" id="email" placeholder="EMAIL" onKeyUp="checkemail()"
-					autocomplete="off" required> <input name="textarea"
-					id="textarea" cols="30" rows="5"
-					placeholder="PLEASE TYPE YOUR MESSAGE HERE" required>
-				<button type="submit" href="./LoginPage.html" class="btn"
-					value="Submit">Submit</button>
-					</form>
+
+				<form class="form-container" action="EmailSendingServlet"
+					method="POST">
+					<input type="text" autocomplete="off" name="username" id="username" placeholder="Subject" required>
+					<input type="email" name="email" id="email" placeholder="EMAIL" onKeyUp="checkemail()" autocomplete="off" required>
+					<input name="textarea" id="textarea" cols="30" rows="5" placeholder="PLEASE TYPE YOUR MESSAGE HERE" autocomplete="off" required>
+					<input type="hidden" name="index" value="index" id="index" />
+					<button OnClick="contactusfn()" type="submit" class="btn" value="Submit">Submit</button>
+				</form>
 			</div>
 		</div>
 		<script type="text/javascript" src="js.main.js"></script>

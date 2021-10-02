@@ -171,11 +171,11 @@
   </context-param>
   <context-param>
     <param-name>user</param-name>
-    <param-value>mohit.tilokchandani17@vit.edu</param-value>
+    <param-value>meetpro.contactus@gmail.com</param-value>
   </context-param>
   <context-param>
     <param-name>pass</param-name>
-    <param-value>vitsucks@13</param-value>
+    <param-value>MEETPROCODEFURY</param-value>
   </context-param>
   <servlet>
     <description></description>
