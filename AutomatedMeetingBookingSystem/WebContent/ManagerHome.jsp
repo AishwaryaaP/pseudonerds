@@ -53,7 +53,7 @@
 			<div class="container1" id="container1">
 				<ul class="nav-ul" id="nav-ul">
 				   <li class="nav-link"><a>Last Loggedin: <%=user.getLastLoggedIn()%></a></li>
-					<li class="nav-link"><a>Credit: <%=user.getCredit() %></a></li>
+					<!-- <li class="nav-link"><a>Credit: <%=user.getCredit() %></a></li> -->
 					<li claas="nav-link"><a href="UserProfile.jsp">Hello <%=user.getName() %></a></li>
 				</ul>
 			</div>

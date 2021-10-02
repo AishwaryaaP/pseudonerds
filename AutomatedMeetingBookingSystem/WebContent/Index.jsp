@@ -140,8 +140,7 @@
 				<table>
 					<tbody>
 						<tr>
-							<td><a style="colour: blue" href="FetchMeetingRoomDetailsController?roomName=${i.roomName}">
-							<c:out value="${i.roomName}" /></a></td>
+							<td><c:out value="${i.roomName}" /></td>
 							<td><c:out value="${i.seatingCapacity}" /></td>
 							<td><c:out value="${i.creditPerHour}" /></td>
 							<td><c:out value="${i.rating}" /></td>
@@ -154,6 +153,7 @@
 
 	<!-- FeedBack -->
 	<section id="feedback" class="feedback">
+				<form action="FeedbackController">
 		<h2 class="section-heading">Feedback</h2>
 		<div class="feedback-container container">
 			<h2 class="feedback-heading lg-heading">
@@ -161,31 +161,39 @@
 				are Ever-Ready to Improvise!
 			</h2>
 			<div class="form-container">
-				<input type="number" name="userid" class="input" placeholder="UserID" onKeyUp="checkid()" autocomplete="off" required> 
-				<input type="email" name="email" class="input"
-					placeholder="Email Address" onKeyUp="checkemail()"
-					autocomplete="off" required> <input type="text"
-					name="userid" class="input" placeholder="RoomName"
-					onKeyUp="checkid()" autocomplete="off" required>
+			<input type="number" name="userid" class="input" placeholder="UserID" onKeyUp="checkid()" autocomplete="off" required> 
+			<input type="email" name="email" class="input" placeholder="Email Address" onKeyUp="checkemail()" autocomplete="off" required>
+			<div class="form-container1">
+			<div class="dropdown-content">
+			<p>Select Room Name</p>
+			<select class="form-container1" name="roomName">
+				<c:forEach items="${meetingRoomList}" var='i'> <option value=<c:out value="${i.roomName}" />>
+				<c:out value="${i.roomName}" /></option>				 
+		   </c:forEach>
+		   </select>
+		   </div>
+		   </div>
 				<div class="form-container1">
-					<div class="rate">
+					<div class="wrapper">
 						<p>Rating</p>
-						<input type="radio" id="star1" name="rate" value="1" /> <label
-							for="star1" title="text">1 star</label> <input type="radio"
-							id="star1" name="rate" value="2" /> <label for="star2"
-							title="text">2 stars</label> <input type="radio" id="star1"
-							name="rate" value="3" /> <label for="star3" title="text">3
-							stars</label> <input type="radio" id="star1" name="rate" value="4" /> <label
-							for="star4" title="text">4 stars</label> <input type="radio"
-							id="star1" name="rate" value="5" /> <label for="star5"
-							title="text">5 stars</label>
+						<input name="rating" type="radio" id="st1" value="1" />
+							  <label for="st1"></label>
+							  <input name="rating" type="radio" id="st2" value="2" />
+							  <label for="st2"></label>
+							  <input name="rating" type="radio" id="st3" value="3" />
+							  <label for="st3"></label>
+							  <input name="rating" type="radio" id="st4" value="4" />
+							  <label for="st4"></label>
+							  <input name="rating" type="radio" id="st5" value="5" />
+							  <label for="st5"></label>
 					</div>
 				</div>
-				<button type="submit" href="#" class="btn" value="Submit">Send
+				<button type="submit" class="btn" value="Submit">Send
 					Feedback</button>
 			</div>
 		</div>
 		<script type="text/javascript" src="js.main.js"></script>
+		</form>
 	</section>
 
 	<!-- Contact US -->

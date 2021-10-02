@@ -25,6 +25,7 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 	private static final String INSERT_ROOM = "INSERT INTO MeetingRoom(roomName, seatingCapacity, rating, ratingSum, ratingCount, creditPerHour, amenities, count) VALUES (?,?,?,?,?,?,?,?)";
 
 	private static final String UPDATE_ROOM = "UPDATE MeetingRoom SET seatingCapacity=?, creditPerHour=?, amenities=? WHERE roomName=?";
+	private static final String UPDATE_RATING = "UPDATE MeetingRoom SET ratingSum=?, ratingCount=?, rating=? WHERE roomName=?";
 
 	private static final String DELETE_ROOM_BY_NAME = "DELETE FROM MeetingRoom WHERE roomName=?";
 	private static final String UPDATE_MEETING_COUNT = "Update MeetingRoom SET count=? WHERE roomName=?";
@@ -256,5 +257,35 @@ public class MeetingRoomDaoImpl implements MeetingRoomDao{
 			}
 			
 		}
+	}
+
+	@Override
+	public boolean updateRatingMeetingRoom(MeetingRoom room) {
+		if (connection != null) 
+		{
+			PreparedStatement stmt;
+			try {
+				stmt = connection.prepareStatement(UPDATE_RATING);				
+				stmt.setInt(1, room.getRatingSum());				
+				stmt.setInt(2, room.getRatingCount());
+				stmt.setDouble(3, room.getRating());				
+				stmt.setString(4, room.getRoomName());				
+				int recordsUpdated = stmt.executeUpdate();
+				if(recordsUpdated>0)
+				{
+					stmt.close();
+					//connection.commit();
+					return true;
+				}
+			}
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+
+				logger.info(e.getMessage());
+			}
+
+		}
+		return false;
 	}
 }
