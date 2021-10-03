@@ -1,6 +1,7 @@
 package com.AutomatedMeetingBookingSystem.controllers;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -65,9 +66,13 @@ public class GlobalServlet extends HttpServlet {
 				}
 				dispatcher.forward(request, response);
 			} else {
-				request.getSession().setAttribute( "LOGINSTATUS", "FAILURE");
-				RequestDispatcher dispatcher = request.getRequestDispatcher( "Login.jsp" );
-				dispatcher.forward(request, response);
+				response.setContentType("text/html");
+				PrintWriter out = response.getWriter();
+				out.println("<script type=\"text/javascript\">");
+				   out.println("alert('User or password incorrect');");
+				   out.println("location='Login.jsp';");
+				   out.println("</script>");
+
 			}
 	}
 	
