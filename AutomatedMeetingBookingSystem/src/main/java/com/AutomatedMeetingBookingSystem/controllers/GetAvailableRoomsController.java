@@ -44,8 +44,13 @@ public class GetAvailableRoomsController extends HttpServlet {
 		String eTime = req.getParameter("endTime");
 		LocalTime endTime = LocalTime.parse(eTime);
 		String Mtype = req.getParameter("type");
+		String status;
 		MeetingType type = MeetingType.valueOf(Mtype);
 		List<MeetingRoom> meetingRooms = bookingInformationService.getAvailableMeetingRoom(localDate, startTime, endTime, type);
+		if (meetingRooms.size() !=0)
+		{
+			status = "TRUE";
+
 		for(MeetingRoom meetingRoom :meetingRooms ) {
 			System.out.println(meetingRoom.getRoomId());
 		}
@@ -54,9 +59,12 @@ public class GetAvailableRoomsController extends HttpServlet {
 		  req.getSession().setAttribute("date", localDate);
 		  req.getSession().setAttribute("startTime", startTime);
 		  req.getSession().setAttribute("endTime", endTime);
-		  req.getSession().setAttribute("type", type); RequestDispatcher rd =
-		  req.getRequestDispatcher("AvailableMeetingRooms.jsp"); rd.forward(req, resp);
-		 
+		  req.getSession().setAttribute("type", type);
 	}
-
+	else
+				status = "FALSE";
+			req.getSession().setAttribute("status", status);
+			RequestDispatcher rd = req.getRequestDispatcher("AvailableMeetingRooms.jsp"); 
+			rd.forward(req, resp);
+		}
 }

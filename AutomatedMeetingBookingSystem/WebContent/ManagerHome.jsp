@@ -134,6 +134,8 @@
 				<h2 class="section-heading">Request for a Customized Room</h2>
 				<div class="contact-container container">
 					<div class="form-container">
+					<input type="text" autocomplete="off" name="name" id="name" placeholder="Your Name" autocomplete="off" required>
+
 						<input type="text" name="username" id="username"
 							placeholder="Subject" required> <input type="hidden"
 							name="email" id="email" placeholder="EMAIL"
