@@ -109,7 +109,7 @@
 	   		<option value="BUSINESS">BUSINESS</option>
 	   		<% } %>
 	 		</select>
-	 		
+	 		<br>	
         <label for="startTime">Start Time</label>
         <input type="time" id="startTime" name="startTime" value="<%=startTime%>" readonly>
         

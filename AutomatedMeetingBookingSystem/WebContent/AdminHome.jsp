@@ -70,7 +70,7 @@ function importfn() {
 						<li><a href="CreateRoom.jsp">Create Room</li>
 					</a>
 					<a href="#">
-						<li><a href="Index.jsp">Logout</a></li>
+						<li><a href="/Codefurry1/">Logout</a></li>
 					</a>
 				</ul>
 			</div>
