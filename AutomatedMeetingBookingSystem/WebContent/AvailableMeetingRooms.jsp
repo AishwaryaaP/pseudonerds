@@ -47,6 +47,10 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 			</div>
 		</nav>
 	</header>
+	<% String status =(String) session.getAttribute("status");
+	if (status.equalsIgnoreCase("TRUE"))
+	{ 
+	%>
 	<section class="table-room">	
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<h2
@@ -69,6 +73,11 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 		</c:forEach>
 	</table>
 	</section> 
-	
+	<% } 
+else { %>
+		<h2
+			style="text-align: center; padding-inline: inherit; padding-top: 90px; padding-bottom: 20px"
+			class="section-heading">No Rooms Available</h2>
+<% } %>
 </body>
 </html>
