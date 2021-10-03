@@ -26,7 +26,7 @@ The system consists of three types of Users (Employees)
   4. Paste your MySQL password in line 17 of [DaoUtility.java](https://github.com/AishwaryaaP/pseudonerds/blob/master/AutomatedMeetingBookingSystem/src/main/java/com/AutomatedMeetingBookingSystem/utility/DaoUtility.java).
   5. Using the correct userid and email you can login in the system and run the functionalities defined according to their role.
   6. By logging as Admin, you have right to insert users using xml file which is kept in database folder having titled "users.xml".
-  7. The base url of our application is "http://localhost:8080/Codefurry1/Index.jsp"
+  7. The base url of our application is "http://localhost:8080/Codefurry1/"
   8. The MeetPro application is ready to use.
 
 ## Product Release Video:
