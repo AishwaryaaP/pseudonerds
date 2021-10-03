@@ -72,8 +72,9 @@ public class UserDaoImpl implements UserDao{
 		{
 			
 			try {
-				PreparedStatement statement = conn.prepareStatement("select userId,name,email,phone,credit,role, lastloggedin from user where userId =?;");
+				PreparedStatement statement = conn.prepareStatement("select userId,name,email,phone,credit,role, lastloggedin from user where userId =? and email =?;");
 				statement.setInt(1, userId);
+				statement.setString(2, email);
 				System.out.println(statement.toString());
 				ResultSet rs = statement.executeQuery();
 				if(rs != null) {
