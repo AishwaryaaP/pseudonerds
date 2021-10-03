@@ -91,7 +91,7 @@
 					type="image/png" alt="MeetPro" href="#">
 				<ul class="nav-ul" id="nav-ul">
 					<li class="nav-link"><a href="#about">About Us</a></li>
-					<li class="nav-link"><a href="#roomtable">Created Rooms</a></li>
+					<li class="nav-link"><a href="/Codefurry1/#roomtable">Created Rooms</a></li>
 					<li class="nav-link"><a href="#feedback">Feedback</a></li>
 					<li class="nav-link"><a href="#contact">Contact Us</a></li>
 					<li class="nav-link"><a href="Login.jsp">Login</a></li>

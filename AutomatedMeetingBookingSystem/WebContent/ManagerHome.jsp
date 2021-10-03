@@ -13,12 +13,11 @@
 </head>
 <body>
 
-<script type="text/javascript">
-	
-function printAlert(){
-	alert("Mail Sent");
-}
-</script>
+	<script type="text/javascript">
+		function printAlert() {
+			alert("Mail Sent");
+		}
+	</script>
 
 	<%
 	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
@@ -42,7 +41,6 @@ function printAlert(){
 	%>
 	<%
 	User user = (User) session.getAttribute("userDetail");
-
 	%>
 
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -56,10 +54,11 @@ function printAlert(){
 			<div class="container1" id="container1">
 				<ul class="nav-ul" id="nav-ul">
 
-				   <li class="nav-link"><a>Last Loggedin: <%=user.getLastLoggedIn()%></a></li>
-					<!-- <li class="nav-link"><a>Credit: <%=user.getCredit() %></a></li> -->
-					<li><a href="GetScheduledByManagerController">Meeting Details</a></li>
-					<li class="nav-link"><a href="UserProfile.jsp">Hello <%=user.getName() %></a></li>		
+					<li class="nav-link"><a>Last Loggedin: <%=user.getLastLoggedIn()%></a></li>
+					<!-- <li class="nav-link"><a>Credit:user.getCredit()t() %></a></li> -->
+					<li><a href="GetScheduledByManagerController">Meeting
+							Details</a></li>
+					<li class="nav-link"><a href="UserProfile.jsp">Hello <%=user.getName()%></a></li>
 				</ul>
 			</div>
 			<div class="menuToggle" id="menuToggle">
@@ -70,7 +69,7 @@ function printAlert(){
 					</a>
 					<a href="#">
 						<li><a href="CreateMeeting.jsp">Create Meeting</a></li>
-						<li><a href="Index.jsp">Logout</a></li>
+						<li><a href="/Codefurry1/">Logout</a></li>
 					</a>
 				</ul>
 			</div>
@@ -91,16 +90,17 @@ function printAlert(){
 				<thead>
 					<tr>
 
-            	<th>Meeting Id</th>
-            	<th>Title</th>
-               <th>Date</th>
-               <th>StartTime</th>
-               <th>EndTime</th>
-               <th>Type</th>
-               <th>Room Name</th>
-               <th>Actions</th>            
-            </tr>
-            </thead>
+						<th>Meeting Id</th>
+						<th>Title</th>
+						<th>Date</th>
+						<th>Start</th>
+						<th>End</th>
+						<th>Type</th>
+						<th></th>
+						<th>Room Name</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
 			</table>
 		</div>
 		<c:forEach items="${meetings}" var='i'>
@@ -116,10 +116,11 @@ function printAlert(){
 							<td><c:out value="${i.startTime}" /></td>
 							<td><c:out value="${i.endTime}" /></td>
 							<td><c:out value="${i.type}" /></td>
+							<td></td>
 							<td><c:out value="${i.infoMeetingRoomName}" /></td>
-							<td><a
+							<td><a style="color: red"
 								href="DeleteMeetingController?uniqueID=${i.uniqueID}&date=${i.date}&startTime=${i.startTime}&endTime=${i.endTime}&roomName=${i.infoMeetingRoomName}">
-									delete </a></td>
+									DELETE </a></td>
 						</tr>
 
 						</c:forEach>
@@ -129,24 +130,25 @@ function printAlert(){
 	</section>
 	<div>
 		<section id="contact" class="contact">
-			<h2 class="section-heading">Request for a Customized Room</h2>
-			<div class="contact-container container">
-				<div class="form-container">
-					<form action="EmailSendingServlet" method="POST">
+			<form action="EmailSendingServlet" method="POST">
+				<h2 class="section-heading">Request for a Customized Room</h2>
+				<div class="contact-container container">
+					<div class="form-container">
 						<input type="text" name="username" id="username"
 							placeholder="Subject" required> <input type="hidden"
 							name="email" id="email" placeholder="EMAIL"
-							onKeyUp="checkemail()" autocomplete="off" value = <%= user.getEmail() %> required> <textarea
-							name="textarea" id="textarea" cols="30" rows="5"
+							onKeyUp="checkemail()" autocomplete="off"
+							value=<%=user.getEmail()%> required>
+						<textarea name="textarea" id="textarea" cols="30" rows="5"
 							placeholder="PLEASE TYPE YOUR MESSAGE HERE" required></textarea>
-							<input type="hidden" name="index" value="manager" id="index" />
-							
-						<button type="submit"  onclick="printAlert()" class="btn"
+						<input type="hidden" name="index" value="manager" id="index" />
+
+						<button type="submit" onclick="printAlert()" class="btn"
 							value="Submit">Submit</button>
-					</form>
+					</div>
 				</div>
-			</div>
-			<script type="text/javascript" src="js.main.js"></script>
+				<script type="text/javascript" src="js.main.js"></script>
+			</form>
 		</section>
 	</div>
 </body>
