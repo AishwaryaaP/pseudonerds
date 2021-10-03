@@ -77,7 +77,7 @@
         <input type="text" id="roomName" name="roomName" value="<%=roomName%>" readonly>
         
 		   <label for="type">Choose meeting type:</label>
-	         <select id="type" name="type" disabled="true">
+	         <select id="type" name="type" >
 	         <% if( type.value.equals("CLASSROOMTRAINING") ){	  %>
 	 			<option value="CLASSROOMTRAINING" Selected>CLASSROOMTRAINING</option>
 	   		<% }
@@ -122,9 +122,16 @@
         
         <label for="title">Agenda</label>
         <input type=text id="title" name="title">
-        
-		 <label for="listOfMembers">listOfMembers</label>
-        <input type=text id="listOfMembers" name="listOfMembers">
+        <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+		<div class="dropdown-content">
+							<p>Select Users </p>
+							<select class="form-container1" name="listOfMembers" id ="listOfMembers" multiple>
+								<c:forEach items="${userList}" var='i'>
+									<option value=<c:out value="${i.userId}" />>
+										<c:out value="${i.userId}" /></option>
+								</c:forEach>
+							</select>
+						</div>
         
      
         

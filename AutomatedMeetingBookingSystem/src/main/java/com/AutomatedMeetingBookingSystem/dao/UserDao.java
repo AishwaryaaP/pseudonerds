@@ -20,4 +20,5 @@ public interface UserDao {
 
 	public void setLastLoggedIn(int userId);
 
+
 }

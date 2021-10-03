@@ -61,7 +61,7 @@ if ((request.getSession(false) == null) || (session.getAttribute("LOGINSTATUS") 
 		</tr>
 		<c:forEach items="${meetingRooms}" var='i'>
 			<tr>
-				<td><a style="color:blue" href="SelectedRoom.jsp?roomName=${i.roomName}"><c:out value="${i.roomName}" /></a></td>
+				<td><a style="color:blue" href="DropDownController?roomName=${i.roomName}"><c:out value="${i.roomName}" /></a></td>
 				<td><c:out value="${i.seatingCapacity}" /></td>
 				<td><c:out value="${i.creditPerHour}" /></td>
 				<td><c:out value="${i.amenities}" /></td>

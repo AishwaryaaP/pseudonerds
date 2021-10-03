@@ -12,9 +12,14 @@ import com.AutomatedMeetingBookingSystem.model.User;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 
 public class ManagerServiceImpl implements ManagerService{
 
+	private static Logger logger;
 	private MeetingRoomService meetingRoomService;
 	private MeetingService meetingService;
 	private BookingInformationService bookingInfoService;
@@ -28,6 +33,8 @@ public class ManagerServiceImpl implements ManagerService{
 		userService = ServiceFactory.getUserService();
 		userDao = DaoFactory.getUserDaoInstance();
 		bookingInfoService = ServiceFactory.getBookingInformationService();
+		logger = LogManager.getLogger(MeetingRoomService.class);
+		BasicConfigurator.configure();
 	}
 
 	@Override

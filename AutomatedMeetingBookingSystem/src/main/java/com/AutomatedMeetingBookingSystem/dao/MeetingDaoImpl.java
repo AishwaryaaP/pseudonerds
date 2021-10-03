@@ -94,9 +94,11 @@ public class MeetingDaoImpl implements MeetingDao {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			logger.info(e.getMessage());
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			logger.info(e.getMessage());
 			
 		}
 		return id;
@@ -187,6 +189,7 @@ public class MeetingDaoImpl implements MeetingDao {
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
+				logger.info(e.getMessage());
 			}
 		}
 		return meetings;
@@ -220,8 +223,10 @@ public class MeetingDaoImpl implements MeetingDao {
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
+				logger.info(e.getMessage());
 			} catch (Exception e) {
 				e.printStackTrace();
+				logger.info(e.getMessage());
 			}
 		}
 		return false;
@@ -240,6 +245,7 @@ public class MeetingDaoImpl implements MeetingDao {
 				return true;
 			} catch (SQLException e) {
 				e.printStackTrace();
+				logger.info(e.getMessage());
 				return false;
 			}
 

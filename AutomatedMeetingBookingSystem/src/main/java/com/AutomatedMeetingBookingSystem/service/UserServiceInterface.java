@@ -1,6 +1,7 @@
 package com.AutomatedMeetingBookingSystem.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.AutomatedMeetingBookingSystem.model.User;
 
@@ -15,5 +16,6 @@ public interface UserServiceInterface {
 	public boolean addUsers(ArrayList<User> userList);
 
 	public void setLastLoggedIn(int userId);
+	public List<User> getAllUser();
 	
 }

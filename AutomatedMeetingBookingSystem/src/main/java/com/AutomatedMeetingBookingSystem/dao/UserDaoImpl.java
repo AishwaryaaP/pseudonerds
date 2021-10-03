@@ -4,28 +4,37 @@ package com.AutomatedMeetingBookingSystem.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.AutomatedMeetingBookingSystem.model.MeetingRoom;
+
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 
 import com.AutomatedMeetingBookingSystem.model.User;
 import com.AutomatedMeetingBookingSystem.service.MeetingRoomService;
 import com.AutomatedMeetingBookingSystem.utility.DaoUtility;
 import com.AutomatedMeetingBookingSystem.utility.DaoUtilityInterface;
-//import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 //import org.apache.log4j.LogManager;
 //import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 public class UserDaoImpl implements UserDao{
-	
+	private static Logger logger;
 	public UserDaoImpl() {
-       PropertyConfigurator.configure("log4j.properties");
+      // PropertyConfigurator.configure("log4j.properties");
+       logger = LogManager.getLogger(MeetingRoomService.class);
+	BasicConfigurator.configure();
 
 	}
-	final Logger LOGR = LoggerFactory.getLogger(UserDaoImpl.class);
+	
 
 	
 	
@@ -46,7 +55,7 @@ public class UserDaoImpl implements UserDao{
 					u.setName(rs.getString(2));
 					u.setEmail(rs.getString(3));
 					u.setPhoneNumber(rs.getString(4));
-					u.setCredit(Integer.parseInt(rs.getString(5)));
+					u.setCredit(Double.parseDouble(rs.getString(5)));
 					u.setRole(rs.getString(6));
 					allUser.add(u);
 				}
@@ -55,7 +64,7 @@ public class UserDaoImpl implements UserDao{
 				
 			} catch (Exception e) {
 				e.printStackTrace();
-				LOGR.error(e.toString());
+				logger.info(e.getMessage());
 			}
 			
 		}
@@ -72,8 +81,9 @@ public class UserDaoImpl implements UserDao{
 		{
 			
 			try {
-				PreparedStatement statement = conn.prepareStatement("select userId,name,email,phone,credit,role, lastloggedin from user where userId =?;");
+				PreparedStatement statement = conn.prepareStatement("select userId,name,email,phone,credit,role, lastloggedin from user where userId =? and email =?;");
 				statement.setInt(1, userId);
+				statement.setString(2, email);
 				System.out.println(statement.toString());
 				ResultSet rs = statement.executeQuery();
 				if(rs != null) {
@@ -92,8 +102,9 @@ public class UserDaoImpl implements UserDao{
 				statement.close();
 				
 			} catch (Exception e) {
-				e.printStackTrace();
-				LOGR.error(e.toString());			
+				System.err.println(e.getMessage());
+				logger.info(e.getMessage());
+				return null;
 				}
 			
 		}
@@ -136,7 +147,7 @@ public class UserDaoImpl implements UserDao{
 		}
 		catch(Exception e) {
 			System.out.println(e.getMessage());
-			LOGR.error(e.toString());
+			logger.info(e.getMessage());
 		}
 	}
 
@@ -151,7 +162,7 @@ public class UserDaoImpl implements UserDao{
 		}
 		catch(Exception e) {
 			System.out.println(e.getMessage());
-			LOGR.error(e.toString());
+			logger.info(e.getMessage());
 		}
 	}
 	
@@ -184,7 +195,7 @@ public class UserDaoImpl implements UserDao{
 					
 				} catch (Exception e) {
 					e.printStackTrace();
-					LOGR.error(e.toString());
+					logger.info(e.getMessage());
 				}
 				
 			}
@@ -205,7 +216,9 @@ public class UserDaoImpl implements UserDao{
 		}
 		catch(Exception e) {
 			System.out.println(e.getMessage());
-			LOGR.error(e.toString());
+			logger.info(e.getMessage());
 		}
 	}
+
+
 }
