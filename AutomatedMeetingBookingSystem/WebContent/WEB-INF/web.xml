@@ -187,4 +187,14 @@
     <servlet-name>EmailSendingServlet</servlet-name>
     <url-pattern>/EmailSendingServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DropDownController</display-name>
+    <servlet-name>DropDownController</servlet-name>
+    <servlet-class>com.AutomatedMeetingBookingSystem.controllers.DropDownController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DropDownController</servlet-name>
+    <url-pattern>/DropDownController</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -1,6 +1,7 @@
 package com.AutomatedMeetingBookingSystem.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.LogManager;
@@ -70,6 +71,12 @@ public class UserServiceImp implements UserServiceInterface{
 	@Override
 	public void setLastLoggedIn(int userId) {
 		userDao.setLastLoggedIn(userId);
+	}
+
+	@Override
+	public List<User> getAllUser() {
+		List <User> userList = userDao.getAllUser();
+		return userList;
 	}
 
 
