@@ -9,14 +9,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" sizes="32x32"
 	href="./IMAGES/favicon.ico">
 <title>PseudoNerds | MeetPro</title>
 <link rel="stylesheet" href="./CSS/IndexStyle.css">
-</head>
 </head>
 <script>
   function checkid() {
@@ -205,25 +203,24 @@
 
 	<!-- Contact US -->
 	<section id="contact" class="contact">
-		<h2 class="section-heading">Contact Us</h2>
-		<div class="contact-container container">
-			<h2 class="contact-heading lg-heading">
+		<form class="form-container" action="EmailSendingServlet" method="POST">
+			<h2 class="section-heading">Contact Us</h2>
+			<div class="contact-container container">
+				<h2 class="contact-heading lg-heading">
 				Facing Issues?<br>Feel Free to Contact Us!<br> We
 				PseudoNerds are available 24/7 !
-			</h2>
-			<div class="form-container">
-
-				<form class="form-container" action="EmailSendingServlet"
-					method="POST">
-					<input type="text" autocomplete="off" name="username" id="username" placeholder="Subject" required>
-					<input type="email" name="email" id="email" placeholder="EMAIL" onKeyUp="checkemail()" autocomplete="off" required>
-					<input name="textarea" id="textarea" cols="30" rows="5" placeholder="PLEASE TYPE YOUR MESSAGE HERE" autocomplete="off" required>
+				</h2>
+				<div class="form-container">
+					<input type="text" autocomplete="off" name="name" id="name" placeholder="Your Name" autocomplete="off" required>
+					<input type="text" autocomplete="off" name="username" id="username" placeholder="Subject" autocomplete="off"  required>
+					<input type="email" name="email" id="email" placeholder="Your EmailID" onKeyUp="checkemail()" autocomplete="off" required>
+					<textarea name="textarea" id="textarea" cols="30" rows="5" placeholder="PLEASE TYPE YOUR MESSAGE HERE" autocomplete="off" required></textarea>
 					<input type="hidden" name="index" value="index" id="index" />
 					<button OnClick="contactusfn()" type="submit" class="btn" value="Submit">Submit</button>
-				</form>
+				</div>
 			</div>
-		</div>
-		<script type="text/javascript" src="js.main.js"></script>
+			<script type="text/javascript" src="js.main.js"></script>
+		</form>
 	</section>
 </body>
 
@@ -253,8 +250,7 @@
 				</div>
 
 				<div class="footer-credit">
-					<a href="https://github.com/AishwaryaaP/pseudonerds">Github
-						Repository</a>
+					<a href="https://github.com/AishwaryaaP/pseudonerds">Github Repository</a>
 					<p>@PseudoNerds. All Rights Reserved</p>
 				</div>
 			</div>
